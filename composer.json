@@ -1,0 +1,17 @@
+{
+  "autoload": {
+    "psr-4": {
+      "controller\\": "controller/",
+      "model\\": "model/",
+      "util\\": "util/",
+      "view\\": "view/",
+      "model\\dao\\": "model/dao/",
+      "model\\validate\\": "model/validate/",
+      "bd\\": "bd/"
+    }
+  },
+  "require": {
+    "lcobucci/jwt": "^3.2",
+    "vlucas/valitron": "^1.4"
+  }
+}
