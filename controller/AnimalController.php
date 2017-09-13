@@ -39,7 +39,9 @@ class AnimalController implements IController
 
     public function get($param)
     {
-        // TODO: Implement get() method.
+        $animal = new Animal();
+        $animal->setIdAnimal($param);
+        View::render(["message" => $animal->pesquisar()]);
     }
 
     public function put($param)

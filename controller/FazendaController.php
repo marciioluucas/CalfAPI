@@ -32,7 +32,9 @@ class FazendaController implements IController
 
     public function get($param)
     {
-        // TODO: Implement get() method.
+        $fazenda = new Fazenda();
+        $fazenda->setIdFazenda($param);
+        View::render(["message" => $fazenda->pesquisar()]);
     }
 
     public function put($param)

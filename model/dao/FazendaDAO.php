@@ -11,6 +11,7 @@ namespace model\dao;
 
 use bd\Banco;
 use Exception;
+use PDO;
 
 class FazendaDAO implements IDAO
 {
@@ -48,7 +49,25 @@ class FazendaDAO implements IDAO
 
     public function retrave($obj)
     {
-        // TODO: Implement read() method.
+        try {
+            $db = Banco::conexao();
+            $query = "SELECT * FROM fazendas";
+            if ($obj['idFazenda'] !== 0) {
+                $query .= " WHERE idFazenda = :idFazenda";
+                $stmt = $db->prepare($query);
+                $stmt->bindParam(':idFazenda', $obj['idFazenda'], PDO::PARAM_INT);
+            } else {
+                $stmt = $db->prepare($query);
+            }
+            $stmt->execute();
+            while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
+                $messagem[] = $row;
+            }
+
+        } catch (Exception $e) {
+            $messagem = $e->getMessage();
+        }
+        return $messagem;
     }
 
     public function delete($obj)

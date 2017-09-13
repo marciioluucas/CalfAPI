@@ -52,12 +52,13 @@ class LoteDAO implements IDAO
         try {
             $db = Banco::conexao();
             $query = "SELECT * FROM lotes";
-            if ($obj["idLote"] !== 0) {
-                $query .= "WHERE idLote = :idLote LIMIT 1";
+            if ($obj['idLote'] !== 0) {
+                $query .= " WHERE idLote = :idLote";
+                $stmt = $db->prepare($query);
+                $stmt->bindParam(':idLote', $obj['idLote'], PDO::PARAM_INT);
+            } else {
+                $stmt = $db->prepare($query);
             }
-            $stmt = $db->prepare($query);
-            $stmt->bindParam(':idLote', $obj["idLote"], PDO::PARAM_INT);
-
             $stmt->execute();
             while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
                 $messagem[] = $row;

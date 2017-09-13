@@ -153,7 +153,8 @@ class Pesagem implements IModel
 
     public function pesquisar()
     {
-        // TODO: Implement pesquisar() method.
+        $array = (new ClassToArray())->classToArray($this);
+        return (new PesagemDAO())->retrave($array);
     }
 
     public function deletar()

@@ -33,25 +33,19 @@ class LoteController implements IController
     public function get($param)
     {
         $lote = new Lote();
-        $data = (new DataConversor())->converter();
-        $valida = (new LoteValidate())->validateGet($data);
-        if (isset($param)) {
-            $lote->setIdLote($param);
-            View::render(["message"=>$lote->pesquisar()]);
-        } else if ($valida === true) {
-            $lote->setIdLote($data['idLote']);
-            View::render(["message"=>$lote->pesquisar()]);
-        } else {
-            View::render($valida);
-        }
+        $lote->setIdLote($param);
+        View::render(["message" => $lote->pesquisar()]);
+
     }
 
-    public function put($param)
+    public
+    function put($param)
     {
         // TODO: Implement put() method.
     }
 
-    public function delete($param)
+    public
+    function delete($param)
     {
         // TODO: Implement delete() method.
     }

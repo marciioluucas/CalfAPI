@@ -12,6 +12,7 @@ namespace model\dao;
 
 use bd\Banco;
 use Exception;
+use PDO;
 
 class AnimalDAO implements IDAO
 {
@@ -50,7 +51,25 @@ class AnimalDAO implements IDAO
 
     public function retrave($obj)
     {
-        // TODO: Implement read() method.
+        try {
+            $db = Banco::conexao();
+            $query = "SELECT * FROM animais";
+            if ($obj['idAnimal'] !== 0) {
+                $query .= " WHERE idAnimal = :idAnimal";
+                $stmt = $db->prepare($query);
+                $stmt->bindParam(':idAnimal', $obj['idAnimal'], PDO::PARAM_INT);
+            } else {
+                $stmt = $db->prepare($query);
+            }
+            $stmt->execute();
+            while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
+                $messagem[] = $row;
+            }
+
+        } catch (Exception $e) {
+            $messagem = $e->getMessage();
+        }
+        return $messagem;
     }
 
     public function delete($obj)

@@ -34,7 +34,9 @@ class PesagemController implements IController
 
     public function get($param)
     {
-        // TODO: Implement get() method.
+        $pesagem = new Pesagem();
+        $pesagem->setIdPesagem($param);
+        View::render(["message" => $pesagem->pesquisar()]);
     }
 
     public function put($param)

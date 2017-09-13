@@ -24,7 +24,7 @@ class PaiController implements IController
         $valida = (new PaiValidate())->validatePost($data);
         if ($valida === true) {
             $pai->setNome($data['nome']);
-            View::render(["Messagem"=>$pai->cadastrar()]);
+            View::render(["Messagem" => $pai->cadastrar()]);
         } else {
             View::render($valida);
         }
@@ -32,7 +32,9 @@ class PaiController implements IController
 
     public function get($param)
     {
-        // TODO: Implement get() method.
+        $pai = new Pai();
+        $pai->setIdPai($param);
+        View::render(["message" => $pai->pesquisar()]);
     }
 
     public function put($param)

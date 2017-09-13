@@ -255,8 +255,8 @@ class Animal implements IModel
 
     public function pesquisar()
     {
-        // TODO: Implement pesquisar() method.
-    }
+        $array = (new ClassToArray())->classToArray($this);
+        return (new AnimalDAO())->retrave($array);    }
 
     public function deletar()
     {

@@ -24,7 +24,7 @@ class MaeController implements IController
         $valida = (new MaeValidate())->validatePost($data);
         if ($valida === true) {
             $mae->setNome($data['nome']);
-            View::render(["Messagem"=>$mae->cadastrar()]);
+            View::render(["Messagem" => $mae->cadastrar()]);
         } else {
             View::render($valida);
         }
@@ -32,7 +32,9 @@ class MaeController implements IController
 
     public function get($param)
     {
-        // TODO: Implement get() method.
+        $mae = new Mae();
+        $mae->setIdMae($param);
+        View::render(["message" => $mae->pesquisar()]);
     }
 
     public function put($param)

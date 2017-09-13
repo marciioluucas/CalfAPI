@@ -11,6 +11,7 @@ namespace model\dao;
 
 use bd\Banco;
 use Exception;
+use PDO;
 
 class PaiDAO implements IDAO
 {
@@ -41,17 +42,36 @@ class PaiDAO implements IDAO
         return $messagem;
     }
 
-    public function update($obj, $id = 0)
+    public function update($obj)
     {
         // TODO: Implement update() method.
     }
 
-    public function retrave($obj, $id = 0)
+    public function retrave($obj)
     {
-        // TODO: Implement read() method.
+
+        try {
+            $db = Banco::conexao();
+            $query = "SELECT * FROM pais";
+            if ($obj['idPai'] !== 0) {
+                $query .= " WHERE idPai = :idPai";
+                $stmt = $db->prepare($query);
+                $stmt->bindParam(':idPai', $obj['idPai'], PDO::PARAM_INT);
+            } else {
+                $stmt = $db->prepare($query);
+            }
+            $stmt->execute();
+            while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
+                $messagem[] = $row;
+            }
+
+        } catch (Exception $e) {
+            $messagem = $e->getMessage();
+        }
+        return $messagem;
     }
 
-    public function delete($obj, $id = 0)
+    public function delete($obj)
     {
         // TODO: Implement delete() method.
     }

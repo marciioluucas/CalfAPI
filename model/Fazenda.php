@@ -135,8 +135,8 @@ class Fazenda implements IModel
 
     public function pesquisar()
     {
-        // TODO: Implement pesquisar() method.
-    }
+        $array = (new ClassToArray())->classToArray($this);
+        return (new FazendaDAO())->retrave($array);    }
 
     public function deletar()
     {

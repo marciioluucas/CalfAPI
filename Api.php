@@ -25,7 +25,7 @@ class Api
 
         $class = "\\controller\\" . ucfirst($this->retornaClasseURL()) . "Controller";
         if (!class_exists($class)) {
-            View::render(["Message"=>"Classe Nao encontrada"]);
+            View::render(["Message" => "Classe Nao encontrada"]);
             return false;
         }
 
@@ -42,27 +42,23 @@ class Api
     public function retornaCamposeValoresFormatados()
     {
         $arrayUrl = explode("/", self::$url);
-        $arrCamposEValoresSemFiltro = [];
-        for ($i = 4; $i < count($arrayUrl); $i++) {
-            $arrCamposEValoresSemFiltro[$i] = $arrayUrl[$i];
-        }
-        $arrCamposEValoresReindexado = array_values($arrCamposEValoresSemFiltro);
-
-        $arrReturn = [];
-        for ($j = 0; $j < count($arrCamposEValoresReindexado) - 1; $j++) {
-            if ($arrCamposEValoresReindexado[$j + 1] != "") {
-                $arrReturn[$arrCamposEValoresReindexado[$j]] = $arrCamposEValoresReindexado[$j + 1];
+        if (isset($arrayUrl[4])) {
+            if ($arrayUrl[4] === "") {
+                return 0;
+            } else {
+                return $arrayUrl[4];
             }
+        } else {
+            return 0;
         }
-
-        return $arrReturn;
     }
 
     /**
      * @param Controller $classe
      * @return mixed
      */
-    public function selecionaMetodo($classe)
+    public
+    function selecionaMetodo($classe)
     {
 
         $method = $_SERVER['REQUEST_METHOD'];
