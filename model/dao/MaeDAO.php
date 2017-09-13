@@ -51,9 +51,9 @@ class MaeDAO implements IDAO
     {
         try {
             $db = Banco::conexao();
-            $query = "SELECT * FROM maes";
+            $query = "SELECT * FROM maes WHERE status = 'ATIVO'";
             if ($obj['idMae'] !== 0) {
-                $query .= " WHERE idMae = :idMae";
+                $query .= " AND idMae = :idMae";
                 $stmt = $db->prepare($query);
                 $stmt->bindParam(':idMae', $obj['idMae'], PDO::PARAM_INT);
             } else {

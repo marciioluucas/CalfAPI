@@ -52,9 +52,9 @@ class PaiDAO implements IDAO
 
         try {
             $db = Banco::conexao();
-            $query = "SELECT * FROM pais";
+            $query = "SELECT * FROM pais WHERE status = 'ATIVO'";
             if ($obj['idPai'] !== 0) {
-                $query .= " WHERE idPai = :idPai";
+                $query .= " AND idPai = :idPai";
                 $stmt = $db->prepare($query);
                 $stmt->bindParam(':idPai', $obj['idPai'], PDO::PARAM_INT);
             } else {

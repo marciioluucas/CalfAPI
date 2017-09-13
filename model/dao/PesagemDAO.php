@@ -53,9 +53,9 @@ class PesagemDAO implements IDAO
     {
         try {
             $db = Banco::conexao();
-            $query = "SELECT * FROM pesagens";
+            $query = "SELECT * FROM pesagens WHERE status = 'ATIVO'";
             if ($obj['idPesagem'] !== 0) {
-                $query .= " WHERE idPesagem = :idPesagem";
+                $query .= " AND idPesagem = :idPesagem";
                 $stmt = $db->prepare($query);
                 $stmt->bindParam(':idPesagem', $obj['idPesagem'], PDO::PARAM_INT);
             } else {

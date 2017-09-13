@@ -51,9 +51,9 @@ class FazendaDAO implements IDAO
     {
         try {
             $db = Banco::conexao();
-            $query = "SELECT * FROM fazendas";
+            $query = "SELECT * FROM fazendas WHERE status = 'ATIVO'";
             if ($obj['idFazenda'] !== 0) {
-                $query .= " WHERE idFazenda = :idFazenda";
+                $query .= " AND idFazenda = :idFazenda";
                 $stmt = $db->prepare($query);
                 $stmt->bindParam(':idFazenda', $obj['idFazenda'], PDO::PARAM_INT);
             } else {

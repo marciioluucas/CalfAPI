@@ -51,9 +51,9 @@ class LoteDAO implements IDAO
     {
         try {
             $db = Banco::conexao();
-            $query = "SELECT * FROM lotes";
+            $query = "SELECT * FROM lotes WHERE status = 'ATIVO'";
             if ($obj['idLote'] !== 0) {
-                $query .= " WHERE idLote = :idLote";
+                $query .= " AND idLote = :idLote";
                 $stmt = $db->prepare($query);
                 $stmt->bindParam(':idLote', $obj['idLote'], PDO::PARAM_INT);
             } else {
