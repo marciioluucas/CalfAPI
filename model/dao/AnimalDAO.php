@@ -78,12 +78,15 @@ class AnimalDAO implements IDAO
                 $stmt = $db->prepare($query);
                 $stmt->bindParam(':idAnimal', $obj['idAnimal'], PDO::PARAM_INT);
             } else {
+                $query .= " LIMIT 0,10";
                 $stmt = $db->prepare($query);
             }
             $stmt->execute();
-            while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
-                $messagem[] = $row;
-
+            if(!empty($stmt->rowCount())){
+                $messagem = ($stmt->fetchAll(PDO::FETCH_ASSOC));
+            }
+            else{
+                $messagem = "Não foi possivel realizar a busca";
             }
 
         } catch (Exception $e) {

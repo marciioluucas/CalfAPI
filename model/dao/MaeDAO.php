@@ -60,11 +60,11 @@ class MaeDAO implements IDAO
                 $stmt = $db->prepare($query);
             }
             $stmt->execute();
-            $row = $stmt->fetch(PDO::FETCH_ASSOC);
-            if ($row) {
-                $messagem[] = $row;
-            } else {
-                $messagem = "Erro na busca";
+            if(!empty($stmt->rowCount())){
+                $messagem = ($stmt->fetchAll(PDO::FETCH_ASSOC));
+            }
+            else{
+                $messagem = "Não foi possivel realizar a busca";
             }
 
         } catch (Exception $e) {
