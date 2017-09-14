@@ -60,8 +60,11 @@ class LoteDAO implements IDAO
                 $stmt = $db->prepare($query);
             }
             $stmt->execute();
-            while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
+            $row = $stmt->fetch(PDO::FETCH_ASSOC);
+            if ($row) {
                 $messagem[] = $row;
+            } else {
+                $messagem = "Erro na busca";
             }
 
         } catch (Exception $e) {

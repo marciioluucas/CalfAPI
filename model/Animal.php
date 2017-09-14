@@ -250,16 +250,19 @@ class Animal implements IModel
 
     public function alterar()
     {
-        // TODO: Implement alterar() method.
+        $array = (new ClassToArray())->classToArray($this);
+        return (new AnimalDAO())->update($array);
     }
 
     public function pesquisar()
     {
         $array = (new ClassToArray())->classToArray($this);
-        return (new AnimalDAO())->retrave($array);    }
+        return (new AnimalDAO())->retrave($array);
+    }
 
     public function deletar()
     {
-        // TODO: Implement deletar() method.
+        $array = (new ClassToArray())->classToArray($this);
+        return (new AnimalDAO())->delete($array);
     }
 }

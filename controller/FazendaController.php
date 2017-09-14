@@ -24,7 +24,7 @@ class FazendaController implements IController
         $valida = (new FazendaValidate())->validatePost($data);
         if ($valida === true) {
             $fazenda->setNome($data['nome']);
-            $fazenda->cadastrar();
+            View::render(["Message"=>$fazenda->cadastrar()]);
         } else {
             View::render($valida);
         }

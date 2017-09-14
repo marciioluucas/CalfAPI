@@ -31,7 +31,7 @@ class AnimalController implements IController
             $animal->setFkPai($data['fkPai']);
             $animal->setFkLote($data['fkLote']);
             $animal->setFkFazenda($data['fkFazenda']);
-            View::render(["message"=>$animal->cadastrar()]);
+            View::render(["message" => $animal->cadastrar()]);
         } else {
             View::render($valida);
         }
@@ -46,11 +46,44 @@ class AnimalController implements IController
 
     public function put($param)
     {
-        // TODO: Implement put() method.
+        $animal = new Animal();
+        if ($param !== 0) {
+            $data = (new DataConversor())->converter();
+            $animal->setIdAnimal($param);
+            if (isset($data['codigoBrinco'])) {
+                $animal->setCodigoBrinco($data['codigoBrinco']);
+            }
+            if (isset($data['codigoRaca'])) {
+                $animal->setCodigoRaca($data['codigoRaca']);
+            }
+            if (isset($data['dataNascimento'])) {
+                $animal->setDataNascimento($data['dataNascimento']);
+            }
+            if (isset($data['fkPesagem'])) {
+                $animal->setFkPesagem($data['fkPesagem']);
+            }
+            if (isset($data['fkMae'])) {
+                $animal->setFkMae($data['fkMae']);
+            }
+            if (isset($data['fkPai'])) {
+                $animal->setFkPai($data['fkPai']);
+            }
+            if (isset($data['fkLote'])) {
+                $animal->setFkLote($data['fkLote']);
+            }
+            if (isset($data['fkFazenda'])) {
+                $animal->setFkFazenda($data['fkFazenda']);
+            }
+            View::render(["message" => $animal->alterar()]);
+        }
     }
 
     public function delete($param)
     {
-        // TODO: Implement delete() method.
+        $animal = new Animal();
+        if ($param !== 0) {
+            $animal->setIdAnimal($param);
+            View::render(["message" => $animal->deletar()]);
+        }
     }
 }

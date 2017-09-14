@@ -46,7 +46,26 @@ class AnimalDAO implements IDAO
 
     public function update($obj)
     {
-        // TODO: Implement update() method.
+        $messagem = "";
+        try {
+            $db = Banco::conexao();
+            $queryText = "";
+            foreach ($obj as $key => $value) {
+                $queryText .= $key . "=:" . $key . ",";
+            }
+            $queryVal = substr_replace($queryText, '', -1);
+            var_dump($queryVal);
+            $query = "UPDATE animais SET $queryVal WHERE idAnimal=:idAnimal";
+            $stmt = $db->prepare($query);
+            foreach ($obj as $key => &$val) {
+                $stmt->bindParam($key, $val);
+            }
+            $stmt->execute();
+            $messagem = "Animal alterado com sucesso";
+        } catch (Exception $e) {
+            $messagem = $e->getMessage();
+        }
+        return $messagem;
     }
 
     public function retrave($obj)
@@ -62,10 +81,12 @@ class AnimalDAO implements IDAO
                 $stmt = $db->prepare($query);
             }
             $stmt->execute();
-            while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
+            $row = $stmt->fetch(PDO::FETCH_ASSOC);
+            if ($row) {
                 $messagem[] = $row;
+            } else {
+                $messagem = "Erro na busca";
             }
-
         } catch (Exception $e) {
             $messagem = $e->getMessage();
         }
@@ -74,6 +95,19 @@ class AnimalDAO implements IDAO
 
     public function delete($obj)
     {
-        // TODO: Implement delete() method.
+        try {
+            $db = Banco::conexao();
+            $query = "UPDATE animais SET status = 'DESATIVADO' WHERE idAnimal=:idAnimal";
+
+            $stmt = $db->prepare($query);
+            $stmt->bindParam(':idAnimal', $obj['idAnimal'], PDO::PARAM_INT);
+
+            $stmt->execute();
+            $messagem = "Deletado com sucesso";
+
+        } catch (Exception $e) {
+            $messagem = $e->getMessage();
+        }
+        return $messagem;
     }
 }
