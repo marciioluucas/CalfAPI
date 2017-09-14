@@ -28,6 +28,24 @@ class Animal implements IModel
     private $fkPai;
     private $fkLote;
     private $fkFazenda;
+    protected $limite;
+
+    /**
+     * @return mixed
+     */
+    public function getLimite()
+    {
+        return $this->limite;
+    }
+
+    /**
+     * @param mixed $limite
+     */
+    public function setLimite($limite)
+    {
+        $this->limite = $limite;
+    }
+
 
     /**
      * @return mixed
@@ -257,7 +275,7 @@ class Animal implements IModel
     public function pesquisar()
     {
         $array = (new ClassToArray())->classToArray($this);
-        return (new AnimalDAO())->retrave($array);
+        return (new AnimalDAO())->retrave($array, $this->limite);
     }
 
     public function deletar()

@@ -17,8 +17,7 @@ class ClassToArray
     {
         $val = [];
         $reflectionClass = new ReflectionClass($obj);
-        $pro = $reflectionClass->getProperties(ReflectionProperty::IS_PUBLIC |
-            ReflectionProperty::IS_PROTECTED | ReflectionProperty::IS_PRIVATE);
+        $pro = $reflectionClass->getProperties(ReflectionProperty::IS_PUBLIC | ReflectionProperty::IS_PRIVATE);
 
         for ($i = 0; $i < count($pro); $i++) {
             $reflectionProperty = $reflectionClass->getProperty($pro[$i]->name);

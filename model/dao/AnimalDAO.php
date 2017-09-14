@@ -68,25 +68,30 @@ class AnimalDAO implements IDAO
         return $messagem;
     }
 
-    public function retrave($obj)
+    public function retrave($obj, $limite)
     {
         try {
             $db = Banco::conexao();
             $query = "SELECT * FROM animais WHERE status = 'ATIVO'";
+            if ($limite === null) {
+                $queryLimit = "LIMIT 1";
+            } else {
+                $queryLimit = " LIMIT :limite,10";
+            }
             if (!empty($obj)) {
                 foreach ($obj as $key => $value) {
-                    $query .= " AND " . $key . "=:" . $key;
+                    $query .= " AND " . $key . " LIKE :" . $key;
                 }
-                $query .= " LIMIT 0,10";
-                var_dump($query);
+                $query .= $queryLimit;
                 $stmt = $db->prepare($query);
                 foreach ($obj as $key => &$val) {
-                    $stmt->bindParam($key, $val);
+                    $stmt->bindValue($key, "%$val%");
                 }
             } else {
-                $query .= " LIMIT 0,10";
+                $query .= $queryLimit;
                 $stmt = $db->prepare($query);
             }
+            $stmt->bindValue(':limite', (int)trim($limite), PDO::PARAM_INT);
             $stmt->execute();
             if (!empty($stmt->rowCount())) {
                 $messagem = ($stmt->fetchAll(PDO::FETCH_ASSOC));

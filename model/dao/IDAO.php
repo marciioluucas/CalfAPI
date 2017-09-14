@@ -15,7 +15,7 @@ interface IDAO
 
     public function update($obj);
 
-    public function retrave($obj);
+    public function retrave($obj,$limite);
 
     public function delete($obj);
 }

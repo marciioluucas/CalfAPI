@@ -2,11 +2,10 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="2ddb1540-fd32-4c87-a553-f3c71f0febf8" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Api.php" afterPath="$PROJECT_DIR$/Api.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/controller/AnimalController.php" afterPath="$PROJECT_DIR$/controller/AnimalController.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/model/Animal.php" afterPath="$PROJECT_DIR$/model/Animal.php" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/model/dao/AnimalDAO.php" afterPath="$PROJECT_DIR$/model/dao/AnimalDAO.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/view/View.php" afterPath="$PROJECT_DIR$/view/View.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/model/dao/IDAO.php" afterPath="$PROJECT_DIR$/model/dao/IDAO.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/util/ClassToArray.php" afterPath="$PROJECT_DIR$/util/ClassToArray.php" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -27,20 +26,50 @@
       <file leaf-file-name="AnimalDAO.php" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/model/dao/AnimalDAO.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="258">
-              <caret line="84" column="17" lean-forward="false" selection-start-line="84" selection-start-column="17" selection-end-line="84" selection-end-column="17" />
+            <state relative-caret-position="309">
+              <caret line="85" column="0" lean-forward="false" selection-start-line="85" selection-start-column="0" selection-end-line="85" selection-end-column="0" />
               <folding>
-                <marker date="1505421023650" expanded="true" signature="647:696" ph="INSERT INTO animais... " />
-                <marker date="1505421023650" expanded="true" signature="1427:1445" ph="UPDATE anima... " />
-                <marker date="1505421023650" expanded="true" signature="1427:1446" ph="UPDATE anima... " />
-                <marker date="1505421023650" expanded="true" signature="1427:1480" ph="UPDATE anima... " />
-                <marker date="1505421023650" expanded="true" signature="1433:1441" ph="INSERT INTO animais... " />
-                <marker date="1505421023650" expanded="true" signature="1946:1990" ph="SELECT * FRO... animais" />
-                <marker date="1505421023650" expanded="true" signature="1952:1990" ph="UPDATE anima... " />
-                <marker date="1505421023650" expanded="true" signature="1959:1967" ph="SELECT * FRO... animais" />
-                <marker date="1505421023650" expanded="true" signature="1959:1990" ph="SELECT * FRO... animais" />
-                <marker date="1505421023650" expanded="true" signature="2985:3050" ph="UPDATE anima... " />
+                <marker date="1505423988253" expanded="true" signature="647:696" ph="INSERT INTO animais... " />
+                <marker date="1505423988253" expanded="true" signature="1427:1445" ph="UPDATE anima... " />
+                <marker date="1505423988253" expanded="true" signature="1427:1446" ph="UPDATE anima... " />
+                <marker date="1505423988253" expanded="true" signature="1427:1480" ph="UPDATE anima... " />
+                <marker date="1505423988253" expanded="true" signature="1433:1441" ph="INSERT INTO animais... " />
+                <marker date="1505423988253" expanded="true" signature="1955:1999" ph="SELECT * FRO... animais" />
+                <marker date="1505423988253" expanded="true" signature="1961:1999" ph="UPDATE anima... " />
+                <marker date="1505423988253" expanded="true" signature="1968:1976" ph="SELECT * FRO... animais" />
+                <marker date="1505423988253" expanded="true" signature="1968:1999" ph="SELECT * FRO... animais" />
+                <marker date="1505423988253" expanded="true" signature="3205:3270" ph="UPDATE anima... " />
               </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="IDAO.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/model/dao/IDAO.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="204">
+              <caret line="17" column="40" lean-forward="false" selection-start-line="17" selection-start-column="40" selection-end-line="17" selection-end-column="40" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="ClassToArray.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/util/ClassToArray.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="221">
+              <caret line="19" column="77" lean-forward="false" selection-start-line="19" selection-start-column="77" selection-end-line="19" selection-end-column="77" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Animal.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/model/Animal.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="388">
+              <caret line="277" column="65" lean-forward="false" selection-start-line="277" selection-start-column="65" selection-end-line="277" selection-end-column="65" />
+              <folding />
             </state>
           </provider>
         </entry>
@@ -58,7 +87,7 @@
       <file leaf-file-name="AnimalController.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/controller/AnimalController.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="242">
+            <state relative-caret-position="213">
               <caret line="47" column="22" lean-forward="true" selection-start-line="47" selection-start-column="22" selection-end-line="47" selection-end-column="22" />
               <folding />
             </state>
@@ -84,20 +113,6 @@
                 <marker date="1505403371958" expanded="true" signature="647:697" ph="INSERT INTO fazendas... " />
                 <marker date="1505403371958" expanded="true" signature="1256:1278" ph="SELECT * FRO... fazendas" />
                 <marker date="1505403371958" expanded="true" signature="1256:1301" ph="SELECT * FRO... fazendas" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="MaeDAO.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/model/dao/MaeDAO.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1020">
-              <caret line="67" column="13" lean-forward="false" selection-start-line="67" selection-start-column="13" selection-end-line="67" selection-end-column="13" />
-              <folding>
-                <marker date="1505403388199" expanded="true" signature="643:689" ph="INSERT INTO maes... " />
-                <marker date="1505403388199" expanded="true" signature="1201:1219" ph="SELECT * FRO... maes" />
-                <marker date="1505403388199" expanded="true" signature="1201:1242" ph="SELECT * FRO... maes" />
               </folding>
             </state>
           </provider>
@@ -131,20 +146,6 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="LoteDAO.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/model/dao/LoteDAO.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1020">
-              <caret line="67" column="13" lean-forward="false" selection-start-line="67" selection-start-column="13" selection-end-line="67" selection-end-column="13" />
-              <folding>
-                <marker date="1505403379928" expanded="true" signature="644:691" ph="INSERT INTO lotes... " />
-                <marker date="1505403379928" expanded="true" signature="1247:1266" ph="SELECT * FRO... lotes" />
-                <marker date="1505403379928" expanded="true" signature="1247:1289" ph="SELECT * FRO... lotes" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
     </leaf>
   </component>
   <component name="Git.Settings">
@@ -163,7 +164,6 @@
         <option value="$PROJECT_DIR$/controller/PesagemController.php" />
         <option value="$PROJECT_DIR$/model/Fazenda.php" />
         <option value="$PROJECT_DIR$/sql/01.sql" />
-        <option value="$PROJECT_DIR$/model/Animal.php" />
         <option value="$PROJECT_DIR$/controller/FazendaController.php" />
         <option value="$PROJECT_DIR$/model/dao/FazendaDAO.php" />
         <option value="$PROJECT_DIR$/model/dao/LoteDAO.php" />
@@ -173,6 +173,9 @@
         <option value="$PROJECT_DIR$/Api.php" />
         <option value="$PROJECT_DIR$/view/View.php" />
         <option value="$PROJECT_DIR$/controller/AnimalController.php" />
+        <option value="$PROJECT_DIR$/util/ClassToArray.php" />
+        <option value="$PROJECT_DIR$/model/dao/IDAO.php" />
+        <option value="$PROJECT_DIR$/model/Animal.php" />
         <option value="$PROJECT_DIR$/model/dao/AnimalDAO.php" />
       </list>
     </option>
@@ -260,20 +263,6 @@
             </PATH_ELEMENT>
             <PATH_ELEMENT>
               <option name="myItemId" value="dao" />
-              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="API" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="API" />
-              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="controller" />
               <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
             </PATH_ELEMENT>
           </PATH>
@@ -366,12 +355,12 @@
       <workItem from="1505342303610" duration="4348000" />
       <workItem from="1505352725665" duration="3636000" />
       <workItem from="1505400396117" duration="3017000" />
-      <workItem from="1505404666222" duration="14444000" />
+      <workItem from="1505404666222" duration="17446000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="30114000" />
+    <option name="totallyTimeSpent" value="33116000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="0" width="1356" height="728" extended-state="0" />
@@ -409,18 +398,6 @@
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/model/dao/MaeDAO.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1020">
-          <caret line="67" column="13" lean-forward="false" selection-start-line="67" selection-start-column="13" selection-end-line="67" selection-end-column="13" />
-          <folding>
-            <marker date="1505403388199" expanded="true" signature="643:689" ph="INSERT INTO maes... " />
-            <marker date="1505403388199" expanded="true" signature="1201:1219" ph="SELECT * FRO... maes" />
-            <marker date="1505403388199" expanded="true" signature="1201:1242" ph="SELECT * FRO... maes" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/model/dao/PaiDAO.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="1037">
@@ -477,6 +454,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="680">
           <caret line="48" column="1" lean-forward="true" selection-start-line="48" selection-start-column="1" selection-end-line="48" selection-end-column="1" />
+          <folding />
         </state>
       </provider>
     </entry>
@@ -553,16 +531,16 @@
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
-            <marker date="1505421023650" expanded="true" signature="647:696" ph="INSERT INTO animais... " />
-            <marker date="1505421023650" expanded="true" signature="1427:1445" ph="UPDATE anima... " />
-            <marker date="1505421023650" expanded="true" signature="1427:1446" ph="UPDATE anima... " />
-            <marker date="1505421023650" expanded="true" signature="1427:1480" ph="UPDATE anima... " />
-            <marker date="1505421023650" expanded="true" signature="1433:1441" ph="INSERT INTO animais... " />
-            <marker date="1505421023650" expanded="true" signature="1946:1990" ph="SELECT * FRO... animais" />
-            <marker date="1505421023650" expanded="true" signature="1952:1990" ph="UPDATE anima... " />
-            <marker date="1505421023650" expanded="true" signature="1959:1967" ph="SELECT * FRO... animais" />
-            <marker date="1505421023650" expanded="true" signature="1959:1990" ph="SELECT * FRO... animais" />
-            <marker date="1505421023650" expanded="true" signature="2985:3050" ph="UPDATE anima... " />
+            <marker date="1505423988253" expanded="true" signature="647:696" ph="INSERT INTO animais... " />
+            <marker date="1505423988253" expanded="true" signature="1427:1445" ph="UPDATE anima... " />
+            <marker date="1505423988253" expanded="true" signature="1427:1446" ph="UPDATE anima... " />
+            <marker date="1505423988253" expanded="true" signature="1427:1480" ph="UPDATE anima... " />
+            <marker date="1505423988253" expanded="true" signature="1433:1441" ph="INSERT INTO animais... " />
+            <marker date="1505423988253" expanded="true" signature="1955:1999" ph="SELECT * FRO... animais" />
+            <marker date="1505423988253" expanded="true" signature="1961:1999" ph="UPDATE anima... " />
+            <marker date="1505423988253" expanded="true" signature="1968:1976" ph="SELECT * FRO... animais" />
+            <marker date="1505423988253" expanded="true" signature="1968:1999" ph="SELECT * FRO... animais" />
+            <marker date="1505423988253" expanded="true" signature="3205:3270" ph="UPDATE anima... " />
           </folding>
         </state>
       </provider>
@@ -587,6 +565,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="680">
           <caret line="48" column="1" lean-forward="true" selection-start-line="48" selection-start-column="1" selection-end-line="48" selection-end-column="1" />
+          <folding />
         </state>
       </provider>
     </entry>
@@ -651,16 +630,16 @@
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
-            <marker date="1505421023650" expanded="true" signature="647:696" ph="INSERT INTO animais... " />
-            <marker date="1505421023650" expanded="true" signature="1427:1445" ph="UPDATE anima... " />
-            <marker date="1505421023650" expanded="true" signature="1427:1446" ph="UPDATE anima... " />
-            <marker date="1505421023650" expanded="true" signature="1427:1480" ph="UPDATE anima... " />
-            <marker date="1505421023650" expanded="true" signature="1433:1441" ph="INSERT INTO animais... " />
-            <marker date="1505421023650" expanded="true" signature="1946:1990" ph="SELECT * FRO... animais" />
-            <marker date="1505421023650" expanded="true" signature="1952:1990" ph="UPDATE anima... " />
-            <marker date="1505421023650" expanded="true" signature="1959:1967" ph="SELECT * FRO... animais" />
-            <marker date="1505421023650" expanded="true" signature="1959:1990" ph="SELECT * FRO... animais" />
-            <marker date="1505421023650" expanded="true" signature="2985:3050" ph="UPDATE anima... " />
+            <marker date="1505423988253" expanded="true" signature="647:696" ph="INSERT INTO animais... " />
+            <marker date="1505423988253" expanded="true" signature="1427:1445" ph="UPDATE anima... " />
+            <marker date="1505423988253" expanded="true" signature="1427:1446" ph="UPDATE anima... " />
+            <marker date="1505423988253" expanded="true" signature="1427:1480" ph="UPDATE anima... " />
+            <marker date="1505423988253" expanded="true" signature="1433:1441" ph="INSERT INTO animais... " />
+            <marker date="1505423988253" expanded="true" signature="1955:1999" ph="SELECT * FRO... animais" />
+            <marker date="1505423988253" expanded="true" signature="1961:1999" ph="UPDATE anima... " />
+            <marker date="1505423988253" expanded="true" signature="1968:1976" ph="SELECT * FRO... animais" />
+            <marker date="1505423988253" expanded="true" signature="1968:1999" ph="SELECT * FRO... animais" />
+            <marker date="1505423988253" expanded="true" signature="3205:3270" ph="UPDATE anima... " />
           </folding>
         </state>
       </provider>
@@ -684,6 +663,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="476">
           <caret line="36" column="59" lean-forward="true" selection-start-line="34" selection-start-column="8" selection-end-line="36" selection-end-column="59" />
+          <folding />
         </state>
       </provider>
     </entry>
@@ -791,21 +771,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="680">
           <caret line="48" column="1" lean-forward="true" selection-start-line="48" selection-start-column="1" selection-end-line="48" selection-end-column="1" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/model/Animal.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="4403">
-          <caret line="266" column="5" lean-forward="false" selection-start-line="266" selection-start-column="5" selection-end-line="266" selection-end-column="5" />
           <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/util/ClassToArray.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="272">
-          <caret line="22" column="0" lean-forward="true" selection-start-line="22" selection-start-column="0" selection-end-line="22" selection-end-column="0" />
         </state>
       </provider>
     </entry>
@@ -877,14 +843,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/controller/AnimalController.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="242">
-          <caret line="47" column="22" lean-forward="true" selection-start-line="47" selection-start-column="22" selection-end-line="47" selection-end-column="22" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/Api.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="210">
@@ -893,21 +851,53 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/controller/AnimalController.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="213">
+          <caret line="47" column="22" lean-forward="true" selection-start-line="47" selection-start-column="22" selection-end-line="47" selection-end-column="22" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/util/ClassToArray.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="221">
+          <caret line="19" column="77" lean-forward="false" selection-start-line="19" selection-start-column="77" selection-end-line="19" selection-end-column="77" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/model/dao/IDAO.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="204">
+          <caret line="17" column="40" lean-forward="false" selection-start-line="17" selection-start-column="40" selection-end-line="17" selection-end-column="40" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/model/Animal.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="388">
+          <caret line="277" column="65" lean-forward="false" selection-start-line="277" selection-start-column="65" selection-end-line="277" selection-end-column="65" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/model/dao/AnimalDAO.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="258">
-          <caret line="84" column="17" lean-forward="false" selection-start-line="84" selection-start-column="17" selection-end-line="84" selection-end-column="17" />
+        <state relative-caret-position="309">
+          <caret line="85" column="0" lean-forward="false" selection-start-line="85" selection-start-column="0" selection-end-line="85" selection-end-column="0" />
           <folding>
-            <marker date="1505421023650" expanded="true" signature="647:696" ph="INSERT INTO animais... " />
-            <marker date="1505421023650" expanded="true" signature="1427:1445" ph="UPDATE anima... " />
-            <marker date="1505421023650" expanded="true" signature="1427:1446" ph="UPDATE anima... " />
-            <marker date="1505421023650" expanded="true" signature="1427:1480" ph="UPDATE anima... " />
-            <marker date="1505421023650" expanded="true" signature="1433:1441" ph="INSERT INTO animais... " />
-            <marker date="1505421023650" expanded="true" signature="1946:1990" ph="SELECT * FRO... animais" />
-            <marker date="1505421023650" expanded="true" signature="1952:1990" ph="UPDATE anima... " />
-            <marker date="1505421023650" expanded="true" signature="1959:1967" ph="SELECT * FRO... animais" />
-            <marker date="1505421023650" expanded="true" signature="1959:1990" ph="SELECT * FRO... animais" />
-            <marker date="1505421023650" expanded="true" signature="2985:3050" ph="UPDATE anima... " />
+            <marker date="1505423988253" expanded="true" signature="647:696" ph="INSERT INTO animais... " />
+            <marker date="1505423988253" expanded="true" signature="1427:1445" ph="UPDATE anima... " />
+            <marker date="1505423988253" expanded="true" signature="1427:1446" ph="UPDATE anima... " />
+            <marker date="1505423988253" expanded="true" signature="1427:1480" ph="UPDATE anima... " />
+            <marker date="1505423988253" expanded="true" signature="1433:1441" ph="INSERT INTO animais... " />
+            <marker date="1505423988253" expanded="true" signature="1955:1999" ph="SELECT * FRO... animais" />
+            <marker date="1505423988253" expanded="true" signature="1961:1999" ph="UPDATE anima... " />
+            <marker date="1505423988253" expanded="true" signature="1968:1976" ph="SELECT * FRO... animais" />
+            <marker date="1505423988253" expanded="true" signature="1968:1999" ph="SELECT * FRO... animais" />
+            <marker date="1505423988253" expanded="true" signature="3205:3270" ph="UPDATE anima... " />
           </folding>
         </state>
       </provider>
