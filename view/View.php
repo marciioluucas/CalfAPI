@@ -43,6 +43,7 @@ class View extends HeaderWriter
         }
         header($headers);
         echo json_encode($data);
+        die();
     }
 
 

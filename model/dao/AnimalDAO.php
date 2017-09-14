@@ -73,19 +73,24 @@ class AnimalDAO implements IDAO
         try {
             $db = Banco::conexao();
             $query = "SELECT * FROM animais WHERE status = 'ATIVO'";
-            if ($obj['idAnimal'] !== 0) {
-                $query .= " AND idAnimal = :idAnimal";
+            if (!empty($obj)) {
+                foreach ($obj as $key => $value) {
+                    $query .= " AND " . $key . "=:" . $key;
+                }
+                $query .= " LIMIT 0,10";
+                var_dump($query);
                 $stmt = $db->prepare($query);
-                $stmt->bindParam(':idAnimal', $obj['idAnimal'], PDO::PARAM_INT);
+                foreach ($obj as $key => &$val) {
+                    $stmt->bindParam($key, $val);
+                }
             } else {
                 $query .= " LIMIT 0,10";
                 $stmt = $db->prepare($query);
             }
             $stmt->execute();
-            if(!empty($stmt->rowCount())){
+            if (!empty($stmt->rowCount())) {
                 $messagem = ($stmt->fetchAll(PDO::FETCH_ASSOC));
-            }
-            else{
+            } else {
                 $messagem = "Não foi possivel realizar a busca";
             }
 

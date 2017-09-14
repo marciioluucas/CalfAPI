@@ -40,16 +40,25 @@ class AnimalController implements IController
     public function get($param)
     {
         $animal = new Animal();
-        $animal->setIdAnimal($param);
+        if(!empty($param)) {
+            foreach ($param as $key => $val) {
+                $var = "set".ucfirst($key);
+                if (method_exists($animal,'set'.ucfirst($key))){
+                    $animal->$var($val);
+                }else{
+                    View::render(["message" => "Parametro invalido ".$key]);
+                }
+            }
+        }
         View::render(["message" => $animal->pesquisar()]);
     }
 
     public function put($param)
     {
         $animal = new Animal();
-        if ($param !== 0) {
+        if (isset($param['id'])) {
             $data = (new DataConversor())->converter();
-            $animal->setIdAnimal($param);
+            $animal->setIdAnimal($param['id']);
             if (isset($data['codigoBrinco'])) {
                 $animal->setCodigoBrinco($data['codigoBrinco']);
             }
@@ -81,8 +90,8 @@ class AnimalController implements IController
     public function delete($param)
     {
         $animal = new Animal();
-        if ($param !== 0) {
-            $animal->setIdAnimal($param);
+        if (isset($param['id'])) {
+            $animal->setIdAnimal($param['id']);
             View::render(["message" => $animal->deletar()]);
         }
     }

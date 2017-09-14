@@ -36,18 +36,30 @@ class Api
     private function retornaClasseURL()
     {
         $arrayUrl = explode("/", self::$url);
-        return $arrayUrl[3];
+        for ($i = count($arrayUrl) - 1; $i > 0; $i--) {
+            if ($arrayUrl[$i] === "api") {
+                return $arrayUrl[$i + 1];
+            }
+        }
     }
 
     public function retornaCamposeValoresFormatados()
     {
         $arrayUrl = explode("/", self::$url);
-        if (isset($arrayUrl[4])) {
-            if ($arrayUrl[4] === "") {
-                return 0;
-            } else {
-                return $arrayUrl[4];
+        for ($i = count($arrayUrl) - 1; $i > 0; $i--) {
+            if ($arrayUrl[$i] === "api") {
+                $comeca = $i + 2;
             }
+        }
+        if (isset($arrayUrl[$comeca+1])) {
+            $inc = $comeca;
+            $inc2 = $comeca + 1;
+            for ($i = $comeca; $i < count($arrayUrl); $i= $inc2) {
+                $array[$arrayUrl[$inc]] = $arrayUrl[$inc2];
+                $inc = $inc + 2;
+                $inc2 = $inc2 + 2;
+            }
+            return $array;
         } else {
             return 0;
         }
