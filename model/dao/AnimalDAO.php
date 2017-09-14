@@ -81,12 +81,11 @@ class AnimalDAO implements IDAO
                 $stmt = $db->prepare($query);
             }
             $stmt->execute();
-            $row = $stmt->fetch(PDO::FETCH_ASSOC);
-            if ($row) {
+            while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
                 $messagem[] = $row;
-            } else {
-                $messagem = "Erro na busca";
+
             }
+
         } catch (Exception $e) {
             $messagem = $e->getMessage();
         }

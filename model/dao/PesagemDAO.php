@@ -37,7 +37,8 @@ class PesagemDAO implements IDAO
             }
             $stmt->execute();
             $messagem = "Pesagem adicionada com sucesso";
-        } catch (Exception $e) {
+        }
+        catch (Exception $e){
             $messagem = $e->getMessage();
         }
         return $messagem;
@@ -62,6 +63,7 @@ class PesagemDAO implements IDAO
             }
             $stmt->execute();
             $row = $stmt->fetch(PDO::FETCH_ASSOC);
+            var_dump($row);
             if ($row) {
                 $messagem[] = $row;
             } else {
