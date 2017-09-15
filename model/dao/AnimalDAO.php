@@ -74,7 +74,7 @@ class AnimalDAO implements IDAO
             $db = Banco::conexao();
             $query = "SELECT * FROM animais WHERE status = 'ATIVO'";
             if ($limite === null) {
-                $queryLimit = "LIMIT 1";
+                $queryLimit = " LIMIT 1";
             } else {
                 $queryLimit = " LIMIT :limite,10";
             }
@@ -91,7 +91,8 @@ class AnimalDAO implements IDAO
                 $query .= $queryLimit;
                 $stmt = $db->prepare($query);
             }
-            $stmt->bindValue(':limite', (int)trim($limite), PDO::PARAM_INT);
+            if ($limite !== null){
+                $stmt->bindValue(':limite', (int)trim($limite), PDO::PARAM_INT);}
             $stmt->execute();
             if (!empty($stmt->rowCount())) {
                 $messagem = ($stmt->fetchAll(PDO::FETCH_ASSOC));
