@@ -3,7 +3,6 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/.idea/API.iml" filepath="$PROJECT_DIR$/.idea/API.iml" />
-      <module fileurl="file://$PROJECT_DIR$/../GarageAPI/.idea/GarageAPI.iml" filepath="$PROJECT_DIR$/../GarageAPI/.idea/GarageAPI.iml" />
     </modules>
   </component>
 </project>
