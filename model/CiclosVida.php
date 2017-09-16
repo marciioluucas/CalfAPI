@@ -9,6 +9,7 @@
 namespace model;
 
 
+use model\dao\CiclosVidaDAO;
 use util\ClassToArray;
 use util\Data;
 
@@ -184,18 +185,18 @@ class CiclosVida implements IModel
     public function alterar()
     {
         $array = (new ClassToArray())->classToArray($this);
-        return (new AnimalDAO())->update($array);
+        return (new CiclosVidaDAO())->update($array);
     }
 
     public function pesquisar()
     {
         $array = (new ClassToArray())->classToArray($this);
-        return (new AnimalDAO())->retrave($array, $this->limite);
+        return (new CiclosVidaDAO())->retrave($array, $this->limite);
     }
 
     public function deletar()
     {
         $array = (new ClassToArray())->classToArray($this);
-        return (new AnimalDAO())->delete($array);
+        return (new CiclosVidaDAO())->delete($array);
     }
 }

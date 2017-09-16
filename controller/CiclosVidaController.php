@@ -10,6 +10,7 @@ namespace controller;
 
 
 use model\CiclosVida;
+use model\validate\CiclosVidaValidate;
 use util\DataConversor;
 
 class CiclosVidaController implements IController
@@ -18,17 +19,12 @@ class CiclosVidaController implements IController
     {
         $ciclo = new CiclosVida();
         $data = (new DataConversor())->converter();
-        $valida = (new AnimalValidate())->validatePost($data);
+        $valida = (new CiclosVidaValidate())->validatePost($data);
         if ($valida === true) {
-            $animal->setCodigoBrinco($data['codigoBrinco']);
-            $animal->setCodigoRaca($data['codigoRaca']);
-            $animal->setDataNascimento($data['dataNascimento']);
-            $animal->setFkPesagem($data['fkPesagem']);
-            $animal->setFkMae($data['fkMae']);
-            $animal->setFkPai($data['fkPai']);
-            $animal->setFkLote($data['fkLote']);
-            $animal->setFkFazenda($data['fkFazenda']);
-            View::render(["message" => $animal->cadastrar()]);
+            $ciclo->setEnumFaseVida($data['enumFaseVida']);
+            $ciclo->setEnumLocalizacao($data['enumLocalizacao']);
+            $ciclo->setFkAnimal($data['fkAnimal']);
+            View::render(["message" => $ciclo->cadastrar()]);
         } else {
             View::render($valida);
         }
@@ -36,17 +32,50 @@ class CiclosVidaController implements IController
 
     public function get($param)
     {
-        // TODO: Implement get() method.
+        $ciclo = new CiclosVida();
+        if (!empty($param)) {
+            foreach ($param as $key => $val) {
+                $var = "set" . ucfirst($key);
+                if (method_exists($ciclo, 'set' . ucfirst($key))) {
+                    $ciclo->$var($val);
+                } else {
+                    View::render([
+                        "status" => 401,
+                        "message" => "Parametro invalido " . $key
+                    ]);
+                }
+            }
+        }
+        View::render($ciclo->pesquisar());
     }
 
     public function put($param)
     {
-        // TODO: Implement put() method.
+        $ciclo = new CiclosVida();
+        if (isset($param['idCiclosVida'])) {
+            $data = (new DataConversor())->converter();
+            $ciclo->setIdCiclosVida($param['idCiclosVida']);
+            if (isset($data['enumFaseVida'])) {
+                $ciclo->setEnumFaseVida($data['enumFaseVida']);
+            }
+            if (isset($data['enumLocalizacao'])) {
+                $ciclo->setEnumLocalizacao($data['enumLocalizacao']);
+            }
+            if (isset($data['fkAnimal'])) {
+                $ciclo->setFkAnimal($data['fkAnimal']);
+            }
+
+            View::render($ciclo->alterar());
+        }
     }
 
     public function delete($param)
     {
-        // TODO: Implement delete() method.
+        $ciclo = new CiclosVida();
+        if (isset($param['idCiclosVida'])) {
+            $ciclo->setIdCiclosVida($param['idCiclosVida']);
+            View::render($ciclo->deletar());
+        }
     }
 
 }
