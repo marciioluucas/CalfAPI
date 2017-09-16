@@ -4,6 +4,7 @@
     <content url="file://$MODULE_DIR$" />
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
+<<<<<<< Updated upstream
     <orderEntry type="module-library">
       <library name="PHP Runtime" type="php">
         <CLASSES>
@@ -15,5 +16,7 @@
       </library>
     </orderEntry>
     <orderEntry type="module" module-name="GarageAPI" />
+=======
+>>>>>>> Stashed changes
   </component>
 </module>
