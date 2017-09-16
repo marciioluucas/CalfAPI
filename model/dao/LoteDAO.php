@@ -47,7 +47,7 @@ class LoteDAO implements IDAO
         // TODO: Implement update() method.
     }
 
-    public function retrave($obj)
+    public function retrave($obj,$limite)
     {
         try {
             $db = Banco::conexao();
