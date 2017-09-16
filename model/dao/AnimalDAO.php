@@ -58,9 +58,11 @@ class AnimalDAO implements IDAO
             $db = Banco::conexao();
             $queryText = "";
             foreach ($obj as $key => $value) {
+                if ($key !== 'idAnimal')
                 $queryText .= $key . "=:" . $key . ",";
             }
             $queryVal = substr_replace($queryText, '', -1);
+
             $query = "UPDATE animais SET $queryVal WHERE idAnimal=:idAnimal";
             $stmt = $db->prepare($query);
             foreach ($obj as $key => &$val) {
@@ -92,13 +94,20 @@ class AnimalDAO implements IDAO
                 $queryLimit = " LIMIT :limite,10";
             }
             if (!empty($obj)) {
-                foreach ($obj as $key => $value) {
-                    $query .= " AND " . $key . " LIKE :" . $key;
-                }
-                $query .= $queryLimit;
-                $stmt = $db->prepare($query);
-                foreach ($obj as $key => &$val) {
-                    $stmt->bindValue($key, "%$val%");
+                if (isset($obj['idAnimal'])) {
+                    $query .= "AND idAnimal=:idAnimal";
+                    $query .= $queryLimit;
+                    $stmt = $db->prepare($query);
+                    $stmt->bindValue(':idAnimal', $obj['idAnimal']);
+                } else {
+                    foreach ($obj as $key => $value) {
+                        $query .= " AND " . $key . " LIKE :" . $key;
+                    }
+                    $query .= $queryLimit;
+                    $stmt = $db->prepare($query);
+                    foreach ($obj as $key => &$val) {
+                        $stmt->bindValue($key, "%$val%");
+                    }
                 }
             } else {
                 $query .= $queryLimit;

@@ -90,13 +90,20 @@ class FazendaDAO implements IDAO
                 $queryLimit = " LIMIT :limite,10";
             }
             if (!empty($obj)) {
-                foreach ($obj as $key => $value) {
-                    $query .= " AND " . $key . " LIKE :" . $key;
-                }
-                $query .= $queryLimit;
-                $stmt = $db->prepare($query);
-                foreach ($obj as $key => &$val) {
-                    $stmt->bindValue($key, "%$val%");
+                if (isset($obj['idFazenda'])) {
+                    $query .= "AND idFazenda=:idFazenda";
+                    $query .= $queryLimit;
+                    $stmt = $db->prepare($query);
+                    $stmt->bindValue(':idFazenda', $obj['idFazenda']);
+                } else {
+                    foreach ($obj as $key => $value) {
+                        $query .= " AND " . $key . " LIKE :" . $key;
+                    }
+                    $query .= $queryLimit;
+                    $stmt = $db->prepare($query);
+                    foreach ($obj as $key => &$val) {
+                        $stmt->bindValue($key, "%$val%");
+                    }
                 }
             } else {
                 $query .= $queryLimit;

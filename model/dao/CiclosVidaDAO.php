@@ -55,7 +55,6 @@ class CiclosVidaDAO implements IDAO
                 $queryText .= $key . "=:" . $key . ",";
             }
             $queryVal = substr_replace($queryText, '', -1);
-            var_dump($queryVal);
             $query = "UPDATE ciclosVida SET $queryVal WHERE idCiclosVida=:idCiclosVida";
             $stmt = $db->prepare($query);
             foreach ($obj as $key => &$val) {
@@ -87,13 +86,20 @@ class CiclosVidaDAO implements IDAO
                 $queryLimit = " LIMIT :limite,10";
             }
             if (!empty($obj)) {
-                foreach ($obj as $key => $value) {
-                    $query .= " AND " . $key . " LIKE :" . $key;
-                }
-                $query .= $queryLimit;
-                $stmt = $db->prepare($query);
-                foreach ($obj as $key => &$val) {
-                    $stmt->bindValue($key, "%$val%");
+                if (isset($obj['idCiclosVida'])) {
+                    $query .= "AND idCiclosVida=:idCiclosVida";
+                    $query .= $queryLimit;
+                    $stmt = $db->prepare($query);
+                    $stmt->bindValue(':idCiclosVida', $obj['idCiclosVida']);
+                } else {
+                    foreach ($obj as $key => $value) {
+                        $query .= " AND " . $key . " LIKE :" . $key;
+                    }
+                    $query .= $queryLimit;
+                    $stmt = $db->prepare($query);
+                    foreach ($obj as $key => &$val) {
+                        $stmt->bindValue($key, "%$val%");
+                    }
                 }
             } else {
                 $query .= $queryLimit;
