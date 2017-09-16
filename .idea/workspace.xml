@@ -1,14 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="5939d720-772b-4ad7-b4c9-c7a5e66a3c0e" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/model/dao/CiclosVidaDAO.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/API.iml" afterPath="$PROJECT_DIR$/.idea/API.iml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/controller/CiclosVidaController.php" afterPath="$PROJECT_DIR$/controller/CiclosVidaController.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/model/CiclosVida.php" afterPath="$PROJECT_DIR$/model/CiclosVida.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/model/validate/CiclosVidaValidate.php" afterPath="$PROJECT_DIR$/model/validate/CiclosVidaValidate.php" />
-    </list>
+    <list default="true" id="00f5a375-e7b8-4505-98fa-01660a814dc1" name="Default" comment="" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -19,236 +12,12 @@
   <component name="CreatePatchCommitExecutor">
     <option name="PATCH_PATH" value="" />
   </component>
+  <component name="ExecutionTargetManager" SELECTED_TARGET="default_target" />
   <component name="FavoritesManager">
     <favorites_list name="API" />
   </component>
-  <component name="FileEditorManager">
-    <leaf>
-<<<<<<< HEAD
-      <file leaf-file-name="AnimalDAO.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/model/dao/AnimalDAO.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="92">
-              <caret line="63" column="0" lean-forward="false" selection-start-line="63" selection-start-column="0" selection-end-line="63" selection-end-column="0" />
-              <folding>
-                <marker date="1505588796671" expanded="true" signature="685:734" ph="INSERT INTO animais... " />
-                <marker date="1505588796671" expanded="true" signature="1595:1648" ph="UPDATE anima... " />
-                <marker date="1505588796671" expanded="true" signature="2310:2354" ph="SELECT * FRO... animais" />
-                <marker date="1505588796671" expanded="true" signature="3837:3902" ph="UPDATE anima... " />
-=======
-      <file leaf-file-name="CiclosVida.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/model/CiclosVida.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="364">
-              <caret line="199" column="35" lean-forward="false" selection-start-line="199" selection-start-column="35" selection-end-line="199" selection-end-column="35" />
-              <folding>
-                <element signature="e#107#135#0#PHP" expanded="true" />
->>>>>>> f8a7d8a0e3be64fa5eb0c137076214eb04944cd1
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-<<<<<<< HEAD
-      <file leaf-file-name="LoteDAO.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/model/dao/LoteDAO.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="158">
-              <caret line="61" column="0" lean-forward="false" selection-start-line="61" selection-start-column="0" selection-end-line="61" selection-end-column="0" />
-              <folding>
-                <marker date="1505588812138" expanded="true" signature="682:729" ph="INSERT INTO lotes... " />
-                <marker date="1505588812138" expanded="true" signature="1587:1634" ph="UPDATE lotes... " />
-                <marker date="1505588812138" expanded="true" signature="2294:2336" ph="SELECT * FRO... lotes" />
-                <marker date="1505588812138" expanded="true" signature="3819:3878" ph="UPDATE lotes... " />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="AnimalEditar.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/../Front-Calf/app/animal/AnimalEditar.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="255">
-              <caret line="17" column="0" lean-forward="true" selection-start-line="17" selection-start-column="0" selection-end-line="17" selection-end-column="0" />
-              <folding>
-                <element signature="e#0#44#0" expanded="false" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="MaeDAO.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/model/dao/MaeDAO.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="98">
-              <caret line="60" column="0" lean-forward="false" selection-start-line="60" selection-start-column="0" selection-end-line="60" selection-end-column="0" />
-              <folding>
-                <marker date="1505588818465" expanded="true" signature="681:727" ph="INSERT INTO maes... " />
-                <marker date="1505588818465" expanded="true" signature="1546:1590" ph="UPDATE maes " />
-                <marker date="1505588818465" expanded="true" signature="2275:2316" ph="SELECT * FRO... maes" />
-                <marker date="1505588818465" expanded="true" signature="3799:3855" ph="UPDATE maes " />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="PaiDAO.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/model/dao/PaiDAO.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="201">
-              <caret line="61" column="0" lean-forward="false" selection-start-line="61" selection-start-column="0" selection-end-line="61" selection-end-column="0" />
-              <folding>
-                <marker date="1505588827141" expanded="true" signature="681:727" ph="INSERT INTO pais... " />
-                <marker date="1505588827141" expanded="true" signature="1584:1628" ph="UPDATE pais " />
-                <marker date="1505588827141" expanded="true" signature="2287:2328" ph="SELECT * FRO... pais" />
-                <marker date="1505588827141" expanded="true" signature="3811:3867" ph="UPDATE pais " />
-              </folding>
-=======
-      <file leaf-file-name="CiclosVidaValidate.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/model/validate/CiclosVidaValidate.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="225">
-              <caret line="20" column="0" lean-forward="false" selection-start-line="20" selection-start-column="0" selection-end-line="20" selection-end-column="0" />
-              <folding />
->>>>>>> f8a7d8a0e3be64fa5eb0c137076214eb04944cd1
-            </state>
-          </provider>
-        </entry>
-      </file>
-<<<<<<< HEAD
-      <file leaf-file-name="PesagemDAO.php" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/model/dao/PesagemDAO.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-909">
-              <caret line="62" column="0" lean-forward="false" selection-start-line="62" selection-start-column="0" selection-end-line="62" selection-end-column="0" />
-              <folding>
-                <marker date="1505588837960" expanded="true" signature="686:736" ph="INSERT INTO pesagens... " />
-                <marker date="1505588837960" expanded="true" signature="1597:1650" ph="UPDATE anima... " />
-                <marker date="1505588837960" expanded="true" signature="2188:2233" ph="SELECT * FRO... pesagens" />
-                <marker date="1505588837960" expanded="true" signature="3716:3784" ph="UPDATE pesag... " />
-=======
-      <file leaf-file-name="CiclosVidaDAO.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/model/dao/CiclosVidaDAO.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1330">
-              <caret line="132" column="64" lean-forward="false" selection-start-line="132" selection-start-column="64" selection-end-line="132" selection-end-column="64" />
-              <folding>
-                <marker date="1505588609000" expanded="true" signature="645:697" ph="INSERT INTO ciclosVida... " />
-                <marker date="1505588609000" expanded="true" signature="1598:1662" ph="UPDATE ciclo... " />
-                <marker date="1505588609000" expanded="true" signature="2331:2378" ph="SELECT * FRO... ciclosVida" />
-                <marker date="1505588609000" expanded="true" signature="3861:3937" ph="UPDATE ciclo... " />
->>>>>>> f8a7d8a0e3be64fa5eb0c137076214eb04944cd1
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-<<<<<<< HEAD
-      <file leaf-file-name="data.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/../Front-Calf/app/core/data.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="59">
-              <caret line="64" column="13" lean-forward="true" selection-start-line="64" selection-start-column="13" selection-end-line="64" selection-end-column="13" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="route.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/../Front-Calf/app/routes/route.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="278">
-              <caret line="20" column="30" lean-forward="true" selection-start-line="20" selection-start-column="30" selection-end-line="20" selection-end-column="30" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="AnimalNovo.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/../Front-Calf/app/animal/AnimalNovo.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="17">
-              <caret line="1" column="4" lean-forward="false" selection-start-line="1" selection-start-column="4" selection-end-line="7" selection-end-column="5" />
-=======
-      <file leaf-file-name="CiclosVidaController.php" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/controller/CiclosVidaController.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="347">
-              <caret line="76" column="44" lean-forward="true" selection-start-line="76" selection-start-column="44" selection-end-line="76" selection-end-column="44" />
->>>>>>> f8a7d8a0e3be64fa5eb0c137076214eb04944cd1
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-<<<<<<< HEAD
-      <file leaf-file-name="FazendaDAO.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/model/dao/FazendaDAO.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="196">
-              <caret line="61" column="0" lean-forward="false" selection-start-line="61" selection-start-column="0" selection-end-line="61" selection-end-column="0" />
-              <folding>
-                <marker date="1505588805354" expanded="true" signature="685:735" ph="INSERT INTO fazendas... " />
-                <marker date="1505588805354" expanded="true" signature="1596:1652" ph="UPDATE fazen... " />
-                <marker date="1505588805354" expanded="true" signature="2315:2360" ph="SELECT * FRO... fazendas" />
-                <marker date="1505588805354" expanded="true" signature="3843:3911" ph="UPDATE fazen... " />
-=======
-      <file leaf-file-name="AnimalDAO.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/model/dao/AnimalDAO.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="419">
-              <caret line="150" column="10" lean-forward="true" selection-start-line="131" selection-start-column="8" selection-end-line="150" selection-end-column="10" />
-              <folding>
-                <marker date="1505584803000" expanded="true" signature="685:734" ph="INSERT INTO animais... " />
-                <marker date="1505584803000" expanded="true" signature="1628:1681" ph="UPDATE anima... " />
-                <marker date="1505584803000" expanded="true" signature="2343:2387" ph="SELECT * FRO... animais" />
-                <marker date="1505584803000" expanded="true" signature="3870:3935" ph="UPDATE anima... " />
->>>>>>> f8a7d8a0e3be64fa5eb0c137076214eb04944cd1
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-    </leaf>
-  </component>
-<<<<<<< HEAD
-  <component name="FileTemplateManagerImpl">
-    <option name="RECENT_TEMPLATES">
-      <list>
-        <option value="JavaScript File" />
-      </list>
-    </option>
-  </component>
-=======
->>>>>>> f8a7d8a0e3be64fa5eb0c137076214eb04944cd1
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
-  </component>
-  <component name="IdeDocumentHistory">
-    <option name="CHANGED_PATHS">
-      <list>
-<<<<<<< HEAD
-        <option value="$PROJECT_DIR$/bd/Banco.php" />
-        <option value="$PROJECT_DIR$/../Front-Calf/index.html" />
-        <option value="$PROJECT_DIR$/../Front-Calf/app/animal/Animal.html" />
-        <option value="$PROJECT_DIR$/../Front-Calf/app/routes/route.js" />
-        <option value="$PROJECT_DIR$/../Front-Calf/app/animal/AnimalEditar.js" />
-        <option value="$PROJECT_DIR$/../Front-Calf/app/core/data.js" />
-        <option value="$PROJECT_DIR$/model/dao/AnimalDAO.php" />
-        <option value="$PROJECT_DIR$/model/dao/FazendaDAO.php" />
-        <option value="$PROJECT_DIR$/model/dao/LoteDAO.php" />
-        <option value="$PROJECT_DIR$/model/dao/MaeDAO.php" />
-        <option value="$PROJECT_DIR$/model/dao/PaiDAO.php" />
-        <option value="$PROJECT_DIR$/model/dao/PesagemDAO.php" />
-=======
-        <option value="$PROJECT_DIR$/model/validate/AnimalValidate.php" />
-        <option value="$PROJECT_DIR$/model/validate/CiclosVidaValidate.php" />
-        <option value="$PROJECT_DIR$/controller/CiclosVidaController.php" />
-        <option value="$PROJECT_DIR$/model/dao/CiclosVidaDAO.php" />
-        <option value="$PROJECT_DIR$/model/CiclosVida.php" />
->>>>>>> f8a7d8a0e3be64fa5eb0c137076214eb04944cd1
-      </list>
-    </option>
   </component>
   <component name="JsBuildToolGruntFileManager" detection-done="true" sorting="DEFINITION_ORDER" />
   <component name="JsBuildToolPackageJson" detection-done="true" sorting="DEFINITION_ORDER" />
@@ -257,13 +26,12 @@
     <sorting>DEFINITION_ORDER</sorting>
   </component>
   <component name="PhpWorkspaceProjectConfiguration" backward_compatibility_performed="true" />
-  <component name="ProjectFrameBounds" fullScreen="true">
+  <component name="ProjectFrameBounds">
     <option name="x" value="-8" />
     <option name="y" value="-8" />
     <option name="width" value="1382" />
     <option name="height" value="744" />
   </component>
-  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectView">
     <navigator currentView="ProjectPane" proportions="" version="1">
       <flattenPackages />
@@ -280,69 +48,9 @@
     </navigator>
     <panes>
       <pane id="Scope" />
+      <pane id="Scratches" />
       <pane id="ProjectPane">
         <subPane>
-<<<<<<< HEAD
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="API" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Front-Calf" />
-              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="API" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Front-Calf" />
-              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="app" />
-              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="API" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Front-Calf" />
-              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="app" />
-              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="core" />
-              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="API" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Front-Calf" />
-              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="app" />
-              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="animal" />
-              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
-            </PATH_ELEMENT>
-          </PATH>
           <PATH>
             <PATH_ELEMENT>
               <option name="myItemId" value="API" />
@@ -353,210 +61,55 @@
               <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
             </PATH_ELEMENT>
           </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="API" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="API" />
-              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="model" />
-              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="API" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="API" />
-              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="model" />
-              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="dao" />
-              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
-            </PATH_ELEMENT>
-          </PATH>
-=======
-          <expand>
-            <path>
-              <item name="API" type="b2602c69:ProjectViewProjectNode" />
-              <item name="API" type="2a2b976b:PhpTreeStructureProvider$1" />
-            </path>
-            <path>
-              <item name="API" type="b2602c69:ProjectViewProjectNode" />
-              <item name="API" type="2a2b976b:PhpTreeStructureProvider$1" />
-              <item name="controller" type="2a2b976b:PhpTreeStructureProvider$1" />
-            </path>
-            <path>
-              <item name="API" type="b2602c69:ProjectViewProjectNode" />
-              <item name="API" type="2a2b976b:PhpTreeStructureProvider$1" />
-              <item name="model" type="2a2b976b:PhpTreeStructureProvider$1" />
-            </path>
-            <path>
-              <item name="API" type="b2602c69:ProjectViewProjectNode" />
-              <item name="API" type="2a2b976b:PhpTreeStructureProvider$1" />
-              <item name="model" type="2a2b976b:PhpTreeStructureProvider$1" />
-              <item name="dao" type="2a2b976b:PhpTreeStructureProvider$1" />
-            </path>
-            <path>
-              <item name="API" type="b2602c69:ProjectViewProjectNode" />
-              <item name="API" type="2a2b976b:PhpTreeStructureProvider$1" />
-              <item name="model" type="2a2b976b:PhpTreeStructureProvider$1" />
-              <item name="validate" type="2a2b976b:PhpTreeStructureProvider$1" />
-            </path>
-          </expand>
-          <select />
->>>>>>> f8a7d8a0e3be64fa5eb0c137076214eb04944cd1
         </subPane>
       </pane>
-      <pane id="Scratches" />
     </panes>
   </component>
   <component name="PropertiesComponent">
     <property name="WebServerToolWindowFactoryState" value="false" />
-<<<<<<< HEAD
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/../Front-Garage" />
-    <property name="nodejs_interpreter_path" value="C:/Program Files/nodejs/node" />
-    <property name="js.eslint.eslintPackage" value="" />
-    <property name="js-jscs-nodeInterpreter" value="C:\Program Files\nodejs\node.exe" />
-  </component>
-  <component name="RunManager">
-    <configuration default="true" type="JavaScriptTestRunnerProtractor" factoryName="Protractor">
-      <config-file value="" />
-      <node-interpreter value="project" />
-      <envs />
-      <method />
-    </configuration>
-    <configuration default="true" type="JavascriptDebugType" factoryName="JavaScript Debug">
-      <method />
-    </configuration>
-    <configuration default="true" type="NodeJSConfigurationType" factoryName="Node.js" path-to-node="project" working-dir="">
-      <method />
-    </configuration>
-    <configuration default="true" type="PHPUnitRunConfigurationType" factoryName="PHPUnit">
-      <TestRunner />
-      <method />
-    </configuration>
-    <configuration default="true" type="PhpBehatConfigurationType" factoryName="Behat">
-      <BehatRunner />
-      <method />
-    </configuration>
-    <configuration default="true" type="PhpLocalRunConfigurationType" factoryName="PHP Console">
-      <method />
-    </configuration>
-    <configuration default="true" type="PhpSpecConfigurationType" factoryName="PHPSpec">
-      <PhpTestRunnerSettings />
-      <method />
-    </configuration>
-    <configuration default="true" type="js.build_tools.gulp" factoryName="Gulp.js">
-      <method />
-    </configuration>
-    <configuration default="true" type="js.build_tools.npm" factoryName="npm">
-      <command value="run-script" />
-      <scripts />
-      <node-interpreter value="project" />
-      <envs />
-      <method />
-    </configuration>
-    <configuration default="true" type="mocha-javascript-test-runner" factoryName="Mocha">
-      <node-interpreter>project</node-interpreter>
-      <node-options />
-      <working-directory />
-      <pass-parent-env>true</pass-parent-env>
-      <envs />
-      <ui />
-      <extra-mocha-options />
-      <test-kind>DIRECTORY</test-kind>
-      <test-directory />
-      <recursive>false</recursive>
-      <method />
-    </configuration>
-=======
-    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
-    <property name="php.override.implement.member.chooser.php.doc" value="NONE" />
-  </component>
-  <component name="RunDashboard">
-    <option name="ruleStates">
-      <list>
-        <RuleState>
-          <option name="name" value="ConfigurationTypeDashboardGroupingRule" />
-        </RuleState>
-        <RuleState>
-          <option name="name" value="StatusDashboardGroupingRule" />
-        </RuleState>
-      </list>
-    </option>
->>>>>>> f8a7d8a0e3be64fa5eb0c137076214eb04944cd1
   </component>
   <component name="ShelveChangesManager" show_recycled="false">
     <option name="remove_strategy" value="false" />
   </component>
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
-      <changelist id="5939d720-772b-4ad7-b4c9-c7a5e66a3c0e" name="Default" comment="" />
-      <created>1505585447170</created>
+      <changelist id="00f5a375-e7b8-4505-98fa-01660a814dc1" name="Default" comment="" />
+      <created>1505589219025</created>
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
-      <updated>1505585447170</updated>
-<<<<<<< HEAD
-      <workItem from="1505585463180" duration="3411000" />
-=======
-      <workItem from="1505585463180" duration="18000" />
-      <workItem from="1505585575511" duration="2794000" />
->>>>>>> f8a7d8a0e3be64fa5eb0c137076214eb04944cd1
+      <updated>1505589219025</updated>
+      <workItem from="1505589256087" duration="5000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-<<<<<<< HEAD
-    <option name="totallyTimeSpent" value="3411000" />
+    <option name="totallyTimeSpent" value="5000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1382" height="744" extended-state="6" />
-=======
-    <option name="totallyTimeSpent" value="2812000" />
-  </component>
-  <component name="ToolWindowManager">
-    <frame x="0" y="0" width="1280" height="800" extended-state="0" />
->>>>>>> f8a7d8a0e3be64fa5eb0c137076214eb04944cd1
-    <editor active="true" />
+    <editor active="false" />
     <layout>
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.24921875" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.24963397" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
-<<<<<<< HEAD
-      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.329653" sideWeight="0.5" order="-1" side_tool="true" content_ui="tabs" />
+      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="-1" side_tool="true" content_ui="tabs" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
-=======
-      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.288" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
-      <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
->>>>>>> f8a7d8a0e3be64fa5eb0c137076214eb04944cd1
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
-      <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
-      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
+      <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="-1" side_tool="true" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
+      <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
-      <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
-      <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
     </layout>
   </component>
   <component name="TypeScriptGeneratedFilesManager">
-    <option name="version" value="1" />
+    <option name="processedProjectFiles" value="true" />
   </component>
   <component name="VcsContentAnnotationSettings">
     <option name="myLimit" value="2678400000" />
@@ -564,243 +117,5 @@
   <component name="XDebuggerManager">
     <breakpoint-manager />
     <watches-manager />
-  </component>
-  <component name="editorHistoryManager">
-<<<<<<< HEAD
-    <entry file="file://$PROJECT_DIR$/controller/CiclosVidaController.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-15">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/bd/Banco.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="218">
-          <caret line="24" column="21" lean-forward="false" selection-start-line="24" selection-start-column="21" selection-end-line="24" selection-end-column="21" />
-=======
-    <entry file="file://$PROJECT_DIR$/model/validate/AnimalValidate.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="67">
-          <caret line="14" column="1" lean-forward="true" selection-start-line="14" selection-start-column="1" selection-end-line="14" selection-end-column="1" />
->>>>>>> f8a7d8a0e3be64fa5eb0c137076214eb04944cd1
-          <folding />
-        </state>
-      </provider>
-    </entry>
-<<<<<<< HEAD
-    <entry file="file://$PROJECT_DIR$/controller/PesagemController.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="184">
-          <caret line="31" column="5" lean-forward="false" selection-start-line="31" selection-start-column="5" selection-end-line="31" selection-end-column="5" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/../Front-Garage/app/routes/route.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="363">
-          <caret line="48" column="0" lean-forward="false" selection-start-line="48" selection-start-column="0" selection-end-line="48" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/../Front-Garage/app/views/usuario/UsuarioEditar.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="150">
-          <caret line="9" column="22" lean-forward="false" selection-start-line="9" selection-start-column="0" selection-end-line="10" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/../Front-Calf/index.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="235">
-          <caret line="34" column="36" lean-forward="false" selection-start-line="34" selection-start-column="36" selection-end-line="34" selection-end-column="36" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/../Front-Calf/app/animal/Animal.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="235">
-          <caret line="27" column="67" lean-forward="true" selection-start-line="27" selection-start-column="67" selection-end-line="27" selection-end-column="67" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/../Front-Calf/app/animal/AnimalNovo.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="17">
-          <caret line="1" column="4" lean-forward="false" selection-start-line="1" selection-start-column="4" selection-end-line="7" selection-end-column="5" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/../Front-Calf/app/routes/route.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="278">
-          <caret line="20" column="30" lean-forward="true" selection-start-line="20" selection-start-column="30" selection-end-line="20" selection-end-column="30" />
-=======
-    <entry file="file://$PROJECT_DIR$/model/Animal.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-1222">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
->>>>>>> f8a7d8a0e3be64fa5eb0c137076214eb04944cd1
-          <folding />
-        </state>
-      </provider>
-    </entry>
-<<<<<<< HEAD
-    <entry file="file://$PROJECT_DIR$/../Front-Calf/app/animal/AnimalEditar.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="255">
-          <caret line="17" column="0" lean-forward="true" selection-start-line="17" selection-start-column="0" selection-end-line="17" selection-end-column="0" />
-          <folding>
-            <element signature="e#0#44#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/../Front-Calf/app/core/data.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="59">
-          <caret line="64" column="13" lean-forward="true" selection-start-line="64" selection-start-column="13" selection-end-line="64" selection-end-column="13" />
-=======
-    <entry file="file://$PROJECT_DIR$/controller/AnimalController.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="271">
-          <caret line="98" column="9" lean-forward="true" selection-start-line="94" selection-start-column="8" selection-end-line="98" selection-end-column="9" />
->>>>>>> f8a7d8a0e3be64fa5eb0c137076214eb04944cd1
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/model/dao/AnimalDAO.php">
-      <provider selected="true" editor-type-id="text-editor">
-<<<<<<< HEAD
-        <state relative-caret-position="92">
-          <caret line="63" column="0" lean-forward="false" selection-start-line="63" selection-start-column="0" selection-end-line="63" selection-end-column="0" />
-          <folding>
-            <marker date="1505588796671" expanded="true" signature="685:734" ph="INSERT INTO animais... " />
-            <marker date="1505588796671" expanded="true" signature="1595:1648" ph="UPDATE anima... " />
-            <marker date="1505588796671" expanded="true" signature="2310:2354" ph="SELECT * FRO... animais" />
-            <marker date="1505588796671" expanded="true" signature="3837:3902" ph="UPDATE anima... " />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/model/dao/FazendaDAO.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="196">
-          <caret line="61" column="0" lean-forward="false" selection-start-line="61" selection-start-column="0" selection-end-line="61" selection-end-column="0" />
-          <folding>
-            <marker date="1505588805354" expanded="true" signature="685:735" ph="INSERT INTO fazendas... " />
-            <marker date="1505588805354" expanded="true" signature="1596:1652" ph="UPDATE fazen... " />
-            <marker date="1505588805354" expanded="true" signature="2315:2360" ph="SELECT * FRO... fazendas" />
-            <marker date="1505588805354" expanded="true" signature="3843:3911" ph="UPDATE fazen... " />
-=======
-        <state relative-caret-position="419">
-          <caret line="150" column="10" lean-forward="true" selection-start-line="131" selection-start-column="8" selection-end-line="150" selection-end-column="10" />
-          <folding>
-            <marker date="1505584803000" expanded="true" signature="685:734" ph="INSERT INTO animais... " />
-            <marker date="1505584803000" expanded="true" signature="1628:1681" ph="UPDATE anima... " />
-            <marker date="1505584803000" expanded="true" signature="2343:2387" ph="SELECT * FRO... animais" />
-            <marker date="1505584803000" expanded="true" signature="3870:3935" ph="UPDATE anima... " />
->>>>>>> f8a7d8a0e3be64fa5eb0c137076214eb04944cd1
-          </folding>
-        </state>
-      </provider>
-    </entry>
-<<<<<<< HEAD
-    <entry file="file://$PROJECT_DIR$/model/dao/LoteDAO.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="158">
-          <caret line="61" column="0" lean-forward="false" selection-start-line="61" selection-start-column="0" selection-end-line="61" selection-end-column="0" />
-          <folding>
-            <marker date="1505588812138" expanded="true" signature="682:729" ph="INSERT INTO lotes... " />
-            <marker date="1505588812138" expanded="true" signature="1587:1634" ph="UPDATE lotes... " />
-            <marker date="1505588812138" expanded="true" signature="2294:2336" ph="SELECT * FRO... lotes" />
-            <marker date="1505588812138" expanded="true" signature="3819:3878" ph="UPDATE lotes... " />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/model/dao/MaeDAO.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="98">
-          <caret line="60" column="0" lean-forward="false" selection-start-line="60" selection-start-column="0" selection-end-line="60" selection-end-column="0" />
-          <folding>
-            <marker date="1505588818465" expanded="true" signature="681:727" ph="INSERT INTO maes... " />
-            <marker date="1505588818465" expanded="true" signature="1546:1590" ph="UPDATE maes " />
-            <marker date="1505588818465" expanded="true" signature="2275:2316" ph="SELECT * FRO... maes" />
-            <marker date="1505588818465" expanded="true" signature="3799:3855" ph="UPDATE maes " />
-=======
-    <entry file="file://$PROJECT_DIR$/model/validate/CiclosVidaValidate.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="225">
-          <caret line="20" column="0" lean-forward="false" selection-start-line="20" selection-start-column="0" selection-end-line="20" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/model/CiclosVida.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="364">
-          <caret line="199" column="35" lean-forward="false" selection-start-line="199" selection-start-column="35" selection-end-line="199" selection-end-column="35" />
-          <folding>
-            <element signature="e#107#135#0#PHP" expanded="true" />
->>>>>>> f8a7d8a0e3be64fa5eb0c137076214eb04944cd1
-          </folding>
-        </state>
-      </provider>
-    </entry>
-<<<<<<< HEAD
-    <entry file="file://$PROJECT_DIR$/model/dao/PaiDAO.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="201">
-          <caret line="61" column="0" lean-forward="false" selection-start-line="61" selection-start-column="0" selection-end-line="61" selection-end-column="0" />
-          <folding>
-            <marker date="1505588827141" expanded="true" signature="681:727" ph="INSERT INTO pais... " />
-            <marker date="1505588827141" expanded="true" signature="1584:1628" ph="UPDATE pais " />
-            <marker date="1505588827141" expanded="true" signature="2287:2328" ph="SELECT * FRO... pais" />
-            <marker date="1505588827141" expanded="true" signature="3811:3867" ph="UPDATE pais " />
-=======
-    <entry file="file://$PROJECT_DIR$/model/dao/CiclosVidaDAO.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1330">
-          <caret line="132" column="64" lean-forward="false" selection-start-line="132" selection-start-column="64" selection-end-line="132" selection-end-column="64" />
-          <folding>
-            <marker date="1505588609000" expanded="true" signature="645:697" ph="INSERT INTO ciclosVida... " />
-            <marker date="1505588609000" expanded="true" signature="1598:1662" ph="UPDATE ciclo... " />
-            <marker date="1505588609000" expanded="true" signature="2331:2378" ph="SELECT * FRO... ciclosVida" />
-            <marker date="1505588609000" expanded="true" signature="3861:3937" ph="UPDATE ciclo... " />
->>>>>>> f8a7d8a0e3be64fa5eb0c137076214eb04944cd1
-          </folding>
-        </state>
-      </provider>
-    </entry>
-<<<<<<< HEAD
-    <entry file="file://$PROJECT_DIR$/model/dao/PesagemDAO.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-909">
-          <caret line="62" column="0" lean-forward="false" selection-start-line="62" selection-start-column="0" selection-end-line="62" selection-end-column="0" />
-          <folding>
-            <marker date="1505588837960" expanded="true" signature="686:736" ph="INSERT INTO pesagens... " />
-            <marker date="1505588837960" expanded="true" signature="1597:1650" ph="UPDATE anima... " />
-            <marker date="1505588837960" expanded="true" signature="2188:2233" ph="SELECT * FRO... pesagens" />
-            <marker date="1505588837960" expanded="true" signature="3716:3784" ph="UPDATE pesag... " />
-          </folding>
-=======
-    <entry file="file://$PROJECT_DIR$/controller/CiclosVidaController.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="347">
-          <caret line="76" column="44" lean-forward="true" selection-start-line="76" selection-start-column="44" selection-end-line="76" selection-end-column="44" />
-          <folding />
->>>>>>> f8a7d8a0e3be64fa5eb0c137076214eb04944cd1
-        </state>
-      </provider>
-    </entry>
   </component>
 </project>

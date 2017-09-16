@@ -3,8 +3,6 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/.idea/API.iml" filepath="$PROJECT_DIR$/.idea/API.iml" />
-      <module fileurl="file://$PROJECT_DIR$/../Front-Calf/.idea/Front-Calf.iml" filepath="$PROJECT_DIR$/../Front-Calf/.idea/Front-Calf.iml" />
-      <module fileurl="file://$PROJECT_DIR$/../Front-Garage/.idea/arcelz.github.io.iml" filepath="$PROJECT_DIR$/../Front-Garage/.idea/arcelz.github.io.iml" />
     </modules>
   </component>
 </project>

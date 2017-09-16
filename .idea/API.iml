@@ -4,7 +4,6 @@
     <content url="file://$MODULE_DIR$" />
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
-<<<<<<< HEAD
     <orderEntry type="module-library">
       <library name="PHP Runtime" type="php">
         <CLASSES>
@@ -15,9 +14,5 @@
         </SOURCES>
       </library>
     </orderEntry>
-    <orderEntry type="module" module-name="Front-Calf" />
-    <orderEntry type="module" module-name="arcelz.github.io" />
-=======
->>>>>>> f8a7d8a0e3be64fa5eb0c137076214eb04944cd1
   </component>
 </module>
