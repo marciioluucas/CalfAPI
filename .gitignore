@@ -2,3 +2,9 @@
 bd/Banco.php
 
 .idea
+*.iml
+*.iml
+*.xml
+.idea/API.iml
+.idea/vcs.xml
+.idea/workspace.xml

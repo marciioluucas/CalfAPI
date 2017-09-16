@@ -60,7 +60,6 @@ class PesagemDAO implements IDAO
                 $queryText .= $key . "=:" . $key . ",";
             }
             $queryVal = substr_replace($queryText, '', -1);
-            var_dump($queryVal);
             $query = "UPDATE animais SET $queryVal WHERE idAnimal=:idAnimal";
             $stmt = $db->prepare($query);
             foreach ($obj as $key => &$val) {

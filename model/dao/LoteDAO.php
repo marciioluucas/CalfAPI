@@ -59,7 +59,6 @@ class LoteDAO implements IDAO
                 $queryText .= $key . "=:" . $key . ",";
             }
             $queryVal = substr_replace($queryText, '', -1);
-            var_dump($queryVal);
             $query = "UPDATE lotes SET $queryVal WHERE idLote=:idLote";
             $stmt = $db->prepare($query);
             foreach ($obj as $key => &$val) {
