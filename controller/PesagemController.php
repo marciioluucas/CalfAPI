@@ -9,7 +9,6 @@
 namespace controller;
 
 
-
 use model\Pesagem;
 use model\validate\PesagemValidate;
 use util\DataConversor;
@@ -26,7 +25,7 @@ class PesagemController implements IController
         if ($valida === true) {
             $pesagem->setPeso($data['peso']);
             $pesagem->setData($data['data']);
-            View::render(["Messagem"=>$pesagem->cadastrar()]);
+            View::render($pesagem->cadastrar());
         } else {
             View::render($valida);
         }
@@ -35,17 +34,45 @@ class PesagemController implements IController
     public function get($param)
     {
         $pesagem = new Pesagem();
-        $pesagem->setIdPesagem($param);
-        View::render(["message" => $pesagem->pesquisar()]);
+        if (!empty($param)) {
+            foreach ($param as $key => $val) {
+                $var = "set" . ucfirst($key);
+                if (method_exists($pesagem, 'set' . ucfirst($key))) {
+                    $pesagem->$var($val);
+                } else {
+                    View::render([
+                        "status" => 401,
+                        "message" => "Parametro invalido " . $key
+                    ]);
+                }
+            }
+        }
+        View::render($pesagem->pesquisar());
     }
 
     public function put($param)
     {
-        // TODO: Implement put() method.
+
+        $pesagem = new Pesagem();
+        if (isset($param['idPesagem'])) {
+            $data = (new DataConversor())->converter();
+            $pesagem->setIdPesagem($param['idPesagem']);
+            if (isset($data['peso'])) {
+                $pesagem->setPeso($data['peso']);
+            }
+            if (isset($data['data'])) {
+                $pesagem->setData($data['data']);
+            }
+            View::render($pesagem->alterar());
+        }
     }
 
     public function delete($param)
     {
-        // TODO: Implement delete() method.
+        $pesagem = new Pesagem();
+        if (isset($param['idPesagem'])) {
+            $pesagem->setIdPesagem($param['idPesagem']);
+            View::render($pesagem->deletar());
+        }
     }
 }

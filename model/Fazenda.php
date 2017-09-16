@@ -21,6 +21,23 @@ class Fazenda implements IModel
     private $dataAlteracao;
     private $usuarioCadastro;
     private $usuarioAlteracao;
+    private $limite;
+
+    /**
+     * @return mixed
+     */
+    public function getLimite()
+    {
+        return $this->limite;
+    }
+
+    /**
+     * @param mixed $limite
+     */
+    public function setLimite($limite)
+    {
+        $this->limite = $limite;
+    }
 
     /**
      * @return mixed
@@ -130,16 +147,19 @@ class Fazenda implements IModel
 
     public function alterar()
     {
-        // TODO: Implement alterar() method.
+        $array = (new ClassToArray())->classToArray($this);
+        return (new FazendaDAO())->update($array);
     }
 
     public function pesquisar()
     {
         $array = (new ClassToArray())->classToArray($this);
-        return (new FazendaDAO())->retrave($array);    }
+        return (new FazendaDAO())->retrave($array,$this->limite);
+    }
 
     public function deletar()
     {
-        // TODO: Implement deletar() method.
+        $array = (new ClassToArray())->classToArray($this);
+        return (new FazendaDAO())->delete($array);
     }
 }

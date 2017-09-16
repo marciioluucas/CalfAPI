@@ -49,20 +49,20 @@ class Api
         for ($i = count($arrayUrl) - 1; $i > 0; $i--) {
             if ($arrayUrl[$i] === "api") {
                 $comeca = $i + 2;
+                break;
             }
         }
-        if (isset($arrayUrl[$comeca+1])) {
+        if (isset($arrayUrl[$comeca + 1])) {
             $inc = $comeca;
             $inc2 = $comeca + 1;
-            for ($i = $comeca; $i < count($arrayUrl); $i= $inc2) {
+            for ($i = $comeca; $i < count($arrayUrl); $i = $inc2) {
                 $array[$arrayUrl[$inc]] = $arrayUrl[$inc2];
                 $inc = $inc + 2;
                 $inc2 = $inc2 + 2;
             }
             return $array;
-        } else {
-            return 0;
         }
+        return 0;
     }
 
     /**

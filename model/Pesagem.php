@@ -22,6 +22,7 @@ class Pesagem implements IModel
     private $dataCriacao;
     private $usuarioCadastro;
     private $usuarioAlteracao;
+    private $limite;
 
     /**
      * @return mixed
@@ -148,17 +149,19 @@ class Pesagem implements IModel
 
     public function alterar()
     {
-        // TODO: Implement alterar() method.
+        $array = (new ClassToArray())->classToArray($this);
+        return (new PesagemDAO())->update($array);
     }
 
     public function pesquisar()
     {
         $array = (new ClassToArray())->classToArray($this);
-        return (new PesagemDAO())->retrave($array);
+        return (new PesagemDAO())->retrave($array,$this->limite);
     }
 
     public function deletar()
     {
-        // TODO: Implement deletar() method.
+        $array = (new ClassToArray())->classToArray($this);
+        return (new PesagemDAO())->delete($array);
     }
 }

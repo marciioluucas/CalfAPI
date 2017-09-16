@@ -21,6 +21,7 @@ class Lote implements IModel
     private $dataCriacao;
     private $usuarioCadastro;
     private $usuarioAlteracao;
+    private $limite;
 
     /**
      * @return mixed
@@ -130,17 +131,19 @@ class Lote implements IModel
 
     public function alterar()
     {
-        // TODO: Implement alterar() method.
+        $array = (new ClassToArray())->classToArray($this);
+        return (new LoteDAO())->update($array);
     }
 
     public function pesquisar()
     {
         $array = (new ClassToArray())->classToArray($this);
-        return (new LoteDAO())->retrave($array);
+        return (new LoteDAO())->retrave($array,$this->limite);
     }
 
     public function deletar()
     {
-        // TODO: Implement deletar() method.
+        $array = (new ClassToArray())->classToArray($this);
+        return (new LoteDAO())->delete($array);
     }
 }

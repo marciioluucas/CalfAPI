@@ -19,7 +19,8 @@ class AnimalDAO implements IDAO
 
     public function create($obj)
     {
-        $messagem = "";
+        $codigo = 400;
+        $messagem = "Erro inesperado";
         try {
             $db = Banco::conexao();
             $queryVal = "";
@@ -36,17 +37,23 @@ class AnimalDAO implements IDAO
                 $stmt->bindParam($key, $val);
             }
             $stmt->execute();
+            $codigo = 200;
             $messagem = "Animal adicionado com sucesso";
         } catch (Exception $e) {
+            $codigo = 400;
             $messagem = $e->getMessage();
         }
-        return $messagem;
+        return [
+            "codigo" => $codigo,
+            "mensagem" => $messagem
+        ];
 
     }
 
     public function update($obj)
     {
-        $messagem = "";
+        $codigo = 400;
+        $messagem = "Erro inesperado";
         try {
             $db = Banco::conexao();
             $queryText = "";
@@ -61,15 +68,22 @@ class AnimalDAO implements IDAO
                 $stmt->bindParam($key, $val);
             }
             $stmt->execute();
+            $codigo = 200;
             $messagem = "Animal alterado com sucesso";
         } catch (Exception $e) {
+            $codigo = 400;
             $messagem = $e->getMessage();
         }
-        return $messagem;
+        return [
+            "codigo" => $codigo,
+            "mensagem" => $messagem
+        ];
     }
 
     public function retrave($obj, $limite)
     {
+        $codigo = 400;
+        $messagem = "Erro inesperado";
         try {
             $db = Banco::conexao();
             $query = "SELECT * FROM animais WHERE status = 'ATIVO'";
@@ -91,23 +105,32 @@ class AnimalDAO implements IDAO
                 $query .= $queryLimit;
                 $stmt = $db->prepare($query);
             }
-            if ($limite !== null){
-                $stmt->bindValue(':limite', (int)trim($limite), PDO::PARAM_INT);}
+            if ($limite !== null) {
+                $stmt->bindValue(':limite', (int)trim($limite), PDO::PARAM_INT);
+            }
             $stmt->execute();
             if (!empty($stmt->rowCount())) {
+                $codigo = 200;
                 $messagem = ($stmt->fetchAll(PDO::FETCH_ASSOC));
             } else {
+                $codigo = 400;
                 $messagem = "Não foi possivel realizar a busca";
             }
 
         } catch (Exception $e) {
+            $codigo = 400;
             $messagem = $e->getMessage();
         }
-        return $messagem;
+        return [
+            "codigo" => $codigo,
+            "mensagem" => $messagem
+        ];
     }
 
     public function delete($obj)
     {
+        $codigo = 400;
+        $messagem = "Erro inesperado";
         try {
             $db = Banco::conexao();
             $query = "UPDATE animais SET status = 'DESATIVADO' WHERE idAnimal=:idAnimal";
@@ -119,8 +142,12 @@ class AnimalDAO implements IDAO
             $messagem = "Deletado com sucesso";
 
         } catch (Exception $e) {
+            $codigo = 200;
             $messagem = $e->getMessage();
         }
-        return $messagem;
+        return [
+            "codigo" => $codigo,
+            "mensagem" => $messagem
+        ];
     }
 }

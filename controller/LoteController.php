@@ -24,7 +24,7 @@ class LoteController implements IController
         $valida = (new LoteValidate())->validatePost($data);
         if ($valida === true) {
             $lote->setCodigo($data['codigo']);
-            View::render(["Messagem" => $lote->cadastrar()]);
+            View::render($lote->cadastrar());
         } else {
             View::render($valida);
         }
@@ -33,20 +33,44 @@ class LoteController implements IController
     public function get($param)
     {
         $lote = new Lote();
-        $lote->setIdLote($param);
-        View::render(["message" => $lote->pesquisar()]);
+        if (!empty($param)) {
+            foreach ($param as $key => $val) {
+                $var = "set" . ucfirst($key);
+                if (method_exists($lote, 'set' . ucfirst($key))) {
+                    $lote->$var($val);
+                } else {
+                    View::render([
+                        "status" => 401,
+                        "message" => "Parametro invalido " . $key
+                    ]);
+                }
+            }
+        }
+        View::render($lote->pesquisar());
 
     }
 
     public
     function put($param)
     {
-        // TODO: Implement put() method.
+        $lote = new Lote();
+        if (isset($param['idLote'])) {
+            $data = (new DataConversor())->converter();
+            $lote->setIdLote($param['idLote']);
+            if (isset($data['codigo'])) {
+                $lote->setCodigo($data['codigo']);
+            }
+            View::render($lote->alterar());
+        }
     }
 
     public
     function delete($param)
     {
-        // TODO: Implement delete() method.
+        $lote = new Lote();
+        if (isset($param['idLote'])) {
+            $lote->setIdLote($param['idLote']);
+            View::render($lote->deletar());
+        }
     }
 }

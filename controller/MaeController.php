@@ -24,7 +24,7 @@ class MaeController implements IController
         $valida = (new MaeValidate())->validatePost($data);
         if ($valida === true) {
             $mae->setNome($data['nome']);
-            View::render(["Messagem" => $mae->cadastrar()]);
+            View::render($mae->cadastrar());
         } else {
             View::render($valida);
         }
@@ -33,17 +33,42 @@ class MaeController implements IController
     public function get($param)
     {
         $mae = new Mae();
-        $mae->setIdMae($param);
-        View::render(["message" => $mae->pesquisar()]);
+        if (!empty($param)) {
+            foreach ($param as $key => $val) {
+                $var = "set" . ucfirst($key);
+                if (method_exists($mae, 'set' . ucfirst($key))) {
+                    $mae->$var($val);
+                } else {
+                    View::render([
+                        "status" => 401,
+                        "message" => "Parametro invalido " . $key
+                    ]);
+                }
+            }
+        }
+        View::render($mae->pesquisar());
     }
 
     public function put($param)
     {
-        // TODO: Implement put() method.
+
+        $mae = new Mae();
+        if (isset($param['idMae'])) {
+            $data = (new DataConversor())->converter();
+            $mae->setIdMae($param['idMae']);
+            if (isset($data['nome'])) {
+                $mae->setNome($data['nome']);
+            }
+            View::render($mae->alterar());
+        }
     }
 
     public function delete($param)
     {
-        // TODO: Implement delete() method.
+        $mae = new Mae();
+        if (isset($param['idMae'])) {
+            $mae->setIdMae($param['idMae']);
+            View::render($mae->deletar());
+        }
     }
 }

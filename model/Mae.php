@@ -21,6 +21,7 @@ class Mae implements IModel
     private $dataAlteracao;
     private $usuarioCadastro;
     private $usuarioAlteracao;
+    private $limite;
 
     /**
      * @return mixed
@@ -130,17 +131,19 @@ class Mae implements IModel
 
     public function alterar()
     {
-        // TODO: Implement alterar() method.
+        $array = (new ClassToArray())->classToArray($this);
+        return (new MaeDAO())->update($array);
     }
 
     public function pesquisar()
     {
         $array = (new ClassToArray())->classToArray($this);
-        return (new MaeDAO())->retrave($array);
+        return (new MaeDAO())->retrave($array,$this->limite);
     }
 
     public function deletar()
     {
-        // TODO: Implement deletar() method.
+        $array = (new ClassToArray())->classToArray($this);
+        return (new MaeDAO())->delete($array);
     }
 }

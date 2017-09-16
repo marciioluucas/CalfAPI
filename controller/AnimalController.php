@@ -31,7 +31,7 @@ class AnimalController implements IController
             $animal->setFkPai($data['fkPai']);
             $animal->setFkLote($data['fkLote']);
             $animal->setFkFazenda($data['fkFazenda']);
-            View::render(["message" => $animal->cadastrar()]);
+            View::render($animal->cadastrar());
         } else {
             View::render($valida);
         }
@@ -40,25 +40,28 @@ class AnimalController implements IController
     public function get($param)
     {
         $animal = new Animal();
-        if(!empty($param)) {
+        if (!empty($param)) {
             foreach ($param as $key => $val) {
-                $var = "set".ucfirst($key);
-                if (method_exists($animal,'set'.ucfirst($key))){
+                $var = "set" . ucfirst($key);
+                if (method_exists($animal, 'set' . ucfirst($key))) {
                     $animal->$var($val);
-                }else{
-                    View::render(["message" => "Parametro invalido ".$key]);
+                } else {
+                    View::render([
+                        "status" => 401,
+                        "message" => "Parametro invalido " . $key
+                    ]);
                 }
             }
         }
-        View::render(["message" => $animal->pesquisar()]);
+        View::render($animal->pesquisar());
     }
 
     public function put($param)
     {
         $animal = new Animal();
-        if (isset($param['id'])) {
+        if (isset($param['idAnimal'])) {
             $data = (new DataConversor())->converter();
-            $animal->setIdAnimal($param['id']);
+            $animal->setIdAnimal($param['idAnimal']);
             if (isset($data['codigoBrinco'])) {
                 $animal->setCodigoBrinco($data['codigoBrinco']);
             }
@@ -83,16 +86,16 @@ class AnimalController implements IController
             if (isset($data['fkFazenda'])) {
                 $animal->setFkFazenda($data['fkFazenda']);
             }
-            View::render(["message" => $animal->alterar()]);
+            View::render($animal->alterar());
         }
     }
 
     public function delete($param)
     {
         $animal = new Animal();
-        if (isset($param['id'])) {
-            $animal->setIdAnimal($param['id']);
-            View::render(["message" => $animal->deletar()]);
+        if (isset($param['idAnimal'])) {
+            $animal->setIdAnimal($param['idAnimal']);
+            View::render($animal->deletar());
         }
     }
 }

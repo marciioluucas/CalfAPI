@@ -24,7 +24,7 @@ class PaiController implements IController
         $valida = (new PaiValidate())->validatePost($data);
         if ($valida === true) {
             $pai->setNome($data['nome']);
-            View::render(["Messagem" => $pai->cadastrar()]);
+            View::render($pai->cadastrar());
         } else {
             View::render($valida);
         }
@@ -33,17 +33,42 @@ class PaiController implements IController
     public function get($param)
     {
         $pai = new Pai();
-        $pai->setIdPai($param);
-        View::render(["message" => $pai->pesquisar()]);
+        if (!empty($param)) {
+            foreach ($param as $key => $val) {
+                $var = "set" . ucfirst($key);
+                if (method_exists($pai, 'set' . ucfirst($key))) {
+                    $pai->$var($val);
+                } else {
+                    View::render([
+                        "status"=> 401,
+                        "message" => "Parametro invalido " . $key
+                    ]);
+                }
+            }
+        }
+        View::render($pai->pesquisar());
     }
 
     public function put($param)
     {
-        // TODO: Implement put() method.
+
+        $pai = new Pai();
+        if (isset($param['idPai'])) {
+            $data = (new DataConversor())->converter();
+            $pai->setIdPai($param['idPai']);
+            if (isset($data['nome'])) {
+                $pai->setNome($data['nome']);
+            }
+            View::render($pai->alterar());
+        }
     }
 
     public function delete($param)
     {
-        // TODO: Implement delete() method.
+        $pai = new Pai();
+        if (isset($param['idPai'])) {
+            $pai->setIdPai($param['idPai']);
+            View::render($pai->deletar());
+        }
     }
 }
