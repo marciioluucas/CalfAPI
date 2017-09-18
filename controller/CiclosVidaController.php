@@ -17,10 +17,12 @@ class CiclosVidaController implements IController
 {
     public function post()
     {
+
         $ciclo = new CiclosVida();
         $data = (new DataConversor())->converter();
         $valida = (new CiclosVidaValidate())->validatePost($data);
         if ($valida === true) {
+            echo"ok";
             $ciclo->setEnumFaseVida($data['enumFaseVida']);
             $ciclo->setEnumLocalizacao($data['enumLocalizacao']);
             $ciclo->setFkAnimal($data['fkAnimal']);
