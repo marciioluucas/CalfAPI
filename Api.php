@@ -16,6 +16,7 @@ class Api
 
     function __construct($url = "")
     {
+        header('Access-Control-Allow-Origin: *');
 
         //--------Responsável pelo REST--------\\
         self::$url = $url;
