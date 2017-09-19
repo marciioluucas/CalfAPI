@@ -94,6 +94,7 @@ class AnimalDAO implements IDAO
                 $queryLimit = " LIMIT :limite,10";
             }
             if (!empty($obj)) {
+
                 if (isset($obj['idAnimal'])) {
                     $query .= "AND idAnimal=:idAnimal";
                     $query .= $queryLimit;

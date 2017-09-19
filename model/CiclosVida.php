@@ -178,7 +178,7 @@ class CiclosVida implements IModel
         $this->usuarioAlteracao = "Lucas";// vai pegar do token dps de implementar o login;
         $this->usuarioCadastro = "Lucas";
         $array = (new ClassToArray())->classToArray($this);
-        return (new AnimalDAO())->create($array);
+        return (new CiclosVidaDAO())->create($array);
 
     }
 
