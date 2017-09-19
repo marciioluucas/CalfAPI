@@ -21,7 +21,7 @@ class Lote implements IModel
     private $dataCriacao;
     private $usuarioCadastro;
     private $usuarioAlteracao;
-    private $limite;
+    protected $limite;
 
     /**
      * @return mixed

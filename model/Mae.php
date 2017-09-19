@@ -21,7 +21,7 @@ class Mae implements IModel
     private $dataAlteracao;
     private $usuarioCadastro;
     private $usuarioAlteracao;
-    private $limite;
+    protected $limite;
 
     /**
      * @return mixed
