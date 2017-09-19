@@ -24,7 +24,8 @@ class Api
             //No HTTP_ORIGIN set, so we allow any. You can disallow if needed here
             header("Access-Control-Allow-Origin: *");
         }
-
+        header("Access-Control-Allow-Credentials: true");
+        header("Access-Control-Max-Age: 600");    // cache for 10 minutes
         if ($_SERVER["REQUEST_METHOD"] == "OPTIONS") {
             if (isset($_SERVER["HTTP_ACCESS_CONTROL_REQUEST_METHOD"]))
                 header("Access-Control-Allow-Methods: POST, GET, OPTIONS, DELETE, PUT"); //Make sure you remove those you do not want to support
