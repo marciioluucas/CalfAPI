@@ -12,6 +12,7 @@ namespace controller;
 use model\CiclosVida;
 use model\validate\CiclosVidaValidate;
 use util\DataConversor;
+use view\View;
 
 class CiclosVidaController implements IController
 {
@@ -22,11 +23,11 @@ class CiclosVidaController implements IController
         $data = (new DataConversor())->converter();
         $valida = (new CiclosVidaValidate())->validatePost($data);
         if ($valida === true) {
-            echo"ok";
+
             $ciclo->setEnumFaseVida($data['enumFaseVida']);
             $ciclo->setEnumLocalizacao($data['enumLocalizacao']);
             $ciclo->setFkAnimal($data['fkAnimal']);
-            View::render(["message" => $ciclo->cadastrar()]);
+            View::render($ciclo->cadastrar());
         } else {
             View::render($valida);
         }

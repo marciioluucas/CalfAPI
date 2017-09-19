@@ -9,6 +9,10 @@
 namespace model\dao;
 
 
+use bd\Banco;
+use Exception;
+use PDO;
+
 class CiclosVidaDAO implements IDAO
 {
     public function create($obj)
@@ -32,7 +36,7 @@ class CiclosVidaDAO implements IDAO
             }
             $stmt->execute();
             $codigo = 200;
-            $messagem = "Cicli de vida adicionado com sucesso";
+            $messagem = "Ciclo de vida adicionado com sucesso";
         } catch (Exception $e) {
             $codigo = 400;
             $messagem = $e->getMessage();
@@ -104,6 +108,7 @@ class CiclosVidaDAO implements IDAO
             } else {
                 $query .= $queryLimit;
                 $stmt = $db->prepare($query);
+                echo $query;
             }
             if ($limite !== null) {
                 $stmt->bindValue(':limite', (int)trim($limite), PDO::PARAM_INT);
