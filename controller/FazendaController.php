@@ -23,7 +23,7 @@ class FazendaController implements IController
         $data = (new DataConversor())->converter();
         $valida = (new FazendaValidate())->validatePost($data);
         if ($valida === true) {
-            $fazenda->setNome($data['nome']);
+            $fazenda->setNomeFazenda($data['nomeFazenda']);
             View::render($fazenda->cadastrar());
         } else {
             View::render($valida);
@@ -55,8 +55,8 @@ class FazendaController implements IController
         if (isset($param['idFazenda'])) {
             $data = (new DataConversor())->converter();
             $fazenda->setIdFazenda($param['idFazenda']);
-            if (isset($data['nome'])) {
-                $fazenda->setNome($data['nome']);
+            if (isset($data['nomeFazenda'])) {
+                $fazenda->setNomeFazenda($data['nomeFazenda']);
             }
             View::render($fazenda->alterar());
         }

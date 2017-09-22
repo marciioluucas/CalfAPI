@@ -48,7 +48,7 @@ class AnimalController implements IController
                     $animal->$var($val);
                 } else {
                     View::render([
-                        "status" => 401,
+                        "status" => 400,
                         "message" => "Parametro invalido " . $key
                     ]);
                 }
@@ -68,6 +68,9 @@ class AnimalController implements IController
             }
             if (isset($data['codigoRaca'])) {
                 $animal->setCodigoRaca($data['codigoRaca']);
+            }
+            if (isset($data['nomeAnimal'])) {
+                $animal->setNomeAnimal($data['nomeAnimal']);
             }
             if (isset($data['dataNascimento'])) {
                 $animal->setDataNascimento($data['dataNascimento']);

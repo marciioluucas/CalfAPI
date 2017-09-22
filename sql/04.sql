@@ -10,7 +10,7 @@ USE `controleanimal` ;
 -- -----------------------------------------------------
 CREATE  TABLE IF NOT EXISTS `controleanimal`.`pais` (
   `idPai` INT(11) NOT NULL AUTO_INCREMENT ,
-  `nome` VARCHAR(100) NOT NULL ,
+  `nomePai` VARCHAR(100) NOT NULL ,
   `dataCriacao` DATETIME NOT NULL ,
   `dataAlteracao` DATETIME NULL DEFAULT NULL ,
   `usuarioCadastro` VARCHAR(45) NOT NULL ,
@@ -26,7 +26,7 @@ DEFAULT CHARACTER SET = utf8;
 -- -----------------------------------------------------
 CREATE  TABLE IF NOT EXISTS `controleanimal`.`maes` (
   `idMae` INT(11) NOT NULL AUTO_INCREMENT ,
-  `nome` VARCHAR(100) NOT NULL ,
+  `nomeMae` VARCHAR(100) NOT NULL ,
   `dataCriacao` DATETIME NOT NULL ,
   `dataAlteracao` DATETIME NULL DEFAULT NULL ,
   `usuarioAlteracao` VARCHAR(45) NULL DEFAULT NULL ,
@@ -42,7 +42,7 @@ DEFAULT CHARACTER SET = utf8;
 -- -----------------------------------------------------
 CREATE  TABLE IF NOT EXISTS `controleanimal`.`pesagens` (
   `idPesagem` INT(11) NOT NULL AUTO_INCREMENT ,
-  `data` DATETIME NOT NULL ,
+  `dataPesagem` DATETIME NOT NULL ,
   `peso` VARCHAR(45) NOT NULL ,
   `dataAlteracao` DATETIME NULL DEFAULT NULL ,
   `dataCriacao` DATETIME NOT NULL ,
@@ -59,7 +59,7 @@ DEFAULT CHARACTER SET = utf8;
 -- -----------------------------------------------------
 CREATE  TABLE IF NOT EXISTS `controleanimal`.`lotes` (
   `idLote` INT(11) NOT NULL AUTO_INCREMENT ,
-  `codigo` INT(11) NOT NULL ,
+  `codigoLote` INT(11) NOT NULL ,
   `dataAlteracao` DATETIME NULL DEFAULT NULL ,
   `dataCriacao` DATETIME NOT NULL ,
   `usuarioCadastro` VARCHAR(45) NOT NULL ,
@@ -75,7 +75,7 @@ DEFAULT CHARACTER SET = utf8;
 -- -----------------------------------------------------
 CREATE  TABLE IF NOT EXISTS `controleanimal`.`fazendas` (
   `idFazenda` INT(11) NOT NULL AUTO_INCREMENT ,
-  `nome` VARCHAR(100) NULL DEFAULT NULL ,
+  `nomeFazenda` VARCHAR(100) NULL DEFAULT NULL ,
   `dataAlteracao` DATETIME NULL DEFAULT NULL ,
   `dataCriacao` DATETIME NOT NULL ,
   `usuarioCadastro` VARCHAR(45) NOT NULL ,

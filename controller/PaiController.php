@@ -23,7 +23,7 @@ class PaiController implements IController
         $data = (new DataConversor())->converter();
         $valida = (new PaiValidate())->validatePost($data);
         if ($valida === true) {
-            $pai->setNome($data['nome']);
+            $pai->setNomePai($data['nomePai']);
             View::render($pai->cadastrar());
         } else {
             View::render($valida);
@@ -56,8 +56,8 @@ class PaiController implements IController
         if (isset($param['idPai'])) {
             $data = (new DataConversor())->converter();
             $pai->setIdPai($param['idPai']);
-            if (isset($data['nome'])) {
-                $pai->setNome($data['nome']);
+            if (isset($data['nomePai'])) {
+                $pai->setNomePai($data['nomePai']);
             }
             View::render($pai->alterar());
         }

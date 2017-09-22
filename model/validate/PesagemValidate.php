@@ -17,14 +17,18 @@ class PesagemValidate implements IValidate
     public function validatePost($params)
     {
         $v = new Validator($params);
-        $v->rule('required', ['peso','data']);
-        $v->rule('integer','peso');
-        $v->rule('date', 'data');
+        $v->rule('required', ['peso', 'dataPesagem']);
+        $v->rule('integer', 'peso');
+        $v->rule('date', 'dataPesagem');
         if ($v->validate()) {
             return true;
         } else {
-            // Errors
-            return $v->errors();
+            $data = "";
+            foreach ($v->errors() as $key => $value) {
+                $data .= implode(',', $value);
+            }
+            return ["codigo" => 401,
+                "mensagem" => $data];
         }
     }
 

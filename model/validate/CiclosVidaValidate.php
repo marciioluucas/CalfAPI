@@ -19,12 +19,15 @@ class CiclosVidaValidate implements IValidate
         $v = new Validator($params);
         $v->rule('required', ['enumFaseVida', 'enumLocalizacao', 'fkAnimal']);
         $v->rule('integer','fkAnimal');
-
         if ($v->validate()) {
             return true;
         } else {
-            // Errors
-            return $v->errors();
+            $data = "";
+            foreach ($v->errors() as $key => $value) {
+                $data .= implode(',', $value);
+            }
+            return ["codigo" => 401,
+                "mensagem" => $data];
         }
     }
 

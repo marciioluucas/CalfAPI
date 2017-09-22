@@ -16,7 +16,7 @@ use util\Data;
 class Pesagem implements IModel
 {
     private $idPesagem;
-    private $data;
+    private $dataPesagem;
     private $peso;
     private $dataAlteracao;
     private $dataCriacao;
@@ -49,20 +49,37 @@ class Pesagem implements IModel
     }
 
     /**
-     * @param mixed $data
+     * @return mixed
      */
-    public function setData($data)
+    public function getDataPesagem()
     {
-        $this->data = $data;
+        return $this->dataPesagem;
+    }
+
+    /**
+     * @param mixed $dataPesagem
+     */
+    public function setDataPesagem($dataPesagem)
+    {
+        $this->dataPesagem = $dataPesagem;
     }
 
     /**
      * @return mixed
      */
-    public function getPeso()
+    public function getLimite()
     {
-        return $this->peso;
+        return $this->limite;
     }
+
+    /**
+     * @param mixed $limite
+     */
+    public function setLimite($limite)
+    {
+        $this->limite = $limite;
+    }
+
 
     /**
      * @param mixed $peso

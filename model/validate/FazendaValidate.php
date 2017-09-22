@@ -15,14 +15,18 @@ class FazendaValidate implements IValidate
     public function validatePost($params)
     {
         $v = new Validator($params);
-        $v->rule('required', ['nome']);
-        $v->rule('lengthMin','nome',4);
-        $v->rule('lengthMax','nome',100);
+        $v->rule('required', ['nomeFazenda']);
+        $v->rule('lengthMin','nomeFazenda',4);
+        $v->rule('lengthMax','nomeFazenda',100);
         if ($v->validate()) {
             return true;
         } else {
-            // Errors
-            return $v->errors();
+            $data = "";
+            foreach ($v->errors() as $key => $value) {
+                $data .= implode(',', $value);
+            }
+            return ["codigo" => 401,
+                "mensagem" => $data];
         }
     }
 

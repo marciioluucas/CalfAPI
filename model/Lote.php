@@ -16,7 +16,7 @@ use util\Data;
 class Lote implements IModel
 {
     private $idLote;
-    private $codigo;
+    private $codigoLote;
     private $dataAlteracao;
     private $dataCriacao;
     private $usuarioCadastro;
@@ -42,18 +42,35 @@ class Lote implements IModel
     /**
      * @return mixed
      */
-    public function getCodigo()
+    public function getCodigoLote()
     {
-        return $this->codigo;
+        return $this->codigoLote;
     }
 
     /**
-     * @param mixed $codigo
+     * @param mixed $codigoLote
      */
-    public function setCodigo($codigo)
+    public function setCodigoLote($codigoLote)
     {
-        $this->codigo = $codigo;
+        $this->codigoLote = $codigoLote;
     }
+
+    /**
+     * @return mixed
+     */
+    public function getLimite()
+    {
+        return $this->limite;
+    }
+
+    /**
+     * @param mixed $limite
+     */
+    public function setLimite($limite)
+    {
+        $this->limite = $limite;
+    }
+
 
     /**
      * @return mixed

@@ -17,14 +17,18 @@ class PaiValidate implements IValidate
     public function validatePost($params)
     {
         $v = new Validator($params);
-        $v->rule('required', 'nome');
-        $v->rule('lengthMin', 'nome', 4);
-        $v->rule('lengthMax', 'nome', 100);
+        $v->rule('required', 'nomePai');
+        $v->rule('lengthMin', 'nomePai', 4);
+        $v->rule('lengthMax', 'nomePai', 100);
         if ($v->validate()) {
             return true;
         } else {
-            // Errors
-            return $v->errors();
+            $data = "";
+            foreach ($v->errors() as $key => $value) {
+                $data .= implode(',', $value);
+            }
+            return ["codigo" => 401,
+                "mensagem" => $data];
         }
     }
 

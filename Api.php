@@ -9,6 +9,7 @@
 include 'vendor/autoload.php';
 
 use view\View;
+use Valitron\Validator as V;
 
 class Api
 {
@@ -16,7 +17,7 @@ class Api
 
     function __construct($url = "")
     {
-
+        V::lang('pt-br');
         //--------Responsável pelo REST--------\\
         self::$url = $url;
         if (isset($_SERVER['HTTP_HOST']) and isset($_SERVER['REQUEST_URI'])) {

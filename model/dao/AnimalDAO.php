@@ -87,7 +87,7 @@ class AnimalDAO implements IDAO
         $messagem = "Erro inesperado";
         try {
             $db = Banco::conexao();
-            $query = "SELECT * FROM animais WHERE status = 'ATIVO'";
+            $query = "SELECT * FROM animais as an JOIN pais as pa ON pa.idPai=an.fkPai JOIN maes as ma ON ma.idMae=an.fkMae JOIN lotes as lo ON lo.idLote=an.fkLote JOIN fazendas as fa ON fa.idFazenda=an.fkFazenda JOIN pesagens as pe ON pe.idPesagem=an.fkPesagem WHERE an.status = 'ATIVO'";
             if ($limite === null) {
                 $queryLimit = " LIMIT 10";
             } else {

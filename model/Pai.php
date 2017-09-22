@@ -16,7 +16,7 @@ use util\Data;
 class Pai implements IModel
 {
     private $idPai;
-    private $nome;
+    private $nomePai;
     private $dataCriacao;
     private $dataAlteracao;
     private $usuarioCadastro;
@@ -58,18 +58,19 @@ class Pai implements IModel
     /**
      * @return mixed
      */
-    public function getNome()
+    public function getNomePai()
     {
-        return $this->nome;
+        return $this->nomePai;
     }
 
     /**
-     * @param mixed $nome
+     * @param mixed $nomePai
      */
-    public function setNome($nome)
+    public function setNomePai($nomePai)
     {
-        $this->nome = $nome;
+        $this->nomePai = $nomePai;
     }
+
 
     /**
      * @return mixed

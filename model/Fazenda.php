@@ -16,7 +16,7 @@ use util\Data;
 class Fazenda implements IModel
 {
     private $idFazenda;
-    private $nome;
+    private $nomeFazenda;
     private $dataCriacao;
     private $dataAlteracao;
     private $usuarioCadastro;
@@ -58,18 +58,19 @@ class Fazenda implements IModel
     /**
      * @return mixed
      */
-    public function getNome()
+    public function getNomeFazenda()
     {
-        return $this->nome;
+        return $this->nomeFazenda;
     }
 
     /**
-     * @param mixed $nome
+     * @param mixed $nomeFazenda
      */
-    public function setNome($nome)
+    public function setNomeFazenda($nomeFazenda)
     {
-        $this->nome = $nome;
+        $this->nomeFazenda = $nomeFazenda;
     }
+
 
     /**
      * @return mixed

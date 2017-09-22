@@ -16,7 +16,7 @@ use util\Data;
 class Mae implements IModel
 {
     private $idMae;
-    private $nome;
+    private $nomeMae;
     private $dataCriacao;
     private $dataAlteracao;
     private $usuarioCadastro;
@@ -42,18 +42,35 @@ class Mae implements IModel
     /**
      * @return mixed
      */
-    public function getNome()
+    public function getNomeMae()
     {
-        return $this->nome;
+        return $this->nomeMae;
     }
 
     /**
-     * @param mixed $nome
+     * @param mixed $nomeMae
      */
-    public function setNome($nome)
+    public function setNomeMae($nomeMae)
     {
-        $this->nome = $nome;
+        $this->nomeMae = $nomeMae;
     }
+
+    /**
+     * @return mixed
+     */
+    public function getLimite()
+    {
+        return $this->limite;
+    }
+
+    /**
+     * @param mixed $limite
+     */
+    public function setLimite($limite)
+    {
+        $this->limite = $limite;
+    }
+
 
     /**
      * @return mixed

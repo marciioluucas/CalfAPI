@@ -23,7 +23,7 @@ class MaeController implements IController
         $data = (new DataConversor())->converter();
         $valida = (new MaeValidate())->validatePost($data);
         if ($valida === true) {
-            $mae->setNome($data['nome']);
+            $mae->setNomeMae($data['nomeMae']);
             View::render($mae->cadastrar());
         } else {
             View::render($valida);
@@ -56,8 +56,8 @@ class MaeController implements IController
         if (isset($param['idMae'])) {
             $data = (new DataConversor())->converter();
             $mae->setIdMae($param['idMae']);
-            if (isset($data['nome'])) {
-                $mae->setNome($data['nome']);
+            if (isset($data['nomeMae'])) {
+                $mae->setNomeMae($data['nomeMae']);
             }
             View::render($mae->alterar());
         }

@@ -24,7 +24,7 @@ class PesagemController implements IController
         $valida = (new PesagemValidate())->validatePost($data);
         if ($valida === true) {
             $pesagem->setPeso($data['peso']);
-            $pesagem->setData($data['data']);
+            $pesagem->setDataPesagem($data['dataPesagem']);
             View::render($pesagem->cadastrar());
         } else {
             View::render($valida);
@@ -60,8 +60,8 @@ class PesagemController implements IController
             if (isset($data['peso'])) {
                 $pesagem->setPeso($data['peso']);
             }
-            if (isset($data['data'])) {
-                $pesagem->setData($data['data']);
+            if (isset($data['dataPesagem'])) {
+                $pesagem->setDataPesagem($data['dataPesagem']);
             }
             View::render($pesagem->alterar());
         }

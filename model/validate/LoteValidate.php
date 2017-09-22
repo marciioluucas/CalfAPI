@@ -17,13 +17,17 @@ class LoteValidate implements IValidate
     public function validatePost($params)
     {
         $v = new Validator($params);
-        $v->rule('required', ['codigo']);
-        $v->rule('integer','codigo');
+        $v->rule('required', ['codigoLote']);
+        $v->rule('integer','codigoLote');
         if ($v->validate()) {
             return true;
         } else {
-            // Errors
-            return $v->errors();
+            $data = "";
+            foreach ($v->errors() as $key => $value) {
+                $data .= implode(',', $value);
+            }
+            return ["codigo" => 401,
+                "mensagem" => $data];
         }
     }
 

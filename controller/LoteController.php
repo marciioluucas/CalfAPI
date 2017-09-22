@@ -23,7 +23,7 @@ class LoteController implements IController
         $data = (new DataConversor())->converter();
         $valida = (new LoteValidate())->validatePost($data);
         if ($valida === true) {
-            $lote->setCodigo($data['codigo']);
+            $lote->setCodigoLote($data['codigoLote']);
             View::render($lote->cadastrar());
         } else {
             View::render($valida);
@@ -57,8 +57,8 @@ class LoteController implements IController
         if (isset($param['idLote'])) {
             $data = (new DataConversor())->converter();
             $lote->setIdLote($param['idLote']);
-            if (isset($data['codigo'])) {
-                $lote->setCodigo($data['codigo']);
+            if (isset($data['codigoLote'])) {
+                $lote->setCodigoLote($data['codigoLote']);
             }
             View::render($lote->alterar());
         }
