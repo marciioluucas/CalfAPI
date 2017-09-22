@@ -23,7 +23,7 @@ class CiclosVida implements IModel
     private $dataCriacao;
     private $usuarioCadastro;
     private $usuarioAlteracao;
-    private $limite;
+    protected $limite;
 
     /**
      * @return mixed
