@@ -16,6 +16,7 @@ use util\Data;
 class Animal implements IModel
 {
     private $idAnimal;
+    private $nomeAnimal;
     private $dataAlteracao;
     private $dataCriacao;
     private $usuarioCadastro;
@@ -29,6 +30,22 @@ class Animal implements IModel
     private $fkLote;
     private $fkFazenda;
     protected $limite;
+
+    /**
+     * @return mixed
+     */
+    public function getNomeAnimal()
+    {
+        return $this->nomeAnimal;
+    }
+
+    /**
+     * @param mixed $nomeAnimal
+     */
+    public function setNomeAnimal($nomeAnimal)
+    {
+        $this->nomeAnimal = $nomeAnimal;
+    }
 
     /**
      * @return mixed

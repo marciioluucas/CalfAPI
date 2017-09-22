@@ -24,6 +24,7 @@ class AnimalController implements IController
         $valida = (new AnimalValidate())->validatePost($data);
         if ($valida === true) {
             $animal->setCodigoBrinco($data['codigoBrinco']);
+            $animal->setNomeAnimal($data['nomeAnimal']);
             $animal->setCodigoRaca($data['codigoRaca']);
             $animal->setDataNascimento($data['dataNascimento']);
             $animal->setFkPesagem($data['fkPesagem']);

@@ -17,7 +17,7 @@ class AnimalValidate implements IValidate
     public function validatePost($params)
     {
         $v = new Validator($params);
-        $v->rule('required', ['dataNascimento', 'codigoRaca', 'codigoBrinco', 'fkPesagem', 'fkMae', 'fkPai', 'fkLote', 'fkFazenda']);
+        $v->rule('required', ['dataNascimento', 'codigoRaca', 'codigoBrinco', 'fkPesagem', 'fkMae', 'fkPai', 'fkLote', 'fkFazenda','nomeAnimal']);
         $v->rule('integer',['codigoRaca','codigoBrinco','fkPesagem','fkMae','fkPai','fkLote','fkFazenda']);
         $v->rule('date','dataNascimento');
         if ($v->validate()) {

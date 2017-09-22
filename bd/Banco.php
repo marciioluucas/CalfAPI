@@ -22,7 +22,7 @@ class Banco
         $db_host = "localhost";
         $db_nome = "controleanimal";
         $db_usuario = "root";
-        $db_senha = "root";
+        $db_senha = "";
         $db_driver = "mysql";
         # Informações sobre o sistema:
         $sistema_titulo = "GarageAPI";
