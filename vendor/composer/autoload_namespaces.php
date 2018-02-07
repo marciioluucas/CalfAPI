@@ -7,4 +7,5 @@ $baseDir = dirname($vendorDir);
 
 return array(
     'Valitron' => array($vendorDir . '/vlucas/valitron/src'),
+    'Pimple' => array($vendorDir . '/pimple/pimple/src'),
 );

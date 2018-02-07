@@ -1,100 +1,83 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: marci
- * Date: 21/08/2017
- * Time: 17:46
- */
 
-include 'vendor/autoload.php';
+use \Psr\Http\Message\ServerRequestInterface as Request;
+use \Psr\Http\Message\ResponseInterface as Response;
 
-use view\View;
-use Valitron\Validator as V;
+require 'vendor/autoload.php';
 
-class Api
-{
-    public static $url;
+$app = new \Slim\App([
+    'settings' => [
 
-    function __construct($url = "")
-    {
-        V::lang('pt-br');
-        //--------Responsável pelo REST--------\\
-        self::$url = $url;
-        if (isset($_SERVER['HTTP_HOST']) and isset($_SERVER['REQUEST_URI'])) {
-            self::$url = "$_SERVER[HTTP_HOST]$_SERVER[REQUEST_URI]";
-        }
+        'displayErrorDetails' => true,
 
-        $class = "\\controller\\" . ucfirst($this->retornaClasseURL()) . "Controller";
-        if (!class_exists($class)) {
-            View::render(["Message" => "Classe Nao encontrada"]);
-            return false;
-        }
+        'db' => [
 
-        return $this->selecionaMetodo(new $class);
-    }
+            'driver' => 'mysql',
 
+            'host' => 'localhost',
 
-    private function retornaClasseURL()
-    {
-        $arrayUrl = explode("/", self::$url);
-        for ($i = count($arrayUrl) - 1; $i > 0; $i--) {
-            if ($arrayUrl[$i] === "api") {
-                return $arrayUrl[$i + 1];
-            }
-        }
-    }
+            'database' => 'test',
 
-    public function retornaCamposeValoresFormatados()
-    {
-        $arrayUrl = explode("/", self::$url);
-        for ($i = count($arrayUrl) - 1; $i > 0; $i--) {
-            if ($arrayUrl[$i] === "api") {
-                $comeca = $i + 2;
-                break;
-            }
-        }
-        if (isset($arrayUrl[$comeca + 1])) {
-            $inc = $comeca;
-            $inc2 = $comeca + 1;
-            for ($i = $comeca; $i < count($arrayUrl); $i = $inc2) {
-                $array[$arrayUrl[$inc]] = $arrayUrl[$inc2];
-                $inc = $inc + 2;
-                $inc2 = $inc2 + 2;
-            }
-            return $array;
-        }
-        return 0;
-    }
+            'username' => 'root',
 
-    /**
-     * @param Controller $classe
-     * @return mixed
-     */
-    public
-    function selecionaMetodo($classe)
-    {
+            'password' => '',
 
-        $method = $_SERVER['REQUEST_METHOD'];
-        switch ($method) {
+            'charset' => 'utf8',
 
-            case 'GET':
-                return $classe->get($this->retornaCamposeValoresFormatados());
-                break;
-            case 'POST':
-
-                return $classe->post();
-                break;
-            case 'PUT':
-
-                return $classe->put($this->retornaCamposeValoresFormatados());
-                break;
-            case 'DELETE':
-                return $classe->delete($this->retornaCamposeValoresFormatados());
-                break;
-            default:
-                return View::render();
-        }
-    }
+            'collation' => 'utf8_unicode_ci',
+        ]
+    ],
+]);
+$app->get('/', '\\controller\\AnimalController:get');
+//$app->group('/{classname}', function () use ($app) {
+//
+//
+//
+//    $app->get('/{id:[0-9]+}', function (Request $request, Response $response, array $args) {
+//        $name = $args['classname'];
+//
+//        $response->getBody()->write("Hello, $name, seu id é " . $request->getAttribute("id"));
+//
+//        return $response;
+//    });
+//
+//    $app->post('/', function (Request $request, Response $response, array $args) {
+//        $name = $args['classname'];
+//        $response->getBody()->write("Hello, $name");
+//
+//        return $response;
+//    });
+//
+//    $app->put('/{id:[0-9]+}', function (Request $request, Response $response, array $args) {
+//        $name = $args['classname'];
+//        $response->getBody()->write("Hello, $name");
+//
+//        return $response;
+//    });
+//    $app->delete('/{id}', function (Request $request, Response $response, array $args) {
+//        $name = $args['classname'];
+//        $response->getBody()->write("Hello, $name");
+//
+//        return $response;
+//    });
+//});
+//
+///**
+// * @param String $classname
+// * @param Response $response
+// * @param array $args
+// * @return \controller\IController | Response
+// */
+//function invokeClass(String $classname, Response $response, array $args = []) {
+//    $class = "\\controller\\" . ucfirst($classname) . "Controller";
+//    if (!class_exists($class)) {
+//        return $response->withStatus(404,"Modulo nao registrado na API");
+//    }
+//    return new $class($response, $args);
+//}
+try {
+    $app->run();
+} catch (\Slim\Exception\MethodNotAllowedException $e) {
+} catch (\Slim\Exception\NotFoundException $e) {
+} catch (Exception $e) {
 }
-
-new Api();

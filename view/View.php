@@ -9,6 +9,7 @@
 namespace view;
 
 use util\HeaderWriter;
+use \Psr\Http\Message\ResponseInterface as Response;
 
 class View extends HeaderWriter
 {
@@ -33,17 +34,30 @@ class View extends HeaderWriter
 
 
     /**
+     * @param Response $response
      * @param array $data
+     * @param string $codigo
+     * @param string $razao
+     * @return Response
      */
-    public static final function render(array $data = [])
+    public static final function render(Response $response, array $data = [], $codigo = "", $razao = "")
     {
-        $headers = "Content-type: application/json; charset=utf-8";
-        if (self::$headers != "") {
-            $headers .= "; " . self::$headers;
+        if ($codigo != "" and $razao == "") {
+            return $response
+                ->withStatus($codigo)
+                ->withHeader("Content-Type", "application/json")
+                ->write(json_encode($data));
+        } else if ($codigo != "" and $razao != "") {
+            return $response
+                ->withStatus($codigo, $razao)
+                ->withHeader("Content-Type", "application/json")
+                ->write(json_encode($data));
+        } else {
+            return $response
+                ->withHeader("Content-Type", "application/json")
+                ->write(json_encode($data));
         }
-        header($headers);
-        echo json_encode($data);
-        die();
+
     }
 
 

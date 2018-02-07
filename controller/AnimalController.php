@@ -11,13 +11,15 @@ namespace controller;
 
 use model\Animal;
 use model\validate\AnimalValidate;
+use \Psr\Http\Message\ResponseInterface as Response;
+use util\Database;
 use util\DataConversor;
 use view\View;
 
 class AnimalController implements IController
 {
 
-    public function post()
+    public function post($request, $response)
     {
         $animal = new Animal();
         $data = (new DataConversor())->converter();
@@ -38,8 +40,9 @@ class AnimalController implements IController
         }
     }
 
-    public function get($param)
+    public function get($request, $response)
     {
+        new Database();
         $animal = new Animal();
         if (!empty($param)) {
             foreach ($param as $key => $val) {
@@ -47,17 +50,17 @@ class AnimalController implements IController
                 if (method_exists($animal, 'set' . ucfirst($key))) {
                     $animal->$var($val);
                 } else {
-                    View::render([
+                    return View::render($response, [
                         "status" => 400,
                         "message" => "Parametro invalido " . $key
-                    ]);
+                    ], 400, "Parametro invalido " . $key);
                 }
             }
         }
-        View::render($animal->pesquisar());
+        return View::render($response, $animal->cadastrar());
     }
 
-    public function put($param)
+    public function put(Response $response, $param)
     {
         $animal = new Animal();
         if (isset($param['idAnimal'])) {
@@ -94,7 +97,7 @@ class AnimalController implements IController
         }
     }
 
-    public function delete($param)
+    public function delete(Response $response, $param)
     {
         $animal = new Animal();
         if (isset($param['idAnimal'])) {

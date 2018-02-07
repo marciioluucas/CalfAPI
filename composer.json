@@ -12,6 +12,8 @@
   },
   "require": {
     "lcobucci/jwt": "^3.2",
-    "vlucas/valitron": "^1.4"
+    "vlucas/valitron": "^1.4",
+    "slim/slim": "^3.9",
+    "illuminate/database": "*"
   }
 }

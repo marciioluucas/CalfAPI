@@ -9,12 +9,14 @@
 namespace model;
 
 
+use Illuminate\Database\Eloquent\Model;
 use model\dao\AnimalDAO;
 use util\ClassToArray;
 use util\Data;
 
-class Animal implements IModel
+class Animal extends Model implements IModel
 {
+
     private $idAnimal;
     private $nomeAnimal;
     private $dataAlteracao;

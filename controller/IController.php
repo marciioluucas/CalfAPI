@@ -7,15 +7,16 @@
  */
 
 namespace controller;
+use \Psr\Http\Message\ResponseInterface as Response;
 
 
 interface IController
 {
-    public function post();
+    public function post(Response $response);
 
-    public function get($param);
+    public function get($request, $response);
 
-    public function put($param);
+    public function put(Response $response,$param);
 
-    public function delete($param);
+    public function delete(Response $response,$param);
 }
