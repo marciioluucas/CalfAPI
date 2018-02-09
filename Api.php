@@ -28,7 +28,7 @@ $app = new \Slim\App([
         ]
     ],
 ]);
-$app->get('/', '\\controller\\AnimalController:get');
+$app->post('/', '\\controller\\AnimalController:post');
 //$app->group('/{classname}', function () use ($app) {
 //
 //

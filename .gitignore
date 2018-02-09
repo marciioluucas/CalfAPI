@@ -1,14 +1,2 @@
-
-bd/Banco.php
-
-.idea
-*.iml
-*.iml
-*.xml
-.idea/API.iml
-.idea/vcs.xml
-.idea/workspace.xml
-.idea/API.iml
-.idea/modules.xml
-.idea/vcs.xml
-.idea/workspace.xml
+.idea/*
+vendor/*
