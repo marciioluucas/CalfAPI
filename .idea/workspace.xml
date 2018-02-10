@@ -1,173 +1,67 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="00f5a375-e7b8-4505-98fa-01660a814dc1" name="Default" comment="Colocando Slim">
-      <change beforePath="" afterPath="$PROJECT_DIR$/app/model/entities/AnimalEntity.php" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/config/DoctrineORM.php" />
-      <change beforePath="$PROJECT_DIR$/.gitignore" afterPath="$PROJECT_DIR$/.gitignore" />
+    <list default="true" id="00f5a375-e7b8-4505-98fa-01660a814dc1" name="Default" comment="">
+      <change beforePath="" afterPath="$PROJECT_DIR$/config/bootstrap.php" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/src/util/Database.php" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/src/util/Migration.php" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/src/util/config.php" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/src/view/Router.php" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/src/view/routes/AnimalRoute.php" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/src/view/routes/usuarios.php" />
       <change beforePath="$PROJECT_DIR$/.idea/API.iml" afterPath="$PROJECT_DIR$/.idea/API.iml" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change beforePath="$PROJECT_DIR$/Api.php" afterPath="$PROJECT_DIR$/Api.php" />
+      <change beforePath="$PROJECT_DIR$/app/controller/AnimalController.php" afterPath="$PROJECT_DIR$/src/controller/AnimalController.php" />
+      <change beforePath="$PROJECT_DIR$/app/controller/CiclosVidaController.php" afterPath="$PROJECT_DIR$/src/controller/CiclosVidaController.php" />
+      <change beforePath="$PROJECT_DIR$/app/controller/FazendaController.php" afterPath="$PROJECT_DIR$/src/controller/FazendaController.php" />
+      <change beforePath="$PROJECT_DIR$/app/controller/IController.php" afterPath="$PROJECT_DIR$/src/controller/IController.php" />
+      <change beforePath="$PROJECT_DIR$/app/controller/LoteController.php" afterPath="$PROJECT_DIR$/src/controller/LoteController.php" />
+      <change beforePath="$PROJECT_DIR$/app/controller/MaeController.php" afterPath="$PROJECT_DIR$/src/controller/MaeController.php" />
+      <change beforePath="$PROJECT_DIR$/app/controller/PaiController.php" afterPath="$PROJECT_DIR$/src/controller/PaiController.php" />
+      <change beforePath="$PROJECT_DIR$/app/controller/PesagemController.php" afterPath="$PROJECT_DIR$/src/controller/PesagemController.php" />
+      <change beforePath="$PROJECT_DIR$/app/model/Animal.php" afterPath="$PROJECT_DIR$/src/model/Animal.php" />
+      <change beforePath="$PROJECT_DIR$/app/model/CiclosVida.php" afterPath="$PROJECT_DIR$/src/model/CiclosVida.php" />
+      <change beforePath="$PROJECT_DIR$/app/model/Fazenda.php" afterPath="$PROJECT_DIR$/src/model/Fazenda.php" />
+      <change beforePath="$PROJECT_DIR$/app/model/IModel.php" afterPath="$PROJECT_DIR$/src/model/IModel.php" />
+      <change beforePath="$PROJECT_DIR$/app/model/Lote.php" afterPath="$PROJECT_DIR$/src/model/Lote.php" />
+      <change beforePath="$PROJECT_DIR$/app/model/Mae.php" afterPath="$PROJECT_DIR$/src/model/Mae.php" />
+      <change beforePath="$PROJECT_DIR$/app/model/Pai.php" afterPath="$PROJECT_DIR$/src/model/Pai.php" />
+      <change beforePath="$PROJECT_DIR$/app/model/Pesagem.php" afterPath="$PROJECT_DIR$/src/model/Pesagem.php" />
+      <change beforePath="$PROJECT_DIR$/app/model/dao/AnimalDAO.php" afterPath="$PROJECT_DIR$/src/model/dao/AnimalDAO.php" />
+      <change beforePath="$PROJECT_DIR$/app/model/dao/CiclosVidaDAO.php" afterPath="$PROJECT_DIR$/src/model/dao/CiclosVidaDAO.php" />
+      <change beforePath="$PROJECT_DIR$/app/model/dao/FazendaDAO.php" afterPath="$PROJECT_DIR$/src/model/dao/FazendaDAO.php" />
+      <change beforePath="$PROJECT_DIR$/app/model/dao/IDAO.php" afterPath="$PROJECT_DIR$/src/model/dao/IDAO.php" />
+      <change beforePath="$PROJECT_DIR$/app/model/dao/LoteDAO.php" afterPath="$PROJECT_DIR$/src/model/dao/LoteDAO.php" />
+      <change beforePath="$PROJECT_DIR$/app/model/dao/MaeDAO.php" afterPath="$PROJECT_DIR$/src/model/dao/MaeDAO.php" />
+      <change beforePath="$PROJECT_DIR$/app/model/dao/PaiDAO.php" afterPath="$PROJECT_DIR$/src/model/dao/PaiDAO.php" />
+      <change beforePath="$PROJECT_DIR$/app/model/dao/PesagemDAO.php" afterPath="$PROJECT_DIR$/src/model/dao/PesagemDAO.php" />
+      <change beforePath="$PROJECT_DIR$/app/model/entities/AnimalEntity.php" afterPath="$PROJECT_DIR$/src/model/entities/AnimalEntity.php" />
+      <change beforePath="$PROJECT_DIR$/app/model/validate/AnimalValidate.php" afterPath="$PROJECT_DIR$/src/model/validate/AnimalValidate.php" />
+      <change beforePath="$PROJECT_DIR$/app/model/validate/CiclosVidaValidate.php" afterPath="$PROJECT_DIR$/src/model/validate/CiclosVidaValidate.php" />
+      <change beforePath="$PROJECT_DIR$/app/model/validate/FazendaValidate.php" afterPath="$PROJECT_DIR$/src/model/validate/FazendaValidate.php" />
+      <change beforePath="$PROJECT_DIR$/app/model/validate/IValidate.php" afterPath="$PROJECT_DIR$/src/model/validate/IValidate.php" />
+      <change beforePath="$PROJECT_DIR$/app/model/validate/LoteValidate.php" afterPath="$PROJECT_DIR$/src/model/validate/LoteValidate.php" />
+      <change beforePath="$PROJECT_DIR$/app/model/validate/MaeValidate.php" afterPath="$PROJECT_DIR$/src/model/validate/MaeValidate.php" />
+      <change beforePath="$PROJECT_DIR$/app/model/validate/PaiValidate.php" afterPath="$PROJECT_DIR$/src/model/validate/PaiValidate.php" />
+      <change beforePath="$PROJECT_DIR$/app/model/validate/PesagemValidate.php" afterPath="$PROJECT_DIR$/src/model/validate/PesagemValidate.php" />
+      <change beforePath="$PROJECT_DIR$/app/util/ClassToArray.php" afterPath="$PROJECT_DIR$/src/util/ClassToArray.php" />
+      <change beforePath="$PROJECT_DIR$/app/util/Data.php" afterPath="$PROJECT_DIR$/src/util/Data.php" />
+      <change beforePath="$PROJECT_DIR$/app/util/DataConversor.php" afterPath="$PROJECT_DIR$/src/util/DataConversor.php" />
+      <change beforePath="$PROJECT_DIR$/app/util/Database.php" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/app/util/EnumFaseVida.php" afterPath="$PROJECT_DIR$/src/util/EnumFaseVida.php" />
+      <change beforePath="$PROJECT_DIR$/app/util/EnumLocalizacao.php" afterPath="$PROJECT_DIR$/src/util/EnumLocalizacao.php" />
+      <change beforePath="$PROJECT_DIR$/app/util/HeaderWriter.php" afterPath="$PROJECT_DIR$/src/util/HeaderWriter.php" />
+      <change beforePath="$PROJECT_DIR$/app/util/Token.php" afterPath="$PROJECT_DIR$/src/util/Token.php" />
+      <change beforePath="$PROJECT_DIR$/bd/Banco.php" afterPath="$PROJECT_DIR$/anothers/bd/Banco.php" />
       <change beforePath="$PROJECT_DIR$/composer.json" afterPath="$PROJECT_DIR$/composer.json" />
       <change beforePath="$PROJECT_DIR$/composer.lock" afterPath="$PROJECT_DIR$/composer.lock" />
-      <change beforePath="$PROJECT_DIR$/controller/AnimalController.php" afterPath="$PROJECT_DIR$/app/controller/AnimalController.php" />
-      <change beforePath="$PROJECT_DIR$/controller/CiclosVidaController.php" afterPath="$PROJECT_DIR$/app/controller/CiclosVidaController.php" />
-      <change beforePath="$PROJECT_DIR$/controller/FazendaController.php" afterPath="$PROJECT_DIR$/app/controller/FazendaController.php" />
-      <change beforePath="$PROJECT_DIR$/controller/IController.php" afterPath="$PROJECT_DIR$/app/controller/IController.php" />
-      <change beforePath="$PROJECT_DIR$/controller/LoteController.php" afterPath="$PROJECT_DIR$/app/controller/LoteController.php" />
-      <change beforePath="$PROJECT_DIR$/controller/MaeController.php" afterPath="$PROJECT_DIR$/app/controller/MaeController.php" />
-      <change beforePath="$PROJECT_DIR$/controller/PaiController.php" afterPath="$PROJECT_DIR$/app/controller/PaiController.php" />
-      <change beforePath="$PROJECT_DIR$/controller/PesagemController.php" afterPath="$PROJECT_DIR$/app/controller/PesagemController.php" />
-      <change beforePath="$PROJECT_DIR$/model/Animal.php" afterPath="$PROJECT_DIR$/app/model/Animal.php" />
-      <change beforePath="$PROJECT_DIR$/model/CiclosVida.php" afterPath="$PROJECT_DIR$/app/model/CiclosVida.php" />
-      <change beforePath="$PROJECT_DIR$/model/Fazenda.php" afterPath="$PROJECT_DIR$/app/model/Fazenda.php" />
-      <change beforePath="$PROJECT_DIR$/model/IModel.php" afterPath="$PROJECT_DIR$/app/model/IModel.php" />
-      <change beforePath="$PROJECT_DIR$/model/Lote.php" afterPath="$PROJECT_DIR$/app/model/Lote.php" />
-      <change beforePath="$PROJECT_DIR$/model/Mae.php" afterPath="$PROJECT_DIR$/app/model/Mae.php" />
-      <change beforePath="$PROJECT_DIR$/model/Pai.php" afterPath="$PROJECT_DIR$/app/model/Pai.php" />
-      <change beforePath="$PROJECT_DIR$/model/Pesagem.php" afterPath="$PROJECT_DIR$/app/model/Pesagem.php" />
-      <change beforePath="$PROJECT_DIR$/model/dao/AnimalDAO.php" afterPath="$PROJECT_DIR$/app/model/dao/AnimalDAO.php" />
-      <change beforePath="$PROJECT_DIR$/model/dao/CiclosVidaDAO.php" afterPath="$PROJECT_DIR$/app/model/dao/CiclosVidaDAO.php" />
-      <change beforePath="$PROJECT_DIR$/model/dao/FazendaDAO.php" afterPath="$PROJECT_DIR$/app/model/dao/FazendaDAO.php" />
-      <change beforePath="$PROJECT_DIR$/model/dao/IDAO.php" afterPath="$PROJECT_DIR$/app/model/dao/IDAO.php" />
-      <change beforePath="$PROJECT_DIR$/model/dao/LoteDAO.php" afterPath="$PROJECT_DIR$/app/model/dao/LoteDAO.php" />
-      <change beforePath="$PROJECT_DIR$/model/dao/MaeDAO.php" afterPath="$PROJECT_DIR$/app/model/dao/MaeDAO.php" />
-      <change beforePath="$PROJECT_DIR$/model/dao/PaiDAO.php" afterPath="$PROJECT_DIR$/app/model/dao/PaiDAO.php" />
-      <change beforePath="$PROJECT_DIR$/model/dao/PesagemDAO.php" afterPath="$PROJECT_DIR$/app/model/dao/PesagemDAO.php" />
-      <change beforePath="$PROJECT_DIR$/model/validate/AnimalValidate.php" afterPath="$PROJECT_DIR$/app/model/validate/AnimalValidate.php" />
-      <change beforePath="$PROJECT_DIR$/model/validate/CiclosVidaValidate.php" afterPath="$PROJECT_DIR$/app/model/validate/CiclosVidaValidate.php" />
-      <change beforePath="$PROJECT_DIR$/model/validate/FazendaValidate.php" afterPath="$PROJECT_DIR$/app/model/validate/FazendaValidate.php" />
-      <change beforePath="$PROJECT_DIR$/model/validate/IValidate.php" afterPath="$PROJECT_DIR$/app/model/validate/IValidate.php" />
-      <change beforePath="$PROJECT_DIR$/model/validate/LoteValidate.php" afterPath="$PROJECT_DIR$/app/model/validate/LoteValidate.php" />
-      <change beforePath="$PROJECT_DIR$/model/validate/MaeValidate.php" afterPath="$PROJECT_DIR$/app/model/validate/MaeValidate.php" />
-      <change beforePath="$PROJECT_DIR$/model/validate/PaiValidate.php" afterPath="$PROJECT_DIR$/app/model/validate/PaiValidate.php" />
-      <change beforePath="$PROJECT_DIR$/model/validate/PesagemValidate.php" afterPath="$PROJECT_DIR$/app/model/validate/PesagemValidate.php" />
-      <change beforePath="$PROJECT_DIR$/util/ClassToArray.php" afterPath="$PROJECT_DIR$/app/util/ClassToArray.php" />
-      <change beforePath="$PROJECT_DIR$/util/Data.php" afterPath="$PROJECT_DIR$/app/util/Data.php" />
-      <change beforePath="$PROJECT_DIR$/util/DataConversor.php" afterPath="$PROJECT_DIR$/app/util/DataConversor.php" />
-      <change beforePath="$PROJECT_DIR$/util/Database.php" afterPath="$PROJECT_DIR$/app/util/Database.php" />
-      <change beforePath="$PROJECT_DIR$/util/EnumFaseVida.php" afterPath="$PROJECT_DIR$/app/util/EnumFaseVida.php" />
-      <change beforePath="$PROJECT_DIR$/util/EnumLocalizacao.php" afterPath="$PROJECT_DIR$/app/util/EnumLocalizacao.php" />
-      <change beforePath="$PROJECT_DIR$/util/HeaderWriter.php" afterPath="$PROJECT_DIR$/app/util/HeaderWriter.php" />
-      <change beforePath="$PROJECT_DIR$/util/Token.php" afterPath="$PROJECT_DIR$/app/util/Token.php" />
-      <change beforePath="$PROJECT_DIR$/vendor/autoload.php" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/vendor/composer/ClassLoader.php" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/vendor/composer/LICENSE" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/vendor/composer/autoload_classmap.php" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/vendor/composer/autoload_namespaces.php" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/vendor/composer/autoload_psr4.php" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/vendor/composer/autoload_real.php" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/vendor/composer/autoload_static.php" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/vendor/composer/installed.json" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/vendor/lcobucci/jwt/.gitignore" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/vendor/lcobucci/jwt/.scrutinizer.yml" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/vendor/lcobucci/jwt/.travis.yml" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/vendor/lcobucci/jwt/LICENSE" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/vendor/lcobucci/jwt/README.md" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/vendor/lcobucci/jwt/composer.json" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/vendor/lcobucci/jwt/composer.lock" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/vendor/lcobucci/jwt/phpunit.xml.dist" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/vendor/lcobucci/jwt/src/Builder.php" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/vendor/lcobucci/jwt/src/Claim.php" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/vendor/lcobucci/jwt/src/Claim/Basic.php" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/vendor/lcobucci/jwt/src/Claim/EqualsTo.php" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/vendor/lcobucci/jwt/src/Claim/Factory.php" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/vendor/lcobucci/jwt/src/Claim/GreaterOrEqualsTo.php" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/vendor/lcobucci/jwt/src/Claim/LesserOrEqualsTo.php" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/vendor/lcobucci/jwt/src/Claim/Validatable.php" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/vendor/lcobucci/jwt/src/Parser.php" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/vendor/lcobucci/jwt/src/Parsing/Decoder.php" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/vendor/lcobucci/jwt/src/Parsing/Encoder.php" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/vendor/lcobucci/jwt/src/Signature.php" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/vendor/lcobucci/jwt/src/Signer.php" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/vendor/lcobucci/jwt/src/Signer/BaseSigner.php" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/vendor/lcobucci/jwt/src/Signer/Ecdsa.php" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/vendor/lcobucci/jwt/src/Signer/Ecdsa/KeyParser.php" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/vendor/lcobucci/jwt/src/Signer/Ecdsa/Sha256.php" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/vendor/lcobucci/jwt/src/Signer/Ecdsa/Sha384.php" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/vendor/lcobucci/jwt/src/Signer/Ecdsa/Sha512.php" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/vendor/lcobucci/jwt/src/Signer/Hmac.php" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/vendor/lcobucci/jwt/src/Signer/Hmac/Sha256.php" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/vendor/lcobucci/jwt/src/Signer/Hmac/Sha384.php" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/vendor/lcobucci/jwt/src/Signer/Hmac/Sha512.php" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/vendor/lcobucci/jwt/src/Signer/Key.php" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/vendor/lcobucci/jwt/src/Signer/Keychain.php" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/vendor/lcobucci/jwt/src/Signer/Rsa.php" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/vendor/lcobucci/jwt/src/Signer/Rsa/Sha256.php" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/vendor/lcobucci/jwt/src/Signer/Rsa/Sha384.php" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/vendor/lcobucci/jwt/src/Signer/Rsa/Sha512.php" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/vendor/lcobucci/jwt/src/Token.php" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/vendor/lcobucci/jwt/src/ValidationData.php" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/vendor/lcobucci/jwt/test/functional/EcdsaTokenTest.php" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/vendor/lcobucci/jwt/test/functional/HmacTokenTest.php" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/vendor/lcobucci/jwt/test/functional/Keys.php" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/vendor/lcobucci/jwt/test/functional/RsaTokenTest.php" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/vendor/lcobucci/jwt/test/functional/UnsignedTokenTest.php" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/vendor/lcobucci/jwt/test/functional/ecdsa/private.key" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/vendor/lcobucci/jwt/test/functional/ecdsa/private2.key" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/vendor/lcobucci/jwt/test/functional/ecdsa/public1.key" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/vendor/lcobucci/jwt/test/functional/ecdsa/public2.key" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/vendor/lcobucci/jwt/test/functional/ecdsa/public3.key" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/vendor/lcobucci/jwt/test/functional/rsa/encrypted-private.key" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/vendor/lcobucci/jwt/test/functional/rsa/encrypted-public.key" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/vendor/lcobucci/jwt/test/functional/rsa/private.key" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/vendor/lcobucci/jwt/test/functional/rsa/public.key" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/vendor/lcobucci/jwt/test/unit/BuilderTest.php" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/vendor/lcobucci/jwt/test/unit/Claim/BasicTest.php" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/vendor/lcobucci/jwt/test/unit/Claim/EqualsToTest.php" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/vendor/lcobucci/jwt/test/unit/Claim/FactoryTest.php" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/vendor/lcobucci/jwt/test/unit/Claim/GreaterOrEqualsToTest.php" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/vendor/lcobucci/jwt/test/unit/Claim/LesserOrEqualsToTest.php" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/vendor/lcobucci/jwt/test/unit/ParserTest.php" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/vendor/lcobucci/jwt/test/unit/Parsing/DecoderTest.php" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/vendor/lcobucci/jwt/test/unit/Parsing/EncoderTest.php" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/vendor/lcobucci/jwt/test/unit/SignatureTest.php" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/vendor/lcobucci/jwt/test/unit/Signer/BaseSignerTest.php" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/vendor/lcobucci/jwt/test/unit/Signer/Ecdsa/KeyParserTest.php" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/vendor/lcobucci/jwt/test/unit/Signer/Ecdsa/Sha256Test.php" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/vendor/lcobucci/jwt/test/unit/Signer/Ecdsa/Sha384Test.php" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/vendor/lcobucci/jwt/test/unit/Signer/Ecdsa/Sha512Test.php" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/vendor/lcobucci/jwt/test/unit/Signer/EcdsaTest.php" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/vendor/lcobucci/jwt/test/unit/Signer/Hmac/Sha256Test.php" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/vendor/lcobucci/jwt/test/unit/Signer/Hmac/Sha384Test.php" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/vendor/lcobucci/jwt/test/unit/Signer/Hmac/Sha512Test.php" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/vendor/lcobucci/jwt/test/unit/Signer/HmacTest.php" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/vendor/lcobucci/jwt/test/unit/Signer/KeyTest.php" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/vendor/lcobucci/jwt/test/unit/Signer/KeychainTest.php" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/vendor/lcobucci/jwt/test/unit/Signer/Rsa/Sha256Test.php" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/vendor/lcobucci/jwt/test/unit/Signer/Rsa/Sha384Test.php" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/vendor/lcobucci/jwt/test/unit/Signer/Rsa/Sha512Test.php" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/vendor/lcobucci/jwt/test/unit/TokenTest.php" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/vendor/lcobucci/jwt/test/unit/ValidationDataTest.php" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/vendor/vlucas/valitron/LICENSE.txt" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/vendor/vlucas/valitron/README.md" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/vendor/vlucas/valitron/composer.json" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/vendor/vlucas/valitron/lang/ar.php" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/vendor/vlucas/valitron/lang/az.php" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/vendor/vlucas/valitron/lang/de.php" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/vendor/vlucas/valitron/lang/el.php" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/vendor/vlucas/valitron/lang/en.php" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/vendor/vlucas/valitron/lang/es.php" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/vendor/vlucas/valitron/lang/fi.php" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/vendor/vlucas/valitron/lang/fr.php" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/vendor/vlucas/valitron/lang/id.php" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/vendor/vlucas/valitron/lang/it.php" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/vendor/vlucas/valitron/lang/ja.php" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/vendor/vlucas/valitron/lang/lv.php" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/vendor/vlucas/valitron/lang/nl.php" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/vendor/vlucas/valitron/lang/no.php" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/vendor/vlucas/valitron/lang/pl.php" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/vendor/vlucas/valitron/lang/pt-br.php" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/vendor/vlucas/valitron/lang/ro.php" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/vendor/vlucas/valitron/lang/ru.php" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/vendor/vlucas/valitron/lang/sk.php" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/vendor/vlucas/valitron/lang/th.php" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/vendor/vlucas/valitron/lang/tr.php" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/vendor/vlucas/valitron/lang/uk.php" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/vendor/vlucas/valitron/lang/vi.php" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/vendor/vlucas/valitron/lang/zh-cn.php" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/vendor/vlucas/valitron/lang/zh-tw.php" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/vendor/vlucas/valitron/src/Valitron/Validator.php" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/config/DoctrineORM.php" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/sql/01.sql" afterPath="$PROJECT_DIR$/anothers/sql/01.sql" />
+      <change beforePath="$PROJECT_DIR$/sql/02.sql" afterPath="$PROJECT_DIR$/anothers/sql/02.sql" />
+      <change beforePath="$PROJECT_DIR$/sql/03.sql" afterPath="$PROJECT_DIR$/anothers/sql/03.sql" />
+      <change beforePath="$PROJECT_DIR$/sql/04.sql" afterPath="$PROJECT_DIR$/anothers/sql/04.sql" />
+      <change beforePath="$PROJECT_DIR$/view/View.php" afterPath="$PROJECT_DIR$/src/view/View.php" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -201,92 +95,13 @@
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
       <file leaf-file-name="Animal.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/model/Animal.php">
+        <entry file="file://$PROJECT_DIR$/src/model/Animal.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="144">
-              <caret line="13" column="14" lean-forward="false" selection-start-line="13" selection-start-column="14" selection-end-line="13" selection-end-column="14" />
+            <state relative-caret-position="77">
+              <caret line="324" column="0" lean-forward="true" selection-start-line="324" selection-start-column="0" selection-end-line="324" selection-end-column="0" />
               <folding>
-                <element signature="e#110#134#0#PHP" expanded="true" />
+                <element signature="e#114#128#0#PHP" expanded="true" />
               </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="AnimalEntity.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/model/entities/AnimalEntity.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="192">
-              <caret line="13" column="0" lean-forward="false" selection-start-line="13" selection-start-column="0" selection-end-line="13" selection-end-column="0" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="DoctrineORM.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/config/DoctrineORM.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1008">
-              <caret line="43" column="32" lean-forward="false" selection-start-line="43" selection-start-column="32" selection-end-line="43" selection-end-column="32" />
-              <folding>
-                <element signature="e#7#38#0#PHP" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name=".gitignore" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/.gitignore">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="24">
-              <caret line="1" column="8" lean-forward="true" selection-start-line="1" selection-start-column="8" selection-end-line="1" selection-end-column="8" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="composer.json" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/composer.json">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="480">
-              <caret line="20" column="3" lean-forward="false" selection-start-line="20" selection-start-column="3" selection-end-line="20" selection-end-column="3" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="AnimalDAO.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/model/dao/AnimalDAO.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="504">
-              <caret line="28" column="46" lean-forward="false" selection-start-line="28" selection-start-column="46" selection-end-line="28" selection-end-column="46" />
-              <folding>
-                <marker date="1517914570229" expanded="true" signature="685:734" ph="INSERT INTO animais... " />
-                <marker date="1517914570229" expanded="true" signature="1637:1690" ph="UPDATE animais... " />
-                <marker date="1517914570229" expanded="true" signature="2352:2617" ph="SELECT * FRO... animais" />
-                <marker date="1517914570229" expanded="true" signature="4442:4507" ph="UPDATE animais... " />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="AnimalController.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/controller/AnimalController.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="840">
-              <caret line="46" column="58" lean-forward="false" selection-start-line="46" selection-start-column="58" selection-end-line="46" selection-end-column="58" />
-              <folding>
-                <element signature="e#115#132#0#PHP" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="View.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/view/View.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="864">
-              <caret line="42" column="33" lean-forward="false" selection-start-line="42" selection-start-column="33" selection-end-line="42" selection-end-column="33" />
-              <folding />
             </state>
           </provider>
         </entry>
@@ -294,21 +109,33 @@
       <file leaf-file-name="Api.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/Api.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="768">
-              <caret line="33" column="2" lean-forward="false" selection-start-line="33" selection-start-column="2" selection-end-line="33" selection-end-column="2" />
-              <folding />
+            <state relative-caret-position="-53">
+              <caret line="26" column="32" lean-forward="true" selection-start-line="26" selection-start-column="32" selection-end-line="26" selection-end-column="32" />
+              <folding>
+                <element signature="e#69#91#0#PHP" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="AnimalController.php" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/controller/AnimalController.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="211">
+              <caret line="66" column="29" lean-forward="false" selection-start-line="66" selection-start-column="29" selection-end-line="66" selection-end-column="29" />
+              <folding>
+                <element signature="e#119#133#0#PHP" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
       </file>
       <file leaf-file-name="IController.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/controller/IController.php">
+        <entry file="file://$PROJECT_DIR$/src/controller/IController.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="336">
-              <caret line="20" column="0" lean-forward="false" selection-start-line="20" selection-start-column="0" selection-end-line="20" selection-end-column="0" />
-              <folding>
-                <element signature="e#113#165#0#PHP" expanded="true" />
-              </folding>
+            <state relative-caret-position="119">
+              <caret line="17" column="73" lean-forward="false" selection-start-line="17" selection-start-column="73" selection-end-line="17" selection-end-column="73" />
+              <folding />
             </state>
           </provider>
         </entry>
@@ -318,7 +145,34 @@
   <component name="FindInProjectRecents">
     <findStrings>
       <find>\Psr\Http\Message\RequestInterface</find>
+      <find>“</find>
+      <find>”</find>
+      <find>‘</find>
+      <find>’</find>
+      <find>use model</find>
+      <find>use model\</find>
+      <find>namespace model\</find>
+      <find>namespace model;</find>
+      <find>namespace util;</find>
+      <find>use util</find>
+      <find>$this-&gt;capsule</find>
+      <find>namespace controller;</find>
     </findStrings>
+    <replaceStrings>
+      <replace>use src\</replace>
+      <replace>use src\model\</replace>
+      <replace>namespace src\model</replace>
+      <replace>namespace src\model\</replace>
+      <replace>namespace src\model;</replace>
+      <replace>namespace src\util;</replace>
+      <replace>use src\util</replace>
+      <replace>namespace src\controller;</replace>
+    </replaceStrings>
+    <dirStrings>
+      <dir>E:\xampp\htdocs\CalfAPI\src\model</dir>
+      <dir>E:\xampp\htdocs\CalfAPI\src</dir>
+      <dir>E:\xampp\htdocs\CalfAPI\src\controller</dir>
+    </dirStrings>
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -341,16 +195,40 @@
         <option value="$PROJECT_DIR$/migrations/AnimalMigration.php" />
         <option value="$PROJECT_DIR$/migrations/Migration.php" />
         <option value="$PROJECT_DIR$/util/Database.php" />
-        <option value="$PROJECT_DIR$/Api.php" />
         <option value="$PROJECT_DIR$/controller/IController.php" />
         <option value="$PROJECT_DIR$/controller/AnimalController.php" />
         <option value="$PROJECT_DIR$/model/validate/AnimalValidate.php" />
         <option value="$PROJECT_DIR$/model/Animal.php" />
         <option value="$PROJECT_DIR$/config/Bootstrap.php" />
         <option value="$PROJECT_DIR$/config/Doctrine.php" />
-        <option value="$PROJECT_DIR$/composer.json" />
-        <option value="$PROJECT_DIR$/config/DoctrineORM.php" />
         <option value="$PROJECT_DIR$/.gitignore" />
+        <option value="$PROJECT_DIR$/config/DoctrineORM.php" />
+        <option value="$PROJECT_DIR$/config/doctrine-config.php" />
+        <option value="$PROJECT_DIR$/cli-config.php" />
+        <option value="$PROJECT_DIR$/bootstrap.php" />
+        <option value="$PROJECT_DIR$/config/bootstrap.php" />
+        <option value="$PROJECT_DIR$/config/cli-config.php" />
+        <option value="$PROJECT_DIR$/config.php" />
+        <option value="$PROJECT_DIR$/src/model/entities/AnimalEntity.php" />
+        <option value="$PROJECT_DIR$/src/util/config.php" />
+        <option value="$PROJECT_DIR$/config/db/migrations/20180210131638_animal_migration.php" />
+        <option value="$PROJECT_DIR$/src/util/Migration.php" />
+        <option value="$PROJECT_DIR$/src/model/dao/AnimalDAO.php" />
+        <option value="$PROJECT_DIR$/src/model/CiclosVida.php" />
+        <option value="$PROJECT_DIR$/phinx.yml" />
+        <option value="$PROJECT_DIR$/config/db/migrations/20180210135922_animal_migration.php" />
+        <option value="$PROJECT_DIR$/src/util/Database.php" />
+        <option value="$PROJECT_DIR$/src/view/Routes.php" />
+        <option value="$PROJECT_DIR$/src/view/routes/usuarios.php" />
+        <option value="$PROJECT_DIR$/src/view/Router.php" />
+        <option value="$PROJECT_DIR$/src/view/routes/AnimalRoute.php" />
+        <option value="$PROJECT_DIR$/composer.json" />
+        <option value="$PROJECT_DIR$/src/view/View.php" />
+        <option value="$PROJECT_DIR$/src/model/IModel.php" />
+        <option value="$PROJECT_DIR$/src/controller/IController.php" />
+        <option value="$PROJECT_DIR$/Api.php" />
+        <option value="$PROJECT_DIR$/src/model/Animal.php" />
+        <option value="$PROJECT_DIR$/src/controller/AnimalController.php" />
       </list>
     </option>
   </component>
@@ -361,12 +239,38 @@
     <sorting>DEFINITION_ORDER</sorting>
   </component>
   <component name="PhpDebugGeneral" listening_started="true" />
-  <component name="PhpWorkspaceProjectConfiguration" backward_compatibility_performed="true" interpreter_name="PHP 7.2" />
+  <component name="PhpWorkspaceProjectConfiguration" backward_compatibility_performed="true" interpreter_name="PHP 7.2">
+    <include_path>
+      <path value="$PROJECT_DIR$/vendor/symfony/polyfill-mbstring" />
+      <path value="$PROJECT_DIR$/vendor/symfony/config" />
+      <path value="$PROJECT_DIR$/vendor/symfony/filesystem" />
+      <path value="$PROJECT_DIR$/vendor/symfony/yaml" />
+      <path value="$PROJECT_DIR$/vendor/lcobucci/jwt" />
+      <path value="$PROJECT_DIR$/vendor/robmorgan/phinx" />
+      <path value="$PROJECT_DIR$/vendor/composer" />
+      <path value="$PROJECT_DIR$/vendor/symfony/console" />
+      <path value="$PROJECT_DIR$/vendor/slim/slim" />
+      <path value="$PROJECT_DIR$/vendor/nikic/fast-route" />
+      <path value="$PROJECT_DIR$/vendor/pimple/pimple" />
+      <path value="$PROJECT_DIR$/vendor/vlucas/valitron" />
+      <path value="$PROJECT_DIR$/vendor/doctrine/inflector" />
+      <path value="$PROJECT_DIR$/vendor/container-interop/container-interop" />
+      <path value="$PROJECT_DIR$/vendor/psr/container" />
+      <path value="$PROJECT_DIR$/vendor/psr/http-message" />
+      <path value="$PROJECT_DIR$/vendor/psr/simple-cache" />
+      <path value="$PROJECT_DIR$/vendor/symfony/translation" />
+      <path value="$PROJECT_DIR$/vendor/nesbot/carbon" />
+      <path value="$PROJECT_DIR$/vendor/illuminate/contracts" />
+      <path value="$PROJECT_DIR$/vendor/illuminate/support" />
+      <path value="$PROJECT_DIR$/vendor/illuminate/database" />
+      <path value="$PROJECT_DIR$/vendor/illuminate/container" />
+    </include_path>
+  </component>
   <component name="ProjectFrameBounds" extendedState="6">
-    <option name="x" value="-8" />
-    <option name="y" value="-8" />
-    <option name="width" value="1378" />
-    <option name="height" value="744" />
+    <option name="x" value="10" />
+    <option name="y" value="20" />
+    <option name="width" value="1346" />
+    <option name="height" value="688" />
   </component>
   <component name="ProjectView">
     <navigator currentView="ProjectPane" proportions="" version="1">
@@ -383,7 +287,7 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="Scratches" />
+      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -391,17 +295,28 @@
               <item name="CalfAPI" type="b2602c69:ProjectViewProjectNode" />
               <item name="CalfAPI" type="2a2b976b:PhpTreeStructureProvider$1" />
             </path>
+            <path>
+              <item name="CalfAPI" type="b2602c69:ProjectViewProjectNode" />
+              <item name="CalfAPI" type="2a2b976b:PhpTreeStructureProvider$1" />
+              <item name="src" type="2a2b976b:PhpTreeStructureProvider$1" />
+            </path>
+            <path>
+              <item name="CalfAPI" type="b2602c69:ProjectViewProjectNode" />
+              <item name="CalfAPI" type="2a2b976b:PhpTreeStructureProvider$1" />
+              <item name="src" type="2a2b976b:PhpTreeStructureProvider$1" />
+              <item name="controller" type="2a2b976b:PhpTreeStructureProvider$1" />
+            </path>
           </expand>
           <select />
         </subPane>
       </pane>
-      <pane id="Scope" />
+      <pane id="Scratches" />
     </panes>
   </component>
   <component name="PropertiesComponent">
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="HbShouldOpenHtmlAsHb" value="" />
-    <property name="settings.editor.selected.configurable" value="preferences.pluginManager" />
+    <property name="settings.editor.selected.configurable" value="configurable.group.language" />
     <property name="idea.background.frame" value="E:\Imagens\Wallpaper ios 8.jpg,15,scale,center" />
     <property name="node.js.path.for.package.eslint" value="project" />
     <property name="node.js.detected.package.eslint" value="true" />
@@ -413,7 +328,11 @@
   </component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
-      <recent name="E:\xampp\htdocs\CalfAPI\app" />
+      <recent name="E:\xampp\htdocs\CalfAPI\src\util" />
+      <recent name="E:\xampp\htdocs\CalfAPI" />
+      <recent name="E:\xampp\htdocs\CalfAPI\config" />
+      <recent name="E:\xampp\htdocs\CalfAPI\vendor" />
+      <recent name="E:\xampp\htdocs\CalfAPI\anothers" />
     </key>
     <key name="CopyFile.RECENT_KEYS">
       <recent name="E:\xampp\htdocs\CalfAPI" />
@@ -453,7 +372,13 @@
       <workItem from="1518000844816" duration="9560000" />
       <workItem from="1518088956719" duration="9234000" />
       <workItem from="1518174422183" duration="764000" />
-      <workItem from="1518175201187" duration="91000" />
+      <workItem from="1518175201187" duration="3719000" />
+      <workItem from="1518179142352" duration="1541000" />
+      <workItem from="1518180708815" duration="167000" />
+      <workItem from="1518192049759" duration="14000" />
+      <workItem from="1518209436757" duration="3175000" />
+      <workItem from="1518267145976" duration="7313000" />
+      <workItem from="1518300814345" duration="4767000" />
     </task>
     <task id="LOCAL-00001" summary="Colocando Slim">
       <created>1518011759197</created>
@@ -462,25 +387,33 @@
       <option name="project" value="LOCAL" />
       <updated>1518011759197</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="Tirando vendor do repo">
+      <created>1518175317332</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1518175317332</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="30293000" />
+    <option name="totallyTimeSpent" value="50898000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1382" height="744" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.2489019" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.28647417" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Docker" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32730263" sideWeight="0.50292826" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32730263" sideWeight="0.49707174" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32102728" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.32943144" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
@@ -490,7 +423,6 @@
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Database Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32894737" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
     </layout>
   </component>
@@ -502,7 +434,8 @@
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="Colocando Slim" />
-    <option name="LAST_COMMIT_MESSAGE" value="Colocando Slim" />
+    <MESSAGE value="Tirando vendor do repo" />
+    <option name="LAST_COMMIT_MESSAGE" value="Tirando vendor do repo" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -511,218 +444,10 @@
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/app/model/dao/AnimalDAO.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1545">
-          <caret line="110" column="17" lean-forward="false" selection-start-line="96" selection-start-column="14" selection-end-line="110" selection-end-column="17" />
-          <folding>
-            <marker date="1517914570229" expanded="true" signature="685:734" ph="INSERT INTO animais... " />
-            <marker date="1517914570229" expanded="true" signature="1637:1690" ph="UPDATE animais... " />
-            <marker date="1517914570229" expanded="true" signature="2352:2617" ph="SELECT * FRO... animais" />
-            <marker date="1517914570229" expanded="true" signature="4442:4507" ph="UPDATE animais... " />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/model/dao/LoteDAO.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1350">
-          <caret line="97" column="17" lean-forward="false" selection-start-line="97" selection-start-column="17" selection-end-line="97" selection-end-column="17" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/model/dao/MaeDAO.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1395">
-          <caret line="93" column="36" lean-forward="false" selection-start-line="93" selection-start-column="36" selection-end-line="93" selection-end-column="36" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/model/dao/CiclosVidaDAO.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="855">
-          <caret line="57" column="0" lean-forward="false" selection-start-line="57" selection-start-column="0" selection-end-line="57" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/model/dao/PaiDAO.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1455">
-          <caret line="97" column="17" lean-forward="true" selection-start-line="97" selection-start-column="17" selection-end-line="97" selection-end-column="17" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/model/CiclosVida.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="150">
-          <caret line="17" column="25" lean-forward="true" selection-start-line="17" selection-start-column="13" selection-end-line="17" selection-end-column="25" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/model/dao/FazendaDAO.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1350">
-          <caret line="97" column="24" lean-forward="false" selection-start-line="97" selection-start-column="24" selection-end-line="97" selection-end-column="24" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/model/dao/PesagemDAO.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1275">
-          <caret line="92" column="66" lean-forward="false" selection-start-line="92" selection-start-column="66" selection-end-line="92" selection-end-column="66" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/model/dao/PaiDAO.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1350">
-          <caret line="97" column="17" lean-forward="false" selection-start-line="97" selection-start-column="17" selection-end-line="97" selection-end-column="17" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/model/dao/CiclosVidaDAO.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="780">
-          <caret line="57" column="0" lean-forward="false" selection-start-line="57" selection-start-column="0" selection-end-line="57" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/model/dao/LoteDAO.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1350">
-          <caret line="97" column="17" lean-forward="false" selection-start-line="97" selection-start-column="17" selection-end-line="97" selection-end-column="17" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/model/dao/MaeDAO.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1290">
-          <caret line="93" column="36" lean-forward="false" selection-start-line="93" selection-start-column="36" selection-end-line="93" selection-end-column="36" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/model/dao/PesagemDAO.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="332">
-          <caret line="92" column="66" lean-forward="false" selection-start-line="92" selection-start-column="66" selection-end-line="92" selection-end-column="66" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/model/dao/FazendaDAO.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="318">
-          <caret line="97" column="24" lean-forward="false" selection-start-line="97" selection-start-column="24" selection-end-line="97" selection-end-column="24" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/model/dao/IDAO.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/model/IModel.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/util/EnumLocalizacao.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/model/dao/AnimalDAO.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="15">
-          <caret line="87" column="13" lean-forward="false" selection-start-line="87" selection-start-column="13" selection-end-line="87" selection-end-column="13" />
-          <folding>
-            <marker date="1517914570229" expanded="true" signature="685:734" ph="INSERT INTO animais... " />
-            <marker date="1517914570229" expanded="true" signature="1637:1690" ph="UPDATE animais... " />
-            <marker date="1517914570229" expanded="true" signature="2352:2617" ph="SELECT * FRO... animais" />
-            <marker date="1517914570229" expanded="true" signature="4442:4507" ph="UPDATE animais... " />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/model/CiclosVida.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="150">
-          <caret line="17" column="25" lean-forward="false" selection-start-line="17" selection-start-column="13" selection-end-line="17" selection-end-column="25" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/model/dao/PaiDAO.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="232">
-          <caret line="97" column="17" lean-forward="true" selection-start-line="97" selection-start-column="17" selection-end-line="97" selection-end-column="17" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/model/dao/FazendaDAO.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="318">
-          <caret line="97" column="24" lean-forward="false" selection-start-line="97" selection-start-column="24" selection-end-line="97" selection-end-column="24" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/model/dao/LoteDAO.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-542">
-          <caret line="97" column="17" lean-forward="false" selection-start-line="97" selection-start-column="17" selection-end-line="97" selection-end-column="17" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/model/dao/MaeDAO.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="199">
-          <caret line="93" column="36" lean-forward="false" selection-start-line="93" selection-start-column="36" selection-end-line="93" selection-end-column="36" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/model/dao/PesagemDAO.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="332">
-          <caret line="92" column="66" lean-forward="false" selection-start-line="92" selection-start-column="66" selection-end-line="92" selection-end-column="66" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/util/EnumFaseVida.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/controller/CiclosVidaController.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="360">
-          <caret line="29" column="38" lean-forward="false" selection-start-line="29" selection-start-column="38" selection-end-line="29" selection-end-column="38" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/model/validate/CiclosVidaValidate.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="225">
-          <caret line="20" column="37" lean-forward="false" selection-start-line="20" selection-start-column="37" selection-end-line="20" selection-end-column="37" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/model/dao/CiclosVidaDAO.php">
+    <entry file="file://$PROJECT_DIR$/src/model/dao/CiclosVidaDAO.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="516">
           <caret line="134" column="32" lean-forward="false" selection-start-line="134" selection-start-column="32" selection-end-line="134" selection-end-column="32" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/model/CiclosVida.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="516">
-          <caret line="180" column="28" lean-forward="false" selection-start-line="180" selection-start-column="28" selection-end-line="180" selection-end-column="28" />
         </state>
       </provider>
     </entry>
@@ -740,14 +465,14 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/sql/04.sql">
+    <entry file="file://$PROJECT_DIR$/anothers/sql/04.sql">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="138">
           <caret line="6" column="0" lean-forward="true" selection-start-line="6" selection-start-column="0" selection-end-line="6" selection-end-column="0" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/bd/Banco.php">
+    <entry file="file://$PROJECT_DIR$/anothers/bd/Banco.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-529">
           <caret line="1" column="3" lean-forward="false" selection-start-line="1" selection-start-column="3" selection-end-line="1" selection-end-column="3" />
@@ -771,117 +496,257 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/util/Database.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="21" column="42" lean-forward="false" selection-start-line="21" selection-start-column="42" selection-end-line="21" selection-end-column="42" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/model/dao/AnimalDAO.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="504">
-          <caret line="28" column="46" lean-forward="false" selection-start-line="28" selection-start-column="46" selection-end-line="28" selection-end-column="46" />
-          <folding>
-            <marker date="1517914570229" expanded="true" signature="685:734" ph="INSERT INTO animais... " />
-            <marker date="1517914570229" expanded="true" signature="1637:1690" ph="UPDATE animais... " />
-            <marker date="1517914570229" expanded="true" signature="2352:2617" ph="SELECT * FRO... animais" />
-            <marker date="1517914570229" expanded="true" signature="4442:4507" ph="UPDATE animais... " />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Api.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="768">
-          <caret line="33" column="2" lean-forward="false" selection-start-line="33" selection-start-column="2" selection-end-line="33" selection-end-column="2" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/controller/IController.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="336">
-          <caret line="20" column="0" lean-forward="false" selection-start-line="20" selection-start-column="0" selection-end-line="20" selection-end-column="0" />
-          <folding>
-            <element signature="e#113#165#0#PHP" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/util/DataConversor.php">
+    <entry file="file://$PROJECT_DIR$/src/util/DataConversor.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="188">
           <caret line="17" column="61" lean-forward="true" selection-start-line="17" selection-start-column="61" selection-end-line="17" selection-end-column="61" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/view/View.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="864">
-          <caret line="42" column="33" lean-forward="false" selection-start-line="42" selection-start-column="33" selection-end-line="42" selection-end-column="33" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/model/validate/AnimalValidate.php">
+    <entry file="file://$PROJECT_DIR$/src/model/validate/AnimalValidate.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-28">
           <caret line="30" column="37" lean-forward="true" selection-start-line="30" selection-start-column="37" selection-end-line="30" selection-end-column="37" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/controller/AnimalController.php">
+    <entry file="file://$PROJECT_DIR$/.gitattributes">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="840">
-          <caret line="46" column="58" lean-forward="false" selection-start-line="46" selection-start-column="58" selection-end-line="46" selection-end-column="58" />
-          <folding>
-            <element signature="e#115#132#0#PHP" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/model/Animal.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="144">
-          <caret line="13" column="14" lean-forward="false" selection-start-line="13" selection-start-column="14" selection-end-line="13" selection-end-column="14" />
-          <folding>
-            <element signature="e#110#134#0#PHP" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/model/entities/AnimalEntity.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="192">
-          <caret line="13" column="0" lean-forward="false" selection-start-line="13" selection-start-column="0" selection-end-line="13" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/composer.json">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="480">
-          <caret line="20" column="3" lean-forward="false" selection-start-line="20" selection-start-column="3" selection-end-line="20" selection-end-column="3" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/config/DoctrineORM.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1008">
-          <caret line="43" column="32" lean-forward="false" selection-start-line="43" selection-start-column="32" selection-end-line="43" selection-end-column="32" />
-          <folding>
-            <element signature="e#7#38#0#PHP" expanded="true" />
-          </folding>
+        <state relative-caret-position="24">
+          <caret line="1" column="11" lean-forward="true" selection-start-line="1" selection-start-column="11" selection-end-line="1" selection-end-column="11" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/.gitignore">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="24">
-          <caret line="1" column="8" lean-forward="true" selection-start-line="1" selection-start-column="8" selection-end-line="1" selection-end-column="8" />
+          <caret line="1" column="8" lean-forward="false" selection-start-line="1" selection-start-column="8" selection-end-line="1" selection-end-column="8" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/util/Data.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-144">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/bin/doctrine.php" />
+    <entry file="file://$PROJECT_DIR$/bin/doctrine" />
+    <entry file="file://$PROJECT_DIR$/config/DoctrineORM.php" />
+    <entry file="file://$PROJECT_DIR$/vendor/doctrine/orm/lib/Doctrine/ORM/QueryBuilder.php" />
+    <entry file="file://$PROJECT_DIR$/vendor/doctrine/orm/lib/Doctrine/ORM/Tools/Setup.php" />
+    <entry file="file://$PROJECT_DIR$/bin/doctrine.bat" />
+    <entry file="file://$PROJECT_DIR$/config/doctrine-config.php" />
+    <entry file="file://$PROJECT_DIR$/vendor/bin/doctrine.bat" />
+    <entry file="file://$PROJECT_DIR$/vendor/bin/doctrine-dbal" />
+    <entry file="file://$PROJECT_DIR$/config/bootstrap.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="120">
+          <caret line="6" column="47" lean-forward="false" selection-start-line="6" selection-start-column="47" selection-end-line="6" selection-end-column="47" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/cli-config.php" />
+    <entry file="file://$PROJECT_DIR$/vendor/bin/doctrine" />
+    <entry file="file://$PROJECT_DIR$/vendor/illuminate/support/Facades/DB.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="120">
+          <caret line="8" column="6" lean-forward="false" selection-start-line="8" selection-start-column="6" selection-end-line="8" selection-end-column="6" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/config/db/migrations/20180210131638_animal_migration.php" />
+    <entry file="file://$PROJECT_DIR$/src/util/config.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="192">
+          <caret line="13" column="40" lean-forward="true" selection-start-line="13" selection-start-column="40" selection-end-line="13" selection-end-column="40" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/phinx.yml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-504">
+          <caret line="3" column="43" lean-forward="true" selection-start-line="3" selection-start-column="43" selection-end-line="3" selection-end-column="43" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/model/CiclosVida.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-1944">
+          <caret line="14" column="0" lean-forward="false" selection-start-line="14" selection-start-column="0" selection-end-line="14" selection-end-column="0" />
+          <folding>
+            <element signature="e#111#143#0#PHP" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/model/dao/AnimalDAO.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="120">
+          <caret line="10" column="0" lean-forward="false" selection-start-line="10" selection-start-column="0" selection-end-line="10" selection-end-column="0" />
+          <folding>
+            <marker date="1518271042154" expanded="true" signature="689:738" ph="INSERT INTO animais... " />
+            <marker date="1518271042154" expanded="true" signature="1641:1694" ph="UPDATE animais... " />
+            <marker date="1518271042154" expanded="true" signature="2356:2621" ph="SELECT * FRO... animais" />
+            <marker date="1518271042154" expanded="true" signature="4446:4511" ph="UPDATE animais... " />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/model/entities/AnimalEntity.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="288">
+          <caret line="17" column="39" lean-forward="false" selection-start-line="17" selection-start-column="39" selection-end-line="17" selection-end-column="39" />
           <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/view/Router.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-96">
+          <caret line="28" column="9" lean-forward="false" selection-start-line="28" selection-start-column="9" selection-end-line="28" selection-end-column="9" />
+          <folding>
+            <element signature="e#107#121#0#PHP" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/view/routes/usuarios.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="168">
+          <caret line="10" column="43" lean-forward="false" selection-start-line="10" selection-start-column="43" selection-end-line="10" selection-end-column="43" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/view/routes/AnimalRoute.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="408">
+          <caret line="22" column="0" lean-forward="false" selection-start-line="22" selection-start-column="0" selection-end-line="22" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/util/Database.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="216">
+          <caret line="14" column="20" lean-forward="false" selection-start-line="14" selection-start-column="20" selection-end-line="14" selection-end-column="20" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/util/Migration.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="239">
+          <caret line="36" column="38" lean-forward="false" selection-start-line="23" selection-start-column="8" selection-end-line="36" selection-end-column="38" />
+          <folding>
+            <element signature="e#110#161#0#PHP" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/config/db/migrations/20180210135922_animal_migration.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="48">
+          <caret line="2" column="0" lean-forward="false" selection-start-line="2" selection-start-column="0" selection-end-line="2" selection-end-column="0" />
+          <folding>
+            <element signature="e#8#49#0#PHP" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/vendor/illuminate/database/Eloquent/Model.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="119">
+          <caret line="529" column="20" lean-forward="false" selection-start-line="529" selection-start-column="20" selection-end-line="529" selection-end-column="20" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/controller/FazendaController.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="432">
+          <caret line="26" column="39" lean-forward="false" selection-start-line="26" selection-start-column="39" selection-end-line="26" selection-end-column="39" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/model/IModel.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="24">
+          <caret line="9" column="0" lean-forward="false" selection-start-line="9" selection-start-column="0" selection-end-line="9" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/view/View.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="24">
+          <caret line="8" column="14" lean-forward="false" selection-start-line="8" selection-start-column="14" selection-end-line="8" selection-end-column="14" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/model/Fazenda.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="191">
+          <caret line="138" column="20" lean-forward="false" selection-start-line="138" selection-start-column="20" selection-end-line="138" selection-end-column="20" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/composer.json">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="216">
+          <caret line="9" column="12" lean-forward="false" selection-start-line="9" selection-start-column="12" selection-end-line="9" selection-end-column="12" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/vendor/psr/http-message/src/RequestInterface.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-2940">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/controller/IController.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="119">
+          <caret line="17" column="73" lean-forward="false" selection-start-line="17" selection-start-column="73" selection-end-line="17" selection-end-column="73" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/model/Animal.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="77">
+          <caret line="324" column="0" lean-forward="true" selection-start-line="324" selection-start-column="0" selection-end-line="324" selection-end-column="0" />
+          <folding>
+            <element signature="e#114#128#0#PHP" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Api.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-53">
+          <caret line="26" column="32" lean-forward="true" selection-start-line="26" selection-start-column="32" selection-end-line="26" selection-end-column="32" />
+          <folding>
+            <element signature="e#69#91#0#PHP" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/controller/AnimalController.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="211">
+          <caret line="66" column="29" lean-forward="false" selection-start-line="66" selection-start-column="29" selection-end-line="66" selection-end-column="29" />
+          <folding>
+            <element signature="e#119#133#0#PHP" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
