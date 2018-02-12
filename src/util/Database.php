@@ -20,8 +20,7 @@ class Database
 
    public function __construct()
    {
-       $capsule = new \Illuminate\Database\Capsule\Manager;
-
+       $capsule = new Capsule();
        $capsule->addConnection(array(
            'driver'    => Database::DBDRIVER,
            'host'      => Database::DBHOST,
