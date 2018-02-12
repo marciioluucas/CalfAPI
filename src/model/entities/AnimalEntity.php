@@ -15,4 +15,8 @@ class AnimalEntity extends Model
 {
     protected $table = "animais";
     protected $fillable = ['nomes','numero_brinco'];
+
+    public function fazenda() {
+        return $this->belongsTo('src\model\entities\FazendaEntity');
+    }
 }

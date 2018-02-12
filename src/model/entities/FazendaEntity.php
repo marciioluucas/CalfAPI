@@ -19,4 +19,8 @@ class FazendaEntity extends Model
         'limite'
     ];
     protected $guarded = ['id', 'created_at', 'update_at'];
+
+    public function animais() {
+        return $this->hasMany('\src\model\entities\AnimalEntity');
+    }
 }

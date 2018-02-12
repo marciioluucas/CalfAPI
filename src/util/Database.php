@@ -14,7 +14,7 @@ class Database
 {
    const DBDRIVER = 'mysql';
    const DBHOST = 'localhost';
-   const DBNAME = 'teste_eloquent';
+   const DBNAME = 'controleanimal';
    const DBUSER = 'root';
    const DBPASS= '';
 
