@@ -13,8 +13,6 @@ use Illuminate\Database\Eloquent\Model;
 
 class AnimalEntity extends Model
 {
-    protected $table = "users";
-    protected $fillable = ['name','email','password'];
-    const CREATED_AT = 'creation_date';
-    const UPDATED_AT = 'last_update';
+    protected $table = "animais";
+    protected $fillable = ['nomes','numero_brinco'];
 }

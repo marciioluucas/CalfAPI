@@ -12,21 +12,27 @@ use Illuminate\Database\Capsule\Manager as Capsule;
 
 class Database
 {
-    public function __construct()
-    {
-        $capsule = new Capsule();
+   const DBDRIVER = 'mysql';
+   const DBHOST = 'localhost';
+   const DBNAME = 'teste_eloquent';
+   const DBUSER = 'root';
+   const DBPASS= '';
 
-        $capsule->addConnection(array(
-            'driver' => DBDRIVER,
-            'host' => DBHOST,
-            'database' => DBNAME,
-            'username' => DBUSER,
-            'password' => DBPASS,
-            'charset' => 'utf8',
-            'collation' => 'utf8_unicode_ci',
-            'prefix' => ''
-        ));
-        $capsule->bootEloquent();
-        $capsule->setAsGlobal();
-    }
+   public function __construct()
+   {
+       $capsule = new \Illuminate\Database\Capsule\Manager;
+
+       $capsule->addConnection(array(
+           'driver'    => Database::DBDRIVER,
+           'host'      => Database::DBHOST,
+           'database'  => Database::DBNAME,
+           'username'  => Database::DBUSER,
+           'password'  => Database::DBPASS,
+           'charset'   => 'utf8',
+           'collation' => 'utf8_unicode_ci',
+           'prefix'    => ''
+       ));
+       $capsule->setAsGlobal();
+       $capsule->bootEloquent();
+   }
 }
