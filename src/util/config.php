@@ -10,11 +10,11 @@ date_default_timezone_set('America/Sao_paulo');
 
 
 //Configuração do banco
-define('DBDRIVER','mysql');
-define('DBHOST','localhost');
-define('DBNAME','teste_eloquent');
-define('DBUSER','root');
-define('DBPASS','');
+const DBDRIVER = 'mysql';
+const DBHOST = 'localhost';
+const DBNAME = 'controleanimal';
+const DBUSER = 'root';
+const DBPASS= '';
 
 //Configuração do Slim
 define('SLIM_CONTAINER', [

@@ -12,21 +12,16 @@ use Illuminate\Database\Capsule\Manager as Capsule;
 
 class Database
 {
-   const DBDRIVER = 'mysql';
-   const DBHOST = 'localhost';
-   const DBNAME = 'controleanimal';
-   const DBUSER = 'root';
-   const DBPASS= '';
 
    public function __construct()
    {
        $capsule = new Capsule();
        $capsule->addConnection(array(
-           'driver'    => Database::DBDRIVER,
-           'host'      => Database::DBHOST,
-           'database'  => Database::DBNAME,
-           'username'  => Database::DBUSER,
-           'password'  => Database::DBPASS,
+           'driver'    => DBDRIVER,
+           'host'      => DBHOST,
+           'database'  => DBNAME,
+           'username'  => DBUSER,
+           'password'  => DBPASS,
            'charset'   => 'utf8',
            'collation' => 'utf8_unicode_ci',
            'prefix'    => ''
