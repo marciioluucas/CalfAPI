@@ -12,3 +12,9 @@ define('DBHOST','localhost');
 define('DBNAME','teste_eloquent');
 define('DBUSER','root');
 define('DBPASS','');
+
+define('SLIM_CONTAINER', [
+    'settings' => [
+        'displayErrorDetails' => true
+    ]
+]);
