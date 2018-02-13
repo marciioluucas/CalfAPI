@@ -10,6 +10,7 @@
       <sourceFolder url="file://$MODULE_DIR$/src/view" isTestSource="false" packagePrefix="src\view\" />
       <sourceFolder url="file://$MODULE_DIR$/src/util" isTestSource="false" packagePrefix="src\util\" />
       <sourceFolder url="file://$MODULE_DIR$/config/db/migrations" isTestSource="false" packagePrefix="config\db\migrations\" />
+      <sourceFolder url="file://$MODULE_DIR$/src" isTestSource="false" />
       <excludeFolder url="file://$MODULE_DIR$/vendor" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/composer" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/container-interop/container-interop" />
