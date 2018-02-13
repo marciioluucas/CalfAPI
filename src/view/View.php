@@ -8,6 +8,7 @@
 
 namespace src\view;
 
+use Exception;
 use src\util\HeaderWriter;
 use \Psr\Http\Message\ResponseInterface as Response;
 
@@ -58,6 +59,22 @@ class View extends HeaderWriter
                 ->write(json_encode($data));
         }
 
+    }
+
+    public static final function renderException(Response $response, Exception $exception, $additionalMessage = "none")
+    {
+        return $response
+            ->withHeader("Content-Type", "application/json")
+            ->withStatus(500, "A exception happened!")
+            ->write(json_encode(
+                [
+                    "exception" => [
+                        "message" => $exception->getMessage(),
+                        "code" => $exception->getCode(),
+                        "additional_message" => $additionalMessage
+                    ]
+                ]
+            ));
     }
 
 

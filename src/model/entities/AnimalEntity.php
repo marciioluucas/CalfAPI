@@ -14,9 +14,11 @@ use Illuminate\Database\Eloquent\Model;
 class AnimalEntity extends Model
 {
     protected $table = "animais";
-    protected $fillable = ['nomes','numero_brinco'];
+    protected $fillable = ['nomes','data_nascimento','codigo_brinco','codigo_raca',
+        'status', 'data_alteracao', 'data_cadastro', 'usuario_cadastro', 'usuario_alteracao',
+        'fazendas_id', 'lotes_id'];
 
     public function fazenda() {
-        return $this->belongsTo('src\model\entities\FazendaEntity');
+        return $this->belongsTo('src\model\entities\FazendaEntity', 'fazendas_id');
     }
 }

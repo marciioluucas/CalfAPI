@@ -10,9 +10,12 @@ namespace src\model;
 
 
 use Exception;
+
+use Illuminate\Database\Capsule\Manager as DB;
 use Illuminate\Support\Facades\Input;
 use src\model\dao\AnimalDAO;
 use src\model\entities\AnimalEntity;
+use src\model\entities\FazendaEntity;
 use src\util\ClassToArray;
 use \Psr\Http\Message\ResponseInterface as Response;
 use \Psr\Http\Message\RequestInterface as Request;
@@ -307,30 +310,17 @@ class Animal implements IModel
      */
     public function pesquisar(Request $request)
     {
+        $page = $request->getQueryParam('pagina');
         if ($request->getAttribute('id')) {
-            try {
-                return ["animals" => AnimalEntity::all()->where('id', $request->getAttribute('id'))];
-            } catch (Exception $e) {
-                throw new Exception("Algo de errado aconteceu ao tentar pesquisar por ID" . $e->getMessage());
-            }
-        };
-        if ($request->getAttribute('nome')) {
-            try {
-                return ["animals" => AnimalEntity
-                    ::where('name', 'like', $request->getAttribute('nome') . "%")->get()];
-            } catch (Exception $e) {
-                throw new Exception("Algo de errado aconteceu ao tentar pesquisar por nome" . $e->getMessage());
-            }
+            return AnimalDAO::retreaveById($request->getAttribute('id'),$page);
+        } else if ($request->getAttribute('nome')) {
+            return AnimalDAO::retreaveByNome($request->getAttribute('nome'),$page);
+        } else if ($request->getAttribute('filtro') && $request->getAttribute('valor')) {
+            return AnimalDAO::retreaveByPersonalizado($request->getAttribute('filtro'), $request->getAttribute('valor'),$page);
         }
 
-        if ($request->getAttribute('filtro') && $request->getAttribute('valor')) {
-            try {
-                return ["animals" => "TODO FILTRO E VALOR: by " . $request->getAttribute('filtro') . " = " . $request->getAttribute('valor')];
-            } catch (Exception $e) {
-                throw new Exception("Algo de errado aconteceu ao tentar pesquisar por um filtro personalizado" . $e->getMessage());
-            }
-        }
-        return ["animals" => AnimalEntity::all()];
+        return AnimalDAO::retreaveAll($page);
+
     }
 
     public function deletar(Request $request)

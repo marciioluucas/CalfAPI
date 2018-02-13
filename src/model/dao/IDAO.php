@@ -9,13 +9,15 @@
 namespace src\model\dao;
 
 
+use Psr\Http\Message\RequestInterface as Request;
+
 interface IDAO
 {
-    public function create($obj);
+    public static function create(Request $request);
 
-    public function update($obj);
+    public static function update(Request $request);
 
-    public function retrave($obj,$limite);
+    public static function retreaveAll($page);
 
-    public function delete($obj);
+    public static function delete(Request $request);
 }

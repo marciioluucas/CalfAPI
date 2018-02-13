@@ -9,6 +9,7 @@ use Slim\App;
 use Slim\Exception\MethodNotAllowedException;
 use Slim\Exception\NotFoundException;
 use src\controller\IController;
+use src\view\View;
 
 class Api
 {
@@ -37,7 +38,11 @@ class Api
 
         $app->group('/{classname}', function () use ($app) {
             $app->get('', function (Request $request, Response $response, array $args) {
-                $class = Api::invokeClass($args['classname'], $request, $response);
+                try{
+                    $class = Api::invokeClass($args['classname'], $request, $response);
+                }catch (Exception $e) {
+                    return View::renderException($response, $e);
+                }
                 return $class->get($request, $response, $args);
             });
 
@@ -81,12 +86,13 @@ class Api
      * @param Request $request
      * @param Response $response
      * @return IController | Response
+     * @throws Exception
      */
     public static function invokeClass(String $classname, Request $request, Response $response)
     {
         $class = "\\src\\controller\\" . ucfirst($classname) . "Controller";
         if (!class_exists($class)) {
-            return $response->withStatus(404, "Modulo nao registrado na API");
+           throw new Exception("Módulo não cadastrado na API");
         }
         return new $class($request, $response);
     }

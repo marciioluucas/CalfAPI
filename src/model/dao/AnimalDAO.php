@@ -10,14 +10,15 @@
 namespace src\model\dao;
 
 
-use bd\Banco;
 use Exception;
 use PDO;
+use src\model\entities\AnimalEntity;
+use Psr\Http\Message\RequestInterface as Request;
 
 class AnimalDAO implements IDAO
 {
 
-    public function create($obj)
+    public static function create($obj)
     {
         $codigo = 400;
         $messagem = "Erro inesperado";
@@ -50,7 +51,7 @@ class AnimalDAO implements IDAO
 
     }
 
-    public function update($obj)
+    public static function update($obj)
     {
         $codigo = 400;
         $messagem = "Erro inesperado";
@@ -59,7 +60,7 @@ class AnimalDAO implements IDAO
             $queryText = "";
             foreach ($obj as $key => $value) {
                 if ($key !== 'idAnimal')
-                $queryText .= $key . "=:" . $key . ",";
+                    $queryText .= $key . "=:" . $key . ",";
             }
             $queryVal = substr_replace($queryText, '', -1);
 
@@ -81,62 +82,71 @@ class AnimalDAO implements IDAO
         ];
     }
 
-    public function retrave($obj, $limite)
+    /**
+     * @return array
+     * @throws Exception
+     */
+    public static function retreaveAll($page)
     {
-        $codigo = 400;
-        $messagem = "Erro inesperado";
-        try {
-            $db = Banco::conexao();
-            $query = "SELECT * FROM animais as an JOIN pais as pa ON pa.idPai=an.fkPai JOIN maes as ma ON ma.idMae=an.fkMae JOIN lotes as lo ON lo.idLote=an.fkLote JOIN fazendas as fa ON fa.idFazenda=an.fkFazenda JOIN pesagens as pe ON pe.idPesagem=an.fkPesagem WHERE an.status = 'ATIVO'";
-            if ($limite === null) {
-                $queryLimit = " LIMIT 10";
-            } else {
-                $queryLimit = " LIMIT :limite,10";
-            }
-            if (!empty($obj)) {
-
-                if (isset($obj['idAnimal'])) {
-                    $query .= "AND idAnimal=:idAnimal";
-                    $query .= $queryLimit;
-                    $stmt = $db->prepare($query);
-                    $stmt->bindValue(':idAnimal', $obj['idAnimal']);
-                } else {
-                    foreach ($obj as $key => $value) {
-                        $query .= " AND " . $key . " LIKE :" . $key;
-                    }
-                    $query .= $queryLimit;
-                    $stmt = $db->prepare($query);
-                    foreach ($obj as $key => &$val) {
-                        $stmt->bindValue($key, "%$val%");
-                    }
-                }
-            } else {
-                $query .= $queryLimit;
-                $stmt = $db->prepare($query);
-            }
-            if ($limite !== null) {
-                $stmt->bindValue(':limite', (int)trim($limite), PDO::PARAM_INT);
-            }
-            $stmt->execute();
-            if (!empty($stmt->rowCount())) {
-                $codigo = 200;
-                $messagem = ($stmt->fetchAll(PDO::FETCH_ASSOC));
-            } else {
-                $codigo = 400;
-                $messagem = "Não foi possivel realizar a busca";
-            }
-
-        } catch (Exception $e) {
-            $codigo = 400;
-            $messagem = $e->getMessage();
-        }
-        return [
-            "codigo" => $codigo,
-            "mensagem" => $messagem
-        ];
+        $animais = AnimalEntity::with('fazenda')->paginate(QUANTIDADE_ITENS_POR_PAGINA, ['*'], 'pagina', $page);
+        return ["animais" => $animais];
     }
 
-    public function delete($obj)
+    /**
+     * @param $id
+     * @return array
+     * @throws Exception
+     */
+    public static function retreaveById($id)
+    {
+        try {
+            return [
+                "animais" => AnimalEntity
+                    ::with('fazenda')
+                    ->where('id', $id)
+                    ->get()
+            ];
+        } catch (Exception $e) {
+            throw new Exception("Algo de errado aconteceu ao tentar pesquisar por ID" . $e->getMessage());
+        }
+    }
+
+    /**
+     * @param $nome
+     * @return array
+     * @throws Exception
+     */
+    public static function retreaveByNome($nome, $page)
+    {
+        try {
+            return [
+                "animais" => AnimalEntity
+                    ::with('fazenda')
+                    ->where('nome', 'like', $nome . "%")
+                    ->paginate(QUANTIDADE_ITENS_POR_PAGINA, ['*'], 'pagina', $page)
+            ];
+        } catch (Exception $e) {
+            throw new Exception("Algo de errado aconteceu ao tentar pesquisar por nome" . $e->getMessage());
+        }
+    }
+
+    /**
+     * @param $filtro
+     * @param $valor
+     * @return array
+     * @throws Exception
+     */
+    public static function retreaveByPersonalizado($filtro, $valor, $page)
+    {
+        try {
+            return ["animals" => "TODO FILTRO E VALOR: by " . $filtro . " = " . $valor];
+//            ->paginate(QUANTIDADE_ITENS_POR_PAGINA, ['*'], 'pagina', $page)
+        } catch (Exception $e) {
+            throw new Exception("Algo de errado aconteceu ao tentar pesquisar por um filtro personalizado" . $e->getMessage());
+        }
+    }
+
+    public static function delete($obj)
     {
         $codigo = 400;
         $messagem = "Erro inesperado";

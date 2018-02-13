@@ -13,12 +13,16 @@ use Illuminate\Database\Eloquent\Model;
 
 class FazendaEntity extends Model
 {
-    protected $table = 'fazenda';
+    protected $table = 'fazendas';
     protected $fillable = [
         'nome',
-        'limite'
+        'data_alteracao',
+        'data_cadastro',
+        'usuario_cadastro',
+        'usuario_alteracao',
+        'status',
     ];
-    protected $guarded = ['id', 'created_at', 'update_at'];
+    protected $guarded = ['id'];
 
     public function animais() {
         return $this->hasMany('\src\model\entities\AnimalEntity');
