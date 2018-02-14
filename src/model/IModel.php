@@ -12,11 +12,11 @@ use \Psr\Http\Message\RequestInterface as Request;
 
 interface IModel
 {
-    public function cadastrar(Request $request);
+    public function cadastrar();
 
-    public function alterar(Request $request);
+    public function alterar();
 
     public function pesquisar(Request $request);
 
-    public function deletar(Request $request);
+    public function deletar();
 }

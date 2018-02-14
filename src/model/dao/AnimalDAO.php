@@ -26,20 +26,20 @@ class AnimalDAO implements IDAO
      */
     public static function create($obj)
     {
-       $entity = new AnimalEntity();
-       $entity->nome = $obj->getNomeAnimal();
-       $entity->data_nascimento = $obj->getDataNascimento();
-       $entity->primogenito = $obj->getPrimogenito();
-       $entity->codigo_brinco = $obj->getCodigoBrinco();
-       $entity->codigo_raca = $obj->getCodigoRaca();
-       $entity->data_cadastro = $obj->getDataCriacao();
-       $entity->data_alteracao = $obj->getDataAlteracao();
-       $entity->fazendas_id = $obj->getFkFazenda();
-       $entity->lotes_id = $obj->getFkLote();
-       if($entity->save()){
-           return $entity->id;
-       };
-       return false;
+        $entity = new AnimalEntity();
+        $entity->nome = $obj->getNomeAnimal();
+        $entity->data_nascimento = $obj->getDataNascimento();
+        $entity->primogenito = $obj->getPrimogenito();
+        $entity->codigo_brinco = $obj->getCodigoBrinco();
+        $entity->codigo_raca = $obj->getCodigoRaca();
+        $entity->data_cadastro = $obj->getDataCriacao();
+        $entity->data_alteracao = $obj->getDataAlteracao();
+        $entity->fazendas_id = $obj->getFkFazenda();
+        $entity->lotes_id = $obj->getFkLote();
+        if ($entity->save()) {
+            return $entity->id;
+        };
+        return false;
     }
 
     /**
@@ -47,10 +47,10 @@ class AnimalDAO implements IDAO
      */
     public static function update($obj)
     {
-       AnimalEntity::find($obj->getId())
-           ->update([
+        AnimalEntity::find($obj->getId())
+            ->update([
 
-           ]);
+            ]);
     }
 
     /**
@@ -117,27 +117,10 @@ class AnimalDAO implements IDAO
         }
     }
 
-    public static function delete($obj)
+    public static function delete(int $id)
     {
-        $codigo = 400;
-        $messagem = "Erro inesperado";
-        try {
-            $db = Banco::conexao();
-            $query = "UPDATE animais SET status = 'DESATIVADO' WHERE idAnimal=:idAnimal";
-
-            $stmt = $db->prepare($query);
-            $stmt->bindParam(':idAnimal', $obj['idAnimal'], PDO::PARAM_INT);
-
-            $stmt->execute();
-            $messagem = "Deletado com sucesso";
-
-        } catch (Exception $e) {
-            $codigo = 200;
-            $messagem = $e->getMessage();
-        }
-        return [
-            "codigo" => $codigo,
-            "mensagem" => $messagem
-        ];
+       $entity = AnimalEntity::find($id);
+       $entity->status = 0;
+       $entity->save();
     }
 }

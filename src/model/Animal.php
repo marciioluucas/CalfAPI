@@ -42,10 +42,9 @@ class Animal implements IModel
     protected $limite;
 
     /**
-     * @param Request $request
      * @return array
      */
-    public function cadastrar(Request $request)
+    public function cadastrar()
     {
         $this->dataAlteracao = date('Y-m-d');
         $this->dataCriacao = date('Y-m-d');
@@ -61,33 +60,29 @@ class Animal implements IModel
 
     }
 
-    public function alterar(Request $request)
+    public function alterar()
     {
         $array = (new ClassToArray())->classToArray($this);
-        return (new AnimalDAO())->update($array);
+        return new AnimalDAO();
     }
 
     /**
-     * @param Request $request
+     * @param int $page
      * @return array
      * @throws \Exception
      */
-    public function pesquisar(Request $request)
+    public function pesquisar($page)
     {
-        $page = $request->getQueryParam('pagina');
-        if ($request->getAttribute('id')) {
-            return AnimalDAO::retreaveById($request->getAttribute('id'), $page);
-        } else if ($request->getAttribute('nome')) {
-            return AnimalDAO::retreaveByNome($request->getAttribute('nome'), $page);
-        } else if ($request->getAttribute('filtro') && $request->getAttribute('valor')) {
-            return AnimalDAO::retreaveByPersonalizado($request->getAttribute('filtro'), $request->getAttribute('valor'), $page);
+        if ($this->id) {
+            return AnimalDAO::retreaveById($this->id);
+        } else if ($this->nomeAnimal) {
+            return AnimalDAO::retreaveByNome($this->nomeAnimal, $page);
         }
-
         return AnimalDAO::retreaveAll($page);
 
     }
 
-    public function deletar(Request $request)
+    public function deletar()
     {
         $array = (new ClassToArray())->classToArray($this);
         return (new AnimalDAO())->delete($array);

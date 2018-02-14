@@ -30,7 +30,7 @@ class AnimalController implements IController
      * @param Response $response
      * @return Response
      */
-    public function post($request, $response)
+    public function post($request, $response): Response
     {
         $animal = new Animal();
         $data = json_decode($request->getBody()->getContents());
@@ -60,11 +60,18 @@ class AnimalController implements IController
      * @return Response
      * @throws \Exception
      */
-    public function get($request, $response, $args)
+    public function get(Request $request, Response $response, $args): Response
     {
         $animal = new Animal();
+
         try{
-            return View::render($response, $animal->pesquisar($request));
+            $page = (int)$request->getQueryParam('pagina');
+            if ($request->getAttribute('id')) {
+                $animal->setId($request->getAttribute('id'));
+            } else if ($request->getAttribute('nome')) {
+                $animal->setNomeAnimal($request->getAttribute('nome'));
+            }
+            return View::render($response, $animal->pesquisar($page));
         }catch (Exception $exception) {
             $response->getBody()->write($exception);
             $response->withStatus(500, $exception);
@@ -75,50 +82,47 @@ class AnimalController implements IController
     /**
      * @param Request $request
      * @param Response $response
+     * @return Response
      */
-    public function put($request, $response)
+    public function put(Request $request, Response $response): Response
     {
-
         $animal = new Animal();
-        if (isset($param['idAnimal'])) {
+        $data = json_encode($request->getBody()->getContents());
+        if (isset($data->id)) {
             $data = (new DataConversor())->converter();
-            $animal->setIdAnimal($param['idAnimal']);
-            if (isset($data['codigoBrinco'])) {
-                $animal->setCodigoBrinco($data['codigoBrinco']);
+            $animal->setIdAnimal($data->id);
+            if (isset($data->codigo_brinco)) {
+                $animal->setCodigoBrinco($data->codigo_brinco);
             }
-            if (isset($data['codigoRaca'])) {
-                $animal->setCodigoRaca($data['codigoRaca']);
+            if (isset($data->codigo_raca)) {
+                $animal->setCodigoRaca($data->codigo_raca);
             }
-            if (isset($data['nomeAnimal'])) {
-                $animal->setNomeAnimal($data['nomeAnimal']);
+            if (isset($data->nome)) {
+                $animal->setNomeAnimal($data->nome);
             }
-            if (isset($data['dataNascimento'])) {
-                $animal->setDataNascimento($data['dataNascimento']);
+            if (isset($data->data_nascimento)) {
+                $animal->setDataNascimento($data->data_nascimento);
             }
-            if (isset($data['fkPesagem'])) {
-                $animal->setFkPesagem($data['fkPesagem']);
+            if (isset($data->id_pesagem)) {
+                $animal->setFkPesagem($data->id_pesagem);
             }
-            if (isset($data['fkMae'])) {
-                $animal->setFkMae($data['fkMae']);
+
+            if (isset($data->id_lote)) {
+                $animal->setFkLote($data->id_lote);
             }
-            if (isset($data['fkPai'])) {
-                $animal->setFkPai($data['fkPai']);
+            if (isset($data->id_fazenda)) {
+                $animal->setFkFazenda($data->id_fazenda);
             }
-            if (isset($data['fkLote'])) {
-                $animal->setFkLote($data['fkLote']);
-            }
-            if (isset($data['fkFazenda'])) {
-                $animal->setFkFazenda($data['fkFazenda']);
-            }
-            View::render($animal->alterar());
+           return View::render($response, $animal->alterar());
         }
     }
 
     /**
      * @param Request $request
      * @param Response $response
+     * @return Response
      */
-    public function delete(Request $request, Response $response)
+    public function delete(Request $request, Response $response): Response
     {
         $animal = new Animal();
         if (isset($param['idAnimal'])) {

@@ -20,5 +20,5 @@ interface IDAO
 
     public static function retreaveAll($page);
 
-    public static function delete(IModel $obj);
+    public static function delete(int $id);
 }
