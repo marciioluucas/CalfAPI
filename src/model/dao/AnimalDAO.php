@@ -59,7 +59,14 @@ class AnimalDAO implements IDAO
      */
     public static function retreaveAll($page)
     {
-        $animais = AnimalEntity::with('fazenda')->paginate(QUANTIDADE_ITENS_POR_PAGINA, ['*'], 'pagina', $page);
+        $animais = AnimalEntity
+            ::ativo()->with('fazenda')
+            ->paginate(
+                QUANTIDADE_ITENS_POR_PAGINA,
+                ['*'],
+                'pagina',
+                $page
+            );
         return ["animais" => $animais];
     }
 
@@ -73,7 +80,7 @@ class AnimalDAO implements IDAO
         try {
             return [
                 "animais" => AnimalEntity
-                    ::with('fazenda')
+                    ::ativo()->with('fazenda')
                     ->where('id', $id)
                     ->get()
             ];
@@ -92,8 +99,10 @@ class AnimalDAO implements IDAO
         try {
             return [
                 "animais" => AnimalEntity
-                    ::with('fazenda')
+                    ::ativo()
+                    ->with('fazenda')
                     ->where('nome', 'like', $nome . "%")
+                    ->andWhere('status',1)
                     ->paginate(QUANTIDADE_ITENS_POR_PAGINA, ['*'], 'pagina', $page)
             ];
         } catch (Exception $e) {
@@ -119,8 +128,10 @@ class AnimalDAO implements IDAO
 
     public static function delete(int $id)
     {
-       $entity = AnimalEntity::find($id);
-       $entity->status = 0;
-       $entity->save();
+        $entity = AnimalEntity::find($id);
+        $entity->status = 0;
+        if($entity->save()){
+            return  $entity->id;
+        };
     }
 }

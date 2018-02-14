@@ -84,8 +84,8 @@ class Animal implements IModel
 
     public function deletar()
     {
-        $array = (new ClassToArray())->classToArray($this);
-        return (new AnimalDAO())->delete($array);
+
+        return (new AnimalDAO())->delete($this->id);
     }
 
 

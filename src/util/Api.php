@@ -71,10 +71,8 @@ class Api
                 return $response;
             });
             $app->delete('/{id:[0-9]+}', function (Request $request, Response $response, array $args) {
-                $name = $args['classname'];
-                $response->getBody()->write("Hello, $name");
-
-                return $response;
+                $class = Api::invokeClass($args['classname'], $request, $response);
+                return $class->delete($request, $response);
             });
         });
     }

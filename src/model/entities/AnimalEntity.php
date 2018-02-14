@@ -23,4 +23,8 @@ class AnimalEntity extends Model
     public function fazenda() {
         return $this->belongsTo('src\model\entities\FazendaEntity', 'fazendas_id');
     }
+
+    public function scopeAtivo($query) {
+        return $query->where('status',1);
+    }
 }

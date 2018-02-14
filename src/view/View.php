@@ -63,18 +63,24 @@ class View extends HeaderWriter
 
     public static final function renderException(Response $response, Exception $exception, $additionalMessage = "none")
     {
+        $arrayReturn = [
+            "exception" => [
+                "message" => utf8_encode($exception->getMessage()),
+                "code" => $exception->getCode(),
+                "additional_message" => $additionalMessage
+            ]
+        ];
+
+        $json = json_encode($arrayReturn);
         return $response
+            ->withStatus(500, "Oops, uma excessao parece ter acontecido!")
             ->withHeader("Content-Type", "application/json")
-            ->withStatus(500, "A exception happened!")
-            ->write(json_encode(
-                [
-                    "exception" => [
-                        "message" => $exception->getMessage(),
-                        "code" => $exception->getCode(),
-                        "additional_message" => $additionalMessage
-                    ]
-                ]
-            ));
+            ->write($json);
+    }
+
+    public static final function renderError(Response $response, Exception $exception, $additionalMessage = "none")
+    {
+
     }
 
 

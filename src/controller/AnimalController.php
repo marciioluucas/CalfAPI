@@ -46,9 +46,9 @@ class AnimalController implements IController
             $animal->setFkLote($data->id_lote);
             $animal->setFkFazenda($data->id_fazenda);
 
-            return View::render($response, $animal->cadastrar($request), 201, "Cadastro efetuado com sucesso!");
+            return View::render($response, $animal->cadastrar(), 201, "Cadastro efetuado com sucesso!");
         } else {
-            return View::render($response, $valida, 400, "Parametros invalidos.");
+            return View::render($response, $valida, 400, "Parâmetros inválidos.");
         }
 //        return View::render($response, [$request->getBody()->getContents()]);
     }
@@ -64,18 +64,18 @@ class AnimalController implements IController
     {
         $animal = new Animal();
 
-        try{
+        try {
             $page = (int)$request->getQueryParam('pagina');
+
             if ($request->getAttribute('id')) {
                 $animal->setId($request->getAttribute('id'));
+
             } else if ($request->getAttribute('nome')) {
                 $animal->setNomeAnimal($request->getAttribute('nome'));
             }
             return View::render($response, $animal->pesquisar($page));
-        }catch (Exception $exception) {
-            $response->getBody()->write($exception);
-            $response->withStatus(500, $exception);
-            return $response;
+        } catch (Exception $exception) {
+            return View::renderException($response, $exception);
         }
     }
 
@@ -113,7 +113,7 @@ class AnimalController implements IController
             if (isset($data->id_fazenda)) {
                 $animal->setFkFazenda($data->id_fazenda);
             }
-           return View::render($response, $animal->alterar());
+            return View::render($response, $animal->alterar());
         }
     }
 
@@ -125,9 +125,9 @@ class AnimalController implements IController
     public function delete(Request $request, Response $response): Response
     {
         $animal = new Animal();
-        if (isset($param['idAnimal'])) {
-            $animal->setIdAnimal($param['idAnimal']);
-            View::render($animal->deletar());
+        if ($request->getAttribute('id')) {
+            $animal->setId($request->getAttribute('id'));
+            return View::render($response, $animal->deletar());
         }
     }
 }
