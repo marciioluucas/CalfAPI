@@ -11,8 +11,8 @@ namespace src\util;
 
 abstract class EnumFaseVida
 {
-    const recemNascido = "Recem nascido";
-    const bezerro = "Bezerro";
-    const novilho = "Novilho";
-    const adulto = "Adulto";
+    const RECEM_NASCIDO = "Recem-nascido";
+    const BEZERRO = "Bezerro";
+    const NOVILHO = "Novilho";
+    const ADULTO = "Adulto";
 }

@@ -19,12 +19,14 @@ use src\model\entities\FazendaEntity;
 use src\util\ClassToArray;
 use \Psr\Http\Message\ResponseInterface as Response;
 use \Psr\Http\Message\RequestInterface as Request;
+use src\util\Data;
 
 class Animal implements IModel
 {
 
-    private $idAnimal;
+    private $id;
     private $nomeAnimal;
+    private $primogenito;
     private $dataAlteracao;
     private $dataCriacao;
     private $usuarioCadastro;
@@ -38,6 +40,75 @@ class Animal implements IModel
     private $fkLote;
     private $fkFazenda;
     protected $limite;
+
+    /**
+     * @param Request $request
+     * @return array
+     */
+    public function cadastrar(Request $request)
+    {
+        $this->dataAlteracao = date('Y-m-d');
+        $this->dataCriacao = date('Y-m-d');
+//        $this->usuarioAlteracao = "Lucas";// vai pegar do token dps de implementar o login;
+        $this->usuarioCadastro = 1;
+//        $array = (new ClassToArray())->classToArray($this);
+        $cadastro = (new AnimalDAO())->create($this);
+//        if($this->primogenito = 1) {
+//            TODO: Fazer o negocio do primogenito
+//        }
+        return ["animal" => "Cadastrou, id é: ". $cadastro];
+
+
+    }
+
+    public function alterar(Request $request)
+    {
+        $array = (new ClassToArray())->classToArray($this);
+        return (new AnimalDAO())->update($array);
+    }
+
+    /**
+     * @param Request $request
+     * @return array
+     * @throws \Exception
+     */
+    public function pesquisar(Request $request)
+    {
+        $page = $request->getQueryParam('pagina');
+        if ($request->getAttribute('id')) {
+            return AnimalDAO::retreaveById($request->getAttribute('id'), $page);
+        } else if ($request->getAttribute('nome')) {
+            return AnimalDAO::retreaveByNome($request->getAttribute('nome'), $page);
+        } else if ($request->getAttribute('filtro') && $request->getAttribute('valor')) {
+            return AnimalDAO::retreaveByPersonalizado($request->getAttribute('filtro'), $request->getAttribute('valor'), $page);
+        }
+
+        return AnimalDAO::retreaveAll($page);
+
+    }
+
+    public function deletar(Request $request)
+    {
+        $array = (new ClassToArray())->classToArray($this);
+        return (new AnimalDAO())->delete($array);
+    }
+
+
+    /**
+     * @return mixed
+     */
+    public function getId()
+    {
+        return $this->id;
+    }
+
+    /**
+     * @param mixed $id
+     */
+    public function setId($id): void
+    {
+        $this->id = $id;
+    }
 
 
     /**
@@ -59,6 +130,22 @@ class Animal implements IModel
     /**
      * @return mixed
      */
+    public function getPrimogenito()
+    {
+        return $this->primogenito;
+    }
+
+    /**
+     * @param mixed $primogenito
+     */
+    public function setPrimogenito($primogenito): void
+    {
+        $this->primogenito = $primogenito;
+    }
+
+    /**
+     * @return mixed
+     */
     public function getLimite()
     {
         return $this->limite;
@@ -70,23 +157,6 @@ class Animal implements IModel
     public function setLimite($limite)
     {
         $this->limite = $limite;
-    }
-
-
-    /**
-     * @return mixed
-     */
-    public function getIdAnimal()
-    {
-        return $this->idAnimal;
-    }
-
-    /**
-     * @param mixed $idAnimal
-     */
-    public function setIdAnimal($idAnimal)
-    {
-        $this->idAnimal = $idAnimal;
     }
 
     /**
@@ -279,53 +349,5 @@ class Animal implements IModel
     public function setFkFazenda($fkFazenda)
     {
         $this->fkFazenda = $fkFazenda;
-    }
-
-    public function cadastrar(Request $request)
-    {
-//        $this->dataAlteracao = (new Data())->gerarDataHora();
-//        $this->dataCriacao = (new Data())->gerarDataHora();
-//        $this->usuarioAlteracao = "Lucas";// vai pegar do token dps de implementar o login;
-//        $this->usuarioCadastro = "Lucas";
-//        $array = (new ClassToArray())->classToArray($this);
-//        return (new AnimalDAO())->create($array);
-
-        $entity = new AnimalEntity();
-
-        return ["users" => $entity->save()];
-
-
-    }
-
-    public function alterar(Request $request)
-    {
-        $array = (new ClassToArray())->classToArray($this);
-        return (new AnimalDAO())->update($array);
-    }
-
-    /**
-     * @param Request $request
-     * @return array
-     * @throws \Exception
-     */
-    public function pesquisar(Request $request)
-    {
-        $page = $request->getQueryParam('pagina');
-        if ($request->getAttribute('id')) {
-            return AnimalDAO::retreaveById($request->getAttribute('id'),$page);
-        } else if ($request->getAttribute('nome')) {
-            return AnimalDAO::retreaveByNome($request->getAttribute('nome'),$page);
-        } else if ($request->getAttribute('filtro') && $request->getAttribute('valor')) {
-            return AnimalDAO::retreaveByPersonalizado($request->getAttribute('filtro'), $request->getAttribute('valor'),$page);
-        }
-
-        return AnimalDAO::retreaveAll($page);
-
-    }
-
-    public function deletar(Request $request)
-    {
-        $array = (new ClassToArray())->classToArray($this);
-        return (new AnimalDAO())->delete($array);
     }
 }

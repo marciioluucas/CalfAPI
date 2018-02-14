@@ -33,20 +33,20 @@ class AnimalController implements IController
     public function post($request, $response)
     {
         $animal = new Animal();
-        $data = (new DataConversor())->converter();
+        $data = json_decode($request->getBody()->getContents());
 //        $valida = (new AnimalValidate())->validatePost($data);
         $valida = true;
         if ($valida === true) {
-//            $animal->setCodigoBrinco($data['codigoBrinco']);
-//            $animal->setNomeAnimal($data['nomeAnimal']);
-//            $animal->setCodigoRaca($data['codigoRaca']);
-//            $animal->setDataNascimento($data['dataNascimento']);
-//            $animal->setFkPesagem($data['fkPesagem']);
-//            $animal->setFkMae($data['fkMae']);
-//            $animal->setFkPai($data['fkPai']);
-//            $animal->setFkLote($data['fkLote']);
-//            $animal->setFkFazenda($data['fkFazenda']);
-            return View::render($response, $animal->cadastrar(), 201, "Cadastro efetuado com sucesso!");
+            $animal->setCodigoBrinco($data->codigo_brinco);
+            $animal->setNomeAnimal($data->nome_animal);
+            $animal->setPrimogenito($data->primogenito);
+            $animal->setCodigoRaca($data->codigo_raca);
+            $animal->setDataNascimento($data->data_nascimento);
+            $animal->setFkPesagem($data->id_pesagem);
+            $animal->setFkLote($data->id_lote);
+            $animal->setFkFazenda($data->id_fazenda);
+
+            return View::render($response, $animal->cadastrar($request), 201, "Cadastro efetuado com sucesso!");
         } else {
             return View::render($response, $valida, 400, "Parametros invalidos.");
         }

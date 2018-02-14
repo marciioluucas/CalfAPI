@@ -11,7 +11,7 @@ namespace src\util;
 
 abstract class EnumLocalizacao
 {
-    const bercario = "Berçario";
-    const bezerreira = "Bezerreira";
-    const campoColetivo = "Campo Coletivo";
+    const BERCARIO = "Berçario";
+    const BEZERREIRA = "Bezerreira";
+    const CAMPO_COLETIVO = "Campo Coletivo";
 }

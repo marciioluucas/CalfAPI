@@ -12,79 +12,50 @@ namespace src\model\dao;
 
 use Exception;
 use PDO;
+use src\model\Animal;
 use src\model\entities\AnimalEntity;
 use Psr\Http\Message\RequestInterface as Request;
+use src\model\IModel;
 
 class AnimalDAO implements IDAO
 {
 
+    /**
+     * @param Animal $obj
+     * @return bool
+     */
     public static function create($obj)
     {
-        $codigo = 400;
-        $messagem = "Erro inesperado";
-        try {
-            $db = Banco::conexao();
-            $queryVal = "";
-            $queryNam = "";
-            foreach ($obj as $key => $value) {
-                $queryVal .= ":" . $key . ",";
-                $queryNam .= $key . ",";
-            }
-            $queryVal = substr_replace($queryVal, '', -1);
-            $queryNam = substr_replace($queryNam, '', -1);
-            $query = "INSERT INTO animais($queryNam) VALUES ($queryVal)";
-            $stmt = $db->prepare($query);
-            foreach ($obj as $key => &$val) {
-                $stmt->bindParam($key, $val);
-            }
-            $stmt->execute();
-            $codigo = 200;
-            $messagem = "Animal adicionado com sucesso";
-        } catch (Exception $e) {
-            $codigo = 400;
-            $messagem = $e->getMessage();
-        }
-        return [
-            "codigo" => $codigo,
-            "mensagem" => $messagem
-        ];
-
-    }
-
-    public static function update($obj)
-    {
-        $codigo = 400;
-        $messagem = "Erro inesperado";
-        try {
-            $db = Banco::conexao();
-            $queryText = "";
-            foreach ($obj as $key => $value) {
-                if ($key !== 'idAnimal')
-                    $queryText .= $key . "=:" . $key . ",";
-            }
-            $queryVal = substr_replace($queryText, '', -1);
-
-            $query = "UPDATE animais SET $queryVal WHERE idAnimal=:idAnimal";
-            $stmt = $db->prepare($query);
-            foreach ($obj as $key => &$val) {
-                $stmt->bindParam($key, $val);
-            }
-            $stmt->execute();
-            $codigo = 200;
-            $messagem = "Animal alterado com sucesso";
-        } catch (Exception $e) {
-            $codigo = 400;
-            $messagem = $e->getMessage();
-        }
-        return [
-            "codigo" => $codigo,
-            "mensagem" => $messagem
-        ];
+       $entity = new AnimalEntity();
+       $entity->nome = $obj->getNomeAnimal();
+       $entity->data_nascimento = $obj->getDataNascimento();
+       $entity->primogenito = $obj->getPrimogenito();
+       $entity->codigo_brinco = $obj->getCodigoBrinco();
+       $entity->codigo_raca = $obj->getCodigoRaca();
+       $entity->data_cadastro = $obj->getDataCriacao();
+       $entity->data_alteracao = $obj->getDataAlteracao();
+       $entity->fazendas_id = $obj->getFkFazenda();
+       $entity->lotes_id = $obj->getFkLote();
+       if($entity->save()){
+           return $entity->id;
+       };
+       return false;
     }
 
     /**
+     * @param Animal $obj
+     */
+    public static function update($obj)
+    {
+       AnimalEntity::find($obj->getId())
+           ->update([
+
+           ]);
+    }
+
+    /**
+     * @param $page
      * @return array
-     * @throws Exception
      */
     public static function retreaveAll($page)
     {
