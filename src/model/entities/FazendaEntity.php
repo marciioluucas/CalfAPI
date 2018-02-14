@@ -9,9 +9,8 @@
 namespace src\model\entities;
 
 
-use Illuminate\Database\Eloquent\Model;
 
-class FazendaEntity extends Model
+class FazendaEntity extends CalfEntity
 {
     protected $table = 'fazendas';
     protected $fillable = [
@@ -22,7 +21,7 @@ class FazendaEntity extends Model
         'usuario_alteracao',
         'status',
     ];
-    protected $guarded = ['id'];
+
 
     public function animais() {
         return $this->hasMany('\src\model\entities\AnimalEntity');

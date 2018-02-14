@@ -102,7 +102,6 @@ class AnimalDAO implements IDAO
                     ::ativo()
                     ->with('fazenda')
                     ->where('nome', 'like', $nome . "%")
-                    ->andWhere('status',1)
                     ->paginate(QUANTIDADE_ITENS_POR_PAGINA, ['*'], 'pagina', $page)
             ];
         } catch (Exception $e) {

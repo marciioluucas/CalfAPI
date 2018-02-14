@@ -9,19 +9,178 @@
 namespace src\model;
 
 
+use Psr\Http\Message\RequestInterface as Request;
 use src\model\dao\FazendaDAO;
 use src\util\ClassToArray;
 use src\util\Data;
 
 class Fazenda implements IModel
 {
-    private $idFazenda;
-    private $nomeFazenda;
+    /**
+     * @var int
+     */
+    private $id;
+    /**
+     * @var string
+     */
+    private $nome;
+    /**
+     * @var string
+     */
     private $dataCriacao;
+    /**
+     * @var string
+     */
     private $dataAlteracao;
+    /**
+     * @var string
+     */
     private $usuarioCadastro;
+    /**
+     * @var int
+     */
     private $usuarioAlteracao;
-    protected $limite;
+    /**
+     * @var
+     */
+    private $limite;
+
+    /**
+     * @return array
+     */
+    public function cadastrar()
+    {
+        $this->dataAlteracao = (new Data())->gerarDataHora();
+        $this->dataCriacao = (new Data())->gerarDataHora();
+        $this->usuarioAlteracao = "Lucas";// vai pegar do token dps de implementar o login;
+        $this->usuarioCadastro = "Lucas";
+        $array = (new ClassToArray())->classToArray($this);
+        return (new FazendaDAO())->create($array);
+    }
+
+    /**
+     * @return array
+     */
+    public function alterar()
+    {
+        $array = (new ClassToArray())->classToArray($this);
+        return (new FazendaDAO())->update($array);
+    }
+
+    /**
+     * @param Request $request
+     * @return array
+     */
+    public function pesquisar(Request $request)
+    {
+        $array = (new ClassToArray())->classToArray($this);
+        return (new FazendaDAO())->retrave($array, $this->limite);
+    }
+
+    /**
+     * @return array
+     */
+    public function deletar()
+    {
+        $array = (new ClassToArray())->classToArray($this);
+        return (new FazendaDAO())->delete($array);
+    }
+
+    /**
+     * @return int
+     */
+    public function getId(): int
+    {
+        return $this->id;
+    }
+
+    /**
+     * @param int $id
+     */
+    public function setId(int $id): void
+    {
+        $this->id = $id;
+    }
+
+    /**
+     * @return string
+     */
+    public function getNome(): string
+    {
+        return $this->nome;
+    }
+
+    /**
+     * @param string $nome
+     */
+    public function setNome(string $nome): void
+    {
+        $this->nome = $nome;
+    }
+
+    /**
+     * @return string
+     */
+    public function getDataCriacao(): string
+    {
+        return $this->dataCriacao;
+    }
+
+    /**
+     * @param string $dataCriacao
+     */
+    public function setDataCriacao(string $dataCriacao): void
+    {
+        $this->dataCriacao = $dataCriacao;
+    }
+
+    /**
+     * @return string
+     */
+    public function getDataAlteracao(): string
+    {
+        return $this->dataAlteracao;
+    }
+
+    /**
+     * @param string $dataAlteracao
+     */
+    public function setDataAlteracao(string $dataAlteracao): void
+    {
+        $this->dataAlteracao = $dataAlteracao;
+    }
+
+    /**
+     * @return string
+     */
+    public function getUsuarioCadastro(): string
+    {
+        return $this->usuarioCadastro;
+    }
+
+    /**
+     * @param string $usuarioCadastro
+     */
+    public function setUsuarioCadastro(string $usuarioCadastro): void
+    {
+        $this->usuarioCadastro = $usuarioCadastro;
+    }
+
+    /**
+     * @return int
+     */
+    public function getUsuarioAlteracao(): int
+    {
+        return $this->usuarioAlteracao;
+    }
+
+    /**
+     * @param int $usuarioAlteracao
+     */
+    public function setUsuarioAlteracao(int $usuarioAlteracao): void
+    {
+        $this->usuarioAlteracao = $usuarioAlteracao;
+    }
 
     /**
      * @return mixed
@@ -34,133 +193,10 @@ class Fazenda implements IModel
     /**
      * @param mixed $limite
      */
-    public function setLimite($limite)
+    public function setLimite($limite): void
     {
         $this->limite = $limite;
     }
 
-    /**
-     * @return mixed
-     */
-    public function getIdFazenda()
-    {
-        return $this->idFazenda;
-    }
 
-    /**
-     * @param mixed $idFazenda
-     */
-    public function setIdFazenda($idFazenda)
-    {
-        $this->idFazenda = $idFazenda;
-    }
-
-    /**
-     * @return mixed
-     */
-    public function getNomeFazenda()
-    {
-        return $this->nomeFazenda;
-    }
-
-    /**
-     * @param mixed $nomeFazenda
-     */
-    public function setNomeFazenda($nomeFazenda)
-    {
-        $this->nomeFazenda = $nomeFazenda;
-    }
-
-
-    /**
-     * @return mixed
-     */
-    public function getDataCriacao()
-    {
-        return $this->dataCriacao;
-    }
-
-    /**
-     * @param mixed $dataCricao
-     */
-    public function setDataCriacao($dataCriacao)
-    {
-        $this->dataCriacao = $dataCriacao;
-    }
-
-    /**
-     * @return mixed
-     */
-    public function getDataAlteracao()
-    {
-        return $this->dataAlteracao;
-    }
-
-    /**
-     * @param mixed $dataAlteracao
-     */
-    public function setDataAlteracao($dataAlteracao)
-    {
-        $this->dataAlteracao = $dataAlteracao;
-    }
-
-    /**
-     * @return mixed
-     */
-    public function getUsuarioCadastro()
-    {
-        return $this->usuarioCadastro;
-    }
-
-    /**
-     * @param mixed $usuarioCadastro
-     */
-    public function setUsuarioCadastro($usuarioCadastro)
-    {
-        $this->usuarioCadastro = $usuarioCadastro;
-    }
-
-    /**
-     * @return mixed
-     */
-    public function getUsuarioAlteracao()
-    {
-        return $this->usuarioAlteracao;
-    }
-
-    /**
-     * @param mixed $usuarioAlteracao
-     */
-    public function setUsuarioAlteracao($usuarioAlteracao)
-    {
-        $this->usuarioAlteracao = $usuarioAlteracao;
-    }
-
-    public function cadastrar()
-    {
-        $this->dataAlteracao = (new Data())->gerarDataHora();
-        $this->dataCriacao = (new Data())->gerarDataHora();
-        $this->usuarioAlteracao = "Lucas";// vai pegar do token dps de implementar o login;
-        $this->usuarioCadastro = "Lucas";
-        $array = (new ClassToArray())->classToArray($this);
-        return (new FazendaDAO())->create($array);
-    }
-
-    public function alterar()
-    {
-        $array = (new ClassToArray())->classToArray($this);
-        return (new FazendaDAO())->update($array);
-    }
-
-    public function pesquisar()
-    {
-        $array = (new ClassToArray())->classToArray($this);
-        return (new FazendaDAO())->retrave($array,$this->limite);
-    }
-
-    public function deletar()
-    {
-        $array = (new ClassToArray())->classToArray($this);
-        return (new FazendaDAO())->delete($array);
-    }
 }
