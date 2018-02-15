@@ -9,17 +9,8 @@
 namespace src\model;
 
 
-use Exception;
-
-use Illuminate\Database\Capsule\Manager as DB;
-use Illuminate\Support\Facades\Input;
 use src\model\dao\AnimalDAO;
-use src\model\entities\AnimalEntity;
-use src\model\entities\FazendaEntity;
 use src\util\ClassToArray;
-use \Psr\Http\Message\ResponseInterface as Response;
-use \Psr\Http\Message\RequestInterface as Request;
-use src\util\Data;
 
 class Animal implements IModel
 {
@@ -52,9 +43,9 @@ class Animal implements IModel
         $this->usuarioCadastro = 1;
 //        $array = (new ClassToArray())->classToArray($this);
         $cadastro = (new AnimalDAO())->create($this);
-//        if($this->primogenito = 1) {
+        if($this->primogenito = 1) {
 //            TODO: Fazer o negocio do primogenito
-//        }
+        }
         return ["animal" => "Cadastrou, id é: ". $cadastro];
 
 

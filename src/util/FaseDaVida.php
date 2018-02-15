@@ -9,9 +9,9 @@
 namespace src\util;
 
 
-abstract class EnumFaseVida
+abstract class FaseDaVida
 {
-    const RECEM_NASCIDO = "Recem-nascido";
+    const RECEM_NASCIDO = "Recém-nascido";
     const BEZERRO = "Bezerro";
     const NOVILHO = "Novilho";
     const ADULTO = "Adulto";
