@@ -1,9 +1,9 @@
 <?php
 /**
  * Created by PhpStorm.
- * User: Usuario
- * Date: 13/09/2017
- * Time: 00:12
+ * User: marci
+ * Date: 16/02/2018
+ * Time: 19:12
  */
 
 namespace src\model\validate;

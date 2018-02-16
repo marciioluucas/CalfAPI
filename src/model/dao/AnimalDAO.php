@@ -11,6 +11,7 @@ namespace src\model\dao;
 
 
 use Exception;
+use Illuminate\Support\Facades\Validator;
 use PDO;
 use src\model\Animal;
 use src\model\entities\AnimalEntity;
@@ -43,14 +44,40 @@ class AnimalDAO implements IDAO
     }
 
     /**
-     * @param Animal $obj
+     * @param Animal $toChange
      */
-    public static function update($obj)
+    public static function update($toChange)
     {
-        AnimalEntity::find($obj->getId())
-            ->update([
+        $entity = AnimalEntity::find($toChange->getId());
 
-            ]);
+        if (!is_null($toChange->getNomeAnimal())) {
+            $entity->nome = $toChange->getNomeAnimal();
+        }
+        if (!is_null($toChange->getDataNascimento())) {
+            $entity->data_nascimento = $toChange->getDataNascimento();
+        }
+        if (!is_null($toChange->getPrimogenito())) {
+            $entity->primogenito = $toChange->getPrimogenito();
+        }
+        if (!is_null($toChange->getCodigoBrinco())) {
+            $entity->codigo_brinco = $toChange->getCodigoBrinco();
+        }
+        if (!is_null($toChange->getCodigoRaca())) {
+            $entity->codigo_raca = $toChange->getCodigoRaca();
+        }
+        if (!is_null($toChange->getDataAlteracao())) {
+            $entity->data_alteracao = $toChange->getDataAlteracao();
+        }
+        if (!is_null($toChange->getFkFazenda())) {
+            $entity->fazendas_id = $toChange->getFkFazenda();
+        }
+        if (!is_null($toChange->getFkLote())) {
+            $entity->lotes_id = $toChange->getFkLote();
+        }
+        if ($entity->save()) {
+            return $entity->id;
+        };
+        return false;
     }
 
     /**
@@ -130,8 +157,8 @@ class AnimalDAO implements IDAO
     {
         $entity = AnimalEntity::find($id);
         $entity->status = 0;
-        if($entity->save()){
-            return  $entity->id;
+        if ($entity->save()) {
+            return $entity->id;
         };
     }
 }

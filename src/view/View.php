@@ -9,31 +9,12 @@
 namespace src\view;
 
 use Exception;
+use InvalidArgumentException;
 use src\util\HeaderWriter;
 use \Psr\Http\Message\ResponseInterface as Response;
 
-class View extends HeaderWriter
+class View
 {
-
-    private static $headers;
-
-    /**
-     * @return mixed
-     */
-    public function getHeaders()
-    {
-        return self::$headers;
-    }
-
-    /**
-     * @param mixed $headers
-     */
-    public function setHeaders($headers)
-    {
-        self::$headers = $headers;
-    }
-
-
     /**
      * @param Response $response
      * @param array $data
@@ -73,13 +54,40 @@ class View extends HeaderWriter
 
         $json = json_encode($arrayReturn);
         return $response
-            ->withStatus(500, "Oops, uma excessao parece ter acontecido!")
+            ->withStatus(500, "Excessao no servidor")
             ->withHeader("Content-Type", "application/json; charset=iso-8859-1")
             ->write($json);
     }
 
-    public static final function renderError(Response $response, Exception $exception, $additionalMessage = "none")
+
+    public static final function renderMessage(Response $response, string $type, $description, int $codigo = 0, string $razao = "")
     {
+        if ($type != 'error' && $type != 'success' && $type != 'warning') {
+            throw new InvalidArgumentException("O argumento de tipo deve ser somente: error, success ou warning.");
+        }
+
+        $json = json_encode([
+            "message" => [
+                "type" => $type,
+                "description" => $description
+            ]
+        ]);
+
+        if ($codigo != 0 and $razao == "") {
+            return $response
+                ->withStatus($codigo)
+                ->withHeader("Content-Type", "application/json")
+                ->write($json);
+        } else if ($codigo != 0 and $razao != "") {
+            return $response
+                ->withStatus($codigo, $razao)
+                ->withHeader("Content-Type", "application/json")
+                ->write($json);
+        } else {
+            return $response
+                ->withHeader("Content-Type", "application/json")
+                ->write($json);
+        }
 
     }
 

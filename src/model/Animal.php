@@ -9,6 +9,11 @@
 namespace src\model;
 
 
+use ArrayObject;
+use Exception;
+use ReflectionClass;
+use ReflectionException;
+use ReflectionProperty;
 use src\model\dao\AnimalDAO;
 use src\util\ClassToArray;
 use src\util\FaseDaVida;
@@ -19,7 +24,7 @@ class Animal implements IModel
     private $id;
     private $nomeAnimal;
     private $primogenito;
-    private $faseDaVida = FaseDaVida::BEZERRO;
+    private $faseDaVida;
     private $dataAlteracao;
     private $dataCriacao;
     private $usuarioCadastro;
@@ -35,28 +40,34 @@ class Animal implements IModel
     protected $limite;
 
     /**
-     * @return array
+     * @return bool
      */
     public function cadastrar()
     {
         $this->dataAlteracao = date('Y-m-d');
         $this->dataCriacao = date('Y-m-d');
+        $this->faseDaVida = FaseDaVida::BEZERRO;
 //        $this->usuarioAlteracao = "Lucas";// vai pegar do token dps de implementar o login;
         $this->usuarioCadastro = 1;
 //        $array = (new ClassToArray())->classToArray($this);
-        $cadastro = (new AnimalDAO())->create($this);
         if ($this->primogenito == 1) {
             $this->faseDaVida = FaseDaVida::ADULTO;
         }
-        return ["animal" => "Cadastrou, id é: " . $cadastro];
-
-
+        $cadastro = (new AnimalDAO())->create($this);
+        return $cadastro;
     }
 
+    /**
+     * @return array
+     * @throws Exception
+     */
     public function alterar()
     {
-        $array = (new ClassToArray())->classToArray($this);
-        return new AnimalDAO();
+        try {
+            return (new AnimalDAO())->update($this);
+        } catch (Exception $e) {
+            throw new Exception("Erro ao tentar atualizar um animal: " . $e->getMessage());
+        }
     }
 
     /**

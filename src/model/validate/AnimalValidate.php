@@ -6,29 +6,26 @@
  * Date: 13/09/2017
  * Time: 00:10
  */
+
 namespace src\model\validate;
 
 
 use Valitron\Validator;
 
-class AnimalValidate implements IValidate
+class AnimalValidate extends Validate
 {
 
     public function validatePost($params)
     {
         $v = new Validator($params);
-        $v->rule('required', ['dataNascimento', 'codigoRaca', 'codigoBrinco', 'fkPesagem', 'fkMae', 'fkPai', 'fkLote', 'fkFazenda', 'nomeAnimal']);
-        $v->rule('integer', ['codigoRaca', 'codigoBrinco', 'fkPesagem', 'fkMae', 'fkPai', 'fkLote', 'fkFazenda']);
-        $v->rule('date', 'dataNascimento');
+        $v->rule('required', ['data_nascimento', 'codigo_raca', 'codigo_brinco', 'id_pesagem', 'id_lote', 'id_fazenda', 'nome']);
+        $v->rule('integer', ['codigo_raca', 'codigo_brinco', 'id_pesagem', 'id_lote', 'id_fazenda']);
+        $v->rule('date', 'data_nascimento');
         if ($v->validate()) {
             return true;
         } else {
-            $data = "";
-            foreach ($v->errors() as $key => $value) {
-                $data .= implode(',', $value);
-            }
-            return ["codigo" => 400,
-                "mensagem" => $data];
+            $toReturn = $this->filtrarValidacao($v);
+            return $toReturn;
         }
     }
 
