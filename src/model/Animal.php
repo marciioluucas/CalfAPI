@@ -11,6 +11,7 @@ namespace src\model;
 
 use src\model\dao\AnimalDAO;
 use src\util\ClassToArray;
+use src\util\FaseDaVida;
 
 class Animal implements IModel
 {
@@ -18,6 +19,7 @@ class Animal implements IModel
     private $id;
     private $nomeAnimal;
     private $primogenito;
+    private $faseDaVida = FaseDaVida::BEZERRO;
     private $dataAlteracao;
     private $dataCriacao;
     private $usuarioCadastro;
@@ -43,10 +45,10 @@ class Animal implements IModel
         $this->usuarioCadastro = 1;
 //        $array = (new ClassToArray())->classToArray($this);
         $cadastro = (new AnimalDAO())->create($this);
-        if($this->primogenito = 1) {
-//            TODO: Fazer o negocio do primogenito
+        if ($this->primogenito == 1) {
+            $this->faseDaVida = FaseDaVida::ADULTO;
         }
-        return ["animal" => "Cadastrou, id é: ". $cadastro];
+        return ["animal" => "Cadastrou, id é: " . $cadastro];
 
 
     }
@@ -336,4 +338,22 @@ class Animal implements IModel
     {
         $this->fkFazenda = $fkFazenda;
     }
+
+    /**
+     * @return mixed
+     */
+    public function getFaseDaVida()
+    {
+        return $this->faseDaVida;
+    }
+
+    /**
+     * @param mixed $faseDaVida
+     */
+    public function setFaseDaVida($faseDaVida): void
+    {
+        $this->faseDaVida = $faseDaVida;
+    }
+
+
 }

@@ -61,6 +61,7 @@ class AnimalDAO implements IDAO
     {
         $animais = AnimalEntity
             ::ativo()->with('fazenda')
+            ->with('pesagens')
             ->paginate(
                 QUANTIDADE_ITENS_POR_PAGINA,
                 ['*'],

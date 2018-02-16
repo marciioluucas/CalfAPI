@@ -2,9 +2,16 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="00f5a375-e7b8-4505-98fa-01660a814dc1" name="Default" comment="">
+      <change beforePath="" afterPath="$PROJECT_DIR$/src/model/entities/PesagemEntity.php" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change beforePath="$PROJECT_DIR$/src/model/Animal.php" afterPath="$PROJECT_DIR$/src/model/Animal.php" />
-      <change beforePath="$PROJECT_DIR$/src/util/EnumFaseVida.php" afterPath="$PROJECT_DIR$/src/util/FaseDaVida.php" />
+      <change beforePath="$PROJECT_DIR$/src/model/Pesagem.php" afterPath="$PROJECT_DIR$/src/model/Pesagem.php" />
+      <change beforePath="$PROJECT_DIR$/src/model/dao/AnimalDAO.php" afterPath="$PROJECT_DIR$/src/model/dao/AnimalDAO.php" />
+      <change beforePath="$PROJECT_DIR$/src/model/entities/AnimalEntity.php" afterPath="$PROJECT_DIR$/src/model/entities/AnimalEntity.php" />
+      <change beforePath="$PROJECT_DIR$/src/model/entities/CalfEntity.php" afterPath="$PROJECT_DIR$/src/model/entities/CalfEntity.php" />
+      <change beforePath="$PROJECT_DIR$/src/model/entities/FazendaEntity.php" afterPath="$PROJECT_DIR$/src/model/entities/FazendaEntity.php" />
+      <change beforePath="$PROJECT_DIR$/src/util/EnumLocalizacao.php" afterPath="$PROJECT_DIR$/src/util/Localizacao.php" />
+      <change beforePath="$PROJECT_DIR$/src/view/View.php" afterPath="$PROJECT_DIR$/src/view/View.php" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -40,112 +47,38 @@
       <file leaf-file-name="AnimalDAO.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/model/dao/AnimalDAO.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="864">
-              <caret line="36" column="52" lean-forward="false" selection-start-line="36" selection-start-column="52" selection-end-line="36" selection-end-column="52" />
+            <state relative-caret-position="243">
+              <caret line="64" column="23" lean-forward="true" selection-start-line="64" selection-start-column="23" selection-end-line="64" selection-end-column="23" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="Fazenda.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/model/Fazenda.php">
+      <file leaf-file-name="PesagemEntity.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/model/entities/PesagemEntity.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1632">
-              <caret line="76" column="26" lean-forward="false" selection-start-line="76" selection-start-column="26" selection-end-line="76" selection-end-column="26" />
-              <folding>
-                <element signature="e#114#163#0#PHP" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="Api.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/util/Api.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1608">
-              <caret line="74" column="34" lean-forward="false" selection-start-line="74" selection-start-column="34" selection-end-line="74" selection-end-column="34" />
+            <state relative-caret-position="240">
+              <caret line="15" column="0" lean-forward="true" selection-start-line="15" selection-start-column="0" selection-end-line="15" selection-end-column="0" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="Animal.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/model/Animal.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-408">
-              <caret line="19" column="25" lean-forward="true" selection-start-line="19" selection-start-column="25" selection-end-line="19" selection-end-column="25" />
-              <folding>
-                <element signature="e#114#142#0#PHP" expanded="true" />
-                <element signature="e#2061#2138#0#PHP" expanded="false" />
-                <element signature="e#2192#2287#0#PHP" expanded="false" />
-                <element signature="e#2330#2409#0#PHP" expanded="false" />
-                <element signature="e#2464#2569#0#PHP" expanded="false" />
-                <element signature="e#2612#2681#0#PHP" expanded="false" />
-                <element signature="e#2731#2810#0#PHP" expanded="false" />
-                <element signature="e#2853#2936#0#PHP" expanded="false" />
-                <element signature="e#2993#3100#0#PHP" expanded="false" />
-                <element signature="e#3143#3222#0#PHP" expanded="false" />
-                <element signature="e#3277#3376#0#PHP" expanded="false" />
-                <element signature="e#3419#3506#0#PHP" expanded="false" />
-                <element signature="e#3565#3680#0#PHP" expanded="false" />
-                <element signature="e#3723#3812#0#PHP" expanded="false" />
-                <element signature="e#3872#3991#0#PHP" expanded="false" />
-                <element signature="e#4034#4119#0#PHP" expanded="false" />
-                <element signature="e#4177#4288#0#PHP" expanded="false" />
-                <element signature="e#4331#4412#0#PHP" expanded="false" />
-                <element signature="e#4468#4571#0#PHP" expanded="false" />
-                <element signature="e#4614#4691#0#PHP" expanded="false" />
-                <element signature="e#4745#4840#0#PHP" expanded="false" />
-                <element signature="e#4883#4958#0#PHP" expanded="false" />
-                <element signature="e#5011#5102#0#PHP" expanded="false" />
-                <element signature="e#5145#5212#0#PHP" expanded="false" />
-                <element signature="e#5261#5336#0#PHP" expanded="false" />
-                <element signature="e#5379#5446#0#PHP" expanded="false" />
-                <element signature="e#5495#5570#0#PHP" expanded="false" />
-                <element signature="e#5613#5682#0#PHP" expanded="false" />
-                <element signature="e#5732#5811#0#PHP" expanded="false" />
-                <element signature="e#5854#5929#0#PHP" expanded="false" />
-                <element signature="e#5982#6073#0#PHP" expanded="false" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="FaseDaVida.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/util/FaseDaVida.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="264">
-              <caret line="16" column="28" lean-forward="true" selection-start-line="16" selection-start-column="28" selection-end-line="16" selection-end-column="28" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="EnumLocalizacao.php" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/src/util/EnumLocalizacao.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="216">
-              <caret line="14" column="36" lean-forward="true" selection-start-line="14" selection-start-column="36" selection-end-line="14" selection-end-column="36" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="IModel.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/model/IModel.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="312">
-              <caret line="18" column="20" lean-forward="false" selection-start-line="18" selection-start-column="20" selection-end-line="18" selection-end-column="20" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="AnimalEntity.php" pinned="false" current-in-tab="false">
+      <file leaf-file-name="AnimalEntity.php" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/model/entities/AnimalEntity.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="264">
-              <caret line="16" column="35" lean-forward="false" selection-start-line="16" selection-start-column="35" selection-end-line="16" selection-end-column="35" />
+            <state relative-caret-position="240">
+              <caret line="18" column="29" lean-forward="false" selection-start-line="18" selection-start-column="29" selection-end-line="18" selection-end-column="29" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="View.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/view/View.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="291">
+              <caret line="67" column="38" lean-forward="true" selection-start-line="67" selection-start-column="38" selection-end-line="67" selection-end-column="38" />
               <folding />
             </state>
           </provider>
@@ -154,7 +87,7 @@
       <file leaf-file-name="FazendaEntity.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/model/entities/FazendaEntity.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="432">
+            <state relative-caret-position="312">
               <caret line="23" column="0" lean-forward="false" selection-start-line="23" selection-start-column="0" selection-end-line="23" selection-end-column="0" />
               <folding />
             </state>
@@ -222,10 +155,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/model/validate/AnimalValidate.php" />
-        <option value="$PROJECT_DIR$/model/Animal.php" />
-        <option value="$PROJECT_DIR$/config/Bootstrap.php" />
-        <option value="$PROJECT_DIR$/config/Doctrine.php" />
         <option value="$PROJECT_DIR$/config/DoctrineORM.php" />
         <option value="$PROJECT_DIR$/config/doctrine-config.php" />
         <option value="$PROJECT_DIR$/cli-config.php" />
@@ -258,21 +187,25 @@
         <option value="$PROJECT_DIR$/.htaccess" />
         <option value="$PROJECT_DIR$/index.php" />
         <option value="$PROJECT_DIR$/src/util/config.php" />
-        <option value="$PROJECT_DIR$/src/util/EnumLocalizacao.php" />
         <option value="$PROJECT_DIR$/src/model/IModel.php" />
         <option value="$PROJECT_DIR$/src/model/dao/IDAO.php" />
         <option value="$PROJECT_DIR$/src/util/Database.php" />
-        <option value="$PROJECT_DIR$/src/view/View.php" />
         <option value="$PROJECT_DIR$/src/util/Api.php" />
         <option value="$PROJECT_DIR$/src/controller/AnimalController.php" />
-        <option value="$PROJECT_DIR$/src/model/dao/AnimalDAO.php" />
         <option value="$PROJECT_DIR$/src/model/Fazenda.php" />
-        <option value="$PROJECT_DIR$/src/model/entities/AnimalEntity.php" />
-        <option value="$PROJECT_DIR$/src/model/entities/FazendaEntity.php" />
-        <option value="$PROJECT_DIR$/src/model/entities/CalfEntity.php" />
-        <option value="$PROJECT_DIR$/src/model/Animal.php" />
         <option value="$PROJECT_DIR$/src/util/EnumFaseVida.php" />
         <option value="$PROJECT_DIR$/src/util/FaseDaVida.php" />
+        <option value="$PROJECT_DIR$/src/util/EnumLocalizacao.php" />
+        <option value="$PROJECT_DIR$/src/util/Localizacao.php" />
+        <option value="$PROJECT_DIR$/src/model/Animal.php" />
+        <option value="$PROJECT_DIR$/src/model/Pesagem.php" />
+        <option value="$PROJECT_DIR$/src/model/dao/AnimalDAO.php" />
+        <option value="$PROJECT_DIR$/src/model/entities/FazendaEntity.php" />
+        <option value="$PROJECT_DIR$/src/model/entities/CalfEntity.php" />
+        <option value="$PROJECT_DIR$/src/model/entities/Animal.php" />
+        <option value="$PROJECT_DIR$/src/model/entities/PesagemEntity.php" />
+        <option value="$PROJECT_DIR$/src/model/entities/AnimalEntity.php" />
+        <option value="$PROJECT_DIR$/src/view/View.php" />
       </list>
     </option>
   </component>
@@ -437,13 +370,7 @@
               <item name="CalfAPI" type="b2602c69:ProjectViewProjectNode" />
               <item name="CalfAPI" type="2a2b976b:PhpTreeStructureProvider$1" />
               <item name="src" type="2a2b976b:PhpTreeStructureProvider$1" />
-              <item name="model" type="2a2b976b:PhpTreeStructureProvider$1" />
-            </path>
-            <path>
-              <item name="CalfAPI" type="b2602c69:ProjectViewProjectNode" />
-              <item name="CalfAPI" type="2a2b976b:PhpTreeStructureProvider$1" />
-              <item name="src" type="2a2b976b:PhpTreeStructureProvider$1" />
-              <item name="util" type="2a2b976b:PhpTreeStructureProvider$1" />
+              <item name="view" type="2a2b976b:PhpTreeStructureProvider$1" />
             </path>
           </expand>
           <select />
@@ -524,7 +451,7 @@
       <workItem from="1518567641475" duration="3176000" />
       <workItem from="1518606458868" duration="6883000" />
       <workItem from="1518630113108" duration="3589000" />
-      <workItem from="1518696240460" duration="2211000" />
+      <workItem from="1518696240460" duration="10511000" />
     </task>
     <task id="LOCAL-00001" summary="Colocando Slim">
       <created>1518011759197</created>
@@ -631,11 +558,18 @@
       <option name="project" value="LOCAL" />
       <updated>1518636310122</updated>
     </task>
-    <option name="localTasksCounter" value="16" />
+    <task id="LOCAL-00016" summary="Mudando Nome do enum">
+      <created>1518699963073</created>
+      <option name="number" value="00016" />
+      <option name="presentableId" value="LOCAL-00016" />
+      <option name="project" value="LOCAL" />
+      <updated>1518699963073</updated>
+    </task>
+    <option name="localTasksCounter" value="17" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="99404000" />
+    <option name="totallyTimeSpent" value="107704000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1382" height="744" extended-state="6" />
@@ -683,7 +617,8 @@
     <MESSAGE value="Cadastrar de Animal funcionando" />
     <MESSAGE value="Fazendo o delete." />
     <MESSAGE value="Delete funcionando." />
-    <option name="LAST_COMMIT_MESSAGE" value="Delete funcionando." />
+    <MESSAGE value="Mudando Nome do enum" />
+    <option name="LAST_COMMIT_MESSAGE" value="Mudando Nome do enum" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -692,23 +627,6 @@
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/src/controller/FazendaController.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="432">
-          <caret line="26" column="39" lean-forward="false" selection-start-line="26" selection-start-column="39" selection-end-line="26" selection-end-column="39" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/vendor/illuminate/database/Eloquent/Model.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="47">
-          <caret line="18" column="15" lean-forward="false" selection-start-line="18" selection-start-column="15" selection-end-line="18" selection-end-column="15" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/config/db/migrations/20180211202934_test_migration.php" />
-    <entry file="file://$PROJECT_DIR$/config/db/migrations/20180211203049_test_migration.php" />
     <entry file="file://$PROJECT_DIR$/src/model/Lote.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-144">
@@ -868,6 +786,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="89">
           <caret line="138" column="21" lean-forward="true" selection-start-line="138" selection-start-column="16" selection-end-line="138" selection-end-column="21" />
+          <folding />
         </state>
       </provider>
     </entry>
@@ -889,6 +808,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="360">
           <caret line="21" column="20" lean-forward="false" selection-start-line="21" selection-start-column="20" selection-end-line="21" selection-end-column="20" />
+          <folding />
         </state>
       </provider>
     </entry>
@@ -896,6 +816,9 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="387">
           <caret line="22" column="39" lean-forward="false" selection-start-line="22" selection-start-column="39" selection-end-line="22" selection-end-column="39" />
+          <folding>
+            <element signature="e#118#167#0#PHP" expanded="false" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -904,16 +827,8 @@
         <state relative-caret-position="504">
           <caret line="27" column="46" lean-forward="false" selection-start-line="27" selection-start-column="31" selection-end-line="27" selection-end-column="46" />
           <folding>
-            <element signature="e#110#161#0#PHP" expanded="true" />
+            <element signature="e#110#161#0#PHP" expanded="false" />
           </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/view/View.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1584">
-          <caret line="73" column="42" lean-forward="false" selection-start-line="73" selection-start-column="42" selection-end-line="73" selection-end-column="42" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -921,14 +836,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="312">
           <caret line="129" column="57" lean-forward="true" selection-start-line="129" selection-start-column="57" selection-end-line="129" selection-end-column="57" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/model/dao/AnimalDAO.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="864">
-          <caret line="36" column="52" lean-forward="false" selection-start-line="36" selection-start-column="52" selection-end-line="36" selection-end-column="52" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -940,9 +847,83 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/util/Localizacao.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="216">
+          <caret line="14" column="36" lean-forward="true" selection-start-line="14" selection-start-column="36" selection-end-line="14" selection-end-column="36" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/util/FaseDaVida.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="264">
+          <caret line="16" column="28" lean-forward="true" selection-start-line="16" selection-start-column="28" selection-end-line="16" selection-end-column="28" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/model/Pesagem.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="384">
+          <caret line="32" column="5" lean-forward="true" selection-start-line="32" selection-start-column="5" selection-end-line="32" selection-end-column="5" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/model/Animal.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="384">
+          <caret line="31" column="9" lean-forward="true" selection-start-line="31" selection-start-column="9" selection-end-line="31" selection-end-column="9" />
+          <folding>
+            <element signature="e#114#142#0#PHP" expanded="true" />
+            <element signature="e#2137#2214#0#PHP" expanded="false" />
+            <element signature="e#2268#2363#0#PHP" expanded="false" />
+            <element signature="e#2406#2485#0#PHP" expanded="false" />
+            <element signature="e#2540#2645#0#PHP" expanded="false" />
+            <element signature="e#2688#2757#0#PHP" expanded="false" />
+            <element signature="e#2807#2886#0#PHP" expanded="false" />
+            <element signature="e#2929#3012#0#PHP" expanded="false" />
+            <element signature="e#3069#3176#0#PHP" expanded="false" />
+            <element signature="e#3219#3298#0#PHP" expanded="false" />
+            <element signature="e#3353#3452#0#PHP" expanded="false" />
+            <element signature="e#3495#3582#0#PHP" expanded="false" />
+            <element signature="e#3641#3756#0#PHP" expanded="false" />
+            <element signature="e#3799#3888#0#PHP" expanded="false" />
+            <element signature="e#3948#4067#0#PHP" expanded="false" />
+            <element signature="e#4110#4195#0#PHP" expanded="false" />
+            <element signature="e#4253#4364#0#PHP" expanded="false" />
+            <element signature="e#4407#4488#0#PHP" expanded="false" />
+            <element signature="e#4544#4647#0#PHP" expanded="false" />
+            <element signature="e#4690#4767#0#PHP" expanded="false" />
+            <element signature="e#4821#4916#0#PHP" expanded="false" />
+            <element signature="e#4959#5034#0#PHP" expanded="false" />
+            <element signature="e#5087#5178#0#PHP" expanded="false" />
+            <element signature="e#5221#5288#0#PHP" expanded="false" />
+            <element signature="e#5337#5412#0#PHP" expanded="false" />
+            <element signature="e#5455#5522#0#PHP" expanded="false" />
+            <element signature="e#5571#5646#0#PHP" expanded="false" />
+            <element signature="e#5689#5758#0#PHP" expanded="false" />
+            <element signature="e#5808#5887#0#PHP" expanded="false" />
+            <element signature="e#5930#6005#0#PHP" expanded="false" />
+            <element signature="e#6058#6149#0#PHP" expanded="false" />
+            <element signature="e#6192#6269#0#PHP" expanded="false" />
+            <element signature="e#6323#6424#0#PHP" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/util/Api.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="322">
+          <caret line="74" column="34" lean-forward="false" selection-start-line="74" selection-start-column="34" selection-end-line="74" selection-end-column="34" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/model/Fazenda.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1632">
+        <state relative-caret-position="1104">
           <caret line="76" column="26" lean-forward="false" selection-start-line="76" selection-start-column="26" selection-end-line="76" selection-end-column="26" />
           <folding>
             <element signature="e#114#163#0#PHP" expanded="true" />
@@ -950,26 +931,26 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/model/entities/AnimalEntity.php">
+    <entry file="file://$PROJECT_DIR$/src/model/dao/FazendaDAO.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="264">
-          <caret line="16" column="35" lean-forward="false" selection-start-line="16" selection-start-column="35" selection-end-line="16" selection-end-column="35" />
+        <state relative-caret-position="-936">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/model/entities/FazendaEntity.php">
+    <entry file="file://$PROJECT_DIR$/src/model/dao/AnimalDAO.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="432">
-          <caret line="23" column="0" lean-forward="false" selection-start-line="23" selection-start-column="0" selection-end-line="23" selection-end-column="0" />
+        <state relative-caret-position="243">
+          <caret line="64" column="23" lean-forward="true" selection-start-line="64" selection-start-column="23" selection-end-line="64" selection-end-column="23" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/util/Api.php">
+    <entry file="file://$PROJECT_DIR$/vendor/illuminate/database/Eloquent/Model.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1608">
-          <caret line="74" column="34" lean-forward="false" selection-start-line="74" selection-start-column="34" selection-end-line="74" selection-end-column="34" />
+        <state relative-caret-position="185">
+          <caret line="47" column="14" lean-forward="false" selection-start-line="47" selection-start-column="14" selection-end-line="47" selection-end-column="14" />
           <folding />
         </state>
       </provider>
@@ -982,58 +963,34 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/model/Animal.php">
+    <entry file="file://$PROJECT_DIR$/src/model/entities/FazendaEntity.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-408">
-          <caret line="19" column="25" lean-forward="true" selection-start-line="19" selection-start-column="25" selection-end-line="19" selection-end-column="25" />
-          <folding>
-            <element signature="e#114#142#0#PHP" expanded="true" />
-            <element signature="e#2061#2138#0#PHP" expanded="false" />
-            <element signature="e#2192#2287#0#PHP" expanded="false" />
-            <element signature="e#2330#2409#0#PHP" expanded="false" />
-            <element signature="e#2464#2569#0#PHP" expanded="false" />
-            <element signature="e#2612#2681#0#PHP" expanded="false" />
-            <element signature="e#2731#2810#0#PHP" expanded="false" />
-            <element signature="e#2853#2936#0#PHP" expanded="false" />
-            <element signature="e#2993#3100#0#PHP" expanded="false" />
-            <element signature="e#3143#3222#0#PHP" expanded="false" />
-            <element signature="e#3277#3376#0#PHP" expanded="false" />
-            <element signature="e#3419#3506#0#PHP" expanded="false" />
-            <element signature="e#3565#3680#0#PHP" expanded="false" />
-            <element signature="e#3723#3812#0#PHP" expanded="false" />
-            <element signature="e#3872#3991#0#PHP" expanded="false" />
-            <element signature="e#4034#4119#0#PHP" expanded="false" />
-            <element signature="e#4177#4288#0#PHP" expanded="false" />
-            <element signature="e#4331#4412#0#PHP" expanded="false" />
-            <element signature="e#4468#4571#0#PHP" expanded="false" />
-            <element signature="e#4614#4691#0#PHP" expanded="false" />
-            <element signature="e#4745#4840#0#PHP" expanded="false" />
-            <element signature="e#4883#4958#0#PHP" expanded="false" />
-            <element signature="e#5011#5102#0#PHP" expanded="false" />
-            <element signature="e#5145#5212#0#PHP" expanded="false" />
-            <element signature="e#5261#5336#0#PHP" expanded="false" />
-            <element signature="e#5379#5446#0#PHP" expanded="false" />
-            <element signature="e#5495#5570#0#PHP" expanded="false" />
-            <element signature="e#5613#5682#0#PHP" expanded="false" />
-            <element signature="e#5732#5811#0#PHP" expanded="false" />
-            <element signature="e#5854#5929#0#PHP" expanded="false" />
-            <element signature="e#5982#6073#0#PHP" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/util/FaseDaVida.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="264">
-          <caret line="16" column="28" lean-forward="true" selection-start-line="16" selection-start-column="28" selection-end-line="16" selection-end-column="28" />
+        <state relative-caret-position="312">
+          <caret line="23" column="0" lean-forward="false" selection-start-line="23" selection-start-column="0" selection-end-line="23" selection-end-column="0" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/util/EnumLocalizacao.php">
+    <entry file="file://$PROJECT_DIR$/src/view/View.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="216">
-          <caret line="14" column="36" lean-forward="true" selection-start-line="14" selection-start-column="36" selection-end-line="14" selection-end-column="36" />
+        <state relative-caret-position="291">
+          <caret line="67" column="38" lean-forward="true" selection-start-line="67" selection-start-column="38" selection-end-line="67" selection-end-column="38" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/model/entities/PesagemEntity.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="240">
+          <caret line="15" column="0" lean-forward="true" selection-start-line="15" selection-start-column="0" selection-end-line="15" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/model/entities/AnimalEntity.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="240">
+          <caret line="18" column="29" lean-forward="false" selection-start-line="18" selection-start-column="29" selection-end-line="18" selection-end-column="29" />
           <folding />
         </state>
       </provider>

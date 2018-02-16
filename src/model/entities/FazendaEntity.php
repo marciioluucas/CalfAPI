@@ -23,6 +23,7 @@ class FazendaEntity extends CalfEntity
     ];
 
 
+
     public function animais() {
         return $this->hasMany('\src\model\entities\AnimalEntity');
     }

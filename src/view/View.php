@@ -61,7 +61,7 @@ class View extends HeaderWriter
 
     }
 
-    public static final function renderException(Response $response, Exception $exception, $additionalMessage = "none")
+    public static final function renderException(Response $response, Exception $exception, $additionalMessage = "none", $utf8 = false)
     {
         $arrayReturn = [
             "exception" => [
@@ -74,7 +74,7 @@ class View extends HeaderWriter
         $json = json_encode($arrayReturn);
         return $response
             ->withStatus(500, "Oops, uma excessao parece ter acontecido!")
-            ->withHeader("Content-Type", "application/json")
+            ->withHeader("Content-Type", "application/json; charset=iso-8859-1")
             ->write($json);
     }
 

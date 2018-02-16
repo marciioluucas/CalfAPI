@@ -9,9 +9,9 @@
 namespace src\util;
 
 
-abstract class EnumLocalizacao
+abstract class Localizacao
 {
-    const BERCARIO = "Berçario";
+    const BERCARIO = "Berçário";
     const BEZERREIRA = "Bezerreira";
     const CAMPO_COLETIVO = "Campo Coletivo";
 }

@@ -15,32 +15,25 @@ use src\util\Data;
 
 class Pesagem implements IModel
 {
-    private $idPesagem;
-    private $dataPesagem;
+    private $id;
     private $peso;
     private $dataAlteracao;
     private $dataCriacao;
     private $usuarioCadastro;
     private $usuarioAlteracao;
-    protected $limite;
+    private $animal;
 
     /**
-     * @return mixed
+     * Pesagem constructor.
+     * @param $animal
      */
-    public function getIdPesagem()
+    public function __construct(Animal $animal)
     {
-        return $this->idPesagem;
+        $this->animal = $animal;
     }
 
-    /**
-     * @param mixed $idPesagem
-     */
-    public function setIdPesagem($idPesagem)
-    {
-        $this->idPesagem = $idPesagem;
-    }
 
-    /**
+     /**
      * @return mixed
      */
     public function getData()
