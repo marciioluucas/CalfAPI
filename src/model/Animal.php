@@ -14,7 +14,7 @@ use Exception;
 use ReflectionClass;
 use ReflectionException;
 use ReflectionProperty;
-use src\model\dao\AnimalDAO;
+use src\model\repository\AnimalDAO;
 use src\util\ClassToArray;
 use src\util\FaseDaVida;
 

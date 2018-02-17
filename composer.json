@@ -5,10 +5,10 @@
       "src\\model\\": "src/model/",
       "src\\util\\": "src/util/",
       "src\\view\\": "src/view/",
-      "src\\model\\dao\\": "src/model/dao/",
+      "src\\model\\repository\\": "src/model/repository/",
       "src\\model\\validate\\": "src/model/validate/",
-      "src\\model\\entities\\": "src/model/entities/",
-      "config\\db\\migrations\\": "config/db/migrations"
+      "config\\db\\migrations\\": "config/db/migrations",
+      "src\\model\\repository\\entities\\": "src/repository/entities/"
     }
   },
   "require": {

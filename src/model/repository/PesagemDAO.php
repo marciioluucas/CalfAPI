@@ -3,18 +3,19 @@
  * Created by PhpStorm.
  * User: Usuario
  * Date: 13/09/2017
- * Time: 13:10
+ * Time: 13:26
  */
 
-namespace src\model\dao;
+namespace src\model\repository;
 
 
 use bd\Banco;
 use Exception;
 use PDO;
 
-class LoteDAO implements IDAO
+class PesagemDAO implements IDAO
 {
+
 
     public function create($obj)
     {
@@ -30,14 +31,14 @@ class LoteDAO implements IDAO
             }
             $queryVal = substr_replace($queryVal, '', -1);
             $queryNam = substr_replace($queryNam, '', -1);
-            $query = "INSERT INTO lotes($queryNam) VALUES ($queryVal)";
+            $query = "INSERT INTO pesagens($queryNam) VALUES ($queryVal)";
             $stmt = $db->prepare($query);
             foreach ($obj as $key => &$val) {
                 $stmt->bindParam($key, $val);
             }
             $stmt->execute();
             $codigo = 200;
-            $messagem = "Lote adicionado com sucesso";
+            $messagem = "Pesagem adicionada com sucesso";
         } catch (Exception $e) {
             $codigo = 400;
             $messagem = $e->getMessage();
@@ -59,22 +60,17 @@ class LoteDAO implements IDAO
                 $queryText .= $key . "=:" . $key . ",";
             }
             $queryVal = substr_replace($queryText, '', -1);
-            $query = "UPDATE lotes SET $queryVal WHERE idLote=:idLote";
+            $query = "UPDATE animais SET $queryVal WHERE idAnimal=:idAnimal";
             $stmt = $db->prepare($query);
             foreach ($obj as $key => &$val) {
                 $stmt->bindParam($key, $val);
             }
             $stmt->execute();
-            $codigo = 200;
-            $messagem = "Lote alterado com sucesso";
+            $messagem = "Pesagem alterada com sucesso";
         } catch (Exception $e) {
-            $codigo = 400;
             $messagem = $e->getMessage();
         }
-        return [
-            "codigo" => $codigo,
-            "mensagem" => $messagem
-        ];
+        return $messagem;
     }
 
     public function retrave($obj, $limite)
@@ -83,18 +79,18 @@ class LoteDAO implements IDAO
         $messagem = "Erro inesperado";
         try {
             $db = Banco::conexao();
-            $query = "SELECT * FROM lotes WHERE status = 'ATIVO'";
+            $query = "SELECT * FROM pesagens WHERE status = 'ATIVO'";
             if ($limite === null) {
                 $queryLimit = " LIMIT 10";
             } else {
                 $queryLimit = " LIMIT :limite,10";
             }
             if (!empty($obj)) {
-                if (isset($obj['idLote'])) {
-                    $query .= "AND idLote=:idLote";
+                if (isset($obj['idPesagem'])) {
+                    $query .= "AND idPesagem=:idPesagem";
                     $query .= $queryLimit;
                     $stmt = $db->prepare($query);
-                    $stmt->bindValue(':idLote', $obj['idLote']);
+                    $stmt->bindValue(':idPesagem', $obj['idPesagem']);
                 } else {
                     foreach ($obj as $key => $value) {
                         $query .= " AND " . $key . " LIKE :" . $key;
@@ -137,10 +133,10 @@ class LoteDAO implements IDAO
         $messagem = "Erro inesperado";
         try {
             $db = Banco::conexao();
-            $query = "UPDATE lotes SET status = 'DESATIVADO' WHERE idLote=:idLote";
+            $query = "UPDATE pesagens SET status = 'DESATIVADO' WHERE idPesagem=:idPesagem";
 
             $stmt = $db->prepare($query);
-            $stmt->bindParam(':idLote', $obj['idLote'], PDO::PARAM_INT);
+            $stmt->bindParam(':idPesagem', $obj['idPesagem'], PDO::PARAM_INT);
 
             $stmt->execute();
             $codigo = 200;

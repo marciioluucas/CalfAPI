@@ -9,7 +9,7 @@
 namespace src\model;
 
 
-use src\model\dao\CiclosVidaDAO;
+use src\model\repository\CiclosVidaDAO;
 use src\util\ClassToArray;
 use src\util\Data;
 

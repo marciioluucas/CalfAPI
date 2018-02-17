@@ -6,7 +6,7 @@
  * Time: 17:47
  */
 
-namespace src\model\entities;
+namespace src\model\repository\entities;
 
 
 
@@ -23,8 +23,7 @@ class FazendaEntity extends CalfEntity
     ];
 
 
-
     public function animais() {
-        return $this->hasMany('\src\model\entities\AnimalEntity');
+        return $this->hasMany('\src\model\repository\entities\AnimalEntity');
     }
 }

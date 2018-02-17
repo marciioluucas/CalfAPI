@@ -9,7 +9,7 @@
 namespace src\model;
 
 
-use src\model\dao\PaiDAO;
+use src\model\repository\PaiDAO;
 use src\util\ClassToArray;
 use src\util\Data;
 

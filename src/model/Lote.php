@@ -9,7 +9,7 @@
 namespace src\model;
 
 
-use src\model\dao\LoteDAO;
+use src\model\repository\LoteDAO;
 use src\util\ClassToArray;
 use src\util\Data;
 

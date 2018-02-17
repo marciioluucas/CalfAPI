@@ -9,7 +9,7 @@
 namespace src\model;
 
 
-use src\model\dao\PesagemDAO;
+use src\model\repository\PesagemDAO;
 use src\util\ClassToArray;
 use src\util\Data;
 

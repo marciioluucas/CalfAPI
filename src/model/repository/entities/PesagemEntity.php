@@ -6,7 +6,7 @@
  * Time: 15:47
  */
 
-namespace src\model\entities;
+namespace src\model\repository\entities;
 
 
 class PesagemEntity extends CalfEntity
@@ -16,6 +16,6 @@ class PesagemEntity extends CalfEntity
 
 
     public function animal() {
-        return $this->belongsTo('src\model\entities\AnimalEntity', 'animais_id');
+        return $this->belongsTo('src\model\repository\entities\AnimalEntity', 'animais_id');
     }
 }

@@ -6,7 +6,7 @@
  * Time: 15:56
  */
 
-namespace src\model\dao;
+namespace src\model\repository;
 
 
 use bd\Banco;

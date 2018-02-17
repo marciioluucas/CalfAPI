@@ -7,7 +7,7 @@
  * Time: 00:01
  */
 
-namespace src\model\dao;
+namespace src\model\repository;
 
 
 use Exception;
@@ -44,35 +44,35 @@ class AnimalDAO implements IDAO
     }
 
     /**
-     * @param Animal $toChange
+     * @param Animal $obj
      */
-    public static function update($toChange)
+    public static function update($obj)
     {
-        $entity = AnimalEntity::find($toChange->getId());
+        $entity = AnimalEntity::find($obj->getId());
 
-        if (!is_null($toChange->getNomeAnimal())) {
-            $entity->nome = $toChange->getNomeAnimal();
+        if (!is_null($obj->getNomeAnimal())) {
+            $entity->nome = $obj->getNomeAnimal();
         }
-        if (!is_null($toChange->getDataNascimento())) {
-            $entity->data_nascimento = $toChange->getDataNascimento();
+        if (!is_null($obj->getDataNascimento())) {
+            $entity->data_nascimento = $obj->getDataNascimento();
         }
-        if (!is_null($toChange->getPrimogenito())) {
-            $entity->primogenito = $toChange->getPrimogenito();
+        if (!is_null($obj->getPrimogenito())) {
+            $entity->primogenito = $obj->getPrimogenito();
         }
-        if (!is_null($toChange->getCodigoBrinco())) {
-            $entity->codigo_brinco = $toChange->getCodigoBrinco();
+        if (!is_null($obj->getCodigoBrinco())) {
+            $entity->codigo_brinco = $obj->getCodigoBrinco();
         }
-        if (!is_null($toChange->getCodigoRaca())) {
-            $entity->codigo_raca = $toChange->getCodigoRaca();
+        if (!is_null($obj->getCodigoRaca())) {
+            $entity->codigo_raca = $obj->getCodigoRaca();
         }
-        if (!is_null($toChange->getDataAlteracao())) {
-            $entity->data_alteracao = $toChange->getDataAlteracao();
+        if (!is_null($obj->getDataAlteracao())) {
+            $entity->data_alteracao = $obj->getDataAlteracao();
         }
-        if (!is_null($toChange->getFkFazenda())) {
-            $entity->fazendas_id = $toChange->getFkFazenda();
+        if (!is_null($obj->getFkFazenda())) {
+            $entity->fazendas_id = $obj->getFkFazenda();
         }
-        if (!is_null($toChange->getFkLote())) {
-            $entity->lotes_id = $toChange->getFkLote();
+        if (!is_null($obj->getFkLote())) {
+            $entity->lotes_id = $obj->getFkLote();
         }
         if ($entity->save()) {
             return $entity->id;
@@ -134,22 +134,6 @@ class AnimalDAO implements IDAO
             ];
         } catch (Exception $e) {
             throw new Exception("Algo de errado aconteceu ao tentar pesquisar por nome" . $e->getMessage());
-        }
-    }
-
-    /**
-     * @param $filtro
-     * @param $valor
-     * @return array
-     * @throws Exception
-     */
-    public static function retreaveByPersonalizado($filtro, $valor, $page)
-    {
-        try {
-            return ["animals" => "TODO FILTRO E VALOR: by " . $filtro . " = " . $valor];
-//            ->paginate(QUANTIDADE_ITENS_POR_PAGINA, ['*'], 'pagina', $page)
-        } catch (Exception $e) {
-            throw new Exception("Algo de errado aconteceu ao tentar pesquisar por um filtro personalizado" . $e->getMessage());
         }
     }
 

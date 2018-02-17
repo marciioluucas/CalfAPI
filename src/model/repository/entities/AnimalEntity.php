@@ -6,7 +6,7 @@
  * Time: 16:09
  */
 
-namespace src\model\entities;
+namespace src\model\repository\entities;
 
 
 class AnimalEntity extends CalfEntity
@@ -17,11 +17,11 @@ class AnimalEntity extends CalfEntity
         'fazendas_id', 'lotes_id'];
 
     public function fazenda() {
-        return $this->belongsTo('src\model\entities\FazendaEntity', 'fazendas_id');
+        return $this->belongsTo('src\model\repository\entities\FazendaEntity', 'fazendas_id');
     }
 
     public function pesagens() {
-        return $this->hasMany('src\model\entities\PesagemEntity','animais_id', 'id');
+        return $this->hasMany('src\model\repository\entities\PesagemEntity','animais_id', 'id');
     }
 
     public function scopeAtivo($query) {

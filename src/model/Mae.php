@@ -9,7 +9,7 @@
 namespace src\model;
 
 
-use src\model\dao\MaeDAO;
+use src\model\repository\MaeDAO;
 use src\util\ClassToArray;
 use src\util\Data;
 

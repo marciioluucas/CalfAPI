@@ -3,17 +3,17 @@
  * Created by PhpStorm.
  * User: Usuario
  * Date: 13/09/2017
- * Time: 12:04
+ * Time: 13:10
  */
 
-namespace src\model\dao;
+namespace src\model\repository;
 
 
 use bd\Banco;
 use Exception;
 use PDO;
 
-class FazendaDAO implements IDAO
+class LoteDAO implements IDAO
 {
 
     public function create($obj)
@@ -30,14 +30,14 @@ class FazendaDAO implements IDAO
             }
             $queryVal = substr_replace($queryVal, '', -1);
             $queryNam = substr_replace($queryNam, '', -1);
-            $query = "INSERT INTO fazendas($queryNam) VALUES ($queryVal)";
+            $query = "INSERT INTO lotes($queryNam) VALUES ($queryVal)";
             $stmt = $db->prepare($query);
             foreach ($obj as $key => &$val) {
                 $stmt->bindParam($key, $val);
             }
             $stmt->execute();
             $codigo = 200;
-            $messagem = "Fazenda adicionada com sucesso";
+            $messagem = "Lote adicionado com sucesso";
         } catch (Exception $e) {
             $codigo = 400;
             $messagem = $e->getMessage();
@@ -59,14 +59,14 @@ class FazendaDAO implements IDAO
                 $queryText .= $key . "=:" . $key . ",";
             }
             $queryVal = substr_replace($queryText, '', -1);
-            $query = "UPDATE fazendas SET $queryVal WHERE idFazenda=:idFazenda";
+            $query = "UPDATE lotes SET $queryVal WHERE idLote=:idLote";
             $stmt = $db->prepare($query);
             foreach ($obj as $key => &$val) {
                 $stmt->bindParam($key, $val);
             }
             $stmt->execute();
             $codigo = 200;
-            $messagem = "Fazenda alterada com sucesso";
+            $messagem = "Lote alterado com sucesso";
         } catch (Exception $e) {
             $codigo = 400;
             $messagem = $e->getMessage();
@@ -83,18 +83,18 @@ class FazendaDAO implements IDAO
         $messagem = "Erro inesperado";
         try {
             $db = Banco::conexao();
-            $query = "SELECT * FROM fazendas WHERE status = 'ATIVO'";
+            $query = "SELECT * FROM lotes WHERE status = 'ATIVO'";
             if ($limite === null) {
                 $queryLimit = " LIMIT 10";
             } else {
                 $queryLimit = " LIMIT :limite,10";
             }
             if (!empty($obj)) {
-                if (isset($obj['idFazenda'])) {
-                    $query .= "AND idFazenda=:idFazenda";
+                if (isset($obj['idLote'])) {
+                    $query .= "AND idLote=:idLote";
                     $query .= $queryLimit;
                     $stmt = $db->prepare($query);
-                    $stmt->bindValue(':idFazenda', $obj['idFazenda']);
+                    $stmt->bindValue(':idLote', $obj['idLote']);
                 } else {
                     foreach ($obj as $key => $value) {
                         $query .= " AND " . $key . " LIKE :" . $key;
@@ -137,10 +137,10 @@ class FazendaDAO implements IDAO
         $messagem = "Erro inesperado";
         try {
             $db = Banco::conexao();
-            $query = "UPDATE fazendas SET status = 'DESATIVADO' WHERE idFazenda=:idFazenda";
+            $query = "UPDATE lotes SET status = 'DESATIVADO' WHERE idLote=:idLote";
 
             $stmt = $db->prepare($query);
-            $stmt->bindParam(':idFazenda', $obj['idFazenda'], PDO::PARAM_INT);
+            $stmt->bindParam(':idLote', $obj['idLote'], PDO::PARAM_INT);
 
             $stmt->execute();
             $codigo = 200;
@@ -150,7 +150,6 @@ class FazendaDAO implements IDAO
             $codigo = 400;
             $messagem = $e->getMessage();
         }
-
         return [
             "codigo" => $codigo,
             "mensagem" => $messagem

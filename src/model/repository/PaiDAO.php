@@ -6,14 +6,14 @@
  * Time: 14:15
  */
 
-namespace src\model\dao;
+namespace src\model\repository;
 
 
 use bd\Banco;
 use Exception;
 use PDO;
 
-class MaeDAO implements IDAO
+class PaiDAO implements IDAO
 {
 
     public function create($obj)
@@ -30,14 +30,14 @@ class MaeDAO implements IDAO
             }
             $queryVal = substr_replace($queryVal, '', -1);
             $queryNam = substr_replace($queryNam, '', -1);
-            $query = "INSERT INTO maes($queryNam) VALUES ($queryVal)";
+            $query = "INSERT INTO pais($queryNam) VALUES ($queryVal)";
             $stmt = $db->prepare($query);
             foreach ($obj as $key => &$val) {
                 $stmt->bindParam($key, $val);
             }
             $stmt->execute();
             $codigo = 200;
-            $messagem = "Mae adicionada com sucesso";
+            $messagem = "Pai adicionado com sucesso";
         } catch (Exception $e) {
             $codigo = 400;
             $messagem = $e->getMessage();
@@ -50,7 +50,8 @@ class MaeDAO implements IDAO
 
     public function update($obj)
     {
-        $messagem = "";
+        $codigo = 400;
+        $messagem = "Erro inesperado";
         try {
             $db = Banco::conexao();
             $queryText = "";
@@ -58,14 +59,14 @@ class MaeDAO implements IDAO
                 $queryText .= $key . "=:" . $key . ",";
             }
             $queryVal = substr_replace($queryText, '', -1);
-            $query = "UPDATE maes SET $queryVal WHERE idMae=:idMae";
+            $query = "UPDATE pais SET $queryVal WHERE idPai=:idPai";
             $stmt = $db->prepare($query);
             foreach ($obj as $key => &$val) {
                 $stmt->bindParam($key, $val);
             }
             $stmt->execute();
             $codigo = 200;
-            $messagem = "Mae alterada com sucesso";
+            $messagem = "Pai alterado com sucesso";
         } catch (Exception $e) {
             $codigo = 400;
             $messagem = $e->getMessage();
@@ -74,7 +75,6 @@ class MaeDAO implements IDAO
             "codigo" => $codigo,
             "mensagem" => $messagem
         ];
-        return $messagem;
     }
 
     public function retrave($obj, $limite)
@@ -83,19 +83,20 @@ class MaeDAO implements IDAO
         $messagem = "Erro inesperado";
         try {
             $db = Banco::conexao();
-            $query = "SELECT * FROM maes WHERE status = 'ATIVO'";
+            $query = "SELECT * FROM pais WHERE status = 'ATIVO'";
             if ($limite === null) {
                 $queryLimit = " LIMIT 10";
             } else {
                 $queryLimit = " LIMIT :limite,10";
             }
             if (!empty($obj)) {
-                if (isset($obj['idMae'])) {
-                    $query .= "AND idMae=:idMae";
+                if (isset($obj['idPai'])){
+                    $query .= "AND idPai=:idPai";
                     $query .= $queryLimit;
                     $stmt = $db->prepare($query);
-                    $stmt->bindValue(':idMae', $obj['idMae']);
-                } else {
+                    $stmt->bindValue(':idPai',$obj['idPai']);
+                }
+                else{
                     foreach ($obj as $key => $value) {
                         $query .= " AND " . $key . " LIKE :" . $key;
                     }
@@ -137,10 +138,10 @@ class MaeDAO implements IDAO
         $messagem = "Erro inesperado";
         try {
             $db = Banco::conexao();
-            $query = "UPDATE maes SET status = 'DESATIVADO' WHERE idMae=:idMae";
+            $query = "UPDATE pais SET status = 'DESATIVADO' WHERE idPai=:idPai";
 
             $stmt = $db->prepare($query);
-            $stmt->bindParam(':idMae', $obj['idMae'], PDO::PARAM_INT);
+            $stmt->bindParam(':idPai', $obj['idPai'], PDO::PARAM_INT);
 
             $stmt->execute();
             $codigo = 200;

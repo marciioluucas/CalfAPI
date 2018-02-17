@@ -6,7 +6,7 @@
  * Time: 17:09
  */
 
-namespace src\model\entities;
+namespace src\model\repository\entities;
 
 
 use Illuminate\Database\Eloquent\Model;

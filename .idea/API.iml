@@ -2,14 +2,14 @@
 <module type="WEB_MODULE" version="4">
   <component name="NewModuleRootManager">
     <content url="file://$MODULE_DIR$">
+      <sourceFolder url="file://$MODULE_DIR$/src/model/repository" isTestSource="false" packagePrefix="src\model\repository\" />
       <sourceFolder url="file://$MODULE_DIR$/src/model/validate" isTestSource="false" packagePrefix="src\model\validate\" />
-      <sourceFolder url="file://$MODULE_DIR$/src/model/entities" isTestSource="false" packagePrefix="src\model\entities\" />
       <sourceFolder url="file://$MODULE_DIR$/src/model" isTestSource="false" packagePrefix="src\model\" />
       <sourceFolder url="file://$MODULE_DIR$/src/controller" isTestSource="false" packagePrefix="src\controller\" />
-      <sourceFolder url="file://$MODULE_DIR$/src/model/dao" isTestSource="false" packagePrefix="src\model\dao\" />
       <sourceFolder url="file://$MODULE_DIR$/src/view" isTestSource="false" packagePrefix="src\view\" />
       <sourceFolder url="file://$MODULE_DIR$/src/util" isTestSource="false" packagePrefix="src\util\" />
       <sourceFolder url="file://$MODULE_DIR$/config/db/migrations" isTestSource="false" packagePrefix="config\db\migrations\" />
+      <sourceFolder url="file://$MODULE_DIR$/src/repository/entities" isTestSource="false" packagePrefix="src\model\repository\entities\" />
       <excludeFolder url="file://$MODULE_DIR$/vendor" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/composer" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/container-interop/container-interop" />

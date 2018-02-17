@@ -10,7 +10,7 @@ namespace src\model;
 
 
 use Psr\Http\Message\RequestInterface as Request;
-use src\model\dao\FazendaDAO;
+use src\model\repository\FazendaDAO;
 use src\util\ClassToArray;
 use src\util\Data;
 
