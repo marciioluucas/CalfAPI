@@ -14,7 +14,7 @@ use Exception;
 use Illuminate\Support\Facades\Validator;
 use PDO;
 use src\model\Animal;
-use src\model\entities\AnimalEntity;
+use src\model\repository\entities\AnimalEntity;
 use Psr\Http\Message\RequestInterface as Request;
 use src\model\IModel;
 

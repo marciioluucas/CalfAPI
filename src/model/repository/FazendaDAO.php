@@ -10,8 +10,8 @@ namespace src\model\repository;
 
 use Exception;
 use PDO;
-use src\model\entities\FazendaEntity;
 use src\model\Fazenda;
+use src\model\repository\entities\FazendaEntity;
 
 class FazendaDAO implements IDAO
 {
@@ -21,7 +21,9 @@ class FazendaDAO implements IDAO
      */
     public function create($obj)
     {
-        // TODO: Implement create() method.
+        $entity = new FazendaEntity();
+        $entity->nome = $obj->getNome();
+//        TODO : Terminar de fazer as parada aqui
     }
 
     /**

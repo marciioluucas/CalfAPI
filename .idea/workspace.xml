@@ -2,30 +2,10 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="00f5a375-e7b8-4505-98fa-01660a814dc1" name="Default" comment="">
-      <change beforePath="" afterPath="$PROJECT_DIR$/src/model/repository/FazendaDAO.php" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/src/model/repository/IDAO.php" />
-      <change beforePath="$PROJECT_DIR$/.idea/API.iml" afterPath="$PROJECT_DIR$/.idea/API.iml" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change beforePath="$PROJECT_DIR$/composer.json" afterPath="$PROJECT_DIR$/composer.json" />
-      <change beforePath="$PROJECT_DIR$/src/model/Animal.php" afterPath="$PROJECT_DIR$/src/model/Animal.php" />
-      <change beforePath="$PROJECT_DIR$/src/model/CiclosVida.php" afterPath="$PROJECT_DIR$/src/model/CiclosVida.php" />
-      <change beforePath="$PROJECT_DIR$/src/model/Fazenda.php" afterPath="$PROJECT_DIR$/src/model/Fazenda.php" />
-      <change beforePath="$PROJECT_DIR$/src/model/Lote.php" afterPath="$PROJECT_DIR$/src/model/Lote.php" />
-      <change beforePath="$PROJECT_DIR$/src/model/Mae.php" afterPath="$PROJECT_DIR$/src/model/Mae.php" />
-      <change beforePath="$PROJECT_DIR$/src/model/Pai.php" afterPath="$PROJECT_DIR$/src/model/Pai.php" />
-      <change beforePath="$PROJECT_DIR$/src/model/Pesagem.php" afterPath="$PROJECT_DIR$/src/model/Pesagem.php" />
-      <change beforePath="$PROJECT_DIR$/src/model/dao/AnimalDAO.php" afterPath="$PROJECT_DIR$/src/model/repository/AnimalDAO.php" />
-      <change beforePath="$PROJECT_DIR$/src/model/dao/CiclosVidaDAO.php" afterPath="$PROJECT_DIR$/src/model/repository/CiclosVidaDAO.php" />
-      <change beforePath="$PROJECT_DIR$/src/model/dao/FazendaDAO.php" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/src/model/dao/IDAO.php" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/src/model/dao/LoteDAO.php" afterPath="$PROJECT_DIR$/src/model/repository/LoteDAO.php" />
-      <change beforePath="$PROJECT_DIR$/src/model/dao/MaeDAO.php" afterPath="$PROJECT_DIR$/src/model/repository/MaeDAO.php" />
-      <change beforePath="$PROJECT_DIR$/src/model/dao/PaiDAO.php" afterPath="$PROJECT_DIR$/src/model/repository/PaiDAO.php" />
-      <change beforePath="$PROJECT_DIR$/src/model/dao/PesagemDAO.php" afterPath="$PROJECT_DIR$/src/model/repository/PesagemDAO.php" />
-      <change beforePath="$PROJECT_DIR$/src/model/entities/AnimalEntity.php" afterPath="$PROJECT_DIR$/src/model/repository/entities/AnimalEntity.php" />
-      <change beforePath="$PROJECT_DIR$/src/model/entities/CalfEntity.php" afterPath="$PROJECT_DIR$/src/model/repository/entities/CalfEntity.php" />
-      <change beforePath="$PROJECT_DIR$/src/model/entities/FazendaEntity.php" afterPath="$PROJECT_DIR$/src/model/repository/entities/FazendaEntity.php" />
-      <change beforePath="$PROJECT_DIR$/src/model/entities/PesagemEntity.php" afterPath="$PROJECT_DIR$/src/model/repository/entities/PesagemEntity.php" />
+      <change beforePath="$PROJECT_DIR$/composer.lock" afterPath="$PROJECT_DIR$/composer.lock" />
+      <change beforePath="$PROJECT_DIR$/src/model/repository/AnimalDAO.php" afterPath="$PROJECT_DIR$/src/model/repository/AnimalDAO.php" />
+      <change beforePath="$PROJECT_DIR$/src/model/repository/FazendaDAO.php" afterPath="$PROJECT_DIR$/src/model/repository/FazendaDAO.php" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -57,7 +37,50 @@
     <favorites_list name="API" />
   </component>
   <component name="FileEditorManager">
-    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300" />
+    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
+      <file leaf-file-name="AnimalDAO.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/model/repository/AnimalDAO.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="-24">
+              <caret line="16" column="47" lean-forward="false" selection-start-line="16" selection-start-column="47" selection-end-line="16" selection-end-column="47" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="AnimalEntity.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/model/repository/entities/AnimalEntity.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="72">
+              <caret line="8" column="40" lean-forward="true" selection-start-line="8" selection-start-column="40" selection-end-line="8" selection-end-column="40" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="FazendaDAO.php" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/model/repository/FazendaDAO.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="408">
+              <caret line="26" column="5" lean-forward="true" selection-start-line="26" selection-start-column="5" selection-end-line="26" selection-end-column="5" />
+              <folding>
+                <element signature="e#124#138#0#PHP" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="FazendaEntity.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/model/repository/entities/FazendaEntity.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="171">
+              <caret line="18" column="10" lean-forward="false" selection-start-line="18" selection-start-column="10" selection-end-line="18" selection-end-column="10" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+    </leaf>
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
@@ -115,8 +138,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/config.php" />
-        <option value="$PROJECT_DIR$/config/db/migrations/20180210131638_animal_migration.php" />
         <option value="$PROJECT_DIR$/src/model/CiclosVida.php" />
         <option value="$PROJECT_DIR$/src/view/Routes.php" />
         <option value="$PROJECT_DIR$/src/view/routes/usuarios.php" />
@@ -166,6 +187,8 @@
         <option value="$PROJECT_DIR$/src/model/dao/IDAO.php" />
         <option value="$PROJECT_DIR$/src/model/repository/entities/AnimalEntity.php" />
         <option value="$PROJECT_DIR$/composer.json" />
+        <option value="$PROJECT_DIR$/src/model/repository/AnimalDAO.php" />
+        <option value="$PROJECT_DIR$/src/model/repository/FazendaDAO.php" />
       </list>
     </option>
   </component>
@@ -321,6 +344,32 @@
               <item name="CalfAPI" type="b2602c69:ProjectViewProjectNode" />
               <item name="CalfAPI" type="2a2b976b:PhpTreeStructureProvider$1" />
             </path>
+            <path>
+              <item name="CalfAPI" type="b2602c69:ProjectViewProjectNode" />
+              <item name="CalfAPI" type="2a2b976b:PhpTreeStructureProvider$1" />
+              <item name="src" type="2a2b976b:PhpTreeStructureProvider$1" />
+            </path>
+            <path>
+              <item name="CalfAPI" type="b2602c69:ProjectViewProjectNode" />
+              <item name="CalfAPI" type="2a2b976b:PhpTreeStructureProvider$1" />
+              <item name="src" type="2a2b976b:PhpTreeStructureProvider$1" />
+              <item name="model" type="2a2b976b:PhpTreeStructureProvider$1" />
+            </path>
+            <path>
+              <item name="CalfAPI" type="b2602c69:ProjectViewProjectNode" />
+              <item name="CalfAPI" type="2a2b976b:PhpTreeStructureProvider$1" />
+              <item name="src" type="2a2b976b:PhpTreeStructureProvider$1" />
+              <item name="model" type="2a2b976b:PhpTreeStructureProvider$1" />
+              <item name="repository" type="2a2b976b:PhpTreeStructureProvider$1" />
+            </path>
+            <path>
+              <item name="CalfAPI" type="b2602c69:ProjectViewProjectNode" />
+              <item name="CalfAPI" type="2a2b976b:PhpTreeStructureProvider$1" />
+              <item name="src" type="2a2b976b:PhpTreeStructureProvider$1" />
+              <item name="model" type="2a2b976b:PhpTreeStructureProvider$1" />
+              <item name="repository" type="2a2b976b:PhpTreeStructureProvider$1" />
+              <item name="entities" type="2a2b976b:PhpTreeStructureProvider$1" />
+            </path>
           </expand>
           <select />
         </subPane>
@@ -403,7 +452,7 @@
       <workItem from="1518630113108" duration="3589000" />
       <workItem from="1518696240460" duration="10726000" />
       <workItem from="1518780941295" duration="15012000" />
-      <workItem from="1518863041807" duration="2532000" />
+      <workItem from="1518863041807" duration="2991000" />
     </task>
     <task id="LOCAL-00001" summary="Colocando Slim">
       <created>1518011759197</created>
@@ -531,16 +580,24 @@
       <option name="project" value="LOCAL" />
       <updated>1518815729779</updated>
     </task>
-    <option name="localTasksCounter" value="19" />
+    <task id="LOCAL-00019" summary="Mudando mais uma vez a arquitetura nos arquivos, adicionando o repository no lugar da DAO e colocando a entities dentro do pacote de repository">
+      <created>1518866215996</created>
+      <option name="number" value="00019" />
+      <option name="presentableId" value="LOCAL-00019" />
+      <option name="project" value="LOCAL" />
+      <updated>1518866215996</updated>
+    </task>
+    <option name="localTasksCounter" value="20" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="125463000" />
+    <option name="totallyTimeSpent" value="125922000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1382" height="744" extended-state="6" />
+    <editor active="true" />
     <layout>
-      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.24544074" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.24544074" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Docker" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32730263" sideWeight="0.50292826" order="7" side_tool="true" content_ui="tabs" />
@@ -585,7 +642,8 @@
     <MESSAGE value="Mudando Nome do enum" />
     <MESSAGE value="Funcionando Exceptions" />
     <MESSAGE value="Criando padronização de exibição de mensagens em JSON" />
-    <option name="LAST_COMMIT_MESSAGE" value="Criando padronização de exibição de mensagens em JSON" />
+    <MESSAGE value="Mudando mais uma vez a arquitetura nos arquivos, adicionando o repository no lugar da DAO e colocando a entities dentro do pacote de repository" />
+    <option name="LAST_COMMIT_MESSAGE" value="Mudando mais uma vez a arquitetura nos arquivos, adicionando o repository no lugar da DAO e colocando a entities dentro do pacote de repository" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -843,36 +901,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/model/repository/FazendaDAO.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="120">
-          <caret line="21" column="27" lean-forward="false" selection-start-line="21" selection-start-column="27" selection-end-line="21" selection-end-column="27" />
-          <folding>
-            <element signature="e#124#138#0#PHP" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/model/repository/entities/FazendaEntity.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="264">
-          <caret line="22" column="6" lean-forward="false" selection-start-line="22" selection-start-column="6" selection-end-line="22" selection-end-column="6" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/model/repository/entities/CalfEntity.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="216">
           <caret line="14" column="1" lean-forward="false" selection-start-line="14" selection-start-column="1" selection-end-line="14" selection-end-column="1" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/model/repository/entities/AnimalEntity.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="264">
-          <caret line="16" column="35" lean-forward="true" selection-start-line="16" selection-start-column="35" selection-end-line="16" selection-end-column="35" />
           <folding />
         </state>
       </provider>
@@ -882,7 +914,7 @@
         <state relative-caret-position="296">
           <caret line="52" column="34" lean-forward="false" selection-start-line="52" selection-start-column="34" selection-end-line="52" selection-end-column="34" />
           <folding>
-            <element signature="e#114#130#0#PHP" expanded="true" />
+            <element signature="e#114#130#0#PHP" expanded="false" />
             <element signature="e#2406#2483#0#PHP" expanded="false" />
             <element signature="e#2537#2632#0#PHP" expanded="false" />
             <element signature="e#2675#2754#0#PHP" expanded="false" />
@@ -927,19 +959,45 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/model/repository/AnimalDAO.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="96">
-          <caret line="9" column="27" lean-forward="false" selection-start-line="9" selection-start-column="27" selection-end-line="9" selection-end-column="27" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/model/repository/IDAO.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="240">
           <caret line="17" column="0" lean-forward="false" selection-start-line="17" selection-start-column="0" selection-end-line="17" selection-end-column="0" />
           <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/model/repository/AnimalDAO.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-24">
+          <caret line="16" column="47" lean-forward="false" selection-start-line="16" selection-start-column="47" selection-end-line="16" selection-end-column="47" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/model/repository/entities/AnimalEntity.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="72">
+          <caret line="8" column="40" lean-forward="true" selection-start-line="8" selection-start-column="40" selection-end-line="8" selection-end-column="40" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/model/repository/entities/FazendaEntity.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="171">
+          <caret line="18" column="10" lean-forward="false" selection-start-line="18" selection-start-column="10" selection-end-line="18" selection-end-column="10" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/model/repository/FazendaDAO.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="408">
+          <caret line="26" column="5" lean-forward="true" selection-start-line="26" selection-start-column="5" selection-end-line="26" selection-end-column="5" />
+          <folding>
+            <element signature="e#124#138#0#PHP" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
