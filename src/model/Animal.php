@@ -111,7 +111,6 @@ class Animal implements IModel
         $this->id = $id;
     }
 
-
     /**
      * @return mixed
      */
