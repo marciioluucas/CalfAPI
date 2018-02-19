@@ -41,11 +41,12 @@ class Animal implements IModel
 
     /**
      * @return bool
+     * @throws Exception
      */
     public function cadastrar()
     {
-        $this->dataAlteracao = date('Y-m-d');
-        $this->dataCriacao = date('Y-m-d');
+        $this->dataAlteracao = date('Y-m-d H:i:s');
+        $this->dataCriacao = date('Y-m-d H:i:s');
         $this->faseDaVida = FaseDaVida::BEZERRO;
 //        $this->usuarioAlteracao = "Lucas";// vai pegar do token dps de implementar o login;
         $this->usuarioCadastro = 1;
@@ -64,6 +65,7 @@ class Animal implements IModel
     public function alterar()
     {
         try {
+            $this->dataAlteracao = date('Y-m-d H:i:s');
             return (new AnimalDAO())->update($this);
         } catch (Exception $e) {
             throw new Exception("Erro ao tentar atualizar um animal: " . $e->getMessage());
@@ -78,11 +80,11 @@ class Animal implements IModel
     public function pesquisar($page)
     {
         if ($this->id) {
-            return AnimalDAO::retreaveById($this->id);
+            return (new AnimalDAO)->retreaveById($this->id);
         } else if ($this->nomeAnimal) {
-            return AnimalDAO::retreaveByNome($this->nomeAnimal, $page);
+            return (new AnimalDAO)->retreaveByNome($this->nomeAnimal, $page);
         }
-        return AnimalDAO::retreaveAll($page);
+        return (new AnimalDAO)->retreaveAll($page);
 
     }
 

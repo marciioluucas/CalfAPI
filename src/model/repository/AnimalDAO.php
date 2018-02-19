@@ -25,7 +25,7 @@ class AnimalDAO implements IDAO
      * @param Animal $obj
      * @return bool
      */
-    public static function create($obj)
+    public function create($obj)
     {
         $entity = new AnimalEntity();
         $entity->nome = $obj->getNomeAnimal();
@@ -37,16 +37,20 @@ class AnimalDAO implements IDAO
         $entity->data_alteracao = $obj->getDataAlteracao();
         $entity->fazendas_id = $obj->getFkFazenda();
         $entity->lotes_id = $obj->getFkLote();
-        if ($entity->save()) {
-            return $entity->id;
-        };
+        try{
+            if($entity->save()){
+                return $entity->id;
+            }
+        }catch (Exception $e) {
+            throw new Exception("Erro ao tentar salvar uma nova fazenda.");
+        }
         return false;
     }
 
     /**
      * @param Animal $obj
      */
-    public static function update($obj)
+    public function update($obj)
     {
         $entity = AnimalEntity::find($obj->getId());
 
@@ -84,7 +88,7 @@ class AnimalDAO implements IDAO
      * @param $page
      * @return array
      */
-    public static function retreaveAll($page)
+    public function retreaveAll($page)
     {
         $animais = AnimalEntity
             ::ativo()->with('fazenda')
@@ -103,7 +107,7 @@ class AnimalDAO implements IDAO
      * @return array
      * @throws Exception
      */
-    public static function retreaveById($id)
+    public function retreaveById($id)
     {
         try {
             return [
@@ -122,7 +126,7 @@ class AnimalDAO implements IDAO
      * @return array
      * @throws Exception
      */
-    public static function retreaveByNome($nome, $page)
+    public function retreaveByNome($nome, $page)
     {
         try {
             return [
@@ -137,7 +141,7 @@ class AnimalDAO implements IDAO
         }
     }
 
-    public static function delete(int $id)
+    public function delete(int $id)
     {
         $entity = AnimalEntity::find($id);
         $entity->status = 0;

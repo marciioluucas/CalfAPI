@@ -34,12 +34,11 @@ class AnimalController implements IController
     {
         try {
             $animal = new Animal();
-            $dataToValidate = json_decode($request->getBody()->getContents(), true);
-            $data = json_decode($request->getBody()->getContents($dataToValidate));
-            $valida = (new AnimalValidate())->validatePost($data);
+            $data = json_decode($request->getBody()->getContents());
+            $valida = (new AnimalValidate())->validatePost((array)$data);
             if ($valida === true) {
                 $animal->setCodigoBrinco($data->codigo_brinco);
-                $animal->setNomeAnimal($data->nome_animal);
+                $animal->setNomeAnimal($data->nome);
                 $animal->setPrimogenito($data->primogenito);
                 $animal->setCodigoRaca($data->codigo_raca);
                 $animal->setDataNascimento($data->data_nascimento);
@@ -119,7 +118,17 @@ class AnimalController implements IController
             if (isset($data->id_fazenda)) {
                 $animal->setFkFazenda($data->id_fazenda);
             }
-            return View::render($response, $animal->alterar());
+            try {
+                if ($animal->alterar()) {
+                    return View::renderMessage($response,
+                        "success", "Animal alterado com sucesso! ",
+                        202, "Sucesso ao alterar");
+                } else {
+                    return View::renderMessage($response, 'error', "Erro ao tentar mudar animal", 503);
+                }
+            } catch (Exception $exception) {
+                return View::renderException($response, $exception);
+            }
         }
     }
 

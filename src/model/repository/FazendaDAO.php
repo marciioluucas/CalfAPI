@@ -18,12 +18,24 @@ class FazendaDAO implements IDAO
 
     /**
      * @param Fazenda $obj
+     * @return bool|mixed
+     * @throws Exception
      */
     public function create($obj)
     {
         $entity = new FazendaEntity();
         $entity->nome = $obj->getNome();
-//        TODO : Terminar de fazer as parada aqui
+        $entity->data_alteracao = $obj->getDataAlteracao();
+        $entity->data_cadastro = $obj->getDataCriacao();
+        $entity->usuario_cadastro = $obj->getUsuarioCadastro();
+        try{
+            if($entity->save()){
+                return $entity->id;
+            }
+        }catch (Exception $e) {
+            throw new Exception("Erro ao tentar salvar uma nova fazenda.");
+        }
+        return false;
     }
 
     /**
@@ -31,7 +43,14 @@ class FazendaDAO implements IDAO
      */
     public function update($obj)
     {
-        // TODO: Implement update() method.
+        $entity = FazendaEntity::find($obj->getId());
+        if (!is_null($obj->getNome())) {
+            $entity->nome = $obj->getNomeAnimal();
+        }
+
+        if (!is_null($obj->getDataAlteracao())) {
+            $entity->data_alteracao = $obj->getDataAlteracao();
+        }
     }
 
     /**
