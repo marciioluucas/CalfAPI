@@ -10,19 +10,48 @@ namespace src\model;
 
 use \Psr\Http\Message\RequestInterface as Request;
 
+/**
+ * Class Modelo
+ * @package src\model
+ */
 abstract class Modelo
 {
+    /**
+     * @var string
+     */
     protected $dataAlteracao;
+    /**
+     * @var string
+     */
     protected $dataCriacao;
+    /**
+     * @var Usuario
+     */
     protected $usuarioCadastro;
+    /**
+     * @var Usuario
+     */
     protected $usuarioAlteracao;
 
+    /**
+     * @return mixed
+     */
     public abstract function cadastrar();
 
+    /**
+     * @return mixed
+     */
     public abstract function alterar();
 
+    /**
+     * @param Request $request
+     * @return array
+     */
     public abstract function pesquisar(Request $request);
 
+    /**
+     * @return mixed
+     */
     public abstract function deletar();
 
     /**

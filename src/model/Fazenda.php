@@ -12,6 +12,7 @@ namespace src\model;
 use Psr\Http\Message\RequestInterface as Request;
 use src\model\repository\FazendaDAO;
 use src\util\ClassToArray;
+use src\util\Config;
 use src\util\Data;
 
 class Fazenda extends Modelo
@@ -32,7 +33,9 @@ class Fazenda extends Modelo
 
     public function cadastrar()
     {
-        // TODO: Implement cadastrar() method.
+
+        $this->dataCriacao = date(Config::PADRAO_DATA_HORA);
+        $this->dataAlteracao = date(Config::PADRAO_DATA_HORA);
     }
 
     public function alterar()

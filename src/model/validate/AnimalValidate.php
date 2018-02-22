@@ -18,7 +18,7 @@ class AnimalValidate extends Validate
     public function validatePost($params)
     {
         $v = new Validator($params);
-        $v->rule('required', ['data_nascimento', 'codigo_raca', 'codigo_brinco', 'id_pesagem', 'id_lote', 'id_fazenda', 'nome_animal']);
+        $v->rule('required', ['data_nascimento', 'codigo_raca', 'codigo_brinco', 'id_pesagem', 'id_lote', 'id_fazenda', 'nome']);
         $v->rule('integer', ['id_pesagem', 'id_lote', 'id_fazenda']);
         $v->rule('date', 'data_nascimento');
         if ($v->validate()) {

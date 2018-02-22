@@ -9,20 +9,17 @@
 namespace src\model;
 
 use Psr\Http\Message\RequestInterface as Request;
+use src\util\Config;
 
 class Pesagem extends Modelo
 {
     private $id;
     private $peso;
-    private $animal;
-
-    public function __construct()
-    {
-            $this->animal = new Animal();
-    }
 
     public function cadastrar()
     {
+        $this->dataCriacao = date(Config::PADRAO_DATA_HORA);
+        $this->dataAlteracao = date(Config::PADRAO_DATA_HORA);
     }
 
     public function alterar()

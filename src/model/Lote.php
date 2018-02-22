@@ -10,7 +10,7 @@ namespace src\model;
 
 
 use Psr\Http\Message\RequestInterface as Request;
-use const src\util\PADRAO_DATA_HORA;
+use src\util\Config;
 
 class Lote extends Modelo
 {
@@ -20,7 +20,8 @@ class Lote extends Modelo
 
     public function cadastrar()
     {
-       $this->dataCriacao = date(PADRAO_DATA_HORA);
+       $this->dataCriacao = date(Config::PADRAO_DATA_HORA);
+       $this->dataAlteracao = date(Config::PADRAO_DATA_HORA);
     }
 
     public function alterar()

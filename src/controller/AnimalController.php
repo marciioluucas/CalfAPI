@@ -38,13 +38,12 @@ class AnimalController implements IController
             $valida = (new AnimalValidate())->validatePost((array)$data);
             if ($valida === true) {
                 $animal->setCodigoBrinco($data->codigo_brinco);
-                $animal->setNomeAnimal($data->nome);
+                $animal->setNome($data->nome);
                 $animal->setPrimogenito($data->primogenito);
                 $animal->setCodigoRaca($data->codigo_raca);
                 $animal->setDataNascimento($data->data_nascimento);
-                $animal->setFkPesagem($data->id_pesagem);
-                $animal->setFkLote($data->id_lote);
-                $animal->setFkFazenda($data->id_fazenda);
+                $animal->getLote()->setId($data->id_lote);
+                $animal->getFazenda()->setId($data->id_fazenda);
                 $idCadastrado = $animal->cadastrar();
                 return View::renderMessage($response,
                     "success", "Animal cadastrado com sucesso! ID cadastrado: " . $idCadastrado,

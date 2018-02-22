@@ -19,11 +19,11 @@ class Database
        $capsule = new Capsule();
        try{
            $capsule->addConnection(array(
-               'driver'    => DBDRIVER,
-               'host'      => DBHOST,
-               'database'  => DBNAME,
-               'username'  => DBUSER,
-               'password'  => DBPASS,
+               'driver'    => Config::DBDRIVER,
+               'host'      => Config::DBHOST,
+               'database'  => Config::DBNAME,
+               'username'  => Config::DBUSER,
+               'password'  => Config::DBPASS,
                'charset'   => 'utf8',
                'collation' => 'utf8_unicode_ci',
                'prefix'    => ''

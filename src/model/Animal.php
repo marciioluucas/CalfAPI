@@ -11,24 +11,64 @@ namespace src\model;
 
 use Exception;
 use src\model\repository\AnimalDAO;
+use src\util\Config;
 use src\util\FaseDaVida;
 use const src\util\PADRAO_DATA_HORA;
 
 class Animal extends Modelo
 {
 
+    /**
+     * @var int
+     */
     private $id;
+    /**
+     * @var string
+     */
     private $nome;
+    /**
+     * @var string
+     */
     private $sexo;
+    /**
+     * @var boolean
+     */
     private $primogenito;
+    /**
+     * @var string
+     */
     private $faseDaVida;
+    /**
+     * @var string
+     */
     private $dataNascimento;
+    /**
+     * @var string
+     */
     private $codigoBrinco;
+    /**
+     * @var string
+     */
     private $codigoRaca;
+    /**
+     * @var float
+     */
     private $pesagem;
+    /**
+     * @var Animal
+     */
     private $pai;
+    /**
+     * @var Animal
+     */
     private $mae;
+    /**
+     * @var Lote
+     */
     private $lote;
+    /**
+     * @var Fazenda
+     */
     private $fazenda;
 
     /**
@@ -36,9 +76,12 @@ class Animal extends Modelo
      */
     public function __construct()
     {
-        $this->pai = new Animal();
-        $this->mae = new Animal();
-        $this->pesagem = new Pesagem();
+
+        $this->fazenda = new Fazenda();
+        $this->lote = new Lote();
+        $this->usuarioCadastro = new Usuario();
+        $this->usuarioAlteracao = new Usuario();
+
     }
 
 
@@ -48,11 +91,11 @@ class Animal extends Modelo
      */
     public function cadastrar()
     {
-        $this->dataAlteracao = date(PADRAO_DATA_HORA);
-        $this->dataCriacao = date(PADRAO_DATA_HORA);
+        $this->dataAlteracao = date(Config::PADRAO_DATA_HORA);
+        $this->dataCriacao = date(Config::PADRAO_DATA_HORA);
         $this->faseDaVida = FaseDaVida::BEZERRO;
 //        $this->usuarioAlteracao = "Lucas";// vai pegar do token dps de implementar o login;
-        $this->usuarioCadastro = 1;
+        $this->usuarioCadastro->setId(1);
 //        $array = (new ClassToArray())->classToArray($this);
         if ($this->primogenito == 1) {
             $this->faseDaVida = FaseDaVida::ADULTO;
@@ -78,7 +121,7 @@ class Animal extends Modelo
     /**
      * @param int $page
      * @return array
-     * @throws \Exception
+     * @throws Exception
      */
     public function pesquisar($page)
     {
@@ -97,213 +140,217 @@ class Animal extends Modelo
         return (new AnimalDAO())->delete($this->id);
     }
 
+    public function mudarLocalizacao()
+    {
+
+    }
+
     /**
-     * @return mixed
+     * @return int
      */
-    public function getId()
+    public function getId(): int
     {
         return $this->id;
     }
 
     /**
-     * @param mixed $id
+     * @param int $id
      */
-    public function setId($id): void
+    public function setId(int $id): void
     {
         $this->id = $id;
     }
 
     /**
-     * @return mixed
+     * @return string
      */
-    public function getNome()
+    public function getNome(): string
     {
         return $this->nome;
     }
 
     /**
-     * @param mixed $nome
+     * @param string $nome
      */
-    public function setNome($nome): void
+    public function setNome(string $nome): void
     {
         $this->nome = $nome;
     }
 
     /**
-     * @return mixed
+     * @return string
      */
-    public function getSexo()
+    public function getSexo(): string
     {
         return $this->sexo;
     }
 
     /**
-     * @param mixed $sexo
+     * @param string $sexo
      */
-    public function setSexo($sexo): void
+    public function setSexo(string $sexo): void
     {
         $this->sexo = $sexo;
     }
 
     /**
-     * @return mixed
+     * @return bool
      */
-    public function getPrimogenito()
+    public function isPrimogenito(): bool
     {
         return $this->primogenito;
     }
 
     /**
-     * @param mixed $primogenito
+     * @param bool $primogenito
      */
-    public function setPrimogenito($primogenito): void
+    public function setPrimogenito(bool $primogenito): void
     {
         $this->primogenito = $primogenito;
     }
 
     /**
-     * @return mixed
+     * @return string
      */
-    public function getFaseDaVida()
+    public function getFaseDaVida(): string
     {
         return $this->faseDaVida;
     }
 
     /**
-     * @param mixed $faseDaVida
+     * @param string $faseDaVida
      */
-    public function setFaseDaVida($faseDaVida): void
+    public function setFaseDaVida(string $faseDaVida): void
     {
         $this->faseDaVida = $faseDaVida;
     }
 
     /**
-     * @return mixed
+     * @return string
      */
-    public function getDataNascimento()
+    public function getDataNascimento(): string
     {
         return $this->dataNascimento;
     }
 
     /**
-     * @param mixed $dataNascimento
+     * @param string $dataNascimento
      */
-    public function setDataNascimento($dataNascimento): void
+    public function setDataNascimento(string $dataNascimento): void
     {
         $this->dataNascimento = $dataNascimento;
     }
 
     /**
-     * @return mixed
+     * @return string
      */
-    public function getCodigoBrinco()
+    public function getCodigoBrinco(): string
     {
         return $this->codigoBrinco;
     }
 
     /**
-     * @param mixed $codigoBrinco
+     * @param string $codigoBrinco
      */
-    public function setCodigoBrinco($codigoBrinco): void
+    public function setCodigoBrinco(string $codigoBrinco): void
     {
         $this->codigoBrinco = $codigoBrinco;
     }
 
     /**
-     * @return mixed
+     * @return string
      */
-    public function getCodigoRaca()
+    public function getCodigoRaca(): string
     {
         return $this->codigoRaca;
     }
 
     /**
-     * @param mixed $codigoRaca
+     * @param string $codigoRaca
      */
-    public function setCodigoRaca($codigoRaca): void
+    public function setCodigoRaca(string $codigoRaca): void
     {
         $this->codigoRaca = $codigoRaca;
     }
 
     /**
-     * @return mixed
+     * @return float
      */
-    public function getPesagem()
+    public function getPesagem(): float
     {
         return $this->pesagem;
     }
 
     /**
-     * @param mixed $pesagem
+     * @param float $pesagem
      */
-    public function setPesagem($pesagem): void
+    public function setPesagem(float $pesagem): void
     {
         $this->pesagem = $pesagem;
     }
 
     /**
-     * @return mixed
+     * @return Animal
      */
-    public function getPai()
+    public function getPai(): Animal
     {
         return $this->pai;
     }
 
     /**
-     * @param mixed $pai
+     * @param Animal $pai
      */
-    public function setPai($pai): void
+    public function setPai(Animal $pai): void
     {
         $this->pai = $pai;
     }
 
     /**
-     * @return mixed
+     * @return Animal
      */
-    public function getMae()
+    public function getMae(): Animal
     {
         return $this->mae;
     }
 
     /**
-     * @param mixed $mae
+     * @param Animal $mae
      */
-    public function setMae($mae): void
+    public function setMae(Animal $mae): void
     {
         $this->mae = $mae;
     }
 
     /**
-     * @return mixed
+     * @return Lote
      */
-    public function getLote()
+    public function getLote(): Lote
     {
         return $this->lote;
     }
 
     /**
-     * @param mixed $lote
+     * @param Lote $lote
      */
-    public function setLote($lote): void
+    public function setLote(Lote $lote): void
     {
         $this->lote = $lote;
     }
 
     /**
-     * @return mixed
+     * @return Fazenda
      */
-    public function getFazenda()
+    public function getFazenda(): Fazenda
     {
         return $this->fazenda;
     }
 
     /**
-     * @param mixed $fazenda
+     * @param Fazenda $fazenda
      */
-    public function setFazenda($fazenda): void
+    public function setFazenda(Fazenda $fazenda): void
     {
         $this->fazenda = $fazenda;
     }
-
 
 }

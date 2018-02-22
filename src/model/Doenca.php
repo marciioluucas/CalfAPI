@@ -10,6 +10,7 @@ namespace src\model;
 
 
 use Psr\Http\Message\RequestInterface as Request;
+use src\util\Config;
 
 class Doenca extends Modelo
 {
@@ -19,7 +20,8 @@ class Doenca extends Modelo
 
     public function cadastrar()
     {
-        // TODO: Implement cadastrar() method.
+        $this->dataCriacao = date(Config::PADRAO_DATA_HORA);
+        $this->dataAlteracao = date(Config::PADRAO_DATA_HORA);
     }
 
     public function alterar()

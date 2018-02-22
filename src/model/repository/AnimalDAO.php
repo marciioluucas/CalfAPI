@@ -29,15 +29,17 @@ class AnimalDAO implements IDAO
     public function create($obj)
     {
         $entity = new AnimalEntity();
-        $entity->nome = $obj->getNomeAnimal();
+        $entity->nome = $obj->getNome();
         $entity->data_nascimento = $obj->getDataNascimento();
-        $entity->primogenito = $obj->getPrimogenito();
+        $entity->primogenito = $obj->isPrimogenito();
         $entity->codigo_brinco = $obj->getCodigoBrinco();
         $entity->codigo_raca = $obj->getCodigoRaca();
         $entity->data_cadastro = $obj->getDataCriacao();
         $entity->data_alteracao = $obj->getDataAlteracao();
-        $entity->fazendas_id = $obj->getFkFazenda();
-        $entity->lotes_id = $obj->getFkLote();
+        $entity->usuario_cadastro = $obj->getUsuarioCadastro()->getId();
+        $entity->usuario_alteracao = $obj->getUsuarioAlteracao()->getId();
+        $entity->fazendas_id = $obj->getFazenda()->getId();
+        $entity->lotes_id = $obj->getLote()->getId();
         try{
             if($entity->save()){
                 return $entity->id;
@@ -54,7 +56,7 @@ class AnimalDAO implements IDAO
     public function update($obj)
     {
         $entity = AnimalEntity::find($obj->getId());
-
+        $entity->usuario_alteracao = $obj->getUsuarioAlteracao()->getId();
         if (!is_null($obj->getNomeAnimal())) {
             $entity->nome = $obj->getNomeAnimal();
         }
@@ -74,10 +76,10 @@ class AnimalDAO implements IDAO
             $entity->data_alteracao = $obj->getDataAlteracao();
         }
         if (!is_null($obj->getFkFazenda())) {
-            $entity->fazendas_id = $obj->getFkFazenda();
+            $entity->fazendas_id = $obj->getFazenda()->getId();
         }
         if (!is_null($obj->getFkLote())) {
-            $entity->lotes_id = $obj->getFkLote();
+            $entity->lotes_id = $obj->getLote()->getId();
         }
         if ($entity->save()) {
             return $entity->id;
@@ -116,6 +118,7 @@ class AnimalDAO implements IDAO
                 "animais" => AnimalEntity
                     ::ativo()
                     ->with('fazenda')
+                    ->with('pesagens')
                     ->with('doencas')
                     ->where('id', $id)
                     ->get()
@@ -137,6 +140,7 @@ class AnimalDAO implements IDAO
                 "animais" => AnimalEntity
                     ::ativo()
                     ->with('fazenda')
+                    ->with('pesagens')
                     ->with('doencas')
                     ->where('nome', 'like', $nome . "%")
                     ->paginate(Config::QUANTIDADE_ITENS_POR_PAGINA, ['*'], 'pagina', $page)
