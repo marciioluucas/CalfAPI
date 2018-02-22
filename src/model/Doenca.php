@@ -17,6 +17,7 @@ class Doenca extends Modelo
     private $id;
     private $nome;
     private $descricao;
+    private $situacao;
 
     public function cadastrar()
     {

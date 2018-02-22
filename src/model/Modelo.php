@@ -34,6 +34,11 @@ abstract class Modelo
     protected $usuarioAlteracao;
 
     /**
+     * @var boolean
+     */
+    protected $status;
+
+    /**
      * @return mixed
      */
     public abstract function cadastrar();
@@ -118,5 +123,20 @@ abstract class Modelo
         $this->usuarioAlteracao = $usuarioAlteracao;
     }
 
+    /**
+     * @return bool
+     */
+    public function getStatus(): bool
+    {
+        return $this->status;
+    }
+
+    /**
+     * @param bool $status
+     */
+    public function setStatus(bool $status): void
+    {
+        $this->status = $status;
+    }
 
 }

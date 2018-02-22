@@ -13,7 +13,6 @@ use Exception;
 use src\model\repository\AnimalDAO;
 use src\util\Config;
 use src\util\FaseDaVida;
-use const src\util\PADRAO_DATA_HORA;
 
 class Animal extends Modelo
 {
@@ -22,34 +21,47 @@ class Animal extends Modelo
      * @var int
      */
     private $id;
+
     /**
      * @var string
      */
     private $nome;
+
     /**
      * @var string
      */
     private $sexo;
+
     /**
      * @var boolean
      */
     private $primogenito;
+
     /**
-     * @var string
+     * @var boolean
      */
-    private $faseDaVida;
+    private $morto;
+
     /**
      * @var string
      */
     private $dataNascimento;
+
+    /**
+     * @var string
+     */
+    private $faseDaVida;
+
     /**
      * @var string
      */
     private $codigoBrinco;
+
     /**
      * @var string
      */
     private $codigoRaca;
+
     /**
      * @var float
      */
@@ -66,6 +78,7 @@ class Animal extends Modelo
      * @var Lote
      */
     private $lote;
+
     /**
      * @var Fazenda
      */
@@ -93,7 +106,7 @@ class Animal extends Modelo
     {
         $this->dataAlteracao = date(Config::PADRAO_DATA_HORA);
         $this->dataCriacao = date(Config::PADRAO_DATA_HORA);
-        $this->faseDaVida = FaseDaVida::BEZERRO;
+        $this->faseDaVida = FaseDaVida::RECEM_NASCIDO;
 //        $this->usuarioAlteracao = "Lucas";// vai pegar do token dps de implementar o login;
         $this->usuarioCadastro->setId(1);
 //        $array = (new ClassToArray())->classToArray($this);
@@ -111,7 +124,7 @@ class Animal extends Modelo
     public function alterar()
     {
         try {
-            $this->dataAlteracao = date('Y-m-d H:i:s');
+            $this->dataAlteracao = date(Config::PADRAO_DATA_HORA);
             return (new AnimalDAO())->update($this);
         } catch (Exception $e) {
             throw new Exception("Erro ao tentar atualizar um animal: " . $e->getMessage());
@@ -191,6 +204,22 @@ class Animal extends Modelo
     public function setSexo(string $sexo): void
     {
         $this->sexo = $sexo;
+    }
+
+    /**
+     * @return bool
+     */
+    public function isMorto(): bool
+    {
+        return $this->morto;
+    }
+
+    /**
+     * @param bool $morto
+     */
+    public function setMorto(bool $morto): void
+    {
+        $this->morto = $morto;
     }
 
     /**
