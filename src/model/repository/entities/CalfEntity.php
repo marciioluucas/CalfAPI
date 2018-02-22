@@ -17,4 +17,10 @@ class CalfEntity extends Model
     const UPDATED_AT = 'data_alteracao';
     protected $guarded = ['id'];
     protected $primaryKey = 'id';
+
+
+    public function scopeAtivo($query)
+    {
+        return $query->where('status', 1);
+    }
 }

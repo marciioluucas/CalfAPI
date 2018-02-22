@@ -6,7 +6,7 @@
  * Time: 23:12
  */
 require 'vendor/autoload.php';
-require 'src/util/config.php';
+require 'src/util/Config.php';
 
 use src\util\Api;
 

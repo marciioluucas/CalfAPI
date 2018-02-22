@@ -1,34 +1,21 @@
 <?php
 /**
  * Created by PhpStorm.
- * User: Usuario
- * Date: 13/09/2017
- * Time: 11:42
+ * User: marci
+ * Date: 22/02/2018
+ * Time: 11:03
  */
 
 namespace src\model;
 
 
 use Psr\Http\Message\RequestInterface as Request;
-use src\model\repository\FazendaDAO;
-use src\util\ClassToArray;
-use src\util\Data;
 
-class Fazenda extends Modelo
+class Doenca extends Modelo
 {
-    /**
-     * @var int
-     */
     private $id;
-    /**
-     * @var string
-     */
     private $nome;
-
-    /**
-     * @var
-     */
-    private $limite;
+    private $descricao;
 
     public function cadastrar()
     {
@@ -51,33 +38,33 @@ class Fazenda extends Modelo
     }
 
     /**
-     * @return int
+     * @return mixed
      */
-    public function getId(): int
+    public function getId()
     {
         return $this->id;
     }
 
     /**
-     * @param int $id
+     * @param mixed $id
      */
-    public function setId(int $id): void
+    public function setId($id): void
     {
         $this->id = $id;
     }
 
     /**
-     * @return string
+     * @return mixed
      */
-    public function getNome(): string
+    public function getNome()
     {
         return $this->nome;
     }
 
     /**
-     * @param string $nome
+     * @param mixed $nome
      */
-    public function setNome(string $nome): void
+    public function setNome($nome): void
     {
         $this->nome = $nome;
     }
@@ -85,17 +72,16 @@ class Fazenda extends Modelo
     /**
      * @return mixed
      */
-    public function getLimite()
+    public function getDescricao()
     {
-        return $this->limite;
+        return $this->descricao;
     }
 
     /**
-     * @param mixed $limite
+     * @param mixed $descricao
      */
-    public function setLimite($limite): void
+    public function setDescricao($descricao): void
     {
-        $this->limite = $limite;
+        $this->descricao = $descricao;
     }
-
 }

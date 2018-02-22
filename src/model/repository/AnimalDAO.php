@@ -17,6 +17,7 @@ use src\model\Animal;
 use src\model\repository\entities\AnimalEntity;
 use Psr\Http\Message\RequestInterface as Request;
 use src\model\IModel;
+use src\util\Config;
 
 class AnimalDAO implements IDAO
 {
@@ -42,7 +43,7 @@ class AnimalDAO implements IDAO
                 return $entity->id;
             }
         }catch (Exception $e) {
-            throw new Exception("Erro ao tentar salvar uma nova fazenda.");
+            throw new Exception("Erro ao tentar salvar um novo Animal. ". $e->getMessage());
         }
         return false;
     }
@@ -93,8 +94,9 @@ class AnimalDAO implements IDAO
         $animais = AnimalEntity
             ::ativo()->with('fazenda')
             ->with('pesagens')
+            ->with('doencas')
             ->paginate(
-                QUANTIDADE_ITENS_POR_PAGINA,
+                Config::QUANTIDADE_ITENS_POR_PAGINA,
                 ['*'],
                 'pagina',
                 $page
@@ -112,7 +114,9 @@ class AnimalDAO implements IDAO
         try {
             return [
                 "animais" => AnimalEntity
-                    ::ativo()->with('fazenda')
+                    ::ativo()
+                    ->with('fazenda')
+                    ->with('doencas')
                     ->where('id', $id)
                     ->get()
             ];
@@ -133,8 +137,9 @@ class AnimalDAO implements IDAO
                 "animais" => AnimalEntity
                     ::ativo()
                     ->with('fazenda')
+                    ->with('doencas')
                     ->where('nome', 'like', $nome . "%")
-                    ->paginate(QUANTIDADE_ITENS_POR_PAGINA, ['*'], 'pagina', $page)
+                    ->paginate(Config::QUANTIDADE_ITENS_POR_PAGINA, ['*'], 'pagina', $page)
             ];
         } catch (Exception $e) {
             throw new Exception("Algo de errado aconteceu ao tentar pesquisar por nome" . $e->getMessage());

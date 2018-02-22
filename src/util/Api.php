@@ -21,7 +21,10 @@ class Api
      */
     public function __construct()
     {
-        $this->app = new App(SLIM_CONTAINER);
+        $this->app = new App(Config::SLIM_CONTAINER);
+
+        //Carregar o timezone da aplicação.
+        Config::loadTimezone();
     }
 
     public function getDatabase()

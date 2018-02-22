@@ -9,158 +9,81 @@
 namespace src\model;
 
 
-use src\model\repository\LoteDAO;
-use src\util\ClassToArray;
-use src\util\Data;
+use Psr\Http\Message\RequestInterface as Request;
+use const src\util\PADRAO_DATA_HORA;
 
-class Lote implements IModel
+class Lote extends Modelo
 {
-    private $idLote;
-    private $codigoLote;
-    private $dataAlteracao;
-    private $dataCriacao;
-    private $usuarioCadastro;
-    private $usuarioAlteracao;
-    protected $limite;
-
-    /**
-     * @return mixed
-     */
-    public function getIdLote()
-    {
-        return $this->idLote;
-    }
-
-    /**
-     * @param mixed $idLote
-     */
-    public function setIdLote($idLote)
-    {
-        $this->idLote = $idLote;
-    }
-
-    /**
-     * @return mixed
-     */
-    public function getCodigoLote()
-    {
-        return $this->codigoLote;
-    }
-
-    /**
-     * @param mixed $codigoLote
-     */
-    public function setCodigoLote($codigoLote)
-    {
-        $this->codigoLote = $codigoLote;
-    }
-
-    /**
-     * @return mixed
-     */
-    public function getLimite()
-    {
-        return $this->limite;
-    }
-
-    /**
-     * @param mixed $limite
-     */
-    public function setLimite($limite)
-    {
-        $this->limite = $limite;
-    }
-
-
-    /**
-     * @return mixed
-     */
-    public function getDataAlteracao()
-    {
-        return $this->dataAlteracao;
-    }
-
-    /**
-     * @param mixed $dataAlteracao
-     */
-    public function setDataAlteracao($dataAlteracao)
-    {
-        $this->dataAlteracao = $dataAlteracao;
-    }
-
-    /**
-     * @return mixed
-     */
-    public function getDataCriacao()
-    {
-        return $this->dataCriacao;
-    }
-
-    /**
-     * @param mixed $dataCriacao
-     */
-    public function setDataCriacao($dataCriacao)
-    {
-        $this->dataCriacao = $dataCriacao;
-    }
-
-    /**
-     * @return mixed
-     */
-    public function getUsuarioCadastro()
-    {
-        return $this->usuarioCadastro;
-    }
-
-    /**
-     * @param mixed $usuarioCadastro
-     */
-    public function setUsuarioCadastro($usuarioCadastro)
-    {
-        $this->usuarioCadastro = $usuarioCadastro;
-    }
-
-    /**
-     * @return mixed
-     */
-    public function getUsuarioAlteracao()
-    {
-        return $this->usuarioAlteracao;
-    }
-
-    /**
-     * @param mixed $usuarioAlteracao
-     */
-    public function setUsuarioAlteracao($usuarioAlteracao)
-    {
-        $this->usuarioAlteracao = $usuarioAlteracao;
-    }
+    private $id;
+    private $codigo;
+    private $descricao;
 
     public function cadastrar()
     {
-        $this->dataAlteracao = (new Data())->gerarDataHora();
-        $this->dataCriacao = (new Data())->gerarDataHora();
-        $this->usuarioAlteracao = "Lucas";// vai pegar do token dps de implementar o login;
-        $this->usuarioCadastro = "Lucas";
-        $array = (new ClassToArray())->classToArray($this);
-        return (new LoteDAO())->create($array);
+       $this->dataCriacao = date(PADRAO_DATA_HORA);
     }
 
     public function alterar()
     {
-        $array = (new ClassToArray())->classToArray($this);
-        return (new LoteDAO())->update($array);
+        // TODO: Implement alterar() method.
     }
 
-    public function pesquisar()
+    public function pesquisar(Request $request)
     {
-        $array = (new ClassToArray())->classToArray($this);
-        return (new LoteDAO())->retrave($array,$this->limite);
+        // TODO: Implement pesquisar() method.
     }
 
     public function deletar()
     {
-        $array = (new ClassToArray())->classToArray($this);
-        return (new LoteDAO())->delete($array);
+        // TODO: Implement deletar() method.
+    }
+
+
+    /**
+     * @return mixed
+     */
+    public function getId()
+    {
+        return $this->id;
+    }
+
+    /**
+     * @param mixed $id
+     */
+    public function setId($id): void
+    {
+        $this->id = $id;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getCodigo()
+    {
+        return $this->codigo;
+    }
+
+    /**
+     * @param mixed $codigo
+     */
+    public function setCodigo($codigo): void
+    {
+        $this->codigo = $codigo;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getDescricao()
+    {
+        return $this->descricao;
+    }
+
+    /**
+     * @param mixed $descricao
+     */
+    public function setDescricao($descricao): void
+    {
+        $this->descricao = $descricao;
     }
 }

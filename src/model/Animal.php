@@ -9,35 +9,38 @@
 namespace src\model;
 
 
-use ArrayObject;
 use Exception;
-use ReflectionClass;
-use ReflectionException;
-use ReflectionProperty;
 use src\model\repository\AnimalDAO;
-use src\util\ClassToArray;
 use src\util\FaseDaVida;
+use const src\util\PADRAO_DATA_HORA;
 
-class Animal implements IModel
+class Animal extends Modelo
 {
 
     private $id;
-    private $nomeAnimal;
+    private $nome;
+    private $sexo;
     private $primogenito;
     private $faseDaVida;
-    private $dataAlteracao;
-    private $dataCriacao;
-    private $usuarioCadastro;
-    private $usuarioAlteracao;
     private $dataNascimento;
     private $codigoBrinco;
     private $codigoRaca;
-    private $fkPesagem;
-    private $fkMae;
-    private $fkPai;
-    private $fkLote;
-    private $fkFazenda;
-    protected $limite;
+    private $pesagem;
+    private $pai;
+    private $mae;
+    private $lote;
+    private $fazenda;
+
+    /**
+     * Animal constructor.
+     */
+    public function __construct()
+    {
+        $this->pai = new Animal();
+        $this->mae = new Animal();
+        $this->pesagem = new Pesagem();
+    }
+
 
     /**
      * @return bool
@@ -45,8 +48,8 @@ class Animal implements IModel
      */
     public function cadastrar()
     {
-        $this->dataAlteracao = date('Y-m-d H:i:s');
-        $this->dataCriacao = date('Y-m-d H:i:s');
+        $this->dataAlteracao = date(PADRAO_DATA_HORA);
+        $this->dataCriacao = date(PADRAO_DATA_HORA);
         $this->faseDaVida = FaseDaVida::BEZERRO;
 //        $this->usuarioAlteracao = "Lucas";// vai pegar do token dps de implementar o login;
         $this->usuarioCadastro = 1;
@@ -81,8 +84,8 @@ class Animal implements IModel
     {
         if ($this->id) {
             return (new AnimalDAO)->retreaveById($this->id);
-        } else if ($this->nomeAnimal) {
-            return (new AnimalDAO)->retreaveByNome($this->nomeAnimal, $page);
+        } else if ($this->nome) {
+            return (new AnimalDAO)->retreaveByNome($this->nome, $page);
         }
         return (new AnimalDAO)->retreaveAll($page);
 
@@ -93,7 +96,6 @@ class Animal implements IModel
 
         return (new AnimalDAO())->delete($this->id);
     }
-
 
     /**
      * @return mixed
@@ -114,17 +116,33 @@ class Animal implements IModel
     /**
      * @return mixed
      */
-    public function getNomeAnimal()
+    public function getNome()
     {
-        return $this->nomeAnimal;
+        return $this->nome;
     }
 
     /**
-     * @param mixed $nomeAnimal
+     * @param mixed $nome
      */
-    public function setNomeAnimal($nomeAnimal)
+    public function setNome($nome): void
     {
-        $this->nomeAnimal = $nomeAnimal;
+        $this->nome = $nome;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getSexo()
+    {
+        return $this->sexo;
+    }
+
+    /**
+     * @param mixed $sexo
+     */
+    public function setSexo($sexo): void
+    {
+        $this->sexo = $sexo;
     }
 
     /**
@@ -146,81 +164,17 @@ class Animal implements IModel
     /**
      * @return mixed
      */
-    public function getLimite()
+    public function getFaseDaVida()
     {
-        return $this->limite;
+        return $this->faseDaVida;
     }
 
     /**
-     * @param mixed $limite
+     * @param mixed $faseDaVida
      */
-    public function setLimite($limite)
+    public function setFaseDaVida($faseDaVida): void
     {
-        $this->limite = $limite;
-    }
-
-    /**
-     * @return mixed
-     */
-    public function getDataAlteracao()
-    {
-        return $this->dataAlteracao;
-    }
-
-    /**
-     * @param mixed $dataAlteracao
-     */
-    public function setDataAlteracao($dataAlteracao)
-    {
-        $this->dataAlteracao = $dataAlteracao;
-    }
-
-    /**
-     * @return mixed
-     */
-    public function getDataCriacao()
-    {
-        return $this->dataCriacao;
-    }
-
-    /**
-     * @param mixed $dataCriacao
-     */
-    public function setDataCriacao($dataCriacao)
-    {
-        $this->dataCriacao = $dataCriacao;
-    }
-
-    /**
-     * @return mixed
-     */
-    public function getUsuarioCadastro()
-    {
-        return $this->usuarioCadastro;
-    }
-
-    /**
-     * @param mixed $usuarioCadastro
-     */
-    public function setUsuarioCadastro($usuarioCadastro)
-    {
-        $this->usuarioCadastro = $usuarioCadastro;
-    }
-
-    /**
-     * @return mixed
-     */
-    public function getUsuarioAlteracao()
-    {
-        return $this->usuarioAlteracao;
-    }
-
-    /**
-     * @param mixed $usuarioAlteracao
-     */
-    public function setUsuarioAlteracao($usuarioAlteracao)
-    {
-        $this->usuarioAlteracao = $usuarioAlteracao;
+        $this->faseDaVida = $faseDaVida;
     }
 
     /**
@@ -234,7 +188,7 @@ class Animal implements IModel
     /**
      * @param mixed $dataNascimento
      */
-    public function setDataNascimento($dataNascimento)
+    public function setDataNascimento($dataNascimento): void
     {
         $this->dataNascimento = $dataNascimento;
     }
@@ -250,7 +204,7 @@ class Animal implements IModel
     /**
      * @param mixed $codigoBrinco
      */
-    public function setCodigoBrinco($codigoBrinco)
+    public function setCodigoBrinco($codigoBrinco): void
     {
         $this->codigoBrinco = $codigoBrinco;
     }
@@ -266,7 +220,7 @@ class Animal implements IModel
     /**
      * @param mixed $codigoRaca
      */
-    public function setCodigoRaca($codigoRaca)
+    public function setCodigoRaca($codigoRaca): void
     {
         $this->codigoRaca = $codigoRaca;
     }
@@ -274,97 +228,81 @@ class Animal implements IModel
     /**
      * @return mixed
      */
-    public function getFkPesagem()
+    public function getPesagem()
     {
-        return $this->fkPesagem;
+        return $this->pesagem;
     }
 
     /**
-     * @param mixed $fkPesagem
+     * @param mixed $pesagem
      */
-    public function setFkPesagem($fkPesagem)
+    public function setPesagem($pesagem): void
     {
-        $this->fkPesagem = $fkPesagem;
-    }
-
-    /**
-     * @return mixed
-     */
-    public function getFkMae()
-    {
-        return $this->fkMae;
-    }
-
-    /**
-     * @param mixed $fkMae
-     */
-    public function setFkMae($fkMae)
-    {
-        $this->fkMae = $fkMae;
+        $this->pesagem = $pesagem;
     }
 
     /**
      * @return mixed
      */
-    public function getFkPai()
+    public function getPai()
     {
-        return $this->fkPai;
+        return $this->pai;
     }
 
     /**
-     * @param mixed $fkPai
+     * @param mixed $pai
      */
-    public function setFkPai($fkPai)
+    public function setPai($pai): void
     {
-        $this->fkPai = $fkPai;
-    }
-
-    /**
-     * @return mixed
-     */
-    public function getFkLote()
-    {
-        return $this->fkLote;
-    }
-
-    /**
-     * @param mixed $fkLote
-     */
-    public function setFkLote($fkLote)
-    {
-        $this->fkLote = $fkLote;
+        $this->pai = $pai;
     }
 
     /**
      * @return mixed
      */
-    public function getFkFazenda()
+    public function getMae()
     {
-        return $this->fkFazenda;
+        return $this->mae;
     }
 
     /**
-     * @param mixed $fkFazenda
+     * @param mixed $mae
      */
-    public function setFkFazenda($fkFazenda)
+    public function setMae($mae): void
     {
-        $this->fkFazenda = $fkFazenda;
+        $this->mae = $mae;
     }
 
     /**
      * @return mixed
      */
-    public function getFaseDaVida()
+    public function getLote()
     {
-        return $this->faseDaVida;
+        return $this->lote;
     }
 
     /**
-     * @param mixed $faseDaVida
+     * @param mixed $lote
      */
-    public function setFaseDaVida($faseDaVida): void
+    public function setLote($lote): void
     {
-        $this->faseDaVida = $faseDaVida;
+        $this->lote = $lote;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getFazenda()
+    {
+        return $this->fazenda;
+    }
+
+    /**
+     * @param mixed $fazenda
+     */
+    public function setFazenda($fazenda): void
+    {
+        $this->fazenda = $fazenda;
     }
 
 
