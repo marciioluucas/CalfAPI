@@ -2,12 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="00f5a375-e7b8-4505-98fa-01660a814dc1" name="Default" comment="">
-      <change beforePath="" afterPath="$PROJECT_DIR$/src/util/Categoria.php" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/src.png" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change beforePath="$PROJECT_DIR$/src/model/Animal.php" afterPath="$PROJECT_DIR$/src/model/Animal.php" />
-      <change beforePath="$PROJECT_DIR$/src/model/Doenca.php" afterPath="$PROJECT_DIR$/src/model/Doenca.php" />
-      <change beforePath="$PROJECT_DIR$/src/model/Modelo.php" afterPath="$PROJECT_DIR$/src/model/Modelo.php" />
-      <change beforePath="$PROJECT_DIR$/src/model/Pesagem.php" afterPath="$PROJECT_DIR$/src/model/Pesagem.php" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -63,8 +59,8 @@
       <file leaf-file-name="Animal.php" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/model/Animal.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-693">
-              <caret line="80" column="4" lean-forward="false" selection-start-line="80" selection-start-column="4" selection-end-line="80" selection-end-column="4" />
+            <state relative-caret-position="195">
+              <caret line="117" column="5" lean-forward="true" selection-start-line="117" selection-start-column="5" selection-end-line="117" selection-end-column="5" />
               <folding>
                 <element signature="e#114#128#0#PHP" expanded="true" />
               </folding>
@@ -325,23 +321,6 @@
               <item name="CalfAPI" type="b2602c69:ProjectViewProjectNode" />
               <item name="CalfAPI" type="2a2b976b:PhpTreeStructureProvider$1" />
             </path>
-            <path>
-              <item name="CalfAPI" type="b2602c69:ProjectViewProjectNode" />
-              <item name="CalfAPI" type="2a2b976b:PhpTreeStructureProvider$1" />
-              <item name="src" type="2a2b976b:PhpTreeStructureProvider$1" />
-            </path>
-            <path>
-              <item name="CalfAPI" type="b2602c69:ProjectViewProjectNode" />
-              <item name="CalfAPI" type="2a2b976b:PhpTreeStructureProvider$1" />
-              <item name="src" type="2a2b976b:PhpTreeStructureProvider$1" />
-              <item name="model" type="2a2b976b:PhpTreeStructureProvider$1" />
-            </path>
-            <path>
-              <item name="CalfAPI" type="b2602c69:ProjectViewProjectNode" />
-              <item name="CalfAPI" type="2a2b976b:PhpTreeStructureProvider$1" />
-              <item name="src" type="2a2b976b:PhpTreeStructureProvider$1" />
-              <item name="util" type="2a2b976b:PhpTreeStructureProvider$1" />
-            </path>
           </expand>
           <select />
         </subPane>
@@ -384,6 +363,7 @@
     <property name="node.js.selected.package.standard" value="" />
     <property name="com.intellij.database.dataSource.DataSourceTemplate" value="MySQL" />
     <property name="php.override.implement.member.chooser.php.doc" value="NONE" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
@@ -450,7 +430,7 @@
       <workItem from="1518863041807" duration="4671000" />
       <workItem from="1519046275079" duration="4885000" />
       <workItem from="1519135329351" duration="662000" />
-      <workItem from="1519308174448" duration="11162000" />
+      <workItem from="1519308174448" duration="11888000" />
     </task>
     <task id="LOCAL-00001" summary="Colocando Slim">
       <created>1518011759197</created>
@@ -613,17 +593,23 @@
       <option name="project" value="LOCAL" />
       <updated>1519325452807</updated>
     </task>
-    <option name="localTasksCounter" value="24" />
+    <task id="LOCAL-00024" summary="Mudando um pouco o objeto animal.">
+      <created>1519327803481</created>
+      <option name="number" value="00024" />
+      <option name="presentableId" value="LOCAL-00024" />
+      <option name="project" value="LOCAL" />
+      <updated>1519327803481</updated>
+    </task>
+    <option name="localTasksCounter" value="25" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="144311000" />
+    <option name="totallyTimeSpent" value="145037000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1382" height="744" extended-state="6" />
-    <editor active="true" />
     <layout>
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.25911853" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.25911853" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Docker" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32730263" sideWeight="0.50292826" order="7" side_tool="true" content_ui="tabs" />
@@ -671,7 +657,8 @@
     <MESSAGE value="Mudando mais uma vez a arquitetura nos arquivos, adicionando o repository no lugar da DAO e colocando a entities dentro do pacote de repository" />
     <MESSAGE value="Mudando tipo de data e acrescentando validação no cadastro de animal." />
     <MESSAGE value="Arrumando a organização de configurações e mudando o padrão de projeto." />
-    <option name="LAST_COMMIT_MESSAGE" value="Arrumando a organização de configurações e mudando o padrão de projeto." />
+    <MESSAGE value="Mudando um pouco o objeto animal." />
+    <option name="LAST_COMMIT_MESSAGE" value="Mudando um pouco o objeto animal." />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -680,7 +667,6 @@
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/config/db/migrations/20180211194859_fazenda_migration.php" />
     <entry file="file://$PROJECT_DIR$/config/db/migrations/20180212105635_funcionarios_migration.php" />
     <entry file="file://$PROJECT_DIR$/config/db/templates/MigrationClassTemplate.php.dist">
       <provider selected="true" editor-type-id="text-editor">
@@ -1031,10 +1017,47 @@
         </state>
       </provider>
     </entry>
+    <entry file="uml://PHP/E:/xampp/htdocs/CalfAPI/src">
+      <provider selected="true" editor-type-id="UmlEditorProvider">
+        <state>
+          <ID>PHP</ID>
+          <OriginalElement>$PROJECT_DIR$/src</OriginalElement>
+          <nodes>
+            <node x="" y="">\src\controller\AnimalController</node>
+            <node x="" y="">\src\model\Modelo</node>
+            <node x="" y="">\src\model\Animal</node>
+            <node x="" y="">\src\model\repository\IDAO</node>
+            <node x="" y="">\src\model\Doenca</node>
+            <node x="" y="">\src\controller\CiclosVidaController</node>
+            <node x="" y="">\src\controller\LoteController</node>
+            <node x="" y="">\src\controller\DoencaController</node>
+            <node x="" y="">\src\controller\FazendaController</node>
+            <node x="" y="">\src\model\repository\CiclosVidaDAO</node>
+            <node x="" y="">\src\model\repository\PesagemDAO</node>
+            <node x="" y="">\src\model\repository\DoencaDAO</node>
+            <node x="" y="">\src\model\Lote</node>
+            <node x="" y="">\src\model\Usuario</node>
+            <node x="" y="">\src\model\repository\AnimalDAO</node>
+            <node x="" y="">\src\controller\IController</node>
+            <node x="" y="">\src\model\Fazenda</node>
+            <node x="" y="">\src\model\repository\FazendaDAO</node>
+            <node x="" y="">\src\model\repository\LoteDAO</node>
+            <node x="" y="">\src\controller\PesagemController</node>
+            <node x="" y="">\src\model\Pesagem</node>
+          </nodes>
+          <notes />
+          <edges />
+          <settings layout="Hierarchic Group" zoom="1.0" x="389.5" y="238.0" />
+          <SelectedNodes />
+          <Categories />
+          <VISIBILITY>private</VISIBILITY>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/model/Animal.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-693">
-          <caret line="80" column="4" lean-forward="false" selection-start-line="80" selection-start-column="4" selection-end-line="80" selection-end-column="4" />
+        <state relative-caret-position="195">
+          <caret line="117" column="5" lean-forward="true" selection-start-line="117" selection-start-column="5" selection-end-line="117" selection-end-column="5" />
           <folding>
             <element signature="e#114#128#0#PHP" expanded="true" />
           </folding>
