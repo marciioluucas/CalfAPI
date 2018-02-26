@@ -46,12 +46,9 @@ class FazendaDAO implements IDAO
     {
         $entity = FazendaEntity::find($obj->getId());
         $entity->usuario_alteracao = $obj->getUsuarioAlteracao()->getId();
+        $entity->data_alteracao = $obj->getDataAlteracao();
         if (!is_null($obj->getNome())) {
             $entity->nome = $obj->getNomeAnimal();
-        }
-
-        if (!is_null($obj->getDataAlteracao())) {
-            $entity->data_alteracao = $obj->getDataAlteracao();
         }
         return (new FazendaDAO())->update($obj);
     }

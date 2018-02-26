@@ -1,14 +1,15 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: marci
- * Date: 26/02/2018
- * Time: 09:37
- */
 
 namespace src\model\repository\entities;
+use src\model\Usuario;
 
 
+/**
+ * @property int|string codigo
+ * @property  string data_alteracao
+ * @property  string data_cadastro
+ * @property  Usuario usuario_cadastro
+ */
 class LoteEntity extends CalfEntity
 {
     protected $table = 'lotes';

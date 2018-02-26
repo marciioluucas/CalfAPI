@@ -65,6 +65,87 @@ abstract class Modelo
      */
     public abstract function deletar(): boolean;
 
+    /**
+     * @return string
+     */
+    public function getDataAlteracao(): string
+    {
+        return $this->dataAlteracao;
+    }
+
+    /**
+     * @param string $dataAlteracao
+     */
+    public function setDataAlteracao(string $dataAlteracao): void
+    {
+        $this->dataAlteracao = $dataAlteracao;
+    }
+
+    /**
+     * @return string
+     */
+    public function getDataCriacao(): string
+    {
+        return $this->dataCriacao;
+    }
+
+    /**
+     * @param string $dataCriacao
+     */
+    public function setDataCriacao(string $dataCriacao): void
+    {
+        $this->dataCriacao = $dataCriacao;
+    }
+
+    /**
+     * @return Usuario
+     */
+    public function getUsuarioCadastro(): Usuario
+    {
+        return $this->usuarioCadastro;
+    }
+
+    /**
+     * @param Usuario $usuarioCadastro
+     */
+    public function setUsuarioCadastro(Usuario $usuarioCadastro): void
+    {
+        $this->usuarioCadastro = $usuarioCadastro;
+    }
+
+    /**
+     * @return Usuario
+     */
+    public function getUsuarioAlteracao(): Usuario
+    {
+        return $this->usuarioAlteracao;
+    }
+
+    /**
+     * @param Usuario $usuarioAlteracao
+     */
+    public function setUsuarioAlteracao(Usuario $usuarioAlteracao): void
+    {
+        $this->usuarioAlteracao = $usuarioAlteracao;
+    }
+
+    /**
+     * @return bool
+     */
+    public function getStatus(): bool
+    {
+        return $this->status;
+    }
+
+    /**
+     * @param bool $status
+     */
+    public function setStatus(bool $status): void
+    {
+        $this->status = $status;
+    }
+
+
 
 
 }

@@ -9,35 +9,132 @@
 namespace src\model\repository;
 
 
-use bd\Banco;
 use Exception;
-use PDO;
+use src\model\Lote;
+use src\model\repository\entities\LoteEntity;
+use src\util\Config;
 
+/**
+ * Class LoteDAO
+ * @package src\model\repository
+ */
 class LoteDAO implements IDAO
 {
+    /**
+     * @param Lote $obj
+     * @return bool
+     * @throws Exception
+     */
     public function create($obj): boolean
     {
-        // TODO: Implement create() method.
+        $entity = new LoteEntity();
+        $entity->codigo = $obj->getCodigo();
+        $entity->data_alteracao = $obj->getDataAlteracao();
+        $entity->data_cadastro = $obj->getDataCriacao();
+        $entity->usuario_cadastro = $obj->getUsuarioCadastro();
+        try {
+            if ($entity->save()) {
+                return true;
+            }
+        } catch (Exception $e) {
+            throw new Exception("Erro ao tentar salvar uma nova fazenda.");
+        }
+        return false;
     }
 
+    /**
+     * @param Lote $obj
+     * @return bool
+     */
     public function update($obj): boolean
     {
-        // TODO: Implement update() method.
+        $entity = LoteEntity::find($obj->getId());
+        $entity->usuario_alteracao = $obj->getUsuarioAlteracao()->getId();
+        $entity->data_alteracao = $obj->getDataAlteracao();
+        if (!is_null($obj->getCodigo())) {
+            $entity->codigo = $obj->getCodigo();
+        }
+        return (new LoteDAO())->update($obj);
     }
 
+    /**
+     * @param int $page
+     * @return array
+     */
     public function retreaveAll(int $page): array
     {
-        // TODO: Implement retreaveAll() method.
+        return ["lotes" => LoteEntity
+            ::ativo()
+            ->paginate(
+                Config::QUANTIDADE_ITENS_POR_PAGINA,
+                ['*'],
+                'pagina',
+                $page
+            )];
     }
 
+    /**
+     * @param int $id
+     * @return array
+     * @throws Exception
+     */
     public function retreaveById(int $id): array
     {
-        // TODO: Implement retreaveById() method.
+        try {
+            return [
+                "animais" => LoteEntity
+                    ::ativo()
+                    ->where('id', $id)
+                    ->get()
+            ];
+        } catch (Exception $e) {
+            throw new Exception("Algo de errado aconteceu ao tentar pesquisar por ID" . $e->getMessage());
+        }
     }
 
+    /**
+     * @param $codigo
+     * @param int $page
+     * @return array
+     * @throws Exception
+     */
+    public function retreaveByCodigo($codigo, int $page): array
+    {
+        try {
+            return [
+                "animais" => LoteEntity
+                    ::ativo()
+                    ->where('codigo', '=', $codigo)
+                    ->paginate
+                    (
+                        Config::QUANTIDADE_ITENS_POR_PAGINA,
+                        ['*'],
+                        'pagina',
+                        $page
+                    )
+            ];
+        } catch (Exception $e) {
+            throw new Exception("Algo de errado aconteceu ao tentar pesquisar por nome" . $e->getMessage());
+        }
+    }
+
+    /**
+     * @param int $id
+     * @return bool
+     * @throws Exception
+     */
     public function delete(int $id): boolean
     {
-        // TODO: Implement delete() method.
+        try {
+            $entity = LoteEntity::find($id);
+            $entity->status = 0;
+            if ($entity->save()) {
+                return true;
+            };
+        } catch (Exception $e) {
+            throw new Exception("Algo de errado aconteceu ao tentar desativar uma fazenda" . $e->getMessage());
+        }
+        return false;
     }
 
 }

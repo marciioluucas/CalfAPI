@@ -12,7 +12,14 @@ namespace src\model\repository\entities;
 class PesagemEntity extends CalfEntity
 {
     protected $table = 'pesagens';
-    protected $fillable =['data_pesagem', 'peso', 'usuario_cadastro', 'usuario_alteracao', 'status', 'animais_id'];
+    protected $fillable =[
+        'data_pesagem',
+        'peso',
+        'usuario_cadastro',
+        'usuario_alteracao',
+        'status',
+        'animais_id'
+    ];
 
 
     public function animal() {
