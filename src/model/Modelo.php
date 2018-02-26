@@ -49,10 +49,10 @@ abstract class Modelo
     public abstract function alterar();
 
     /**
-     * @param Request $request
+     * @param int $page
      * @return array
      */
-    public abstract function pesquisar(Request $request);
+    public abstract function pesquisar(int $page);
 
     /**
      * @return mixed

@@ -90,6 +90,7 @@ class Animal extends Modelo
      * @var ArrayObject
      */
     private $doencas;
+
     /**
      * Animal constructor.
      */
@@ -120,12 +121,15 @@ class Animal extends Modelo
         if ($this->primogenito == 1) {
             $this->faseDaVida = FaseDaVida::ADULTO;
         }
-        $cadastro = (new AnimalDAO())->create($this);
-        return $cadastro;
+        try {
+            return (new AnimalDAO())->create($this);
+        } catch (Exception $e) {
+            throw new Exception($e->getMessage());
+        }
     }
 
     /**
-     * @return array
+     * @return boolean
      * @throws Exception
      */
     public function alterar()
@@ -143,7 +147,7 @@ class Animal extends Modelo
      * @return array
      * @throws Exception
      */
-    public function pesquisar($page)
+    public function pesquisar(int $page)
     {
         if ($this->id) {
             return (new AnimalDAO)->retreaveById($this->id);
@@ -154,10 +158,17 @@ class Animal extends Modelo
 
     }
 
+    /**
+     * @return boolean
+     * @throws Exception
+     */
     public function deletar()
     {
-
-        return (new AnimalDAO())->delete($this->id);
+        try {
+            return (new AnimalDAO())->delete($this->id);
+        } catch (Exception $e) {
+            throw new Exception($e->getMessage());
+        }
     }
 
     public function mudarLocalizacao()
@@ -165,7 +176,8 @@ class Animal extends Modelo
 
     }
 
-    public function adicionarDoenca(Doenca $doenca){
+    public function adicionarDoenca(Doenca $doenca)
+    {
         $this->doencas->append($doenca);
     }
 
@@ -408,7 +420,6 @@ class Animal extends Modelo
     {
         $this->doencas = $doencas;
     }
-
 
 
 }

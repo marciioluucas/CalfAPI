@@ -11,12 +11,37 @@ namespace src\model\repository\entities;
 
 use Illuminate\Database\Eloquent\Builder;
 
+/**
+ * @property string nome
+ * @property string data_nascimento
+ * @property bool primogenito
+ * @property string codigo_brinco
+ * @property string codigo_raca
+ * @property string data_cadastro
+ * @property string data_alteracao
+ * @property int lotes_id
+ * @property int fazendas_id
+ * @property int usuario_alteracao
+ * @property int usuario_cadastro
+ */
 class AnimalEntity extends CalfEntity
 {
     protected $table = "animais";
-    protected $fillable = ['id', 'nome', 'data_nascimento', 'primogenito', 'codigo_brinco', 'codigo_raca',
-        'status', 'data_alteracao', 'data_cadastro', 'usuario_cadastro', 'usuario_alteracao',
-        'fazendas_id', 'lotes_id'];
+    protected $fillable = [
+        'id',
+        'nome',
+        'data_nascimento',
+        'primogenito',
+        'codigo_brinco',
+        'codigo_raca',
+        'status',
+        'data_alteracao',
+        'data_cadastro',
+        'usuario_cadastro',
+        'usuario_alteracao',
+        'fazendas_id',
+        'lotes_id'
+    ];
 
     public function fazenda()
     {
@@ -39,7 +64,8 @@ class AnimalEntity extends CalfEntity
         return $this->belongsTo('src\model\repository\entities\LoteEntity', 'lotes_id');
     }
 
-    public function scopeEstaMorto(Builder $query) {
+    public function scopeEstaMorto(Builder $query)
+    {
         return $query->where('is_vivo', 0);
     }
 }

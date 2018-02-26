@@ -62,13 +62,12 @@ class AnimalController implements IController
      * @param Response $response
      * @param $args
      * @return Response
-     * @throws \Exception
+     * @throws Exception
      */
     public function get(Request $request, Response $response, $args): Response
     {
-        $animal = new Animal();
-
         try {
+            $animal = new Animal();
             $page = (int)$request->getQueryParam('pagina');
 
             if ($request->getAttribute('id')) {
@@ -135,13 +134,21 @@ class AnimalController implements IController
      * @param Request $request
      * @param Response $response
      * @return Response
+     * @throws Exception
      */
     public function delete(Request $request, Response $response): Response
     {
-        $animal = new Animal();
-        if ($request->getAttribute('id')) {
-            $animal->setId($request->getAttribute('id'));
-            return View::render($response, $animal->deletar());
+        try {
+            $animal = new Animal();
+            if ($request->getAttribute('id')) {
+                $animal->setId($request->getAttribute('id'));
+                if ($animal->deletar()) {
+                    return View::renderMessage($response, "success", "Animal desativado com sucesso!", 202,
+                        "Sucesso ao desativar");
+                };
+            }
+        } catch (Exception $exception) {
+            return View::renderException($response, $exception);
         }
     }
 }

@@ -17,6 +17,7 @@ use src\model\Animal;
 use src\model\repository\entities\AnimalEntity;
 use Psr\Http\Message\RequestInterface as Request;
 use src\model\IModel;
+use src\model\repository\entities\DoencaEntity;
 use src\util\Config;
 
 /**
@@ -29,6 +30,7 @@ class AnimalDAO implements IDAO
     /**
      * @param Animal $obj
      * @return bool
+     * @throws Exception
      */
     public function create($obj)
     {
@@ -44,25 +46,33 @@ class AnimalDAO implements IDAO
         $entity->usuario_alteracao = $obj->getUsuarioAlteracao()->getId();
         $entity->fazendas_id = $obj->getFazenda()->getId();
         $entity->lotes_id = $obj->getLote()->getId();
-        try{
-            if($entity->save()){
+        try {
+            if ($entity->save()) {
                 return $entity->id;
             }
-        }catch (Exception $e) {
-            throw new Exception("Erro ao tentar salvar um novo Animal. ". $e->getMessage());
+
+        } catch (Exception $e) {
+            throw new Exception("Erro ao tentar salvar um novo Animal. " . $e->getMessage());
         }
         return false;
     }
 
+    public function createAdoecimento(int $idAnimal, int $idDoenca, string $situacao = 'NÃO INFORMADO')
+    {
+        $animal = AnimalEntity::find($idAnimal);
+        DoencaEntity::find($idDoenca)->animais()->attach($animal, ['situacao' => $situacao]);
+    }
+
     /**
      * @param Animal $obj
+     * @return bool
      */
     public function update($obj)
     {
         $entity = AnimalEntity::find($obj->getId());
         $entity->usuario_alteracao = $obj->getUsuarioAlteracao()->getId();
-        if (!is_null($obj->getNomeAnimal())) {
-            $entity->nome = $obj->getNomeAnimal();
+        if (!is_null($obj->getNome())) {
+            $entity->nome = $obj->getNome();
         }
         if (!is_null($obj->getDataNascimento())) {
             $entity->data_nascimento = $obj->getDataNascimento();
@@ -79,10 +89,10 @@ class AnimalDAO implements IDAO
         if (!is_null($obj->getDataAlteracao())) {
             $entity->data_alteracao = $obj->getDataAlteracao();
         }
-        if (!is_null($obj->getFkFazenda())) {
+        if (!is_null($obj->getFazenda()->getId())) {
             $entity->fazendas_id = $obj->getFazenda()->getId();
         }
-        if (!is_null($obj->getFkLote())) {
+        if (!is_null($obj->getLote()->getId())) {
             $entity->lotes_id = $obj->getLote()->getId();
         }
         if ($entity->save()) {
@@ -92,10 +102,10 @@ class AnimalDAO implements IDAO
     }
 
     /**
-     * @param $page
+     * @param int $page
      * @return array
      */
-    public function retreaveAll($page)
+    public function retreaveAll(int $page)
     {
         $animais = AnimalEntity
             ::ativo()->with('fazenda')
@@ -112,11 +122,11 @@ class AnimalDAO implements IDAO
     }
 
     /**
-     * @param $id
+     * @param int $id
      * @return array
      * @throws Exception
      */
-    public function retreaveById($id)
+    public function retreaveById(int $id)
     {
         try {
             return [
@@ -134,11 +144,12 @@ class AnimalDAO implements IDAO
     }
 
     /**
-     * @param $nome
+     * @param string $nome
+     * @param int $page
      * @return array
      * @throws Exception
      */
-    public function retreaveByNome($nome, $page)
+    public function retreaveByNome(string $nome, int $page)
     {
         try {
             return [
@@ -155,12 +166,22 @@ class AnimalDAO implements IDAO
         }
     }
 
+    /**
+     * @param int $id
+     * @return boolean
+     * @throws Exception
+     */
     public function delete(int $id)
     {
-        $entity = AnimalEntity::find($id);
-        $entity->status = 0;
-        if ($entity->save()) {
-            return $entity->id;
-        };
+        try {
+            $entity = AnimalEntity::find($id);
+            $entity->status = 0;
+            if ($entity->save()) {
+                return true;
+            };
+        } catch (Exception $e) {
+            throw new Exception("Algo de errado aconteceu ao tentar desativar um animal" . $e->getMessage());
+        }
+        return false;
     }
 }

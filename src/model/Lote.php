@@ -29,7 +29,7 @@ class Lote extends Modelo
         // TODO: Implement alterar() method.
     }
 
-    public function pesquisar(Request $request)
+    public function pesquisar(int $page)
     {
         // TODO: Implement pesquisar() method.
     }

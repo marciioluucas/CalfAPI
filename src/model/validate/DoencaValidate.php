@@ -1,9 +1,9 @@
 <?php
 /**
  * Created by PhpStorm.
- * User: Brunno
- * Date: 16/09/17
- * Time: 14:56
+ * User: marci
+ * Date: 26/02/2018
+ * Time: 12:18
  */
 
 namespace src\model\validate;
@@ -11,23 +11,18 @@ namespace src\model\validate;
 
 use Valitron\Validator;
 
-class CiclosVidaValidate implements IValidate
+class DoencaValidate extends Validate
 {
+
     public function validatePost($params)
     {
-
         $v = new Validator($params);
-        $v->rule('required', ['enumFaseVida', 'enumLocalizacao', 'fkAnimal']);
-        $v->rule('integer','fkAnimal');
+        $v->rule('required', ['nome']);
         if ($v->validate()) {
             return true;
         } else {
-            $data = "";
-            foreach ($v->errors() as $key => $value) {
-                $data .= implode(',', $value);
-            }
-            return ["codigo" => 401,
-                "mensagem" => $data];
+            $toReturn = $this->filtrarValidacao($v);
+            return $toReturn;
         }
     }
 
@@ -38,12 +33,18 @@ class CiclosVidaValidate implements IValidate
 
     public function validatePut($params)
     {
-        // TODO: Implement validatePut() method.
+        $v = new Validator($params);
+        $v->rule('required', ['nome','id']);
+        if ($v->validate()) {
+            return true;
+        } else {
+            $toReturn = $this->filtrarValidacao($v);
+            return $toReturn;
+        }
     }
 
     public function validateDelete($params)
     {
         // TODO: Implement validateDelete() method.
     }
-
 }

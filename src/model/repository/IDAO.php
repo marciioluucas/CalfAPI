@@ -10,8 +10,6 @@ namespace src\model\repository;
 
 
 
-use stdClass;
-
 interface IDAO
 {
     public function create($obj);
