@@ -33,7 +33,7 @@ class DoencaDAO implements IDAO
             $entity->usuario_cadastro = $obj->getUsuarioCadastro()->getId();
 
             if ($entity->save()) {
-                return $entity->id;
+                return true;
             }
 
         } catch (Exception $e) {

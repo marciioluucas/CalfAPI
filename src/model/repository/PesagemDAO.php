@@ -15,140 +15,30 @@ use PDO;
 
 class PesagemDAO implements IDAO
 {
-
-
-    public function create($obj)
+    public function create($obj): boolean
     {
-        $codigo = 400;
-        $messagem = "Erro inesperado";
-        try {
-            $db = Banco::conexao();
-            $queryVal = "";
-            $queryNam = "";
-            foreach ($obj as $key => $value) {
-                $queryVal .= ":" . $key . ",";
-                $queryNam .= $key . ",";
-            }
-            $queryVal = substr_replace($queryVal, '', -1);
-            $queryNam = substr_replace($queryNam, '', -1);
-            $query = "INSERT INTO pesagens($queryNam) VALUES ($queryVal)";
-            $stmt = $db->prepare($query);
-            foreach ($obj as $key => &$val) {
-                $stmt->bindParam($key, $val);
-            }
-            $stmt->execute();
-            $codigo = 200;
-            $messagem = "Pesagem adicionada com sucesso";
-        } catch (Exception $e) {
-            $codigo = 400;
-            $messagem = $e->getMessage();
-        }
-        return [
-            "codigo" => $codigo,
-            "mensagem" => $messagem
-        ];
+        // TODO: Implement create() method.
     }
 
-    public function update($obj)
+    public function update($obj): boolean
     {
-        $codigo = 400;
-        $messagem = "Erro inesperado";
-        try {
-            $db = Banco::conexao();
-            $queryText = "";
-            foreach ($obj as $key => $value) {
-                $queryText .= $key . "=:" . $key . ",";
-            }
-            $queryVal = substr_replace($queryText, '', -1);
-            $query = "UPDATE animais SET $queryVal WHERE idAnimal=:idAnimal";
-            $stmt = $db->prepare($query);
-            foreach ($obj as $key => &$val) {
-                $stmt->bindParam($key, $val);
-            }
-            $stmt->execute();
-            $messagem = "Pesagem alterada com sucesso";
-        } catch (Exception $e) {
-            $messagem = $e->getMessage();
-        }
-        return $messagem;
+        // TODO: Implement update() method.
     }
 
-    public function retrave($obj, $limite)
+    public function retreaveAll(int $page): array
     {
-        $codigo = 400;
-        $messagem = "Erro inesperado";
-        try {
-            $db = Banco::conexao();
-            $query = "SELECT * FROM pesagens WHERE status = 'ATIVO'";
-            if ($limite === null) {
-                $queryLimit = " LIMIT 10";
-            } else {
-                $queryLimit = " LIMIT :limite,10";
-            }
-            if (!empty($obj)) {
-                if (isset($obj['idPesagem'])) {
-                    $query .= "AND idPesagem=:idPesagem";
-                    $query .= $queryLimit;
-                    $stmt = $db->prepare($query);
-                    $stmt->bindValue(':idPesagem', $obj['idPesagem']);
-                } else {
-                    foreach ($obj as $key => $value) {
-                        $query .= " AND " . $key . " LIKE :" . $key;
-                    }
-                    $query .= $queryLimit;
-                    $stmt = $db->prepare($query);
-                    foreach ($obj as $key => &$val) {
-                        $stmt->bindValue($key, "%$val%");
-                    }
-                }
-            } else {
-                $query .= $queryLimit;
-                $stmt = $db->prepare($query);
-            }
-            if ($limite !== null) {
-                $stmt->bindValue(':limite', (int)trim($limite), PDO::PARAM_INT);
-            }
-            $stmt->execute();
-            if (!empty($stmt->rowCount())) {
-                $codigo = 200;
-                $messagem = ($stmt->fetchAll(PDO::FETCH_ASSOC));
-            } else {
-                $codigo = 400;
-                $messagem = "Não foi possivel realizar a busca";
-            }
-
-        } catch (Exception $e) {
-            $codigo = 400;
-            $messagem = $e->getMessage();
-        }
-        return [
-            "codigo" => $codigo,
-            "mensagem" => $messagem
-        ];
+        // TODO: Implement retreaveAll() method.
     }
 
-    public function delete($obj)
+    public function retreaveById(int $id): array
     {
-        $codigo = 400;
-        $messagem = "Erro inesperado";
-        try {
-            $db = Banco::conexao();
-            $query = "UPDATE pesagens SET status = 'DESATIVADO' WHERE idPesagem=:idPesagem";
-
-            $stmt = $db->prepare($query);
-            $stmt->bindParam(':idPesagem', $obj['idPesagem'], PDO::PARAM_INT);
-
-            $stmt->execute();
-            $codigo = 200;
-            $messagem = "Deletado com sucesso";
-
-        } catch (Exception $e) {
-            $codigo = 400;
-            $messagem = $e->getMessage();
-        }
-        return [
-            "codigo" => $codigo,
-            "mensagem" => $messagem
-        ];
+        // TODO: Implement retreaveById() method.
     }
+
+    public function delete(int $id): boolean
+    {
+        // TODO: Implement delete() method.
+    }
+
+
 }

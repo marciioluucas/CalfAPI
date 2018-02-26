@@ -32,7 +32,7 @@ class AnimalDAO implements IDAO
      * @return bool
      * @throws Exception
      */
-    public function create($obj)
+    public function create($obj):boolean
     {
         $entity = new AnimalEntity();
         $entity->nome = $obj->getNome();
@@ -48,7 +48,7 @@ class AnimalDAO implements IDAO
         $entity->lotes_id = $obj->getLote()->getId();
         try {
             if ($entity->save()) {
-                return $entity->id;
+                return true;
             }
 
         } catch (Exception $e) {
@@ -65,9 +65,9 @@ class AnimalDAO implements IDAO
 
     /**
      * @param Animal $obj
-     * @return bool
+     * @return boolean
      */
-    public function update($obj)
+    public function update($obj): boolean
     {
         $entity = AnimalEntity::find($obj->getId());
         $entity->usuario_alteracao = $obj->getUsuarioAlteracao()->getId();
@@ -105,7 +105,7 @@ class AnimalDAO implements IDAO
      * @param int $page
      * @return array
      */
-    public function retreaveAll(int $page)
+    public function retreaveAll(int $page): array
     {
         $animais = AnimalEntity
             ::ativo()->with('fazenda')
@@ -126,7 +126,7 @@ class AnimalDAO implements IDAO
      * @return array
      * @throws Exception
      */
-    public function retreaveById(int $id)
+    public function retreaveById(int $id): array
     {
         try {
             return [
@@ -149,7 +149,7 @@ class AnimalDAO implements IDAO
      * @return array
      * @throws Exception
      */
-    public function retreaveByNome(string $nome, int $page)
+    public function retreaveByNome(string $nome, int $page): array
     {
         try {
             return [
@@ -171,7 +171,7 @@ class AnimalDAO implements IDAO
      * @return boolean
      * @throws Exception
      */
-    public function delete(int $id)
+    public function delete(int $id): boolean
     {
         try {
             $entity = AnimalEntity::find($id);

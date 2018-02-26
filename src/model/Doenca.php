@@ -51,6 +51,7 @@ class Doenca extends Modelo
         $this->dataCriacao = date(Config::PADRAO_DATA_HORA);
         $this->dataAlteracao = date(Config::PADRAO_DATA_HORA);
         $this->usuarioCadastro->setId(1);
+        $this->nome = ucfirst($this->nome);
         try {
             return (new DoencaDAO())->create($this);
         } catch (Exception $e) {

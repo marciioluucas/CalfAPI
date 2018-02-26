@@ -7,8 +7,8 @@
  */
 
 namespace src\model;
+use Exception;
 
-use \Psr\Http\Message\RequestInterface as Request;
 
 /**
  * Class Modelo
@@ -39,104 +39,32 @@ abstract class Modelo
     protected $status;
 
     /**
-     * @return mixed
+     * @return int|boolean
+     * @throws Exception
      */
-    public abstract function cadastrar();
+    public abstract function cadastrar(): int;
 
     /**
-     * @return mixed
+     * @return boolean
+     * @throws Exception
      */
-    public abstract function alterar();
+    public abstract function alterar(): boolean;
+
 
     /**
      * @param int $page
      * @return array
+     * @throws Exception
      */
-    public abstract function pesquisar(int $page);
+    public abstract function pesquisar(int $page): array;
 
-    /**
-     * @return mixed
-     */
-    public abstract function deletar();
-
-    /**
-     * @return mixed
-     */
-    public function getDataAlteracao()
-    {
-        return $this->dataAlteracao;
-    }
-
-    /**
-     * @param mixed $dataAlteracao
-     */
-    public function setDataAlteracao(string $dataAlteracao): void
-    {
-        $this->dataAlteracao = $dataAlteracao;
-    }
-
-    /**
-     * @return string
-     */
-    public function getDataCriacao()
-    {
-        return $this->dataCriacao;
-    }
-
-    /**
-     * @param string $dataCriacao
-     */
-    public function setDataCriacao(string $dataCriacao): void
-    {
-        $this->dataCriacao = $dataCriacao;
-    }
-
-    /**
-     * @return mixed
-     */
-    public function getUsuarioCadastro()
-    {
-        return $this->usuarioCadastro;
-    }
-
-    /**
-     * @param mixed $usuarioCadastro
-     */
-    public function setUsuarioCadastro($usuarioCadastro): void
-    {
-        $this->usuarioCadastro = $usuarioCadastro;
-    }
-
-    /**
-     * @return mixed
-     */
-    public function getUsuarioAlteracao()
-    {
-        return $this->usuarioAlteracao;
-    }
-
-    /**
-     * @param mixed $usuarioAlteracao
-     */
-    public function setUsuarioAlteracao($usuarioAlteracao): void
-    {
-        $this->usuarioAlteracao = $usuarioAlteracao;
-    }
 
     /**
      * @return bool
+     * @throws Exception
      */
-    public function getStatus(): bool
-    {
-        return $this->status;
-    }
+    public abstract function deletar(): boolean;
 
-    /**
-     * @param bool $status
-     */
-    public function setStatus(bool $status): void
-    {
-        $this->status = $status;
-    }
+
 
 }

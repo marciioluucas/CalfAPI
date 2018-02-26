@@ -10,12 +10,13 @@ namespace src\model;
 
 
 use Exception;
-use Psr\Http\Message\RequestInterface as Request;
 use src\model\repository\FazendaDAO;
-use src\util\ClassToArray;
 use src\util\Config;
-use src\util\Data;
 
+/**
+ * Class Fazenda
+ * @package src\model
+ */
 class Fazenda extends Modelo
 {
     /**
@@ -33,10 +34,10 @@ class Fazenda extends Modelo
     private $limite;
 
     /**
-     * @return bool|mixed
+     * @return int
      * @throws Exception
      */
-    public function cadastrar()
+    public function cadastrar(): int
     {
         $this->dataCriacao = date(Config::PADRAO_DATA_HORA);
         $this->dataAlteracao = date(Config::PADRAO_DATA_HORA);
@@ -47,17 +48,27 @@ class Fazenda extends Modelo
         }
     }
 
-    public function alterar()
+    /**
+     * @return bool
+     */
+    public function alterar(): boolean
     {
         // TODO: Implement alterar() method.
     }
 
-    public function pesquisar(int $page)
+    /**
+     * @param int $page
+     * @return array
+     */
+    public function pesquisar(int $page): array
     {
         // TODO: Implement pesquisar() method.
     }
 
-    public function deletar()
+    /**
+     * @return bool
+     */
+    public function deletar(): boolean
     {
         // TODO: Implement deletar() method.
     }
@@ -109,5 +120,6 @@ class Fazenda extends Modelo
     {
         $this->limite = $limite;
     }
+
 
 }

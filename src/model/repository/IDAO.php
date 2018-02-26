@@ -9,16 +9,39 @@
 namespace src\model\repository;
 
 
-
+/**
+ * Interface IDAO
+ * @package src\model\repository
+ */
 interface IDAO
 {
-    public function create($obj);
+    /**
+     * @param $obj
+     * @return bool
+     */
+    public function create($obj): boolean;
 
-    public function update($obj);
+    /**
+     * @param $obj
+     * @return bool
+     */
+    public function update($obj): boolean;
 
-    public function retreaveAll(int $page);
+    /**
+     * @param int $page
+     * @return array
+     */
+    public function retreaveAll(int $page): array;
 
-    public function retreaveById(int $id);
+    /**
+     * @param int $id
+     * @return array
+     */
+    public function retreaveById(int $id): array;
 
-    public function delete(int $id);
+    /**
+     * @param int $id
+     * @return bool
+     */
+    public function delete(int $id): boolean;
 }
