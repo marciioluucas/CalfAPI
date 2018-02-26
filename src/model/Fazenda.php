@@ -29,9 +29,9 @@ class Fazenda extends Modelo
     private $nome;
 
     /**
-     * @var
+     * @var mixed
      */
-    private $limite;
+    private $limite = 0;
 
     /**
      * Fazenda constructor.

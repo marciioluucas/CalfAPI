@@ -2,14 +2,11 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="00f5a375-e7b8-4505-98fa-01660a814dc1" name="Default" comment="">
-      <change beforePath="" afterPath="$PROJECT_DIR$/src/model/Cargo.php" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/src/model/Grupo.php" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change beforePath="$PROJECT_DIR$/src/model/Pesagem.php" afterPath="$PROJECT_DIR$/src/model/Pesagem.php" />
-      <change beforePath="$PROJECT_DIR$/src/model/Usuario.php" afterPath="$PROJECT_DIR$/src/model/Usuario.php" />
-      <change beforePath="$PROJECT_DIR$/src/model/repository/LoteDAO.php" afterPath="$PROJECT_DIR$/src/model/repository/LoteDAO.php" />
-      <change beforePath="$PROJECT_DIR$/src/model/repository/PesagemDAO.php" afterPath="$PROJECT_DIR$/src/model/repository/PesagemDAO.php" />
-      <change beforePath="$PROJECT_DIR$/src/model/repository/entities/PesagemEntity.php" afterPath="$PROJECT_DIR$/src/model/repository/entities/PesagemEntity.php" />
+      <change beforePath="$PROJECT_DIR$/src/controller/DoencaController.php" afterPath="$PROJECT_DIR$/src/controller/DoencaController.php" />
+      <change beforePath="$PROJECT_DIR$/src/controller/FazendaController.php" afterPath="$PROJECT_DIR$/src/controller/FazendaController.php" />
+      <change beforePath="$PROJECT_DIR$/src/model/Fazenda.php" afterPath="$PROJECT_DIR$/src/model/Fazenda.php" />
+      <change beforePath="$PROJECT_DIR$/src/model/validate/FazendaValidate.php" afterPath="$PROJECT_DIR$/src/model/validate/FazendaValidate.php" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -41,12 +38,67 @@
     <favorites_list name="API" />
   </component>
   <component name="FileEditorManager">
-    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300" />
+    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
+      <file leaf-file-name="FazendaValidate.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/model/validate/FazendaValidate.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="432">
+              <caret line="39" column="16" lean-forward="true" selection-start-line="39" selection-start-column="16" selection-end-line="39" selection-end-column="16" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="FazendaController.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/controller/FazendaController.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="144">
+              <caret line="122" column="37" lean-forward="true" selection-start-line="122" selection-start-column="37" selection-end-line="122" selection-end-column="37" />
+              <folding>
+                <element signature="e#119#133#0#PHP" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Fazenda.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/model/Fazenda.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="312">
+              <caret line="32" column="7" lean-forward="true" selection-start-line="32" selection-start-column="7" selection-end-line="32" selection-end-column="7" />
+              <folding>
+                <element signature="e#114#128#0#PHP" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="DoencaController.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/controller/DoencaController.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="408">
+              <caret line="132" column="9" lean-forward="true" selection-start-line="120" selection-start-column="7" selection-end-line="132" selection-end-column="9" />
+              <folding>
+                <element signature="e#117#131#0#PHP" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="AnimalController.php" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/controller/AnimalController.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="216">
+              <caret line="146" column="24" lean-forward="false" selection-start-line="146" selection-start-column="24" selection-end-line="146" selection-end-column="24" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+    </leaf>
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>\Psr\Http\Message\RequestInterface</find>
-      <find>“</find>
       <find>”</find>
       <find>‘</find>
       <find>’</find>
@@ -75,6 +127,8 @@
       <find>AnimalDAO</find>
       <find>FazendaDAO</find>
       <find>LoteDAO</find>
+      <find>Doenca</find>
+      <find>$doenca</find>
     </findStrings>
     <replaceStrings>
       <replace>use src\</replace>
@@ -105,7 +159,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/src/util/FaseDaVida.php" />
         <option value="$PROJECT_DIR$/src/util/EnumLocalizacao.php" />
         <option value="$PROJECT_DIR$/src/util/Localizacao.php" />
         <option value="$PROJECT_DIR$/src/model/entities/CalfEntity.php" />
@@ -137,8 +190,6 @@
         <option value="$PROJECT_DIR$/src/model/repository/entities/DoencaEntity.php" />
         <option value="$PROJECT_DIR$/src/controller/IController.php" />
         <option value="$PROJECT_DIR$/src/view/View.php" />
-        <option value="$PROJECT_DIR$/src/controller/DoencaController.php" />
-        <option value="$PROJECT_DIR$/src/controller/FazendaController.php" />
         <option value="$PROJECT_DIR$/src/controller/LoteController.php" />
         <option value="$PROJECT_DIR$/src/controller/PesagemController.php" />
         <option value="$PROJECT_DIR$/src/model/repository/IDAO.php" />
@@ -146,7 +197,6 @@
         <option value="$PROJECT_DIR$/src/model/repository/DoencaDAO.php" />
         <option value="$PROJECT_DIR$/src/model/Doenca.php" />
         <option value="$PROJECT_DIR$/src/model/Animal.php" />
-        <option value="$PROJECT_DIR$/src/model/Fazenda.php" />
         <option value="$PROJECT_DIR$/src/model/Lote.php" />
         <option value="$PROJECT_DIR$/src/model/repository/entities/LoteEntity.php" />
         <option value="$PROJECT_DIR$/src/model/repository/FazendaDAO.php" />
@@ -156,6 +206,10 @@
         <option value="$PROJECT_DIR$/src/model/repository/entities/PesagemEntity.php" />
         <option value="$PROJECT_DIR$/src/model/repository/LoteDAO.php" />
         <option value="$PROJECT_DIR$/src/model/repository/PesagemDAO.php" />
+        <option value="$PROJECT_DIR$/src/model/Fazenda.php" />
+        <option value="$PROJECT_DIR$/src/controller/DoencaController.php" />
+        <option value="$PROJECT_DIR$/src/model/validate/FazendaValidate.php" />
+        <option value="$PROJECT_DIR$/src/controller/FazendaController.php" />
       </list>
     </option>
   </component>
@@ -322,22 +376,13 @@
               <item name="CalfAPI" type="b2602c69:ProjectViewProjectNode" />
               <item name="CalfAPI" type="2a2b976b:PhpTreeStructureProvider$1" />
               <item name="src" type="2a2b976b:PhpTreeStructureProvider$1" />
-              <item name="model" type="2a2b976b:PhpTreeStructureProvider$1" />
+              <item name="controller" type="2a2b976b:PhpTreeStructureProvider$1" />
             </path>
             <path>
               <item name="CalfAPI" type="b2602c69:ProjectViewProjectNode" />
               <item name="CalfAPI" type="2a2b976b:PhpTreeStructureProvider$1" />
               <item name="src" type="2a2b976b:PhpTreeStructureProvider$1" />
               <item name="model" type="2a2b976b:PhpTreeStructureProvider$1" />
-              <item name="repository" type="2a2b976b:PhpTreeStructureProvider$1" />
-            </path>
-            <path>
-              <item name="CalfAPI" type="b2602c69:ProjectViewProjectNode" />
-              <item name="CalfAPI" type="2a2b976b:PhpTreeStructureProvider$1" />
-              <item name="src" type="2a2b976b:PhpTreeStructureProvider$1" />
-              <item name="model" type="2a2b976b:PhpTreeStructureProvider$1" />
-              <item name="repository" type="2a2b976b:PhpTreeStructureProvider$1" />
-              <item name="entities" type="2a2b976b:PhpTreeStructureProvider$1" />
             </path>
           </expand>
           <select />
@@ -434,7 +479,7 @@
       <workItem from="1519384123947" duration="3261000" />
       <workItem from="1519393819266" duration="3257000" />
       <workItem from="1519645324763" duration="15558000" />
-      <workItem from="1519674601372" duration="4349000" />
+      <workItem from="1519674601372" duration="5065000" />
     </task>
     <task id="LOCAL-00001" summary="Colocando Slim">
       <created>1518011759197</created>
@@ -660,16 +705,24 @@
       <option name="project" value="LOCAL" />
       <updated>1519678068105</updated>
     </task>
-    <option name="localTasksCounter" value="33" />
+    <task id="LOCAL-00033" summary="Model e repository pesagem pronto">
+      <created>1519683122660</created>
+      <option name="number" value="00033" />
+      <option name="presentableId" value="LOCAL-00033" />
+      <option name="project" value="LOCAL" />
+      <updated>1519683122660</updated>
+    </task>
+    <option name="localTasksCounter" value="34" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="172094000" />
+    <option name="totallyTimeSpent" value="172810000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1382" height="744" extended-state="6" />
+    <editor active="true" />
     <layout>
-      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.2773556" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.2773556" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Docker" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32730263" sideWeight="0.50292826" order="7" side_tool="true" content_ui="tabs" />
@@ -699,7 +752,6 @@
     <option name="myLimit" value="2678400000" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Tirando vendor do repo" />
     <MESSAGE value="Mudando a arquitetura e instalando phinx, eloquent e terminando de arrumar o slim" />
     <MESSAGE value="Configurando arquivos do projeto .iml" />
     <MESSAGE value="Alterações na Database e versionando a configuração do Phinx;" />
@@ -724,7 +776,8 @@
     <MESSAGE value="Padronizando DAO de acordo com a interface." />
     <MESSAGE value="Padronizando os POJOs de acordo com a classe abstrata." />
     <MESSAGE value="Começando a fazer o lote, falta implementar o LoteDAO." />
-    <option name="LAST_COMMIT_MESSAGE" value="Começando a fazer o lote, falta implementar o LoteDAO." />
+    <MESSAGE value="Model e repository pesagem pronto" />
+    <option name="LAST_COMMIT_MESSAGE" value="Model e repository pesagem pronto" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -736,13 +789,6 @@
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/vendor/vlucas/valitron/src/Valitron/Validator.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="281">
-          <caret line="844" column="0" lean-forward="true" selection-start-line="844" selection-start-column="0" selection-end-line="844" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/model/validate/IValidate.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="168">
@@ -894,6 +940,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="480">
           <caret line="28" column="24" lean-forward="false" selection-start-line="28" selection-start-column="24" selection-end-line="28" selection-end-column="24" />
+          <folding />
         </state>
       </provider>
     </entry>
@@ -901,13 +948,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="144">
           <caret line="20" column="16" lean-forward="true" selection-start-line="20" selection-start-column="16" selection-end-line="20" selection-end-column="16" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/model/validate/DoencaValidate.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="168">
-          <caret line="21" column="24" lean-forward="true" selection-start-line="21" selection-start-column="24" selection-end-line="21" selection-end-column="24" />
+          <folding />
         </state>
       </provider>
     </entry>
@@ -918,17 +959,11 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/controller/DoencaController.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="165">
-          <caret line="14" column="21" lean-forward="true" selection-start-line="14" selection-start-column="21" selection-end-line="14" selection-end-column="21" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/view/View.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="34">
           <caret line="80" column="140" lean-forward="false" selection-start-line="80" selection-start-column="140" selection-end-line="80" selection-end-column="140" />
+          <folding />
         </state>
       </provider>
     </entry>
@@ -939,38 +974,13 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/controller/AnimalController.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="3120">
-          <caret line="142" column="34" lean-forward="false" selection-start-line="142" selection-start-column="34" selection-end-line="142" selection-end-column="34" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/controller/IController.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="120">
           <caret line="10" column="0" lean-forward="false" selection-start-line="10" selection-start-column="0" selection-end-line="11" selection-end-column="50" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/controller/PesagemController.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="168">
-          <caret line="12" column="51" lean-forward="false" selection-start-line="12" selection-start-column="51" selection-end-line="12" selection-end-column="51" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/controller/LoteController.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="192">
-          <caret line="23" column="23" lean-forward="false" selection-start-line="23" selection-start-column="23" selection-end-line="23" selection-end-column="23" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/controller/FazendaController.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-312">
-          <caret line="16" column="5" lean-forward="false" selection-start-line="16" selection-start-column="5" selection-end-line="16" selection-end-column="5" />
+          <folding>
+            <element signature="e#118#170#0#PHP" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -1012,16 +1022,6 @@
           <caret line="115" column="60" lean-forward="true" selection-start-line="115" selection-start-column="60" selection-end-line="115" selection-end-column="60" />
           <folding>
             <element signature="e#114#130#0#PHP" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/model/Fazenda.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="312">
-          <caret line="104" column="9" lean-forward="false" selection-start-line="100" selection-start-column="5" selection-end-line="104" selection-end-column="9" />
-          <folding>
-            <element signature="e#114#128#0#PHP" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -1122,6 +1122,80 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-48">
           <caret line="16" column="2" lean-forward="false" selection-start-line="16" selection-start-column="2" selection-end-line="16" selection-end-column="2" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/controller/LoteController.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-96">
+          <caret line="23" column="23" lean-forward="false" selection-start-line="23" selection-start-column="23" selection-end-line="23" selection-end-column="23" />
+          <folding>
+            <element signature="e#119#168#0#PHP" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/controller/PesagemController.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="12" column="51" lean-forward="false" selection-start-line="12" selection-start-column="51" selection-end-line="12" selection-end-column="51" />
+          <folding>
+            <element signature="e#119#168#0#PHP" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/model/validate/DoencaValidate.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="456">
+          <caret line="42" column="9" lean-forward="true" selection-start-line="35" selection-start-column="7" selection-end-line="42" selection-end-column="9" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/model/validate/FazendaValidate.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="432">
+          <caret line="39" column="16" lean-forward="true" selection-start-line="39" selection-start-column="16" selection-end-line="39" selection-end-column="16" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/controller/FazendaController.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="144">
+          <caret line="122" column="37" lean-forward="true" selection-start-line="122" selection-start-column="37" selection-end-line="122" selection-end-column="37" />
+          <folding>
+            <element signature="e#119#133#0#PHP" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/model/Fazenda.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="312">
+          <caret line="32" column="7" lean-forward="true" selection-start-line="32" selection-start-column="7" selection-end-line="32" selection-end-column="7" />
+          <folding>
+            <element signature="e#114#128#0#PHP" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/controller/DoencaController.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="408">
+          <caret line="132" column="9" lean-forward="true" selection-start-line="120" selection-start-column="7" selection-end-line="132" selection-end-column="9" />
+          <folding>
+            <element signature="e#117#131#0#PHP" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/controller/AnimalController.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="216">
+          <caret line="146" column="24" lean-forward="false" selection-start-line="146" selection-start-column="24" selection-end-line="146" selection-end-column="24" />
           <folding />
         </state>
       </provider>

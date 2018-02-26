@@ -9,24 +9,20 @@
 namespace src\model\validate;
 
 use Valitron\Validator;
-class FazendaValidate implements IValidate
+class FazendaValidate extends Validate
 {
 
     public function validatePost($params)
     {
         $v = new Validator($params);
-        $v->rule('required', ['nomeFazenda']);
-        $v->rule('lengthMin','nomeFazenda',4);
-        $v->rule('lengthMax','nomeFazenda',100);
+        $v->rule('required', ['nome']);
+        $v->rule('lengthMin','nome',4);
+        $v->rule('lengthMax','nome',100);
         if ($v->validate()) {
             return true;
         } else {
-            $data = "";
-            foreach ($v->errors() as $key => $value) {
-                $data .= implode(',', $value);
-            }
-            return ["codigo" => 401,
-                "mensagem" => $data];
+            $toReturn = $this->filtrarValidacao($v);
+            return $toReturn;
         }
     }
 
@@ -37,7 +33,14 @@ class FazendaValidate implements IValidate
 
     public function validatePut($params)
     {
-        // TODO: Implement validatePut() method.
+        $v = new Validator($params);
+        $v->rule('required', ['nome','id', 'limite']);
+        if ($v->validate()) {
+            return true;
+        } else {
+            $toReturn = $this->filtrarValidacao($v);
+            return $toReturn;
+        }
     }
 
     public function validateDelete($params)

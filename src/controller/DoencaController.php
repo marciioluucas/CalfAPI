@@ -92,8 +92,10 @@ class DoencaController implements IController
             $valida = (new DoencaValidate())->validatePut((array)$data);
             if ($valida) {
                 $doenca->setId($request->getAttribute('id'));
-                $doenca->setNome($data->nome);
-                if ($data->descricao) {
+                if (isset($data->nome)) {
+                    $doenca->setNome($data->nome);
+                }
+                if (isset($data->descricao)) {
                     $doenca->setDescricao($data->descricao);
                 }
                 if ($doenca->alterar()) {
