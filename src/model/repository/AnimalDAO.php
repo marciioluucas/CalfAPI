@@ -19,6 +19,10 @@ use Psr\Http\Message\RequestInterface as Request;
 use src\model\IModel;
 use src\util\Config;
 
+/**
+ * Class AnimalDAO
+ * @package src\model\repository
+ */
 class AnimalDAO implements IDAO
 {
 
@@ -97,6 +101,7 @@ class AnimalDAO implements IDAO
             ::ativo()->with('fazenda')
             ->with('pesagens')
             ->with('doencas')
+            ->with('lote')
             ->paginate(
                 Config::QUANTIDADE_ITENS_POR_PAGINA,
                 ['*'],

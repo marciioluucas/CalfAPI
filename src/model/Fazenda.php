@@ -9,6 +9,7 @@
 namespace src\model;
 
 
+use Exception;
 use Psr\Http\Message\RequestInterface as Request;
 use src\model\repository\FazendaDAO;
 use src\util\ClassToArray;
@@ -31,11 +32,19 @@ class Fazenda extends Modelo
      */
     private $limite;
 
+    /**
+     * @return bool|mixed
+     * @throws Exception
+     */
     public function cadastrar()
     {
-
         $this->dataCriacao = date(Config::PADRAO_DATA_HORA);
         $this->dataAlteracao = date(Config::PADRAO_DATA_HORA);
+        try {
+            return (new FazendaDAO())->create($this);
+        } catch (Exception $e) {
+            throw new Exception($e->getMessage());
+        }
     }
 
     public function alterar()

@@ -9,6 +9,8 @@
 namespace src\model\repository\entities;
 
 
+use Illuminate\Database\Eloquent\Builder;
+
 class AnimalEntity extends CalfEntity
 {
     protected $table = "animais";
@@ -30,5 +32,14 @@ class AnimalEntity extends CalfEntity
     {
         return $this->belongsToMany('src\model\repository\entities\DoencaEntity',
             'animais_has_doencas', 'animais_id', 'doencas_id');
+    }
+
+    public function lote()
+    {
+        return $this->belongsTo('src\model\repository\entities\LoteEntity', 'lotes_id');
+    }
+
+    public function scopeEstaMorto(Builder $query) {
+        return $query->where('is_vivo', 0);
     }
 }

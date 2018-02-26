@@ -9,9 +9,10 @@
 namespace src\model\repository\entities;
 
 
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
 
-class CalfEntity extends Model
+abstract class CalfEntity extends Model
 {
     const CREATED_AT = 'data_cadastro';
     const UPDATED_AT = 'data_alteracao';
@@ -19,8 +20,16 @@ class CalfEntity extends Model
     protected $primaryKey = 'id';
 
 
-    public function scopeAtivo($query)
+    public function scopeAtivo(Builder $query)
     {
         return $query->where('status', 1);
+    }
+
+    public function scopeInativo(Builder $query) {
+        return $query->where('status', 0);
+    }
+
+    public function scopeFeitoPeloUsuario(Builder $query, int $idUsuario) {
+        return $query->where('usuario_cadastro', $idUsuario);
     }
 }

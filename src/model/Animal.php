@@ -9,6 +9,7 @@
 namespace src\model;
 
 
+use ArrayObject;
 use Exception;
 use src\model\repository\AnimalDAO;
 use src\util\Config;
@@ -84,6 +85,11 @@ class Animal extends Modelo
      */
     private $fazenda;
 
+
+    /**
+     * @var ArrayObject
+     */
+    private $doencas;
     /**
      * Animal constructor.
      */
@@ -92,6 +98,7 @@ class Animal extends Modelo
 
         $this->fazenda = new Fazenda();
         $this->lote = new Lote();
+        $this->doencas = new ArrayObject(new Doenca());
         $this->usuarioCadastro = new Usuario();
         $this->usuarioAlteracao = new Usuario();
 
@@ -156,6 +163,10 @@ class Animal extends Modelo
     public function mudarLocalizacao()
     {
 
+    }
+
+    public function adicionarDoenca(Doenca $doenca){
+        $this->doencas->append($doenca);
     }
 
     /**
@@ -381,5 +392,23 @@ class Animal extends Modelo
     {
         $this->fazenda = $fazenda;
     }
+
+    /**
+     * @return ArrayObject
+     */
+    public function getDoencas(): ArrayObject
+    {
+        return $this->doencas;
+    }
+
+    /**
+     * @param ArrayObject $doencas
+     */
+    public function setDoencas(ArrayObject $doencas): void
+    {
+        $this->doencas = $doencas;
+    }
+
+
 
 }

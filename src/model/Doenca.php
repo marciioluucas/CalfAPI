@@ -87,4 +87,22 @@ class Doenca extends Modelo
     {
         $this->descricao = $descricao;
     }
+
+    /**
+     * @return mixed
+     */
+    public function getSituacao()
+    {
+        return $this->situacao;
+    }
+
+    /**
+     * @param mixed $situacao
+     */
+    public function setSituacao($situacao): void
+    {
+        $this->situacao = $situacao;
+    }
+
+
 }

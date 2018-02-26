@@ -15,6 +15,7 @@ class DoencaEntity extends CalfEntity
     protected $fillable = [
         'nome',
         'descricao',
+        'situacao',
         'data_criacao',
         'data_alteracao',
         'usuario_cadastro',
