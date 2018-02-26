@@ -138,7 +138,7 @@ class Animal extends Modelo
             $this->dataAlteracao = date(Config::PADRAO_DATA_HORA);
             return (new AnimalDAO())->update($this);
         } catch (Exception $e) {
-            throw new Exception("Erro ao tentar atualizar um animal: " . $e->getMessage());
+            throw new Exception($e->getMessage());
         }
     }
 

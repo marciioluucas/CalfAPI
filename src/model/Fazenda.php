@@ -34,6 +34,16 @@ class Fazenda extends Modelo
     private $limite;
 
     /**
+     * Fazenda constructor.
+     */
+    public function __construct()
+    {
+        $this->usuarioCadastro = new Usuario();
+        $this->usuarioAlteracao = new Usuario();
+    }
+
+
+    /**
      * @return bool
      * @throws Exception
      */
@@ -41,6 +51,7 @@ class Fazenda extends Modelo
     {
         $this->dataCriacao = date(Config::PADRAO_DATA_HORA);
         $this->dataAlteracao = date(Config::PADRAO_DATA_HORA);
+        $this->usuarioCadastro->setId(1);
         try {
             return (new FazendaDAO())->create($this);
         } catch (Exception $e) {
@@ -50,27 +61,48 @@ class Fazenda extends Modelo
 
     /**
      * @return bool
+     * @throws Exception
      */
     public function alterar(): boolean
     {
-        // TODO: Implement alterar() method.
+        try {
+            $this->dataAlteracao = date(Config::PADRAO_DATA_HORA);
+            return (new FazendaDAO())->update($this);
+        } catch (Exception $e) {
+            throw new Exception($e->getMessage());
+        }
     }
 
     /**
      * @param int $page
      * @return array
+     * @throws Exception
      */
     public function pesquisar(int $page): array
     {
-        // TODO: Implement pesquisar() method.
+        try {
+            if ($this->id) {
+                return (new FazendaDAO())->retreaveById($this->id);
+            } else if ($this->nome) {
+                return (new FazendaDAO())->retreaveByNome($this->nome, $page);
+            }
+            return (new FazendaDAO())->retreaveAll($page);
+        } catch (Exception $exception) {
+            throw new Exception($exception->getMessage());
+        }
     }
 
     /**
      * @return bool
+     * @throws Exception
      */
     public function deletar(): boolean
     {
-        // TODO: Implement deletar() method.
+        try {
+            return (new FazendaDAO())->delete($this->id);
+        } catch (Exception $e) {
+            throw new Exception($e->getMessage());
+        }
     }
 
     /**

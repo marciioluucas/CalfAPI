@@ -10,7 +10,7 @@ namespace src\model;
 
 
 use Exception;
-use Psr\Http\Message\RequestInterface as Request;
+use src\model\repository\LoteDAO;
 use src\util\Config;
 
 /**
@@ -33,13 +33,26 @@ class Lote extends Modelo
     private $descricao;
 
 
+    public function __construct()
+    {
+        $this->usuarioCadastro = new Usuario();
+        $this->usuarioAlteracao = new Usuario();
+    }
+
     /**
      * @return boolean
      * @throws Exception
      */
     public function cadastrar(): boolean
     {
-        // TODO: Implement cadastrar() method.
+        $this->dataCriacao = date(Config::PADRAO_DATA_HORA);
+        $this->dataAlteracao = date(Config::PADRAO_DATA_HORA);
+        $this->usuarioCadastro->setId(1);
+        try {
+            return (new LoteDAO())->create($this);
+        } catch (Exception $e) {
+            throw new Exception($e->getMessage());
+        }
     }
 
     /**
@@ -48,7 +61,12 @@ class Lote extends Modelo
      */
     public function alterar(): boolean
     {
-        // TODO: Implement alterar() method.
+        try {
+            $this->dataAlteracao = date(Config::PADRAO_DATA_HORA);
+            return (new LoteDAO())->update($this);
+        } catch (Exception $e) {
+            throw new Exception($e->getMessage());
+        }
     }
 
     /**
@@ -58,7 +76,16 @@ class Lote extends Modelo
      */
     public function pesquisar(int $page): array
     {
-        // TODO: Implement pesquisar() method.
+        try {
+            if ($this->id) {
+                return (new LoteDAO())->retreaveById($this->id);
+            } else if ($this->codigo) {
+                return (new LoteDAO())->retreaveByCodigo($this->codigo, $page);
+            }
+            return (new LoteDAO())->retreaveAll($page);
+        } catch (Exception $exception) {
+            throw new Exception($exception->getMessage());
+        }
     }
 
     /**
@@ -67,7 +94,11 @@ class Lote extends Modelo
      */
     public function deletar(): boolean
     {
-        // TODO: Implement deletar() method.
+        try {
+            return (new LoteDAO())->delete($this->id);
+        } catch (Exception $e) {
+            throw new Exception($e->getMessage());
+        }
     }
 
     /**
