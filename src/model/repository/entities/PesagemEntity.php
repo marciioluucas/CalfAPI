@@ -9,6 +9,13 @@
 namespace src\model\repository\entities;
 
 
+/**
+ * @property string data_pesagem
+ * @property float peso
+ * @property \src\model\Usuario usuario_cadastro
+ * @property int usuario_alteracao
+ * @property string data_cadastro
+ */
 class PesagemEntity extends CalfEntity
 {
     protected $table = 'pesagens';

@@ -9,133 +9,171 @@
 namespace src\model;
 
 
-use Psr\Http\Message\RequestInterface as Request;
+use Exception;
 
+/**
+ * Class Usuario
+ * @package src\model
+ */
 class Usuario extends Modelo
 {
+    /**
+     * @var int
+     */
     private $id;
+    /**
+     * @var string
+     */
     private $nome;
+    /**
+     * @var string
+     */
     private $login;
+    /**
+     * @var string
+     */
     private $senha;
+    /**
+     * @var Cargo
+     */
     private $cargo;
+    /**
+     * @var Grupo
+     */
     private $grupo;
 
-    public function cadastrar()
+    /**
+     * @return boolean
+     * @throws Exception
+     */
+    public function cadastrar(): boolean
     {
         // TODO: Implement cadastrar() method.
     }
 
-    public function alterar()
+    /**
+     * @return boolean
+     * @throws Exception
+     */
+    public function alterar(): boolean
     {
         // TODO: Implement alterar() method.
     }
 
-    public function pesquisar(int $page)
+    /**
+     * @param int $page
+     * @return array
+     * @throws Exception
+     */
+    public function pesquisar(int $page): array
     {
         // TODO: Implement pesquisar() method.
     }
 
-    public function deletar()
+    /**
+     * @return bool
+     * @throws Exception
+     */
+    public function deletar(): boolean
     {
         // TODO: Implement deletar() method.
     }
 
     /**
-     * @return mixed
+     * @return int
      */
-    public function getId()
+    public function getId(): int
     {
         return $this->id;
     }
 
     /**
-     * @param mixed $id
+     * @param int $id
      */
-    public function setId($id): void
+    public function setId(int $id): void
     {
         $this->id = $id;
     }
 
     /**
-     * @return mixed
+     * @return string
      */
-    public function getNome()
+    public function getNome(): string
     {
         return $this->nome;
     }
 
     /**
-     * @param mixed $nome
+     * @param string $nome
      */
-    public function setNome($nome): void
+    public function setNome(string $nome): void
     {
         $this->nome = $nome;
     }
 
     /**
-     * @return mixed
+     * @return string
      */
-    public function getLogin()
+    public function getLogin(): string
     {
         return $this->login;
     }
 
     /**
-     * @param mixed $login
+     * @param string $login
      */
-    public function setLogin($login): void
+    public function setLogin(string $login): void
     {
         $this->login = $login;
     }
 
     /**
-     * @return mixed
+     * @return string
      */
-    public function getSenha()
+    public function getSenha(): string
     {
         return $this->senha;
     }
 
     /**
-     * @param mixed $senha
+     * @param string $senha
      */
-    public function setSenha($senha): void
+    public function setSenha(string $senha): void
     {
         $this->senha = $senha;
     }
 
     /**
-     * @return mixed
+     * @return Cargo
      */
-    public function getCargo()
+    public function getCargo(): Cargo
     {
         return $this->cargo;
     }
 
     /**
-     * @param mixed $cargo
+     * @param Cargo $cargo
      */
-    public function setCargo($cargo): void
+    public function setCargo(Cargo $cargo): void
     {
         $this->cargo = $cargo;
     }
 
     /**
-     * @return mixed
+     * @return Grupo
      */
-    public function getGrupo()
+    public function getGrupo(): Grupo
     {
         return $this->grupo;
     }
 
     /**
-     * @param mixed $grupo
+     * @param Grupo $grupo
      */
-    public function setGrupo($grupo): void
+    public function setGrupo(Grupo $grupo): void
     {
         $this->grupo = $grupo;
     }
-
 
 
 }

@@ -45,6 +45,7 @@ class LoteDAO implements IDAO
     /**
      * @param Lote $obj
      * @return bool
+     * @throws Exception
      */
     public function update($obj): boolean
     {
@@ -54,7 +55,14 @@ class LoteDAO implements IDAO
         if (!is_null($obj->getCodigo())) {
             $entity->codigo = $obj->getCodigo();
         }
-        return (new LoteDAO())->update($obj);
+        try {
+            if ($entity->save()) {
+                return true;
+            }
+        } catch (Exception $e) {
+            throw new Exception("Erro ao tentar salvar uma nova fazenda.");
+        }
+        return false;
     }
 
     /**

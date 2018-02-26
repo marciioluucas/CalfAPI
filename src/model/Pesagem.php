@@ -8,7 +8,9 @@
 
 namespace src\model;
 
+use Exception;
 use Psr\Http\Message\RequestInterface as Request;
+use src\model\repository\PesagemDAO;
 use src\util\Config;
 
 class Pesagem extends Modelo
@@ -27,38 +29,73 @@ class Pesagem extends Modelo
     private $dataPesagem;
 
     /**
-     * @return mixed|void
+     * @var Animal
      */
-    public function cadastrar()
+    private $animal;
+
+    public function __construct()
+    {
+        $this->usuarioCadastro = new Usuario();
+        $this->usuarioAlteracao = new Usuario();
+        $this->animal = new Animal();
+    }
+
+    public function cadastrar(): boolean
     {
         $this->dataCriacao = date(Config::PADRAO_DATA_HORA);
         $this->dataAlteracao = date(Config::PADRAO_DATA_HORA);
+        $this->usuarioCadastro->setId(1);
+        try {
+            return (new PesagemDAO())->create($this);
+        } catch (Exception $e) {
+            throw new Exception($e->getMessage());
+        }
+    }
+
+    public function alterar(): boolean
+    {
+        try {
+            $this->dataAlteracao = date(Config::PADRAO_DATA_HORA);
+            return (new PesagemDAO())->update($this);
+        } catch (Exception $e) {
+            throw new Exception($e->getMessage());
+        }
+    }
+
+
+    /**
+     * @param int $page
+     * @return array
+     * @throws Exception
+     */
+    public function pesquisar(int $page): array
+    {
+        try {
+            if ($this->id) {
+                return (new PesagemDAO())->retreaveById($this->id);
+            } else if ($this->animal->getId()) {
+                return (new PesagemDAO())->retreaveByIdAnimal($this->animal->getId(), $page);
+            }
+            return (new PesagemDAO())->retreaveAll($page);
+        } catch (Exception $exception) {
+            throw new Exception($exception->getMessage());
+        }
     }
 
     /**
-     * @return mixed|void
+     * @return bool
+     * @throws Exception
      */
-    public function alterar()
+    public function deletar(): boolean
     {
-        // TODO: Implement alterar() method.
+        try {
+            return (new PesagemDAO())->delete($this->id);
+        } catch (Exception $e) {
+            throw new Exception($e->getMessage());
+        }
     }
 
-    /**
-     * @param Request $request
-     * @return array|void
-     */
-    public function pesquisar(Request $request)
-    {
-        // TODO: Implement pesquisar() method.
-    }
 
-    /**
-     * @return mixed|void
-     */
-    public function deletar()
-    {
-        // TODO: Implement deletar() method.
-    }
 
     /**
      * @return int
@@ -106,6 +143,22 @@ class Pesagem extends Modelo
     public function setDataPesagem(string $dataPesagem): void
     {
         $this->dataPesagem = $dataPesagem;
+    }
+
+    /**
+     * @return Animal
+     */
+    public function getAnimal(): Animal
+    {
+        return $this->animal;
+    }
+
+    /**
+     * @param Animal $animal
+     */
+    public function setAnimal(Animal $animal): void
+    {
+        $this->animal = $animal;
     }
 
 
