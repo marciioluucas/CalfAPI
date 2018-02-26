@@ -39,10 +39,10 @@ abstract class Modelo
     protected $status;
 
     /**
-     * @return int|boolean
+     * @return boolean
      * @throws Exception
      */
-    public abstract function cadastrar(): int;
+    public abstract function cadastrar(): boolean;
 
     /**
      * @return boolean

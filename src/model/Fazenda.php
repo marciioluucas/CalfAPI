@@ -34,10 +34,10 @@ class Fazenda extends Modelo
     private $limite;
 
     /**
-     * @return int
+     * @return bool
      * @throws Exception
      */
-    public function cadastrar(): int
+    public function cadastrar(): boolean
     {
         $this->dataCriacao = date(Config::PADRAO_DATA_HORA);
         $this->dataAlteracao = date(Config::PADRAO_DATA_HORA);

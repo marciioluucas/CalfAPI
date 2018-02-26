@@ -46,7 +46,7 @@ class Doenca extends Modelo
      * @return bool
      * @throws Exception
      */
-    public function cadastrar()
+    public function cadastrar(): boolean
     {
         $this->dataCriacao = date(Config::PADRAO_DATA_HORA);
         $this->dataAlteracao = date(Config::PADRAO_DATA_HORA);
@@ -63,7 +63,7 @@ class Doenca extends Modelo
      * @throws Exception
      * @return boolean
      */
-    public function alterar()
+    public function alterar(): boolean
     {
         try {
             $this->dataAlteracao = date(Config::PADRAO_DATA_HORA);
@@ -78,7 +78,7 @@ class Doenca extends Modelo
      * @return array
      * @throws Exception
      */
-    public function pesquisar(int $page)
+    public function pesquisar(int $page): array
     {
         if ($this->id) {
             return (new DoencaDAO)->retreaveById($this->id);
@@ -93,7 +93,7 @@ class Doenca extends Modelo
      * @return bool|mixed
      * @throws Exception
      */
-    public function deletar()
+    public function deletar(): boolean
     {
         try {
             return (new DoencaDAO())->delete($this->id);

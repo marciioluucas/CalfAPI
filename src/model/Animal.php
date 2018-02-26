@@ -110,7 +110,7 @@ class Animal extends Modelo
      * @return bool
      * @throws Exception
      */
-    public function cadastrar()
+    public function cadastrar(): boolean
     {
         $this->dataAlteracao = date(Config::PADRAO_DATA_HORA);
         $this->dataCriacao = date(Config::PADRAO_DATA_HORA);
@@ -132,7 +132,7 @@ class Animal extends Modelo
      * @return boolean
      * @throws Exception
      */
-    public function alterar()
+    public function alterar(): boolean
     {
         try {
             $this->dataAlteracao = date(Config::PADRAO_DATA_HORA);
@@ -147,7 +147,7 @@ class Animal extends Modelo
      * @return array
      * @throws Exception
      */
-    public function pesquisar(int $page)
+    public function pesquisar(int $page): array
     {
         if ($this->id) {
             return (new AnimalDAO)->retreaveById($this->id);
@@ -162,7 +162,7 @@ class Animal extends Modelo
      * @return boolean
      * @throws Exception
      */
-    public function deletar()
+    public function deletar(): boolean
     {
         try {
             return (new AnimalDAO())->delete($this->id);
