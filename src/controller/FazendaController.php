@@ -11,63 +11,50 @@ namespace src\controller;
 
 use src\model\Fazenda;
 use src\model\validate\FazendaValidate;
-use src\util\DataConversor;
-use view\View;
+use \Psr\Http\Message\ResponseInterface as Response;
+use \Psr\Http\Message\RequestInterface as Request;
 
 class FazendaController implements IController
 {
 
-    public function post()
+    /**
+     * @param Request $request
+     * @param Response $response
+     * @return Response
+     */
+    public function post(Request $request, Response $response): Response
     {
-        $fazenda = new Fazenda();
-        $data = (new DataConversor())->converter();
-        $valida = (new FazendaValidate())->validatePost($data);
-        if ($valida === true) {
-            $fazenda->setNomeFazenda($data['nomeFazenda']);
-            View::render($fazenda->cadastrar());
-        } else {
-            View::render($valida);
-        }
+        // TODO: Implement post() method.
     }
 
-    public function get($param)
+    /**
+     * @param Request $request
+     * @param Response $response
+     * @param array $args
+     * @return Response
+     */
+    public function get(Request $request, Response $response, array $args): Response
     {
-        $fazenda = new Fazenda();
-        if (!empty($param)) {
-            foreach ($param as $key => $val) {
-                $var = "set" . ucfirst($key);
-                if (method_exists($fazenda, 'set' . ucfirst($key))) {
-                    $fazenda->$var($val);
-                } else {
-                    View::render([
-                        "status" => 401,
-                        "message" => "Parametro invalido " . $key
-                    ]);
-                }
-            }
-        }
-        View::render($fazenda->pesquisar());
+        // TODO: Implement get() method.
     }
 
-    public function put($param)
+    /**
+     * @param Request $request
+     * @param Response $response
+     * @return Response
+     */
+    public function put(Request $request, Response $response): Response
     {
-        $fazenda = new Fazenda();
-        if (isset($param['idFazenda'])) {
-            $data = (new DataConversor())->converter();
-            $fazenda->setIdFazenda($param['idFazenda']);
-            if (isset($data['nomeFazenda'])) {
-                $fazenda->setNomeFazenda($data['nomeFazenda']);
-            }
-            View::render($fazenda->alterar());
-        }
+        // TODO: Implement put() method.
     }
 
-    public function delete($param)
+    /**
+     * @param Request $request
+     * @param Response $response
+     * @return Response
+     */
+    public function delete(Request $request, Response $response): Response
     {
-        $fazenda = new Fazenda();
-        if (isset($param['idFazenda'])) {
-            $fazenda->setIdFazenda($param['idFazenda']);
-            View::render($fazenda->deletar());
-        }
+        // TODO: Implement delete() method.
     }
 }

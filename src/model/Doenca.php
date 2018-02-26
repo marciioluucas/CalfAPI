@@ -28,13 +28,9 @@ class Doenca extends Modelo
      */
     private $nome;
     /**
-     * @var string|null
-     */
-    private $descricao = "SEM DESCRIÇÃO";
-    /**
      * @var string
      */
-    private $situacao = 'NÃO INFORMADA';
+    private $descricao = "Sem descrição";
 
     /**
      * Doenca constructor.
@@ -91,12 +87,18 @@ class Doenca extends Modelo
         return (new DoencaDAO())->retreaveAll($page);
     }
 
+
     /**
-     * @return mixed|void
+     * @return bool|mixed
+     * @throws Exception
      */
     public function deletar()
     {
-        // TODO: Implement deletar() method.
+        try {
+            return (new DoencaDAO())->delete($this->id);
+        } catch (Exception $e) {
+            throw new Exception($e->getMessage());
+        }
     }
 
     /**
@@ -134,7 +136,7 @@ class Doenca extends Modelo
     /**
      * @return null|string
      */
-    public function getDescricao(): ?string
+    public function getDescricao(): string
     {
         return $this->descricao;
     }
@@ -145,22 +147,6 @@ class Doenca extends Modelo
     public function setDescricao(?string $descricao): void
     {
         $this->descricao = $descricao;
-    }
-
-    /**
-     * @return string
-     */
-    public function getSituacao(): string
-    {
-        return $this->situacao;
-    }
-
-    /**
-     * @param string $situacao
-     */
-    public function setSituacao(string $situacao): void
-    {
-        $this->situacao = $situacao;
     }
 
 

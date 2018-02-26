@@ -13,6 +13,10 @@ use InvalidArgumentException;
 use src\util\HeaderWriter;
 use \Psr\Http\Message\ResponseInterface as Response;
 
+/**
+ * Class View
+ * @package src\view
+ */
 class View
 {
     /**
@@ -22,7 +26,7 @@ class View
      * @param string $razao
      * @return Response
      */
-    public static final function render(Response $response, array $data = [], $codigo = "", $razao = "")
+    public static final function render(Response $response, array $data = [], $codigo = "", $razao = ""):Response
     {
         if ($codigo != "" and $razao == "") {
             return $response
@@ -42,7 +46,13 @@ class View
 
     }
 
-    public static final function renderException(Response $response, Exception $exception, $additionalMessage = "none", $utf8 = false)
+    /**
+     * @param Response $response
+     * @param Exception $exception
+     * @param string $additionalMessage
+     * @return Response
+     */
+    public static final function renderException(Response $response, Exception $exception, $additionalMessage = "none"):Response
     {
         $arrayReturn = [
             "exception" => [
@@ -60,7 +70,15 @@ class View
     }
 
 
-    public static final function renderMessage(Response $response, string $type, $description, int $codigo = 0, string $razao = "")
+    /**
+     * @param Response $response
+     * @param string $type
+     * @param $description
+     * @param int $codigo
+     * @param string $razao
+     * @return Response
+     */
+    public static final function renderMessage(Response $response, string $type, $description, int $codigo = 0, string $razao = ""):Response
     {
         if ($type != 'error' && $type != 'success' && $type != 'warning') {
             throw new InvalidArgumentException("O argumento de tipo deve ser somente: error, success ou warning.");

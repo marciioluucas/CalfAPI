@@ -19,7 +19,13 @@ use src\view\View;
 class DoencaController implements IController
 {
 
-    public function post(Request $request, Response $response)
+
+    /**
+     * @param Request $request
+     * @param Response $response
+     * @return Response
+     */
+    public function post(Request $request, Response $response): Response
     {
         try {
             $doenca = new Doenca();
@@ -30,7 +36,7 @@ class DoencaController implements IController
                 if (isset($data->descricao)) {
                     $doenca->setDescricao($data->descricao);
                 }
-                if($id = $doenca->cadastrar()){
+                if ($id = $doenca->cadastrar()) {
                     return View::renderMessage($response,
                         "success", "Doença cadastrado com sucesso! ID cadastrado: " . $id,
                         201, "Sucesso ao cadastrar");
@@ -46,7 +52,14 @@ class DoencaController implements IController
         }
     }
 
-    public function get(Request $request, Response $response, array $args)
+
+    /**
+     * @param Request $request
+     * @param Response $response
+     * @param array $args
+     * @return Response
+     */
+    public function get(Request $request, Response $response, array $args): Response
     {
         try {
             $doenca = new Doenca();
@@ -64,7 +77,13 @@ class DoencaController implements IController
         }
     }
 
-    public function put(Request $request, Response $response)
+
+    /**
+     * @param Request $request
+     * @param Response $response
+     * @return Response
+     */
+    public function put(Request $request, Response $response): Response
     {
         try {
 
@@ -86,22 +105,29 @@ class DoencaController implements IController
         } catch (Exception $exception) {
             return View::renderException($response, $exception);
         }
+        return $response;
     }
 
-    public function delete(Request $request, Response $response)
+
+    /**
+     * @param Request $request
+     * @param Response $response
+     * @return Response
+     */
+    public function delete(Request $request, Response $response): Response
     {
-       try{
-           $doenca = new Doenca();
-           if ($request->getAttribute('id')) {
-               $doenca->setId($request->getAttribute('id'));
-               if ($doenca->deletar()) {
-                   return View::renderMessage($response, "success", "Doenca desativada com sucesso!",
-                       202,
-                       "Sucesso ao desativar");
-               };
-           }
-       } catch (Exception $exception) {
-           return View::renderException($response, $exception);
-       }
+        try {
+            $doenca = new Doenca();
+            if ($request->getAttribute('id')) {
+                $doenca->setId($request->getAttribute('id'));
+                if ($doenca->deletar()) {
+                    return View::renderMessage($response, "success", "Doenca desativada com sucesso!",
+                        202,
+                        "Sucesso ao desativar");
+                };
+            }
+        } catch (Exception $exception) {
+            return View::renderException($response, $exception);
+        }
     }
 }

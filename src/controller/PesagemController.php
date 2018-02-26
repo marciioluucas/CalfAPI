@@ -9,70 +9,50 @@
 namespace src\controller;
 
 
-use src\model\Pesagem;
-use src\model\validate\PesagemValidate;
-use src\util\DataConversor;
-use view\View;
+use Psr\Http\Message\RequestInterface as Request;
+use Psr\Http\Message\ResponseInterface as Response;
 
 class PesagemController implements IController
 {
 
-    public function post()
+    /**
+     * @param Request $request
+     * @param Response $response
+     * @return Response
+     */
+    public function post(Request $request, Response $response): Response
     {
-        $pesagem = new Pesagem();
-        $data = (new DataConversor())->converter();
-        $valida = (new PesagemValidate())->validatePost($data);
-        if ($valida === true) {
-            $pesagem->setPeso($data['peso']);
-            $pesagem->setDataPesagem($data['dataPesagem']);
-            View::render($pesagem->cadastrar());
-        } else {
-            View::render($valida);
-        }
+        // TODO: Implement post() method.
     }
 
-    public function get($param)
+    /**
+     * @param Request $request
+     * @param Response $response
+     * @param array $args
+     * @return Response
+     */
+    public function get(Request $request, Response $response, array $args): Response
     {
-        $pesagem = new Pesagem();
-        if (!empty($param)) {
-            foreach ($param as $key => $val) {
-                $var = "set" . ucfirst($key);
-                if (method_exists($pesagem, 'set' . ucfirst($key))) {
-                    $pesagem->$var($val);
-                } else {
-                    View::render([
-                        "status" => 401,
-                        "message" => "Parametro invalido " . $key
-                    ]);
-                }
-            }
-        }
-        View::render($pesagem->pesquisar());
+        // TODO: Implement get() method.
     }
 
-    public function put($param)
+    /**
+     * @param Request $request
+     * @param Response $response
+     * @return Response
+     */
+    public function put(Request $request, Response $response): Response
     {
-
-        $pesagem = new Pesagem();
-        if (isset($param['idPesagem'])) {
-            $data = (new DataConversor())->converter();
-            $pesagem->setIdPesagem($param['idPesagem']);
-            if (isset($data['peso'])) {
-                $pesagem->setPeso($data['peso']);
-            }
-            if (isset($data['dataPesagem'])) {
-                $pesagem->setDataPesagem($data['dataPesagem']);
-            }
-            View::render($pesagem->alterar());
-        }
+        // TODO: Implement put() method.
     }
 
-    public function delete($param)
+    /**
+     * @param Request $request
+     * @param Response $response
+     * @return Response
+     */
+    public function delete(Request $request, Response $response): Response
     {
-        $pesagem = new Pesagem();
-        if (isset($param['idPesagem'])) {
-            $pesagem->setIdPesagem($param['idPesagem']);
-            View::render($pesagem->deletar());
-        }
+        // TODO: Implement delete() method.
     }
 }

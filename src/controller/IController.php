@@ -7,17 +7,43 @@
  */
 
 namespace src\controller;
+
 use \Psr\Http\Message\ResponseInterface as Response;
 use \Psr\Http\Message\RequestInterface as Request;
 
 
+/**
+ * Interface IController
+ * @package src\controller
+ */
 interface IController
 {
-    public function post(Request $request, Response $response);
+    /**
+     * @param Request $request
+     * @param Response $response
+     * @return Response
+     */
+    public function post(Request $request, Response $response): Response;
 
-    public function get(Request $request, Response $response, array $args);
+    /**
+     * @param Request $request
+     * @param Response $response
+     * @param array $args
+     * @return Response
+     */
+    public function get(Request $request, Response $response, array $args): Response;
 
-    public function put(Request $request, Response $response);
+    /**
+     * @param Request $request
+     * @param Response $response
+     * @return Response
+     */
+    public function put(Request $request, Response $response): Response;
 
-    public function delete(Request $request, Response $response);
+    /**
+     * @param Request $request
+     * @param Response $response
+     * @return Response
+     */
+    public function delete(Request $request, Response $response): Response;
 }
