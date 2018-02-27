@@ -37,13 +37,19 @@ class Api
      */
     public function groupRoutes()
     {
+        $this->groupAuth();
+        $this->groupModules();
+    }
+
+    public function groupModules()
+    {
         $app = $this->app;
 
         $app->group('/{classname}', function () use ($app) {
             $app->get('', function (Request $request, Response $response, array $args) {
-                try{
+                try {
                     $class = Api::invokeClass($args['classname'], $request, $response);
-                }catch (Exception $e) {
+                } catch (Exception $e) {
                     return View::renderException($response, $e);
                 }
                 return $class->get($request, $response, $args);
@@ -79,6 +85,22 @@ class Api
         });
     }
 
+    public function groupAuth()
+    {
+        $app = $this->app;
+
+        $app->group('/auth', function () use ($app) {
+            $app->post('/in', function (Request $request, Response $response, array $args) {
+//                $class = Api::invokeClass($args['classname'], $request, $response);
+//                return $class->post($request, $response, $args);
+            });
+            $app->delete('/out', function (Request $request, Response $response, array $args) {
+//                $class = Api::invokeClass($args['classname'], $request, $response);
+//                return $class->delete($request, $response);
+            });
+        });
+    }
+
     /**
      * @param String $classname
      * @param Request $request
@@ -90,7 +112,7 @@ class Api
     {
         $class = "\\src\\controller\\" . ucfirst($classname) . "Controller";
         if (!class_exists($class)) {
-           throw new Exception("Módulo não cadastrado na API");
+            throw new Exception("Módulo não cadastrado na API");
         }
         return new $class($request, $response);
     }

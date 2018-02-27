@@ -7,7 +7,7 @@
  * Time: 00:10
  */
 
-namespace src\model\validate;
+namespace src\util\validate;
 
 
 use Valitron\Validator;

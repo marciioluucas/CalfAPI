@@ -11,7 +11,7 @@ namespace src\controller;
 
 use Exception;
 use src\model\Animal;
-use src\model\validate\AnimalValidate;
+use src\util\validate\AnimalValidate;
 use \Psr\Http\Message\ResponseInterface as Response;
 use \Psr\Http\Message\RequestInterface as Request;
 use src\util\Migration;

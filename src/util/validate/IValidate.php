@@ -6,7 +6,7 @@
  * Time: 19:12
  */
 
-namespace src\model\validate;
+namespace src\util\validate;
 
 
 interface IValidate

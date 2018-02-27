@@ -13,7 +13,7 @@ use Exception;
 use Psr\Http\Message\RequestInterface as Request;
 use Psr\Http\Message\ResponseInterface as Response;
 use src\model\Pesagem;
-use src\model\validate\PesagemValidate;
+use src\util\validate\PesagemValidate;
 use src\view\View;
 
 class PesagemController implements IController

@@ -1,23 +1,23 @@
 <?php
 /**
  * Created by PhpStorm.
- * User: marci
- * Date: 26/02/2018
- * Time: 12:18
+ * User: Usuario
+ * Date: 13/09/2017
+ * Time: 11:49
  */
 
-namespace src\model\validate;
-
+namespace src\util\validate;
 
 use Valitron\Validator;
-
-class DoencaValidate extends Validate
+class FazendaValidate extends Validate
 {
 
     public function validatePost($params)
     {
         $v = new Validator($params);
         $v->rule('required', ['nome']);
+        $v->rule('lengthMin','nome',4);
+        $v->rule('lengthMax','nome',100);
         if ($v->validate()) {
             return true;
         } else {
@@ -34,7 +34,7 @@ class DoencaValidate extends Validate
     public function validatePut($params)
     {
         $v = new Validator($params);
-        $v->rule('required', ['nome','id']);
+        $v->rule('required', ['nome','id', 'limite']);
         if ($v->validate()) {
             return true;
         } else {

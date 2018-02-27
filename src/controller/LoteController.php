@@ -13,7 +13,7 @@ use Exception;
 use Psr\Http\Message\RequestInterface as Request;
 use Psr\Http\Message\ResponseInterface as Response;
 use src\model\Lote;
-use src\model\validate\LoteValidate;
+use src\util\validate\LoteValidate;
 use src\view\View;
 
 /**

@@ -1,23 +1,23 @@
 <?php
 /**
  * Created by PhpStorm.
- * User: Usuario
- * Date: 13/09/2017
- * Time: 13:07
+ * User: marci
+ * Date: 26/02/2018
+ * Time: 12:18
  */
 
-namespace src\model\validate;
+namespace src\util\validate;
 
 
 use Valitron\Validator;
 
-class LoteValidate extends Validate
+class DoencaValidate extends Validate
 {
 
     public function validatePost($params)
     {
         $v = new Validator($params);
-        $v->rule('required', ['codigo']);
+        $v->rule('required', ['nome']);
         if ($v->validate()) {
             return true;
         } else {
@@ -28,22 +28,13 @@ class LoteValidate extends Validate
 
     public function validateGet($params)
     {
-        $v = new Validator($params);
-        $v->rule('required', ['id']);
-        $v->rule('required', ['codigo']);
-        if ($v->validate()) {
-            return true;
-        } else {
-            $toReturn = $this->filtrarValidacao($v);
-            return $toReturn;
-        }
+        // TODO: Implement validateGet() method.
     }
 
     public function validatePut($params)
     {
         $v = new Validator($params);
-        $v->rule('required', ['id']);
-        $v->rule('required', ['codigo']);
+        $v->rule('required', ['nome','id']);
         if ($v->validate()) {
             return true;
         } else {

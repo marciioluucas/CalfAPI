@@ -13,7 +13,7 @@ use Exception;
 use Psr\Http\Message\RequestInterface as Request;
 use Psr\Http\Message\ResponseInterface as Response;
 use src\model\Doenca;
-use src\model\validate\DoencaValidate;
+use src\util\validate\DoencaValidate;
 use src\view\View;
 
 class DoencaController implements IController

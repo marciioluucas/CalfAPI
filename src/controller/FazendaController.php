@@ -11,7 +11,7 @@ namespace src\controller;
 
 use Exception;
 use src\model\Fazenda;
-use src\model\validate\FazendaValidate;
+use src\util\validate\FazendaValidate;
 use \Psr\Http\Message\ResponseInterface as Response;
 use \Psr\Http\Message\RequestInterface as Request;
 use src\view\View;
