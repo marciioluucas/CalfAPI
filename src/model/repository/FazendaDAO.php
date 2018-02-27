@@ -12,6 +12,7 @@ use Exception;
 use PDO;
 use src\model\Fazenda;
 use src\model\repository\entities\FazendaEntity;
+use src\util\Config;
 
 class FazendaDAO implements IDAO
 {
@@ -21,7 +22,7 @@ class FazendaDAO implements IDAO
      * @return bool|mixed
      * @throws Exception
      */
-    public function create($obj): boolean
+    public function create($obj): bool
     {
         $entity = new FazendaEntity();
         $entity->nome = $obj->getNome();
@@ -42,7 +43,7 @@ class FazendaDAO implements IDAO
      * @param Fazenda $obj
      * @return bool
      */
-    public function update($obj): boolean
+    public function update($obj): bool
     {
         $entity = FazendaEntity::find($obj->getId());
         $entity->usuario_alteracao = $obj->getUsuarioAlteracao()->getId();
@@ -119,7 +120,7 @@ class FazendaDAO implements IDAO
      * @return bool
      * @throws Exception
      */
-    public function delete(int $id): boolean
+    public function delete(int $id): bool
     {
         try {
             $entity = FazendaEntity::find($id);

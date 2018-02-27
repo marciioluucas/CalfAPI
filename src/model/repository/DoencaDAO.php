@@ -19,10 +19,10 @@ class DoencaDAO implements IDAO
 
     /**
      * @param Doenca $obj
-     * @return int
+     * @return bool
      * @throws Exception
      */
-    public function create($obj)
+    public function create($obj): bool
     {
         try {
             $entity = new DoencaEntity();
@@ -44,10 +44,10 @@ class DoencaDAO implements IDAO
 
     /**
      * @param Doenca $obj
-     * @return boolean
+     * @return bool
      * @throws Exception
      */
-    public function update($obj)
+    public function update($obj): bool
     {
         $entity = DoencaEntity::find($obj->getId());
         $entity->usuario_alteracao = $obj->getUsuarioAlteracao()->getId();
@@ -74,7 +74,7 @@ class DoencaDAO implements IDAO
      * @param int $page
      * @return array
      */
-    public function retreaveAll(int $page)
+    public function retreaveAll(int $page): array
     {
         return [
             "doencas" => DoencaEntity
@@ -92,7 +92,7 @@ class DoencaDAO implements IDAO
      * @return array
      * @throws Exception
      */
-    public function retreaveById(int $id)
+    public function retreaveById(int $id): array
     {
         try {
             return [
@@ -128,15 +128,20 @@ class DoencaDAO implements IDAO
 
     /**
      * @param int $id
-     * @return boolean
+     * @return bool
+     * @throws Exception
      */
-    public function delete(int $id)
+    public function delete(int $id): bool
     {
-        $entity = DoencaEntity::find($id);
-        $entity->status = 0;
-        if ($entity->save()) {
-            return true;
-        };
+        try {
+            $entity = DoencaEntity::find($id);
+            $entity->status = 0;
+            if ($entity->save()) {
+                return true;
+            };
+        } catch (Exception $e) {
+            throw new Exception("Algo de errado aconteceu ao tentar desativar uma fazenda" . $e->getMessage());
+        }
         return false;
     }
 }

@@ -19,13 +19,13 @@ interface IDAO
      * @param $obj
      * @return bool
      */
-    public function create($obj): boolean;
+    public function create($obj): bool ;
 
     /**
      * @param $obj
      * @return bool
      */
-    public function update($obj): boolean;
+    public function update($obj): bool ;
 
     /**
      * @param int $page
@@ -43,5 +43,5 @@ interface IDAO
      * @param int $id
      * @return bool
      */
-    public function delete(int $id): boolean;
+    public function delete(int $id): bool;
 }

@@ -28,7 +28,7 @@ class Lote extends Modelo
      */
     private $codigo;
     /**
-     * @var string;
+     * @var string|null;
      */
     private $descricao;
 
@@ -40,10 +40,10 @@ class Lote extends Modelo
     }
 
     /**
-     * @return boolean
+     * @return bool
      * @throws Exception
      */
-    public function cadastrar(): boolean
+    public function cadastrar(): bool
     {
         $this->dataCriacao = date(Config::PADRAO_DATA_HORA);
         $this->dataAlteracao = date(Config::PADRAO_DATA_HORA);
@@ -56,10 +56,10 @@ class Lote extends Modelo
     }
 
     /**
-     * @return boolean
+     * @return bool
      * @throws Exception
      */
-    public function alterar(): boolean
+    public function alterar(): bool
     {
         try {
             $this->dataAlteracao = date(Config::PADRAO_DATA_HORA);
@@ -92,7 +92,7 @@ class Lote extends Modelo
      * @return bool
      * @throws Exception
      */
-    public function deletar(): boolean
+    public function deletar(): bool
     {
         try {
             return (new LoteDAO())->delete($this->id);
@@ -134,9 +134,9 @@ class Lote extends Modelo
     }
 
     /**
-     * @return string
+     * @return string|null
      */
-    public function getDescricao(): string
+    public function getDescricao(): ?string
     {
         return $this->descricao;
     }

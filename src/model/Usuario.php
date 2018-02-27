@@ -43,19 +43,19 @@ class Usuario extends Modelo
     private $grupo;
 
     /**
-     * @return boolean
+     * @return bool
      * @throws Exception
      */
-    public function cadastrar(): boolean
+    public function cadastrar(): bool
     {
         // TODO: Implement cadastrar() method.
     }
 
     /**
-     * @return boolean
+     * @return bool
      * @throws Exception
      */
-    public function alterar(): boolean
+    public function alterar(): bool
     {
         // TODO: Implement alterar() method.
     }
@@ -74,7 +74,7 @@ class Usuario extends Modelo
      * @return bool
      * @throws Exception
      */
-    public function deletar(): boolean
+    public function deletar(): bool
     {
         // TODO: Implement deletar() method.
     }

@@ -40,7 +40,7 @@ class Pesagem extends Modelo
         $this->animal = new Animal();
     }
 
-    public function cadastrar(): boolean
+    public function cadastrar(): bool
     {
         $this->dataCriacao = date(Config::PADRAO_DATA_HORA);
         $this->dataAlteracao = date(Config::PADRAO_DATA_HORA);
@@ -52,7 +52,7 @@ class Pesagem extends Modelo
         }
     }
 
-    public function alterar(): boolean
+    public function alterar(): bool
     {
         try {
             $this->dataAlteracao = date(Config::PADRAO_DATA_HORA);
@@ -86,7 +86,7 @@ class Pesagem extends Modelo
      * @return bool
      * @throws Exception
      */
-    public function deletar(): boolean
+    public function deletar(): bool
     {
         try {
             return (new PesagemDAO())->delete($this->id);
@@ -94,7 +94,6 @@ class Pesagem extends Modelo
             throw new Exception($e->getMessage());
         }
     }
-
 
 
     /**

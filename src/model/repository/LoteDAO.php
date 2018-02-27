@@ -25,7 +25,7 @@ class LoteDAO implements IDAO
      * @return bool
      * @throws Exception
      */
-    public function create($obj): boolean
+    public function create($obj): bool
     {
         $entity = new LoteEntity();
         $entity->codigo = $obj->getCodigo();
@@ -47,7 +47,7 @@ class LoteDAO implements IDAO
      * @return bool
      * @throws Exception
      */
-    public function update($obj): boolean
+    public function update($obj): bool
     {
         $entity = LoteEntity::find($obj->getId());
         $entity->usuario_alteracao = $obj->getUsuarioAlteracao()->getId();
@@ -131,7 +131,7 @@ class LoteDAO implements IDAO
      * @return bool
      * @throws Exception
      */
-    public function delete(int $id): boolean
+    public function delete(int $id): bool
     {
         try {
             $entity = LoteEntity::find($id);

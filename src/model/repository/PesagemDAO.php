@@ -14,6 +14,7 @@ use Exception;
 use PDO;
 use src\model\Pesagem;
 use src\model\repository\entities\PesagemEntity;
+use src\util\Config;
 
 /**
  * Class PesagemDAO
@@ -25,7 +26,7 @@ class PesagemDAO implements IDAO
      * @param Pesagem $obj
      * @return bool
      */
-    public function create($obj): boolean
+    public function create($obj): bool
     {
         $entity = new PesagemEntity();
         $entity->data_pesagem = $obj->getDataPesagem();
@@ -40,7 +41,7 @@ class PesagemDAO implements IDAO
      * @return bool
      * @throws Exception
      */
-    public function update($obj): boolean
+    public function update($obj): bool
     {
         $entity = PesagemEntity::find($obj->getId());
         $entity->usuario_alteracao = $obj->getUsuarioAlteracao()->getId();
@@ -98,17 +99,21 @@ class PesagemDAO implements IDAO
      * @return array
      * @throws Exception
      */
-    public function retreaveByIdAnimal(int $id): array
+    public function retreaveByIdAnimal(int $id, $page): array
     {
         try {
             return [
                 "animais" => PesagemEntity
                     ::ativo()
                     ->where('animais_id', $id)
-                    ->get()
-            ];
+                    ->paginate(
+                        Config::QUANTIDADE_ITENS_POR_PAGINA,
+                        ['*'],
+                        'pagina',
+                        $page
+                    )];
         } catch (Exception $e) {
-            throw new Exception("Algo de errado aconteceu ao tentar pesquisar por ID" . $e->getMessage());
+            throw new Exception("Algo de errado aconteceu ao tentar pesquisar pelo animal" . $e->getMessage());
         }
     }
 
@@ -117,7 +122,7 @@ class PesagemDAO implements IDAO
      * @return bool
      * @throws Exception
      */
-    public function delete(int $id): boolean
+    public function delete(int $id): bool
     {
         try {
             $entity = PesagemEntity::find($id);

@@ -11,42 +11,45 @@ namespace src\model\validate;
 
 use Valitron\Validator;
 
-class LoteValidate implements IValidate
+class LoteValidate extends Validate
 {
 
     public function validatePost($params)
     {
         $v = new Validator($params);
-        $v->rule('required', ['codigoLote']);
-        $v->rule('integer','codigoLote');
+        $v->rule('required', ['codigo']);
         if ($v->validate()) {
             return true;
         } else {
-            $data = "";
-            foreach ($v->errors() as $key => $value) {
-                $data .= implode(',', $value);
-            }
-            return ["codigo" => 401,
-                "mensagem" => $data];
+            $toReturn = $this->filtrarValidacao($v);
+            return $toReturn;
         }
     }
 
     public function validateGet($params)
     {
         $v = new Validator($params);
-        $v->rule('required', ['idLote']);
-        $v->rule('integer','idLote');
+        $v->rule('required', ['id']);
+        $v->rule('required', ['codigo']);
         if ($v->validate()) {
             return true;
         } else {
-            // Errors
-            return $v->errors();
+            $toReturn = $this->filtrarValidacao($v);
+            return $toReturn;
         }
     }
 
     public function validatePut($params)
     {
-        // TODO: Implement validatePut() method.
+        $v = new Validator($params);
+        $v->rule('required', ['id']);
+        $v->rule('required', ['codigo']);
+        if ($v->validate()) {
+            return true;
+        } else {
+            $toReturn = $this->filtrarValidacao($v);
+            return $toReturn;
+        }
     }
 
     public function validateDelete($params)

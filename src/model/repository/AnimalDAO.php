@@ -32,7 +32,7 @@ class AnimalDAO implements IDAO
      * @return bool
      * @throws Exception
      */
-    public function create($obj):boolean
+    public function create($obj):bool
     {
         $entity = new AnimalEntity();
         $entity->nome = $obj->getNome();
@@ -65,9 +65,9 @@ class AnimalDAO implements IDAO
 
     /**
      * @param Animal $obj
-     * @return boolean
+     * @return bool
      */
-    public function update($obj): boolean
+    public function update($obj): bool
     {
         $entity = AnimalEntity::find($obj->getId());
         $entity->usuario_alteracao = $obj->getUsuarioAlteracao()->getId();
@@ -168,10 +168,10 @@ class AnimalDAO implements IDAO
 
     /**
      * @param int $id
-     * @return boolean
+     * @return bool
      * @throws Exception
      */
-    public function delete(int $id): boolean
+    public function delete(int $id): bool
     {
         try {
             $entity = AnimalEntity::find($id);

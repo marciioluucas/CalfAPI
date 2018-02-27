@@ -34,21 +34,21 @@ abstract class Modelo
     protected $usuarioAlteracao;
 
     /**
-     * @var boolean
+     * @var bool
      */
     protected $status;
 
     /**
-     * @return boolean
+     * @return bool
      * @throws Exception
      */
-    public abstract function cadastrar(): boolean;
+    public abstract function cadastrar(): bool;
 
     /**
-     * @return boolean
+     * @return bool
      * @throws Exception
      */
-    public abstract function alterar(): boolean;
+    public abstract function alterar(): bool;
 
 
     /**
@@ -63,7 +63,7 @@ abstract class Modelo
      * @return bool
      * @throws Exception
      */
-    public abstract function deletar(): boolean;
+    public abstract function deletar(): bool;
 
     /**
      * @return string

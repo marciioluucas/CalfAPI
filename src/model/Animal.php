@@ -34,12 +34,12 @@ class Animal extends Modelo
     private $sexo;
 
     /**
-     * @var boolean
+     * @var bool
      */
     private $primogenito;
 
     /**
-     * @var boolean
+     * @var bool
      */
     private $morto;
 
@@ -110,7 +110,7 @@ class Animal extends Modelo
      * @return bool
      * @throws Exception
      */
-    public function cadastrar(): boolean
+    public function cadastrar(): bool
     {
         $this->dataAlteracao = date(Config::PADRAO_DATA_HORA);
         $this->dataCriacao = date(Config::PADRAO_DATA_HORA);
@@ -129,10 +129,10 @@ class Animal extends Modelo
     }
 
     /**
-     * @return boolean
+     * @return bool
      * @throws Exception
      */
-    public function alterar(): boolean
+    public function alterar(): bool
     {
         try {
             $this->dataAlteracao = date(Config::PADRAO_DATA_HORA);
@@ -159,10 +159,10 @@ class Animal extends Modelo
     }
 
     /**
-     * @return boolean
+     * @return bool
      * @throws Exception
      */
-    public function deletar(): boolean
+    public function deletar(): bool
     {
         try {
             return (new AnimalDAO())->delete($this->id);
@@ -182,9 +182,9 @@ class Animal extends Modelo
     }
 
     /**
-     * @return int
+     * @return int|null
      */
-    public function getId(): int
+    public function getId(): ?int
     {
         return $this->id;
     }
