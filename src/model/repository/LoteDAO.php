@@ -90,7 +90,7 @@ class LoteDAO implements IDAO
     {
         try {
             return [
-                "animais" => LoteEntity
+                "lotes" => LoteEntity
                     ::ativo()
                     ->where('id', $id)
                     ->get()
@@ -110,9 +110,9 @@ class LoteDAO implements IDAO
     {
         try {
             return [
-                "animais" => LoteEntity
+                "lotes" => LoteEntity
                     ::ativo()
-                    ->where('codigo', '=', $codigo)
+                    ->where('codigo', 'like', $codigo . '%')
                     ->paginate
                     (
                         Config::QUANTIDADE_ITENS_POR_PAGINA,

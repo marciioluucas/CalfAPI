@@ -41,7 +41,7 @@ class Animal extends Modelo
     /**
      * @var bool
      */
-    private $morto;
+    private $vivo;
 
     /**
      * @var string
@@ -96,13 +96,11 @@ class Animal extends Modelo
      */
     public function __construct()
     {
-
         $this->fazenda = new Fazenda();
         $this->lote = new Lote();
         $this->doencas = new ArrayObject(new Doenca());
         $this->usuarioCadastro = new Usuario();
         $this->usuarioAlteracao = new Usuario();
-
     }
 
 
@@ -118,6 +116,9 @@ class Animal extends Modelo
 //        $this->usuarioAlteracao = "Lucas";// vai pegar do token dps de implementar o login;
         $this->usuarioCadastro->setId(1);
 //        $array = (new ClassToArray())->classToArray($this);
+        if (empty($this->vivo)) {
+            $this->vivo = true;
+        }
         if ($this->primogenito == 1) {
             $this->faseDaVida = FaseDaVida::ADULTO;
         }
@@ -149,12 +150,19 @@ class Animal extends Modelo
      */
     public function pesquisar(int $page): array
     {
-        if ($this->id) {
-            return (new AnimalDAO)->retreaveById($this->id);
-        } else if ($this->nome) {
-            return (new AnimalDAO)->retreaveByNome($this->nome, $page);
+        $dao = new AnimalDAO();
+        $dao->setVivo($this->vivo);
+        if ($this->id and !$this->nome and !$this->getLote()->getId()) {
+            return  $dao->retreaveById($this->id);
+        } else if ($this->nome and !$this->id and !$this->getLote()->getId()) {
+            return  $dao->retreaveByNome($this->nome, $page);
+        } else if ($this->getLote()->getId() and !$this->nome and !$this->id) {
+            return  $dao->retreaveByIdLote($this->getLote()->getId(), $page);
+        } else if ($this->nome and $this->getLote()->getId() and !$this->id) {
+            return  $dao->retreaveByIdLoteAndName($this->getLote()->getId(), $this->getNome(), $page);
         }
-        return (new AnimalDAO)->retreaveAll($page);
+
+        return  $dao->retreaveAll($page);
 
     }
 
@@ -232,17 +240,17 @@ class Animal extends Modelo
     /**
      * @return bool
      */
-    public function isMorto(): bool
+    public function isVivo(): bool
     {
-        return $this->morto;
+        return $this->vivo;
     }
 
     /**
-     * @param bool $morto
+     * @param bool $vivo
      */
-    public function setMorto(bool $morto): void
+    public function setVivo(bool $vivo): void
     {
-        $this->morto = $morto;
+        $this->vivo = $vivo;
     }
 
     /**

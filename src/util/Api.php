@@ -37,6 +37,7 @@ class Api
      */
     public function groupRoutes()
     {
+        header('Access-Control-Allow-Origin: *');
         $this->groupAuth();
         $this->groupModules();
     }
@@ -46,6 +47,7 @@ class Api
         $app = $this->app;
 
         $app->group('/{classname}', function () use ($app) {
+
             $app->get('', function (Request $request, Response $response, array $args) {
                 try {
                     $class = Api::invokeClass($args['classname'], $request, $response);

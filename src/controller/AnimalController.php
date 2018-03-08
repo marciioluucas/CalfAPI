@@ -67,14 +67,22 @@ class AnimalController implements IController
     public function get(Request $request, Response $response, $args): Response
     {
         try {
+
             $animal = new Animal();
             $page = (int)$request->getQueryParam('pagina');
+
+            if($request->getQueryParam('vivo') == 'true')
+            $animal->setVivo(true);
+            else $animal->setVivo(false);
 
             if ($request->getAttribute('id')) {
                 $animal->setId($request->getAttribute('id'));
 
             } else if ($request->getAttribute('nome')) {
-                $animal->setNomeAnimal($request->getAttribute('nome'));
+                $animal->setNome($request->getAttribute('nome'));
+
+            } else if ($request->getQueryParam('lote-id')) {
+                $animal->getLote()->setId($request->getQueryParam('lote-id'));
             }
             return View::render($response, $animal->pesquisar($page));
         } catch (Exception $exception) {
@@ -101,7 +109,7 @@ class AnimalController implements IController
                 $animal->setCodigoRaca($data->codigo_raca);
             }
             if (isset($data->nome)) {
-                $animal->setNomeAnimal($data->nome);
+                $animal->setNome($data->nome);
             }
             if (isset($data->data_nascimento)) {
                 $animal->setDataNascimento($data->data_nascimento);

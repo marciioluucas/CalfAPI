@@ -28,11 +28,16 @@ class AnimalDAO implements IDAO
 {
 
     /**
+     * @var bool
+     */
+    private $vivo;
+
+    /**
      * @param Animal $obj
      * @return bool
      * @throws Exception
      */
-    public function create($obj):bool
+    public function create($obj): bool
     {
         $entity = new AnimalEntity();
         $entity->nome = $obj->getNome();
@@ -112,6 +117,7 @@ class AnimalDAO implements IDAO
             ->with('pesagens')
             ->with('doencas')
             ->with('lote')
+            ->where('is_vivo', $this->vivo)
             ->paginate(
                 Config::QUANTIDADE_ITENS_POR_PAGINA,
                 ['*'],
@@ -135,8 +141,10 @@ class AnimalDAO implements IDAO
                     ->with('fazenda')
                     ->with('pesagens')
                     ->with('doencas')
+                    ->with('lote')
                     ->where('id', $id)
-                    ->get()
+                    ->where('is_vivo', $this->vivo)
+                    ->paginate(Config::QUANTIDADE_ITENS_POR_PAGINA, ['*'], 'pagina', 1)
             ];
         } catch (Exception $e) {
             throw new Exception("Algo de errado aconteceu ao tentar pesquisar por ID" . $e->getMessage());
@@ -158,13 +166,70 @@ class AnimalDAO implements IDAO
                     ->with('fazenda')
                     ->with('pesagens')
                     ->with('doencas')
+                    ->with('lote')
                     ->where('nome', 'like', $nome . "%")
+                    ->where('is_vivo', $this->vivo)
                     ->paginate(Config::QUANTIDADE_ITENS_POR_PAGINA, ['*'], 'pagina', $page)
             ];
         } catch (Exception $e) {
             throw new Exception("Algo de errado aconteceu ao tentar pesquisar por nome" . $e->getMessage());
         }
     }
+
+
+    /**
+     * @param int $idLote
+     * @param int $page
+     * @return array
+     * @throws Exception
+     */
+    public function retreaveByIdLote(int $idLote, int $page)
+    {
+        try {
+            return [
+                "animais" => AnimalEntity
+                    ::ativo()
+                    ->with('fazenda')
+                    ->with('pesagens')
+                    ->with('doencas')
+                    ->with('lote')
+                    ->where('lotes_id', $idLote)
+                    ->where('is_vivo', $this->vivo)
+                    ->paginate(Config::QUANTIDADE_ITENS_POR_PAGINA, ['*'], 'pagina', $page)
+            ];
+        } catch (Exception $e) {
+            throw new Exception("Algo de errado aconteceu ao tentar pesquisar por ID" . $e->getMessage());
+        }
+    }
+
+
+    /**
+     * @param int $idLote
+     * @param string $nome
+     * @param int $page
+     * @return array
+     * @throws Exception
+     */
+    public function retreaveByIdLoteAndName(int $idLote, string $nome, int $page)
+    {
+        try {
+            return [
+                "animais" => AnimalEntity
+                    ::ativo()
+                    ->with('fazenda')
+                    ->with('pesagens')
+                    ->with('doencas')
+                    ->with('lote')
+                    ->where('nome', 'like', $nome . "%")
+                    ->where('lotes_id', $idLote)
+                    ->where('is_vivo', $this->vivo)
+                    ->paginate(Config::QUANTIDADE_ITENS_POR_PAGINA, ['*'], 'pagina', $page)
+            ];
+        } catch (Exception $e) {
+            throw new Exception("Algo de errado aconteceu ao tentar pesquisar por por nome e lote" . $e->getMessage());
+        }
+    }
+
 
     /**
      * @param int $id
@@ -184,4 +249,15 @@ class AnimalDAO implements IDAO
         }
         return false;
     }
+
+    /**
+     * @param bool $vivo
+     * @return void
+     */
+    public function setVivo(?bool $vivo): void
+    {
+        $this->vivo = $vivo;
+    }
+
+
 }
