@@ -7,6 +7,7 @@
  */
 
 namespace src\model\repository\entities;
+
 use src\model\Usuario;
 
 
@@ -29,8 +30,20 @@ class FazendaEntity extends CalfEntity
         'status',
     ];
 
+    protected $appends = ['quantidade_animais'];
 
-    public function animais() {
+
+    public function animais()
+    {
         return $this->hasMany('\src\model\repository\entities\AnimalEntity');
+    }
+
+    public function getQuantidadeAnimaisAttribute()
+    {
+        return $this->hasMany(
+            '\src\model\repository\entities\AnimalEntity',
+            'fazendas_id',
+            'id')
+            ->count();
     }
 }

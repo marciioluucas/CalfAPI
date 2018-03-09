@@ -189,6 +189,7 @@ class Animal extends Modelo
         $this->doencas->append($doenca);
     }
 
+
     /**
      * @return int|null
      */

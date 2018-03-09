@@ -65,6 +65,8 @@ abstract class Modelo
      */
     public abstract function deletar(): bool;
 
+
+
     /**
      * @return string
      */

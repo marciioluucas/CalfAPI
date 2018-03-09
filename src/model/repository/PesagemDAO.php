@@ -10,7 +10,9 @@ namespace src\model\repository;
 
 
 use bd\Banco;
+use Carbon\Carbon;
 use Exception;
+use InvalidArgumentException;
 use PDO;
 use src\model\Pesagem;
 use src\model\repository\entities\PesagemEntity;
@@ -65,14 +67,15 @@ class PesagemDAO implements IDAO
      */
     public function retreaveAll(int $page): array
     {
-        return ["pesagens" => PesagemEntity
-            ::ativo()
-            ->paginate(
-                Config::QUANTIDADE_ITENS_POR_PAGINA,
-                ['*'],
-                'pagina',
-                $page
-            )];
+        return [
+            "pesagens" => PesagemEntity
+                ::ativo()
+                ->paginate(
+                    Config::QUANTIDADE_ITENS_POR_PAGINA,
+                    ['*'],
+                    'pagina',
+                    $page
+                )];
     }
 
     /**
@@ -84,7 +87,7 @@ class PesagemDAO implements IDAO
     {
         try {
             return [
-                "animais" => PesagemEntity
+                "pesagens" => PesagemEntity
                     ::ativo()
                     ->where('id', $id)
                     ->get()
@@ -103,9 +106,9 @@ class PesagemDAO implements IDAO
     {
         try {
             return [
-                "animais" => PesagemEntity
+                "pesagens" => PesagemEntity
                     ::ativo()
-                    ->where('animais_id', $id)
+                    ->where('pesagens_id', $id)
                     ->paginate(
                         Config::QUANTIDADE_ITENS_POR_PAGINA,
                         ['*'],
@@ -136,5 +139,22 @@ class PesagemDAO implements IDAO
         return false;
     }
 
-
+    /**
+     * @param array $params
+     * @return array
+     * @throws Exception
+     */
+    public function graphGanhoDePeso($params = []): array
+    {
+        if (!isset($params['animal'])) {
+            throw new InvalidArgumentException('Argumento animal e requirido');
+        }
+        return [
+            PesagemEntity
+                ::ativo()
+                ->where('animais_id', $params['animal'])
+                ->whereDate('data_pesagem', '>=', Carbon::now()->subDays(30)->toDateString())
+                ->get(['peso', 'data_pesagem as data'])
+        ];
+    }
 }

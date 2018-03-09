@@ -82,6 +82,16 @@ class Pesagem extends Modelo
         }
     }
 
+
+    /**
+     * @param string $whatChart
+     * @param array $params
+     * @return mixed
+     */
+    public function graph(string $whatChart, array $params) {
+        return (new PesagemDAO())->$whatChart($params);
+    }
+
     /**
      * @return bool
      * @throws Exception
