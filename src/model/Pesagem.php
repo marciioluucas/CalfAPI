@@ -40,6 +40,10 @@ class Pesagem extends Modelo
         $this->animal = new Animal();
     }
 
+    /**
+     * @return bool
+     * @throws Exception
+     */
     public function cadastrar(): bool
     {
         $this->dataCriacao = date(Config::PADRAO_DATA_HORA);
@@ -52,6 +56,10 @@ class Pesagem extends Modelo
         }
     }
 
+    /**
+     * @return bool
+     * @throws Exception
+     */
     public function alterar(): bool
     {
         try {

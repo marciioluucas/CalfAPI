@@ -21,12 +21,12 @@ class View
 {
     /**
      * @param Response $response
-     * @param array $data
+     * @param mixed $data
      * @param string $codigo
      * @param string $razao
      * @return Response
      */
-    public static final function render(Response $response, array $data = [], $codigo = "", $razao = ""):Response
+    public static final function render(Response $response, $data, $codigo = "", $razao = ""):Response
     {
         if ($codigo != "" and $razao == "") {
             return $response

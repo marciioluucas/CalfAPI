@@ -19,7 +19,7 @@ namespace src\model\repository\entities;
 class PesagemEntity extends CalfEntity
 {
     protected $table = 'pesagens';
-    protected $fillable =[
+    protected $fillable = [
         'data_pesagem',
         'peso',
         'usuario_cadastro',
@@ -27,9 +27,20 @@ class PesagemEntity extends CalfEntity
         'status',
         'animais_id'
     ];
+    protected $casts = [
+        'data_pesagem' => 'date:d/m/Y'
+    ];
 
 
-    public function animal() {
+    public function animal()
+    {
         return $this->belongsTo('src\model\repository\entities\AnimalEntity', 'animais_id');
     }
+
+    public function getPesoAttribute()
+    {
+        return "{$this->attributes['peso']} @";
+    }
+
+
 }

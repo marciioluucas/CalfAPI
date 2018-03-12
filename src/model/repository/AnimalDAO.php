@@ -18,6 +18,9 @@ use src\model\repository\entities\AnimalEntity;
 use Psr\Http\Message\RequestInterface as Request;
 use src\model\IModel;
 use src\model\repository\entities\DoencaEntity;
+use src\model\repository\entities\FamiliaEntity;
+use src\model\repository\entities\MaeEntity;
+use src\model\repository\entities\PaiEntity;
 use src\util\Config;
 
 /**
@@ -150,6 +153,12 @@ class AnimalDAO implements IDAO
             throw new Exception("Algo de errado aconteceu ao tentar pesquisar por ID" . $e->getMessage());
         }
     }
+
+    /**
+     * @param int $animalId
+     * @return array
+     */
+
 
     /**
      * @param string $nome

@@ -42,6 +42,9 @@ class AnimalEntity extends CalfEntity
         'fazendas_id',
         'lotes_id'
     ];
+    protected $casts = [
+        'data_nascimento' => 'date:d/m/Y'
+    ];
 
     public function fazenda()
     {
@@ -68,4 +71,6 @@ class AnimalEntity extends CalfEntity
     {
         return $query->where('is_vivo', 0);
     }
+
+
 }
