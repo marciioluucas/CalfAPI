@@ -96,41 +96,25 @@ class Familia extends Modelo
     public function fazerArvoreGenealogica($familia)
     {
         $arrayToReturn = [];
-        if ($familia) {
-
-            if ($this->contador == 1) {
-                $arrayToReturn['name'] = $familia->filho->codigo_brinco;
-                $arrayToReturn['id'] = $familia->filho->id;
-                $objFamiliaMae = $this->pesquisaFamiliaByIdAnimal($familia->mae->id);
-                $objFamiliaPai = $this->pesquisaFamiliaByIdAnimal($familia->pai->id);
-
-                $arrayToReturn['children']['0'] = $this->fazerArvoreGenealogica($objFamiliaMae);
-                $arrayToReturn['children']['0']['id'] = $familia->mae->id;
-                $arrayToReturn['children']['0']['name'] = $familia->mae->codigo_brinco;
-
-                $arrayToReturn['children']['1'] = $this->fazerArvoreGenealogica($objFamiliaPai);
-                $arrayToReturn['children']['1']['id'] = $familia->pai->id;
-                $arrayToReturn['children']['1']['name'] = $familia->pai->codigo_brinco;
-                //                $arrayToReturn['children']['1']['codigo_brinco'] = $familia->mae->codigo_brinco;
-
-
-            }
-//            if ($this->contador > 1) {
-//                $objFamiliaMae = $this->pesquisaFamiliaByIdAnimal($familia->pai->id);
-//                $objFamiliaPai = $this->pesquisaFamiliaByIdAnimal($familia->filho->id);
-//                $arrayToReturn['children']['0'] = $this->fazerArvoreGenealogica($familia);
-//                $arrayToReturn['children']['0']['name'] = $objFamiliaMae['filho']['codigo_brinco'];
-//
-//                $arrayToReturn['children']['1'] = $this->fazerArvoreGenealogica($familia);
-//                $arrayToReturn['children']['1']['id'] = $objFamiliaPai['filho']['id'];
-//                $arrayToReturn['children']['1']['name'] = $objFamiliaPai['filho']['codigo_brinco'];
-//                $arrayToReturn['children']['0']['id'] = $familia;
-//
-//            }
+        if (!$familia) {
             return $arrayToReturn;
         }
 
+        $arrayToReturn['name'] = $familia->filho->codigo_brinco;
+        $arrayToReturn['id'] = $familia->filho->id;
+        $objFamiliaMae = $this->pesquisaFamiliaByIdAnimal($familia->mae->id);
+        $objFamiliaPai = $this->pesquisaFamiliaByIdAnimal($familia->pai->id);
 
+        $arrayToReturn['children']['0'] = $this->fazerArvoreGenealogica($objFamiliaMae);
+        $arrayToReturn['children']['0']['id'] = $familia->mae->id;
+        $arrayToReturn['children']['0']['name'] = $familia->mae->codigo_brinco;
+        $arrayToReturn['children']['0']['value'] = 1;
+
+        $arrayToReturn['children']['1'] = $this->fazerArvoreGenealogica($objFamiliaPai);
+        $arrayToReturn['children']['1']['id'] = $familia->pai->id;
+        $arrayToReturn['children']['1']['name'] = $familia->pai->codigo_brinco;
+        $arrayToReturn['children']['1']['value'] = 1;
+        return $arrayToReturn;
     }
 
     /**
@@ -143,7 +127,8 @@ class Familia extends Modelo
         return $this->fazerArvoreGenealogica($obj);
     }
 
-    public function graph(string $whatChart, array $params) {
+    public function graph(string $whatChart, array $params)
+    {
         return $this->$whatChart($params['id-filho']);
     }
 

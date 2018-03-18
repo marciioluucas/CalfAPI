@@ -1,18 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="00f5a375-e7b8-4505-98fa-01660a814dc1" name="Default" comment="">
-      <change beforePath="" afterPath="$PROJECT_DIR$/src/controller/FamiliaController.php" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/src/model/Familia.php" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/src/model/repository/FamiliaDAO.php" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/src/model/repository/entities/FamiliaEntity.php" />
+    <list default="true" id="00f5a375-e7b8-4505-98fa-01660a814dc1" name="Default" comment="Família">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change beforePath="$PROJECT_DIR$/src/model/Pesagem.php" afterPath="$PROJECT_DIR$/src/model/Pesagem.php" />
-      <change beforePath="$PROJECT_DIR$/src/model/repository/AnimalDAO.php" afterPath="$PROJECT_DIR$/src/model/repository/AnimalDAO.php" />
-      <change beforePath="$PROJECT_DIR$/src/model/repository/PesagemDAO.php" afterPath="$PROJECT_DIR$/src/model/repository/PesagemDAO.php" />
-      <change beforePath="$PROJECT_DIR$/src/model/repository/entities/AnimalEntity.php" afterPath="$PROJECT_DIR$/src/model/repository/entities/AnimalEntity.php" />
-      <change beforePath="$PROJECT_DIR$/src/model/repository/entities/PesagemEntity.php" afterPath="$PROJECT_DIR$/src/model/repository/entities/PesagemEntity.php" />
-      <change beforePath="$PROJECT_DIR$/src/view/View.php" afterPath="$PROJECT_DIR$/src/view/View.php" />
+      <change beforePath="$PROJECT_DIR$/src/model/Familia.php" afterPath="$PROJECT_DIR$/src/model/Familia.php" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -64,8 +55,8 @@
       <file leaf-file-name="FamiliaDAO.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/model/repository/FamiliaDAO.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="240">
-              <caret line="65" column="28" lean-forward="true" selection-start-line="65" selection-start-column="28" selection-end-line="65" selection-end-column="28" />
+            <state relative-caret-position="1392">
+              <caret line="65" column="28" lean-forward="false" selection-start-line="65" selection-start-column="28" selection-end-line="65" selection-end-column="28" />
               <folding>
                 <element signature="e#123#171#0#PHP" expanded="true" />
               </folding>
@@ -76,8 +67,8 @@
       <file leaf-file-name="Familia.php" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/model/Familia.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="216">
-              <caret line="132" column="0" lean-forward="true" selection-start-line="132" selection-start-column="0" selection-end-line="132" selection-end-column="0" />
+            <state relative-caret-position="360">
+              <caret line="112" column="47" lean-forward="false" selection-start-line="112" selection-start-column="47" selection-end-line="112" selection-end-column="47" />
               <folding>
                 <element signature="e#112#128#0#PHP" expanded="true" />
               </folding>
@@ -88,7 +79,7 @@
       <file leaf-file-name="GraphController.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/controller/GraphController.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="336">
+            <state relative-caret-position="888">
               <caret line="45" column="105" lean-forward="false" selection-start-line="45" selection-start-column="105" selection-end-line="45" selection-end-column="105" />
               <folding />
             </state>
@@ -98,8 +89,8 @@
       <file leaf-file-name="Pesagem.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/model/Pesagem.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="312">
-              <caret line="99" column="18" lean-forward="true" selection-start-line="99" selection-start-column="18" selection-end-line="99" selection-end-column="18" />
+            <state relative-caret-position="2184">
+              <caret line="99" column="18" lean-forward="false" selection-start-line="99" selection-start-column="18" selection-end-line="99" selection-end-column="18" />
               <folding />
             </state>
           </provider>
@@ -359,7 +350,6 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="Scratches" />
       <pane id="Scope">
         <subPane subId="Project Files">
           <expand>
@@ -382,6 +372,7 @@
           <select />
         </subPane>
       </pane>
+      <pane id="Scratches" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -506,7 +497,11 @@
       <workItem from="1520603316287" duration="11198000" />
       <workItem from="1520682153406" duration="18068000" />
       <workItem from="1520766505335" duration="12260000" />
-      <workItem from="1520855230813" duration="12126000" />
+      <workItem from="1520855230813" duration="12506000" />
+      <workItem from="1520897972635" duration="83000" />
+      <workItem from="1520946935181" duration="1610000" />
+      <workItem from="1520955773578" duration="431000" />
+      <workItem from="1521386638368" duration="53000" />
     </task>
     <task id="LOCAL-00001" summary="Colocando Slim">
       <created>1518011759197</created>
@@ -774,27 +769,34 @@
       <option name="project" value="LOCAL" />
       <updated>1520619366954</updated>
     </task>
-    <option name="localTasksCounter" value="39" />
+    <task id="LOCAL-00039" summary="Fazendo grafico de hereditariedade.">
+      <created>1520896833418</created>
+      <option name="number" value="00039" />
+      <option name="presentableId" value="LOCAL-00039" />
+      <option name="project" value="LOCAL" />
+      <updated>1520896833418</updated>
+    </task>
+    <option name="localTasksCounter" value="40" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="252279000" />
+    <option name="totallyTimeSpent" value="254836000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1382" height="744" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.32446808" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.3487842" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Docker" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="false" weight="0.33" sideWeight="0.5" order="13" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32730263" sideWeight="0.50292826" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.2218845" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32730263" sideWeight="0.49707174" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32730263" sideWeight="0.49707174" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33277592" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
-      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.39966556" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.39966556" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.32943144" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
@@ -814,7 +816,6 @@
     <option name="myLimit" value="2678400000" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Acrescentando paginação e passando a bola pros DAO." />
     <MESSAGE value="Mudando o config" />
     <MESSAGE value="Cadastrar de Animal funcionando" />
     <MESSAGE value="Fazendo o delete." />
@@ -839,7 +840,8 @@
     <MESSAGE value="Acrescentando auth na slim" />
     <MESSAGE value="Adicionando filtro por vivo e filtros por nome and lote" />
     <MESSAGE value="feitto quantidade de animais na fazenda e grafico de ganho de peso" />
-    <option name="LAST_COMMIT_MESSAGE" value="feitto quantidade de animais na fazenda e grafico de ganho de peso" />
+    <MESSAGE value="Fazendo grafico de hereditariedade." />
+    <option name="LAST_COMMIT_MESSAGE" value="Fazendo grafico de hereditariedade." />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -1070,13 +1072,7 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/model/repository/entities/MaeEntity.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="240">
-          <caret line="15" column="0" lean-forward="true" selection-start-line="15" selection-start-column="0" selection-end-line="15" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://$PROJECT_DIR$/src/model/repository/entities/MaeEntity.php" />
     <entry file="file://$PROJECT_DIR$/src/model/repository/AnimalDAO.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="24">
@@ -1116,18 +1112,10 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="50" lean-forward="false" selection-start-line="0" selection-start-column="50" selection-end-line="0" selection-end-column="50" />
-          <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/model/repository/entities/PaiEntity.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="216">
-          <caret line="14" column="9" lean-forward="false" selection-start-line="14" selection-start-column="9" selection-end-line="14" selection-end-column="9" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://$PROJECT_DIR$/src/model/repository/entities/PaiEntity.php" />
     <entry file="das://table:/cb288f0c/b1f1ce24-55da-4b0c-a4a2-983487838831/controleanimal.pais">
       <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
         <state>
@@ -1139,7 +1127,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="19" column="0" lean-forward="true" selection-start-line="19" selection-start-column="0" selection-end-line="19" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1159,8 +1146,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/model/repository/FamiliaDAO.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="240">
-          <caret line="65" column="28" lean-forward="true" selection-start-line="65" selection-start-column="28" selection-end-line="65" selection-end-column="28" />
+        <state relative-caret-position="1392">
+          <caret line="65" column="28" lean-forward="false" selection-start-line="65" selection-start-column="28" selection-end-line="65" selection-end-column="28" />
           <folding>
             <element signature="e#123#171#0#PHP" expanded="true" />
           </folding>
@@ -1171,7 +1158,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="384">
           <caret line="82" column="0" lean-forward="false" selection-start-line="82" selection-start-column="0" selection-end-line="82" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1185,7 +1171,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/controller/GraphController.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="336">
+        <state relative-caret-position="888">
           <caret line="45" column="105" lean-forward="false" selection-start-line="45" selection-start-column="105" selection-end-line="45" selection-end-column="105" />
           <folding />
         </state>
@@ -1195,22 +1181,21 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="336">
           <caret line="157" column="10" lean-forward="true" selection-start-line="157" selection-start-column="10" selection-end-line="157" selection-end-column="10" />
-          <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/model/Pesagem.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="312">
-          <caret line="99" column="18" lean-forward="true" selection-start-line="99" selection-start-column="18" selection-end-line="99" selection-end-column="18" />
+        <state relative-caret-position="2184">
+          <caret line="99" column="18" lean-forward="false" selection-start-line="99" selection-start-column="18" selection-end-line="99" selection-end-column="18" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/model/Familia.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="216">
-          <caret line="132" column="0" lean-forward="true" selection-start-line="132" selection-start-column="0" selection-end-line="132" selection-end-column="0" />
+        <state relative-caret-position="360">
+          <caret line="112" column="47" lean-forward="false" selection-start-line="112" selection-start-column="47" selection-end-line="112" selection-end-column="47" />
           <folding>
             <element signature="e#112#128#0#PHP" expanded="true" />
           </folding>
