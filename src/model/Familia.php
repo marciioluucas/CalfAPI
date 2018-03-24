@@ -32,8 +32,6 @@ class Familia extends Modelo
      */
     private $filho;
 
-    private $contador = 1;
-
 
     public function __construct()
     {

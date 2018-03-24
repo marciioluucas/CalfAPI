@@ -99,7 +99,7 @@ class FazendaDAO implements IDAO
     {
         try {
             return [
-                "animais" => FazendaEntity
+                "fazendas" => FazendaEntity
                     ::ativo()
                     ->where('nome', 'like', $nome . "%")
                     ->paginate

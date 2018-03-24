@@ -68,7 +68,8 @@ class FazendaController implements IController
                 $fazenda->setId($request->getAttribute('id'));
 
             } else if ($request->getAttribute('nome')) {
-                $fazenda->setNome($request->getAttribute('nome'));
+                $name = implode(" ", explode("-", $request->getAttribute('nome')));
+                $fazenda->setNome($name);
             }
             return View::render($response, $fazenda->pesquisar($page));
         } catch (Exception $exception) {
