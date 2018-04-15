@@ -29,7 +29,7 @@ class Config
     ];
 
     //Configuração consultas
-    const QUANTIDADE_ITENS_POR_PAGINA = 5;
+    const QUANTIDADE_ITENS_POR_PAGINA = 10;
 
 
     public static function loadTimezone(): void

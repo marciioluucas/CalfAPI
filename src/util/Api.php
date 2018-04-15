@@ -61,7 +61,7 @@ class Api
                 $class = Api::invokeClass($args['classname'], $request, $response);
                 return $class->get($request, $response, $args);
             });
-            $app->get('/{nome:[A-Za-z]+}', function (Request $request, Response $response, array $args) {
+            $app->get('/{nome:[A-Za-z\-]+}', function (Request $request, Response $response, array $args) {
                 $class = Api::invokeClass($args['classname'], $request, $response);
                 return $class->get($request, $response, $args);
             });

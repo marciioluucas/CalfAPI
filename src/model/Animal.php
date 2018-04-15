@@ -151,18 +151,20 @@ class Animal extends Modelo
     public function pesquisar(int $page): array
     {
         $dao = new AnimalDAO();
-        $dao->setVivo($this->vivo);
+        if (!is_null($this->vivo)) {
+            $dao->setVivo($this->vivo);
+        }
         if ($this->id and !$this->nome and !$this->getLote()->getId()) {
-            return  $dao->retreaveById($this->id);
+            return $dao->retreaveById($this->id);
         } else if ($this->nome and !$this->id and !$this->getLote()->getId()) {
-            return  $dao->retreaveByNome($this->nome, $page);
+            return $dao->retreaveByNome($this->nome, $page);
         } else if ($this->getLote()->getId() and !$this->nome and !$this->id) {
-            return  $dao->retreaveByIdLote($this->getLote()->getId(), $page);
+            return $dao->retreaveByIdLote($this->getLote()->getId(), $page);
         } else if ($this->nome and $this->getLote()->getId() and !$this->id) {
-            return  $dao->retreaveByIdLoteAndName($this->getLote()->getId(), $this->getNome(), $page);
+            return $dao->retreaveByIdLoteAndName($this->getLote()->getId(), $this->getNome(), $page);
         }
 
-        return  $dao->retreaveAll($page);
+        return $dao->retreaveAll($page);
 
     }
 
