@@ -16,11 +16,11 @@ class Config
 
     //Configuração do banco
     const DBDRIVER = 'mysql';
-    const DBHOST = 'mysql8.db4free.net';
+    const DBHOST = 'localhost';
     const DBNAME = 'controleanimal';
-    const DBUSER = 'marcin';
-    const DBPASS = 'ifgoiano123';
-    const DBPORT = '3307';
+    const DBUSER = 'root';
+    const DBPASS = '';
+    const DBPORT = '';
 
     //Configuração do Slim
     const SLIM_CONTAINER = [
@@ -28,6 +28,7 @@ class Config
             'displayErrorDetails' => true
         ]
     ];
+
 
     //Configuração consultas
     const QUANTIDADE_ITENS_POR_PAGINA = 10;

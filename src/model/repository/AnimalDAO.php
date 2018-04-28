@@ -138,15 +138,18 @@ class AnimalDAO implements IDAO
     public function retreaveById(int $id): array
     {
         try {
+            $animalEntity = AnimalEntity::ativo();
+
+            if(!is_null($this->vivo)) {
+               $animalEntity->where('is_vivo',$this->vivo);
+            }
             return [
-                "animais" => AnimalEntity
-                    ::ativo()
+                "animais" => $animalEntity
                     ->with('fazenda')
                     ->with('pesagens')
                     ->with('doencas')
                     ->with('lote')
                     ->where('id', $id)
-                    ->where('is_vivo', $this->vivo)
                     ->paginate(Config::QUANTIDADE_ITENS_POR_PAGINA, ['*'], 'pagina', 1)
             ];
         } catch (Exception $e) {

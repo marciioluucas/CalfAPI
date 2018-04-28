@@ -31,17 +31,14 @@ class View
         if ($codigo != "" and $razao == "") {
             return $response
                 ->withStatus($codigo)
-                ->withHeader("Content-Type", "application/json")
-                ->write(json_encode($data));
+                ->withJson($data);
         } else if ($codigo != "" and $razao != "") {
             return $response
                 ->withStatus($codigo, $razao)
-                ->withHeader("Content-Type", "application/json")
-                ->write(json_encode($data));
+                ->withJson($data);
         } else {
             return $response
-                ->withHeader("Content-Type", "application/json")
-                ->write(json_encode($data));
+                ->withJson($data);
         }
 
     }
@@ -56,17 +53,14 @@ class View
     {
         $arrayReturn = [
             "exception" => [
-                "message" => utf8_encode($exception->getMessage()),
+                "message" => $exception->getMessage(),
                 "code" => $exception->getCode(),
                 "additional_message" => $additionalMessage
             ]
         ];
 
-        $json = json_encode($arrayReturn);
         return $response
-            ->withStatus(500, "Excessao no servidor")
-            ->withHeader("Content-Type", "application/json; charset=iso-8859-1")
-            ->write($json);
+            ->withJson($arrayReturn);
     }
 
 
