@@ -138,19 +138,28 @@ class AnimalDAO implements IDAO
     public function retreaveById(int $id): array
     {
         try {
-            $animalEntity = AnimalEntity::ativo();
-
-            if(!is_null($this->vivo)) {
-               $animalEntity->where('is_vivo',$this->vivo);
+            if(!is_null($this->vivo)){
+                return [
+                    "animais" => AnimalEntity
+                        ::ativo()
+                        ->with('fazenda')
+                        ->with('pesagens')
+                        ->with('doencas')
+                        ->with('lote')
+                        ->where('nome',  $id)
+                        ->where('is_vivo', $this->vivo)
+                        ->paginate(Config::QUANTIDADE_ITENS_POR_PAGINA, ['*'], 'pagina', $page)
+                ];
             }
             return [
-                "animais" => $animalEntity
+                "animais" => AnimalEntity
+                    ::ativo()
                     ->with('fazenda')
                     ->with('pesagens')
                     ->with('doencas')
                     ->with('lote')
-                    ->where('id', $id)
-                    ->paginate(Config::QUANTIDADE_ITENS_POR_PAGINA, ['*'], 'pagina', 1)
+                    ->where('nome', $id)
+                    ->paginate(Config::QUANTIDADE_ITENS_POR_PAGINA, ['*'], 'pagina', $page)
             ];
         } catch (Exception $e) {
             throw new Exception("Algo de errado aconteceu ao tentar pesquisar por ID" . $e->getMessage());
