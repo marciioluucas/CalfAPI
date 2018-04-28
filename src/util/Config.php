@@ -15,11 +15,12 @@ class Config
     const PADRAO_DATA_HORA = 'Y-m-d H:i:s';
 
     //Configuração do banco
-    const DBDRIVER = 'mysql';
-    const DBHOST = 'localhost';
-    const DBNAME = 'controleanimal';
-    const DBUSER = 'root';
-    const DBPASS = '';
+    const DBDRIVER = 'postgres';
+    const DBHOST = 'ec2-54-83-1-94.compute-1.amazonaws.com';
+    const DBNAME = 'd2f41c3barm383';
+    const DBUSER = 'zgkxpfnderrfhi';
+    const DBPASS = 'c295dd949738eb3e9adf405bd4e755cd36463795f7b5a5d5f01f3e47c1d6a98a';
+    const DBPORT = '5432';
 
     //Configuração do Slim
     const SLIM_CONTAINER = [
