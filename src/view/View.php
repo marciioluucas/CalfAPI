@@ -88,17 +88,14 @@ class View
         if ($codigo != 0 and $razao == "") {
             return $response
                 ->withStatus($codigo)
-                ->withHeader("Content-Type", "application/json")
-                ->write($json);
+                ->withJson($json);
         } else if ($codigo != 0 and $razao != "") {
             return $response
                 ->withStatus($codigo, $razao)
-                ->withHeader("Content-Type", "application/json")
-                ->write($json);
+                ->withJson($json);
         } else {
             return $response
-                ->withHeader("Content-Type", "application/json")
-                ->write($json);
+                ->withJson($json);
         }
 
     }

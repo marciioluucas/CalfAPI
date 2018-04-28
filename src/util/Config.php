@@ -16,7 +16,7 @@ class Config
 
     //Configuração do banco
     const DBDRIVER = 'mysql';
-    const DBHOST = 'mysql.hostinger.com';
+    const DBHOST = 'sql53.main-hosting.eu';
     const DBNAME = 'u806284756_calf';
     const DBUSER = 'u806284756_calf';
     const DBPASS = 'ifgoiano123';
