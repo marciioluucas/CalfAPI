@@ -16,11 +16,11 @@ class Config
 
     //Configuração do banco
     const DBDRIVER = 'mysql';
-    const DBHOST = 'localhost';
-    const DBNAME = 'controleanimal';
-    const DBUSER = 'root';
-    const DBPASS = '';
-    const DBPORT = '';
+    const DBHOST = '	mysql.hostinger.com';
+    const DBNAME = 'u806284756_calf';
+    const DBUSER = 'u806284756_calf';
+    const DBPASS = 'ifgoiano123';
+    const DBPORT = '3306';
 
     //Configuração do Slim
     const SLIM_CONTAINER = [
