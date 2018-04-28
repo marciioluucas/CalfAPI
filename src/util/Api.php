@@ -21,7 +21,21 @@ class Api
      */
     public function __construct()
     {
-        $this->app = new App(Config::SLIM_CONTAINER);
+        $c = Config::SLIM_CONTAINER;
+        $c['notFoundHandler'] = function ($c) {
+            return function (Request $request, Response $response) use ($c) {
+                $response->withStatus(404);
+                return View::renderMessage($response, 'error', 'Página não encontrada', 404);
+            };
+        };
+
+        $c['errorHandler'] = function ($c) {
+            return function (Request $request, Response $response, Exception $error) use ($c) {
+                $response->withStatus(500);
+                return View::renderException($response, $error);
+            };
+        };
+        $this->app = new App($c);
 
         //Carregar o timezone da aplicação.
         Config::loadTimezone();

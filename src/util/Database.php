@@ -24,6 +24,7 @@ class Database
                'database'  => Config::DBNAME,
                'username'  => Config::DBUSER,
                'password'  => Config::DBPASS,
+               'port'      => Config::DBPORT,
                'charset'   => 'utf8',
                'collation' => 'utf8_unicode_ci',
                'prefix'    => ''
