@@ -54,6 +54,7 @@ class AnimalDAO implements IDAO
         $entity->usuario_alteracao = $obj->getUsuarioAlteracao()->getId();
         $entity->fazendas_id = $obj->getFazenda()->getId();
         $entity->lotes_id = $obj->getLote()->getId();
+        $entity->is_vivo = $obj->isVivo();
         try {
             if ($entity->save()) {
                 return true;
@@ -148,7 +149,7 @@ class AnimalDAO implements IDAO
                         ->with('lote')
                         ->where('nome',  $id)
                         ->where('is_vivo', $this->vivo)
-                        ->paginate(Config::QUANTIDADE_ITENS_POR_PAGINA, ['*'], 'pagina', $page)
+                        ->paginate(Config::QUANTIDADE_ITENS_POR_PAGINA, ['*'], 'pagina', 1)
                 ];
             }
             return [
@@ -159,7 +160,7 @@ class AnimalDAO implements IDAO
                     ->with('doencas')
                     ->with('lote')
                     ->where('nome', $id)
-                    ->paginate(Config::QUANTIDADE_ITENS_POR_PAGINA, ['*'], 'pagina', $page)
+                    ->paginate(Config::QUANTIDADE_ITENS_POR_PAGINA, ['*'], 'pagina', 1)
             ];
         } catch (Exception $e) {
             throw new Exception("Algo de errado aconteceu ao tentar pesquisar por ID" . $e->getMessage());
