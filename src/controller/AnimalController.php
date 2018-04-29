@@ -44,7 +44,9 @@ class AnimalController implements IController
                 $animal->setDataNascimento($data->data_nascimento);
                 $animal->getLote()->setId($data->id_lote);
                 $animal->getFazenda()->setId($data->id_fazenda);
+                $animal->setVivo($data->vivo);
                 $idCadastrado = $animal->cadastrar();
+
                 return View::renderMessage($response,
                     "success", "Animal cadastrado com sucesso! ID cadastrado: " . $idCadastrado,
                     201, "Sucesso ao cadastrar");

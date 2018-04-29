@@ -1,4 +1,4 @@
-﻿CREATE DATABASE  IF NOT EXISTS `controleanimal` /*!40100 DEFAULT CHARACTER SET latin1 */;
+﻿-- CREATE DATABASE  IF NOT EXISTS `controleanimal` /*!40100 DEFAULT CHARACTER SET latin1 */;
 USE `controleanimal`;
 -- MySQL dump 10.13  Distrib 5.7.17, for Win64 (x86_64)
 --
@@ -20,7 +20,7 @@ USE `controleanimal`;
 --
 -- Table structure for table `animais`
 --
-CREATE DATABASE IF NOT EXISTS `controleanimal`;
+-- CREATE DATABASE IF NOT EXISTS `controleanimal`;
 DROP TABLE IF EXISTS `animais`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;

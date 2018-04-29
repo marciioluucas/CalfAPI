@@ -51,6 +51,7 @@ class View
      */
     public static final function renderException(Response $response, Exception $exception, $additionalMessage = "none"):Response
     {
+        $response->withStatus(500, 'Erro interno no servidor');
         $arrayReturn = [
             "exception" => [
                 "message" => $exception->getMessage(),
