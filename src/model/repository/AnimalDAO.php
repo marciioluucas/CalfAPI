@@ -14,6 +14,7 @@ use Exception;
 use Illuminate\Support\Facades\Validator;
 use PDO;
 use src\model\Animal;
+use src\model\Modelo;
 use src\model\repository\entities\AnimalEntity;
 use Psr\Http\Message\RequestInterface as Request;
 use src\model\IModel;
@@ -30,14 +31,22 @@ use src\util\Config;
 class AnimalDAO implements IDAO
 {
 
+
     /**
      * @var bool
      */
     private $vivo;
+    /**
+     * @var string
+     */
     private $sexo;
+    /**
+     * @var bool
+     */
+    private $ativo;
 
     /**
-     * @param Animal $obj
+     * @param Modelo $obj
      * @return bool
      * @throws Exception
      */
@@ -67,6 +76,11 @@ class AnimalDAO implements IDAO
         return false;
     }
 
+    /**
+     * @param int $idAnimal
+     * @param int $idDoenca
+     * @param string $situacao
+     */
     public function createAdoecimento(int $idAnimal, int $idDoenca, string $situacao = 'NÃO INFORMADO')
     {
         $animal = AnimalEntity::find($idAnimal);
@@ -121,6 +135,9 @@ class AnimalDAO implements IDAO
         if (!is_null($this->vivo)) {
             $entity->where('is_vivo', $this->vivo);
         }
+        if (!is_null($this->sexo)) {
+            $entity->where('sexo', $this->sexo);
+        }
 
         $animais = $entity->with('fazenda')
             ->with('pesagens')
@@ -142,23 +159,16 @@ class AnimalDAO implements IDAO
      */
     public function retreaveById(int $id): array
     {
+        $entity = AnimalEntity::ativo();
+        if (!is_null($this->vivo)) {
+            $entity->where('is_vivo', $this->vivo);
+        }
+        if (!is_null($this->sexo)) {
+            $entity->where('sexo', $this->sexo);
+        }
         try {
-            if (!is_null($this->vivo)) {
-                return [
-                    "animais" => AnimalEntity
-                        ::ativo()
-                        ->with('fazenda')
-                        ->with('pesagens')
-                        ->with('doencas')
-                        ->with('lote')
-                        ->where('id', $id)
-                        ->where('is_vivo', $this->vivo)
-                        ->paginate(Config::QUANTIDADE_ITENS_POR_PAGINA, ['*'], 'pagina', 1)
-                ];
-            }
             return [
-                "animais" => AnimalEntity
-                    ::ativo()
+                "animais" => $entity
                     ->with('fazenda')
                     ->with('pesagens')
                     ->with('doencas')
@@ -311,6 +321,30 @@ class AnimalDAO implements IDAO
     public function setSexo($sexo): void
     {
         $this->sexo = $sexo;
+    }
+
+    /**
+     * @param mixed $ativo
+     */
+    public function setAtivo($ativo): void
+    {
+        $this->ativo = $ativo;
+    }
+
+    /**
+     * @return bool
+     */
+    public function isVivo(): bool
+    {
+        return $this->vivo;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getAtivo()
+    {
+        return $this->ativo;
     }
 
 

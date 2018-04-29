@@ -5,8 +5,9 @@
  * Date: 13/09/2017
  * Time: 00:03
  */
-
 namespace src\model\repository;
+
+use src\model\Modelo;
 
 
 /**
@@ -16,16 +17,16 @@ namespace src\model\repository;
 interface IDAO
 {
     /**
-     * @param $obj
+     * @param Modelo $obj
      * @return bool
      */
-    public function create($obj): bool ;
+    public function create(Modelo $obj): bool ;
 
     /**
-     * @param $obj
+     * @param Modelo $obj
      * @return bool
      */
-    public function update($obj): bool ;
+    public function update(Modelo $obj): bool ;
 
     /**
      * @param int $page

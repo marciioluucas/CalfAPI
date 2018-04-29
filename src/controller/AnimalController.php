@@ -71,12 +71,21 @@ class AnimalController implements IController
             $animal = new Animal();
             $page = (int)$request->getQueryParam('pagina');
 
-            if($request->getQueryParam('vivo') == 'false') {
+            if ($request->getQueryParam('vivo') == 'false') {
                 $animal->setVivo(false);
             }
             if ($request->getQueryParam('vivo') == 'true') {
                 $animal->setVivo(true);
             }
+            if ($request->getQueryParam('sexo') == 'm'
+                || $request->getQueryParam('sexo') == 'M') {
+                $animal->setSexo('M');
+            }
+            if ($request->getQueryParam('sexo') == 'f'
+                || $request->getQueryParam('sexo') == 'F') {
+                $animal->setSexo('F');
+            }
+
 
             if ($request->getAttribute('id')) {
                 $animal->setId($request->getAttribute('id'));

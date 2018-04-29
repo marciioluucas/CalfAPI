@@ -152,6 +152,7 @@ class Animal extends Modelo
     {
         $dao = new AnimalDAO();
         $dao->setVivo($this->vivo);
+        $dao->setSexo($this->sexo);
         if ($this->id and !$this->nome and !$this->getLote()->getId()) {
             return $dao->retreaveById($this->id);
         } else if ($this->nome and !$this->id and !$this->getLote()->getId()) {
