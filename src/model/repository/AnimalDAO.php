@@ -34,6 +34,7 @@ class AnimalDAO implements IDAO
      * @var bool
      */
     private $vivo;
+    private $sexo;
 
     /**
      * @param Animal $obj
@@ -116,12 +117,14 @@ class AnimalDAO implements IDAO
      */
     public function retreaveAll(int $page): array
     {
-        $animais = AnimalEntity
-            ::ativo()->with('fazenda')
+        $entity = AnimalEntity::ativo();
+        if(!is_null($this->vivo)){
+          $entity->where('is_vivo',$this->vivo);
+        }
+        $animais = $entity->with('fazenda')
             ->with('pesagens')
             ->with('doencas')
             ->with('lote')
-            ->where('is_vivo', $this->vivo)
             ->paginate(
                 Config::QUANTIDADE_ITENS_POR_PAGINA,
                 ['*'],
@@ -147,7 +150,7 @@ class AnimalDAO implements IDAO
                         ->with('pesagens')
                         ->with('doencas')
                         ->with('lote')
-                        ->where('nome',  $id)
+                        ->where('id',  $id)
                         ->where('is_vivo', $this->vivo)
                         ->paginate(Config::QUANTIDADE_ITENS_POR_PAGINA, ['*'], 'pagina', 1)
                 ];
@@ -159,7 +162,7 @@ class AnimalDAO implements IDAO
                     ->with('pesagens')
                     ->with('doencas')
                     ->with('lote')
-                    ->where('nome', $id)
+                    ->where('id', $id)
                     ->paginate(Config::QUANTIDADE_ITENS_POR_PAGINA, ['*'], 'pagina', 1)
             ];
         } catch (Exception $e) {
@@ -292,6 +295,24 @@ class AnimalDAO implements IDAO
     {
         $this->vivo = $vivo;
     }
+
+    /**
+     * @return mixed
+     */
+    public function getSexo()
+    {
+        return $this->sexo;
+    }
+
+    /**
+     * @param mixed $sexo
+     */
+    public function setSexo($sexo): void
+    {
+        $this->sexo = $sexo;
+    }
+
+
 
 
 }

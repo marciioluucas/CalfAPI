@@ -151,9 +151,7 @@ class Animal extends Modelo
     public function pesquisar(int $page): array
     {
         $dao = new AnimalDAO();
-        if (!is_null($this->vivo)) {
-            $dao->setVivo($this->vivo);
-        }
+        $dao->setVivo($this->vivo);
         if ($this->id and !$this->nome and !$this->getLote()->getId()) {
             return $dao->retreaveById($this->id);
         } else if ($this->nome and !$this->id and !$this->getLote()->getId()) {
