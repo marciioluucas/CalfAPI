@@ -3,7 +3,6 @@
   <component name="ChangeListManager">
     <list default="true" id="00f5a375-e7b8-4505-98fa-01660a814dc1" name="Default" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change beforePath="$PROJECT_DIR$/src/model/Animal.php" afterPath="$PROJECT_DIR$/src/model/Animal.php" />
       <change beforePath="$PROJECT_DIR$/src/model/repository/AnimalDAO.php" afterPath="$PROJECT_DIR$/src/model/repository/AnimalDAO.php" />
       <change beforePath="$PROJECT_DIR$/src/util/Config.php" afterPath="$PROJECT_DIR$/src/util/Config.php" />
     </list>
@@ -79,18 +78,28 @@
       <file leaf-file-name="Animal.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/model/Animal.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="21">
-              <caret line="152" column="0" lean-forward="false" selection-start-line="152" selection-start-column="0" selection-end-line="152" selection-end-column="0" />
+            <state relative-caret-position="207">
+              <caret line="154" column="51" lean-forward="false" selection-start-line="154" selection-start-column="51" selection-end-line="154" selection-end-column="51" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="AnimalDAO.php" pinned="false" current-in-tab="true">
+      <file leaf-file-name="Config.php" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/util/Config.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="180">
+              <caret line="23" column="0" lean-forward="true" selection-start-line="17" selection-start-column="1" selection-end-line="23" selection-end-column="0" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="AnimalDAO.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/model/repository/AnimalDAO.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="369">
-              <caret line="136" column="7" lean-forward="true" selection-start-line="136" selection-start-column="7" selection-end-line="136" selection-end-column="7" />
+            <state relative-caret-position="279">
+              <caret line="123" column="0" lean-forward="false" selection-start-line="123" selection-start-column="0" selection-end-line="123" selection-end-column="0" />
               <folding />
             </state>
           </provider>
@@ -224,9 +233,9 @@
         <option value="$PROJECT_DIR$/.gitignore" />
         <option value="$PROJECT_DIR$/src/util/Database.php" />
         <option value="$PROJECT_DIR$/src/view/View.php" />
-        <option value="$PROJECT_DIR$/src/util/Config.php" />
         <option value="$PROJECT_DIR$/src/model/Animal.php" />
         <option value="$PROJECT_DIR$/src/model/repository/AnimalDAO.php" />
+        <option value="$PROJECT_DIR$/src/util/Config.php" />
       </list>
     </option>
   </component>
@@ -515,14 +524,7 @@
       <workItem from="1523836197734" duration="818000" />
       <workItem from="1524915995847" duration="900000" />
       <workItem from="1524917005782" duration="627000" />
-      <workItem from="1524917649383" duration="19917000" />
-    </task>
-    <task id="LOCAL-00003" summary="Mudando a arquitetura e instalando phinx, eloquent e terminando de arrumar o slim">
-      <created>1518305621371</created>
-      <option name="number" value="00003" />
-      <option name="presentableId" value="LOCAL-00003" />
-      <option name="project" value="LOCAL" />
-      <updated>1518305621371</updated>
+      <workItem from="1524917649383" duration="20320000" />
     </task>
     <task id="LOCAL-00004" summary="Configurando arquivos do projeto .iml">
       <created>1518398384126</created>
@@ -860,11 +862,18 @@
       <option name="project" value="LOCAL" />
       <updated>1524946230889</updated>
     </task>
-    <option name="localTasksCounter" value="52" />
+    <task id="LOCAL-00052" summary="Funcionando consultas;">
+      <created>1524972354744</created>
+      <option name="number" value="00052" />
+      <option name="presentableId" value="LOCAL-00052" />
+      <option name="project" value="LOCAL" />
+      <updated>1524972354744</updated>
+    </task>
+    <option name="localTasksCounter" value="53" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="287290000" />
+    <option name="totallyTimeSpent" value="287693000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1382" height="744" extended-state="6" />
@@ -901,7 +910,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="SHOW_UNVERSIONED_FILES_WHILE_COMMIT" value="false" />
-    <MESSAGE value="Funcionando Exceptions" />
     <MESSAGE value="Criando padronização de exibição de mensagens em JSON" />
     <MESSAGE value="Mudando mais uma vez a arquitetura nos arquivos, adicionando o repository no lugar da DAO e colocando a entities dentro do pacote de repository" />
     <MESSAGE value="Mudando tipo de data e acrescentando validação no cadastro de animal." />
@@ -926,7 +934,8 @@
     <MESSAGE value="Colocando conf banco" />
     <MESSAGE value="tratando erros" />
     <MESSAGE value="Colocando confs banco" />
-    <option name="LAST_COMMIT_MESSAGE" value="Colocando confs banco" />
+    <MESSAGE value="Funcionando consultas;" />
+    <option name="LAST_COMMIT_MESSAGE" value="Funcionando consultas;" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -1260,26 +1269,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/util/Config.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="324">
-          <caret line="31" column="0" lean-forward="true" selection-start-line="31" selection-start-column="0" selection-end-line="31" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/model/repository/entities/AnimalEntity.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-728">
           <caret line="26" column="6" lean-forward="false" selection-start-line="26" selection-start-column="6" selection-end-line="26" selection-end-column="6" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/model/Animal.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="21">
-          <caret line="152" column="0" lean-forward="false" selection-start-line="152" selection-start-column="0" selection-end-line="152" selection-end-column="0" />
           <folding />
         </state>
       </provider>
@@ -1302,8 +1295,24 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/model/repository/AnimalDAO.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="369">
-          <caret line="136" column="7" lean-forward="true" selection-start-line="136" selection-start-column="7" selection-end-line="136" selection-end-column="7" />
+        <state relative-caret-position="279">
+          <caret line="123" column="0" lean-forward="false" selection-start-line="123" selection-start-column="0" selection-end-line="123" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/model/Animal.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="207">
+          <caret line="154" column="51" lean-forward="false" selection-start-line="154" selection-start-column="51" selection-end-line="154" selection-end-column="51" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/util/Config.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="180">
+          <caret line="23" column="0" lean-forward="true" selection-start-line="17" selection-start-column="1" selection-end-line="23" selection-end-column="0" />
           <folding />
         </state>
       </provider>

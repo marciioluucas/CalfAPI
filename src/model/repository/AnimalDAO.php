@@ -118,9 +118,10 @@ class AnimalDAO implements IDAO
     public function retreaveAll(int $page): array
     {
         $entity = AnimalEntity::ativo();
-        if(!is_null($this->vivo)){
-          $entity->where('is_vivo',$this->vivo);
+        if (!is_null($this->vivo)) {
+            $entity->where('is_vivo', $this->vivo);
         }
+
         $animais = $entity->with('fazenda')
             ->with('pesagens')
             ->with('doencas')
@@ -142,7 +143,7 @@ class AnimalDAO implements IDAO
     public function retreaveById(int $id): array
     {
         try {
-            if(!is_null($this->vivo)){
+            if (!is_null($this->vivo)) {
                 return [
                     "animais" => AnimalEntity
                         ::ativo()
@@ -150,7 +151,7 @@ class AnimalDAO implements IDAO
                         ->with('pesagens')
                         ->with('doencas')
                         ->with('lote')
-                        ->where('id',  $id)
+                        ->where('id', $id)
                         ->where('is_vivo', $this->vivo)
                         ->paginate(Config::QUANTIDADE_ITENS_POR_PAGINA, ['*'], 'pagina', 1)
                 ];
@@ -185,7 +186,7 @@ class AnimalDAO implements IDAO
     public function retreaveByNome(string $nome, int $page): array
     {
         try {
-            if(!is_null($this->vivo)){
+            if (!is_null($this->vivo)) {
                 return [
                     "animais" => AnimalEntity
                         ::ativo()
@@ -311,8 +312,6 @@ class AnimalDAO implements IDAO
     {
         $this->sexo = $sexo;
     }
-
-
 
 
 }
