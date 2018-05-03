@@ -30,7 +30,7 @@ class AnimalController implements IController
      * @param Response $response
      * @return Response
      */
-    public function post($request, $response): Response
+    public function post(Request $request, Response $response): Response
     {
         try {
             $animal = new Animal();
@@ -66,7 +66,7 @@ class AnimalController implements IController
      * @return Response
      * @throws Exception
      */
-    public function get(Request $request, Response $response, $args): Response
+    public function get(Request $request, Response $response, array $args): Response
     {
         try {
 
