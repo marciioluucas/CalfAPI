@@ -58,7 +58,7 @@ class FazendaDAO implements IDAO
      * @param int $page
      * @return array
      */
-    public function retreaveAll($page): array
+    public function retreaveAll(int $page): array
     {
         return ["fazendas" => FazendaEntity
             ::ativo()

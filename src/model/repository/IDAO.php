@@ -17,16 +17,16 @@ use src\model\Modelo;
 interface IDAO
 {
     /**
-     * @param Modelo $obj
+     * @param $obj
      * @return bool
      */
-    public function create(Modelo $obj): bool ;
+    public function create($obj): bool ;
 
     /**
      * @param Modelo $obj
      * @return bool
      */
-    public function update(Modelo $obj): bool ;
+    public function update($obj): bool ;
 
     /**
      * @param int $page

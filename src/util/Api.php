@@ -3,13 +3,13 @@
 namespace src\util;
 
 use Exception;
-use \Psr\Http\Message\ResponseInterface as Response;
-use \Psr\Http\Message\RequestInterface as Request;
 use Slim\App;
 use Slim\Exception\MethodNotAllowedException;
 use Slim\Exception\NotFoundException;
 use src\controller\IController;
 use src\view\View;
+use \Psr\Http\Message\RequestInterface as Request;
+use \Psr\Http\Message\ResponseInterface as Response;
 
 class Api
 {
@@ -21,6 +21,9 @@ class Api
      */
     public function __construct()
     {
+        // header('Access-Control-Allow-Origin: *');
+        // header('Access-Control-Allow-Headers: X-Requested-With, Content-Type, Accept, Origin, Authorization');
+        // header('Access-Control-Allow-Methods: GET, POST, PUT, DELETE, PATCH, OPTIONS');
         $c = Config::SLIM_CONTAINER;
         $c['notFoundHandler'] = function ($c) {
             return function (Request $request, Response $response) use ($c) {
@@ -114,11 +117,11 @@ class Api
         $app->group('/auth', function () use ($app) {
             $app->post('/in', function (Request $request, Response $response, array $args) {
 //                $class = Api::invokeClass($args['classname'], $request, $response);
-//                return $class->post($request, $response, $args);
+                //                return $class->post($request, $response, $args);
             });
             $app->delete('/out', function (Request $request, Response $response, array $args) {
 //                $class = Api::invokeClass($args['classname'], $request, $response);
-//                return $class->delete($request, $response);
+                //                return $class->delete($request, $response);
             });
         });
     }
