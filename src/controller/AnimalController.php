@@ -1,22 +1,19 @@
 <?php
 /**
  * Created by PhpStorm.
- * User: Usuario
+ * User: Márcio Lucas
  * Date: 12/09/2017
  * Time: 23:50
  */
 
 namespace src\controller;
 
-
 use Exception;
 use src\model\Animal;
 use src\util\validate\AnimalValidate;
-use \Psr\Http\Message\ResponseInterface as Response;
-use \Psr\Http\Message\RequestInterface as Request;
-use src\util\Migration;
-use src\util\DataConversor;
 use src\view\View;
+use \Psr\Http\Message\RequestInterface as Request;
+use \Psr\Http\Message\ResponseInterface as Response;
 
 /**
  * Class AnimalController
@@ -35,7 +32,7 @@ class AnimalController implements IController
         try {
             $animal = new Animal();
             $data = json_decode($request->getBody()->getContents());
-            $valida = (new AnimalValidate())->validatePost((array)$data);
+            $valida = (new AnimalValidate())->validatePost((array) $data);
             if ($valida === true) {
                 $animal->setCodigoBrinco($data->codigo_brinco);
                 $animal->setNome($data->nome);
@@ -43,8 +40,9 @@ class AnimalController implements IController
                 $animal->setCodigoRaca($data->codigo_raca);
                 $animal->setDataNascimento($data->data_nascimento);
                 $animal->getLote()->setId($data->id_lote);
-                $animal->getFazenda()->setId($data->id_fazenda);
+                $animal->getFazenda()->setId($data->fazenda->id);
                 $animal->setVivo($data->vivo);
+                $animal->getPesagem()->setPeso($data->pesagem->peso);
                 $idCadastrado = $animal->cadastrar();
 
                 return View::renderMessage($response,
@@ -56,7 +54,6 @@ class AnimalController implements IController
         } catch (Exception $exception) {
             return View::renderException($response, $exception);
         }
-//        return View::render($response, [$request->getBody()->getContents()]);
     }
 
     /**
@@ -71,7 +68,7 @@ class AnimalController implements IController
         try {
 
             $animal = new Animal();
-            $page = (int)$request->getQueryParam('pagina');
+            $page = (int) $request->getQueryParam('pagina');
 
             if ($request->getQueryParam('vivo') == 'false') {
                 $animal->setVivo(false);
@@ -87,7 +84,6 @@ class AnimalController implements IController
                 || $request->getQueryParam('sexo') == 'F') {
                 $animal->setSexo('F');
             }
-
 
             if ($request->getAttribute('id')) {
                 $animal->setId($request->getAttribute('id'));

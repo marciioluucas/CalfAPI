@@ -8,7 +8,6 @@
 
 namespace src\model;
 
-
 use ArrayObject;
 use Exception;
 use src\model\repository\AnimalDAO;
@@ -64,7 +63,7 @@ class Animal extends Modelo
     private $codigoRaca;
 
     /**
-     * @var float
+     * @var Pesagem
      */
     private $pesagem;
     /**
@@ -85,7 +84,6 @@ class Animal extends Modelo
      */
     private $fazenda;
 
-
     /**
      * @var ArrayObject
      */
@@ -98,11 +96,11 @@ class Animal extends Modelo
     {
         $this->fazenda = new Fazenda();
         $this->lote = new Lote();
+        $this->pesagem = new Pesagem($this);
         $this->doencas = new ArrayObject(new Doenca());
         $this->usuarioCadastro = new Usuario();
         $this->usuarioAlteracao = new Usuario();
     }
-
 
     /**
      * @return bool
@@ -189,7 +187,6 @@ class Animal extends Modelo
     {
         $this->doencas->append($doenca);
     }
-
 
     /**
      * @return int|null
@@ -430,6 +427,5 @@ class Animal extends Modelo
     {
         $this->doencas = $doencas;
     }
-
 
 }

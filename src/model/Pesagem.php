@@ -9,7 +9,6 @@
 namespace src\model;
 
 use Exception;
-use Psr\Http\Message\RequestInterface as Request;
 use src\model\repository\PesagemDAO;
 use src\util\Config;
 
@@ -33,11 +32,11 @@ class Pesagem extends Modelo
      */
     private $animal;
 
-    public function __construct()
+    public function __construct(Animal $animal)
     {
         $this->usuarioCadastro = new Usuario();
         $this->usuarioAlteracao = new Usuario();
-        $this->animal = new Animal();
+        $this->animal = $animal;
     }
 
     /**
@@ -70,7 +69,6 @@ class Pesagem extends Modelo
         }
     }
 
-
     /**
      * @param int $page
      * @return array
@@ -90,13 +88,13 @@ class Pesagem extends Modelo
         }
     }
 
-
     /**
      * @param string $whatChart
      * @param array $params
      * @return mixed
      */
-    public function graph(string $whatChart, array $params) {
+    public function graph(string $whatChart, array $params)
+    {
         return (new PesagemDAO())->$whatChart($params);
     }
 
@@ -112,7 +110,6 @@ class Pesagem extends Modelo
             throw new Exception($e->getMessage());
         }
     }
-
 
     /**
      * @return int
@@ -177,6 +174,5 @@ class Pesagem extends Modelo
     {
         $this->animal = $animal;
     }
-
 
 }
