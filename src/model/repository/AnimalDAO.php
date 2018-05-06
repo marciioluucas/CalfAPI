@@ -46,7 +46,7 @@ class AnimalDAO implements IDAO
     private $ativo;
 
     /**
-     * @param Modelo $obj
+     * @param Animal $obj
      * @return bool
      * @throws Exception
      */
@@ -55,7 +55,6 @@ class AnimalDAO implements IDAO
         $entity = new AnimalEntity();
         $entity->nome = $obj->getNome();
         $entity->data_nascimento = $obj->getDataNascimento();
-        $entity->primogenito = $obj->isPrimogenito();
         $entity->codigo_brinco = $obj->getCodigoBrinco();
         $entity->codigo_raca = $obj->getCodigoRaca();
         $entity->data_cadastro = $obj->getDataCriacao();

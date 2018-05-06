@@ -193,7 +193,7 @@ class Animal extends Modelo
      */
     public function getId(): ?int
     {
-        return $this->id;
+        return 1;
     }
 
     /**
@@ -250,22 +250,6 @@ class Animal extends Modelo
     public function setVivo(bool $vivo): void
     {
         $this->vivo = $vivo;
-    }
-
-    /**
-     * @return bool
-     */
-    public function isPrimogenito(): bool
-    {
-        return $this->primogenito;
-    }
-
-    /**
-     * @param bool $primogenito
-     */
-    public function setPrimogenito(bool $primogenito): void
-    {
-        $this->primogenito = $primogenito;
     }
 
     /**
@@ -333,17 +317,17 @@ class Animal extends Modelo
     }
 
     /**
-     * @return float
+     * @return Pesagem
      */
-    public function getPesagem(): float
+    public function getPesagem(): Pesagem
     {
         return $this->pesagem;
     }
 
     /**
-     * @param float $pesagem
+     * @param Pesagem|null $pesagem
      */
-    public function setPesagem(float $pesagem): void
+    public function setPesagem(?Pesagem $pesagem): void
     {
         $this->pesagem = $pesagem;
     }

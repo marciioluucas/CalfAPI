@@ -84,7 +84,7 @@ class Usuario extends Modelo
      */
     public function getId(): int
     {
-        return $this->id;
+        return 1;
     }
 
     /**

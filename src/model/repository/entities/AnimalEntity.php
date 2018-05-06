@@ -23,6 +23,7 @@ use Illuminate\Database\Eloquent\Builder;
  * @property int fazendas_id
  * @property int usuario_alteracao
  * @property int usuario_cadastro
+ * @property bool is_vivo
  */
 class AnimalEntity extends CalfEntity
 {
@@ -31,10 +32,10 @@ class AnimalEntity extends CalfEntity
         'id',
         'nome',
         'data_nascimento',
-        'primogenito',
         'codigo_brinco',
         'codigo_raca',
         'status',
+        'sexo',
         'data_alteracao',
         'data_cadastro',
         'usuario_cadastro',

@@ -21,9 +21,11 @@ class Api
      */
     public function __construct()
     {
-        // header('Access-Control-Allow-Origin: *');
-        // header('Access-Control-Allow-Headers: X-Requested-With, Content-Type, Accept, Origin, Authorization');
-        // header('Access-Control-Allow-Methods: GET, POST, PUT, DELETE, PATCH, OPTIONS');
+        header('Access-Control-Allow-Origin: *');
+        header('Content-Type: application/json;charset=UTF-8');
+        header('Access-Control-Allow-Headers: *');
+        header("Title: CalfManager API");
+        header('Access-Control-Allow-Methods: GET, POST, PUT, DELETE, PATCH, OPTIONS');
         $c = Config::SLIM_CONTAINER;
         $c['notFoundHandler'] = function ($c) {
             return function (Request $request, Response $response) use ($c) {
@@ -40,13 +42,13 @@ class Api
         };
         $this->app = new App($c);
 
-        $this->app->add(function ($req, $res, $next) {
-            $response = $next($req, $res);
-            return $response
-                ->withHeader('Access-Control-Allow-Origin', '*')
-                ->withHeader('Access-Control-Allow-Headers', 'X-Requested-With, Content-Type, Accept, Origin, Authorization')
-                ->withHeader('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE, PATCH, OPTIONS');
-        });
+//        $this->app->add(function ($req, $res, $next) {
+//            $response = $next($req, $res);
+//            return $response
+//                ->withHeader('Access-Control-Allow-Origin', '*')
+//                ->withHeader('Access-Control-Allow-Headers', 'X-Requested-With, Content-Type, Accept, Origin, Authorization')
+//                ->withHeader('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE, PATCH, OPTIONS');
+//        });
         //Carregar o timezone da aplicação.
         Config::loadTimezone();
     }
