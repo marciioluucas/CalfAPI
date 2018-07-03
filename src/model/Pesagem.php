@@ -32,10 +32,17 @@ class Pesagem extends Modelo
      */
     private $animal;
 
+    /**
+     * Pesagem constructor.
+     * @param Animal $animal
+     * @throws Exception
+     */
     public function __construct(Animal $animal)
     {
+
         $this->usuarioCadastro = new Usuario();
         $this->usuarioAlteracao = new Usuario();
+        if($animal->getId() == null) throw new Exception("O ID do não pode ser nulo");
         $this->animal = $animal;
     }
 

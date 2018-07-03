@@ -24,7 +24,7 @@ class Api
         header('Access-Control-Allow-Origin: *');
         header('Content-Type: application/json;charset=UTF-8');
         header('Access-Control-Allow-Headers: *');
-        header("Title: CalfManager API");
+        header("Content-Disposition: inline; filename=CalfAPI;");
         header('Access-Control-Allow-Methods: GET, POST, PUT, DELETE, PATCH, OPTIONS');
         $c = Config::SLIM_CONTAINER;
         $c['notFoundHandler'] = function ($c) {

@@ -121,7 +121,9 @@ class Animal extends Modelo
             $this->faseDaVida = FaseDaVida::ADULTO;
         }
         try {
-            return (new AnimalDAO())->create($this);
+            $idAnimal = (new AnimalDAO())->create($this);
+            $this->depoisDeCadastrar($idAnimal);
+            return $idAnimal;
         } catch (Exception $e) {
             throw new Exception($e->getMessage());
         }
@@ -183,9 +185,36 @@ class Animal extends Modelo
 
     }
 
-    public function adicionarDoenca(Doenca $doenca)
+    public function adicionarDoenca(int $doencaId, string $situacao = 'CURADO', int $animalId)
     {
+        $doenca = new Doenca();
+        $doenca->setId($doencaId);
+        $doenca->setSituacao($situacao);
+        $doenca->getAnimal()->setId($animalId);
         $this->doencas->append($doenca);
+    }
+
+    public function adoecerAnimal($doencas) {
+
+    }
+
+    /**
+     * @param $idAnimal
+     * @throws Exception
+     */
+    public function depoisDeCadastrar($idAnimal) {
+        $this->setId($idAnimal);
+        $this->cadastrarPesagensPadrao();
+    }
+
+    /**
+     * @param $peso
+     * @throws Exception
+     */
+    public function cadastrarPesagensPadrao() {
+        $pesagem = new Pesagem($this);
+        $pesagem->setPeso($this->getPesagem()->getPeso());
+        $pesagem->cadastrar();
     }
 
     /**

@@ -16,10 +16,10 @@ class Config
 
     //Configuração do banco
     const DBDRIVER = 'mysql';
-    const DBHOST = 'sql53.main-hosting.eu';
-    const DBNAME = 'u806284756_calf';
-    const DBUSER = 'u806284756_calf';
-    const DBPASS = 'ifgoiano123';
+    const DBHOST = 'localhost';
+    const DBNAME = 'controleanimal';
+    const DBUSER = 'root';
+    const DBPASS = '';
     const DBPORT = '3306';
 
     //Dev args

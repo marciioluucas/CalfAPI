@@ -10,10 +10,12 @@ namespace src\controller;
 
 use Exception;
 use src\model\Animal;
+use src\model\Doenca;
 use src\util\validate\AnimalValidate;
 use src\view\View;
 use \Psr\Http\Message\RequestInterface as Request;
 use \Psr\Http\Message\ResponseInterface as Response;
+use Tebru\Gson\Gson;
 
 /**
  * Class AnimalController
@@ -39,11 +41,13 @@ class AnimalController implements IController
                 $animal->setCodigoRaca($data->codigo_raca);
                 $animal->setDataNascimento($data->data_nascimento);
                 $animal->getLote()->setId(1);
+                foreach ($data->doencas as $doenca) {
+                    $animal->adicionarDoenca($doenca);
+                }
                 $animal->getFazenda()->setId($data->fazenda->id);
                 $animal->setVivo($data->is_vivo);
                 $animal->getPesagem()->setPeso($data->peso);
                 $idCadastrado = $animal->cadastrar();
-
                 return View::renderMessage($response,
                     "success", "Animal cadastrado com sucesso! ID cadastrado: " . $idCadastrado,
                     201, "Sucesso ao cadastrar");

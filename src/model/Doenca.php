@@ -32,6 +32,10 @@ class Doenca extends Modelo
      */
     private $descricao = "Sem descrição";
 
+    private $situacao = 'CURADO';
+
+    private $animal;
+
     /**
      * Doenca constructor.
      */
@@ -39,6 +43,7 @@ class Doenca extends Modelo
     {
         $this->usuarioCadastro = new Usuario();
         $this->usuarioAlteracao = new Usuario();
+        $this->animal = new Animal();
     }
 
 
@@ -148,6 +153,38 @@ class Doenca extends Modelo
     public function setDescricao(?string $descricao): void
     {
         $this->descricao = $descricao;
+    }
+
+    /**
+     * @return string
+     */
+    public function getSituacao(): string
+    {
+        return $this->situacao;
+    }
+
+    /**
+     * @param string $situacao
+     */
+    public function setSituacao(string $situacao): void
+    {
+        $this->situacao = $situacao;
+    }
+
+    /**
+     * @return Animal
+     */
+    public function getAnimal(): Animal
+    {
+        return $this->animal;
+    }
+
+    /**
+     * @param Animal $animal
+     */
+    public function setAnimal(Animal $animal): void
+    {
+        $this->animal = $animal;
     }
 
 
