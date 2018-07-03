@@ -194,15 +194,19 @@ class Animal extends Modelo
         $this->doencas->append($doenca);
     }
 
-    public function adoecerAnimal($doencas) {
+    public function adoecerAnimal()
+    {
+        foreach ($this->doencas as $doenca) {
 
+        }
     }
 
     /**
      * @param $idAnimal
      * @throws Exception
      */
-    public function depoisDeCadastrar($idAnimal) {
+    public function depoisDeCadastrar($idAnimal)
+    {
         $this->setId($idAnimal);
         $this->cadastrarPesagensPadrao();
     }
@@ -211,7 +215,8 @@ class Animal extends Modelo
      * @param $peso
      * @throws Exception
      */
-    public function cadastrarPesagensPadrao() {
+    public function cadastrarPesagensPadrao()
+    {
         $pesagem = new Pesagem($this);
         $pesagem->setPeso($this->getPesagem()->getPeso());
         $pesagem->cadastrar();

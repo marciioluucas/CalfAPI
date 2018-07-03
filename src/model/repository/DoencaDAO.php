@@ -11,6 +11,7 @@ namespace src\model\repository;
 
 use Exception;
 use src\model\Doenca;
+use src\model\repository\entities\AnimalHasDoencaEntity;
 use src\model\repository\entities\DoencaEntity;
 use src\util\Config;
 
@@ -143,5 +144,25 @@ class DoencaDAO implements IDAO
             throw new Exception("Algo de errado aconteceu ao tentar desativar uma fazenda" . $e->getMessage());
         }
         return false;
+    }
+
+    /**
+     * @param $idAnimal
+     * @param $situacao
+     * @param $idDoenca
+     * @return bool
+     * @throws Exception
+     */
+    public function adoecer($idAnimal, $situacao, $idDoenca)
+    {
+        if (count((new AnimalDAO())->retreaveById($idAnimal)) == 0)
+            throw new Exception("Não foi possível adoecer este animal pois ele nao existe");
+        if (count($this->retreaveById($idDoenca)) == 0)
+            throw new Exception("Não foi possível adoecer este animal pois esta doenca nao existe");
+        $entity = new AnimalHasDoencaEntity();
+        $entity->animais_id = $idAnimal;
+        $entity->doencas_id = $idDoenca;
+        $entity->situacao = $situacao;
+        return $entity->save();
     }
 }
