@@ -69,7 +69,6 @@ class AnimalController implements IController
     public function get(Request $request, Response $response, array $args): Response
     {
         try {
-
             $animal = new Animal();
             $page = (int) $request->getQueryParam('pagina');
 
@@ -91,11 +90,11 @@ class AnimalController implements IController
             if ($request->getAttribute('id')) {
                 $animal->setId($request->getAttribute('id'));
 
-            } else if ($request->getAttribute('nome')) {
-                $animal->setNome($request->getAttribute('nome'));
+            } else if ($request->getQueryParam('nome')) {
+                $animal->setNome($request->getQueryParam('nome'));
 
-            } else if ($request->getQueryParam('lote-id')) {
-                $animal->getLote()->setId($request->getQueryParam('lote-id'));
+            } else if ($request->getQueryParam('lote')) {
+                $animal->getLote()->setId($request->getQueryParam('lote'));
             }
             $search = $animal->pesquisar($page);
             return View::render($response, $search);

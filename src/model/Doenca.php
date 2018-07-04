@@ -43,7 +43,6 @@ class Doenca extends Modelo
     {
         $this->usuarioCadastro = new Usuario();
         $this->usuarioAlteracao = new Usuario();
-        $this->animal = new Animal();
     }
 
 

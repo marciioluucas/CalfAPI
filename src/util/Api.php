@@ -76,21 +76,14 @@ class Api
             $app->get('', function (Request $request, Response $response, array $args) {
                 try {
                     $class = Api::invokeClass($args['classname'], $request, $response);
+                    return $class->get($request, $response, $args);
                 } catch (Exception $e) {
                     return View::renderException($response, $e);
                 }
-                return $class->get($request, $response, $args);
+
             });
 
             $app->get('/{id:[0-9]+}', function (Request $request, Response $response, array $args) {
-                $class = Api::invokeClass($args['classname'], $request, $response);
-                return $class->get($request, $response, $args);
-            });
-            $app->get('/{nome:[A-Za-z\-]+}', function (Request $request, Response $response, array $args) {
-                $class = Api::invokeClass($args['classname'], $request, $response);
-                return $class->get($request, $response, $args);
-            });
-            $app->get('/{filtro:[A-Za-z]+}/{valor:[A-Za-z0-9_.]+}', function (Request $request, Response $response, array $args) {
                 $class = Api::invokeClass($args['classname'], $request, $response);
                 return $class->get($request, $response, $args);
             });
