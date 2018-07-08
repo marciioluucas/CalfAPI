@@ -1,11 +1,11 @@
 {
   "autoload": {
     "psr-4": {
-      "src\\controller\\": "src/controller/",
-      "src\\model\\": "src/model/",
-      "src\\util\\": "src/util/",
-      "src\\view\\": "src/view/",
-      "src\\model\\repository\\": "src/model/repository/",
+      "Controller": "src/controller/",
+      "Model": "src/model/",
+      "Utils": "src/util/",
+      "View": "src/view/",
+      "Repository": "src/model/repository/",
       "src\\model\\validate\\": "src/model/validate/",
       "config\\db\\migrations\\": "config/db/migrations",
       "src\\model\\repository\\entities\\": "src/repository/entities/"

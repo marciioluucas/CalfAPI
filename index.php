@@ -8,7 +8,7 @@
 require 'vendor/autoload.php';
 require 'src/util/Config.php';
 
-use src\util\Api;
+use src\Utils\Api;
 
 
 $api = new Api();
