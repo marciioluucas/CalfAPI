@@ -47,10 +47,10 @@ class AnimalDAO implements IDAO
 
     /**
      * @param Animal $obj
-     * @return bool
+     * @return int|null
      * @throws Exception
      */
-    public function create($obj): bool
+    public function create($obj): ?int
     {
         $entity = new AnimalEntity();
         $entity->nome = $obj->getNome();
@@ -66,7 +66,7 @@ class AnimalDAO implements IDAO
         $entity->is_vivo = $obj->isVivo();
         try {
             if ($entity->save()) {
-                return true;
+                return $entity->id;
             }
 
         } catch (Exception $e) {
@@ -80,7 +80,7 @@ class AnimalDAO implements IDAO
      * @param int $idDoenca
      * @param string $situacao
      */
-    public function createAdoecimento(int $idAnimal, int $idDoenca, string $situacao = 'NÃO INFORMADO')
+    public function createAdoecimento(int $idAnimal, int $idDoenca, string $situacao = 'CURADO')
     {
         $animal = AnimalEntity::find($idAnimal);
         DoencaEntity::find($idDoenca)->animais()->attach($animal, ['situacao' => $situacao]);

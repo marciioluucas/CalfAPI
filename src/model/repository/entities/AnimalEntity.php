@@ -24,6 +24,7 @@ use Illuminate\Database\Eloquent\Builder;
  * @property int usuario_alteracao
  * @property int usuario_cadastro
  * @property bool is_vivo
+ * @property mixed id
  */
 class AnimalEntity extends CalfEntity
 {

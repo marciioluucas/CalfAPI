@@ -40,10 +40,10 @@ class Lote extends Modelo
     }
 
     /**
-     * @return bool
+     * @return int|null
      * @throws Exception
      */
-    public function cadastrar(): bool
+    public function cadastrar(): ?int
     {
         $this->dataCriacao = date(Config::PADRAO_DATA_HORA);
         $this->dataAlteracao = date(Config::PADRAO_DATA_HORA);

@@ -18,9 +18,9 @@ class FamiliaDAO implements IDAO
 
     /**
      * @param $obj
-     * @return bool
+     * @return int|null
      */
-    public function create($obj): bool
+    public function create($obj): ?int
     {
         // TODO: Implement create() method.
     }

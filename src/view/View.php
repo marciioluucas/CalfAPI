@@ -79,12 +79,12 @@ class View
             throw new InvalidArgumentException("O argumento de tipo deve ser somente: error, success ou warning.");
         }
 
-        $json = json_encode([
+        $json = [
             "message" => [
                 "type" => $type,
                 "description" => $description
             ]
-        ]);
+        ];
 
         if ($codigo != 0 and $razao == "") {
             return $response

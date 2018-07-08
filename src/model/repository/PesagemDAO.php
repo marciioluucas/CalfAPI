@@ -26,16 +26,20 @@ class PesagemDAO implements IDAO
 {
     /**
      * @param Pesagem $obj
-     * @return bool
+     * @return int|null
+     * @throws Exception
      */
-    public function create($obj): bool
+    public function create($obj): ?int
     {
         $entity = new PesagemEntity();
         $entity->data_pesagem = $obj->getDataPesagem();
         $entity->peso = $obj->getPeso();
         $entity->usuario_cadastro = $obj->getUsuarioCadastro()->getId();
         $entity->usuario_alteracao = $obj->getUsuarioAlteracao()->getId();
+        $entity->animais_id = $obj->getAnimal()->getId();
         $entity->data_cadastro = $obj->getDataCriacao();
+        $entity->save();
+        return $entity->id;
     }
 
     /**

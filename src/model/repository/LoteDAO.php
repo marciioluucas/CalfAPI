@@ -22,10 +22,10 @@ class LoteDAO implements IDAO
 {
     /**
      * @param Lote $obj
-     * @return bool
+     * @return int|null
      * @throws Exception
      */
-    public function create($obj): bool
+    public function create($obj): ?int
     {
         $entity = new LoteEntity();
         $entity->codigo = $obj->getCodigo();

@@ -39,10 +39,9 @@ abstract class Modelo
     protected $status;
 
     /**
-     * @return bool
-     * @throws Exception
+     * @return int|null
      */
-    public abstract function cadastrar(): bool;
+    public abstract function cadastrar(): ?int;
 
     /**
      * @return bool

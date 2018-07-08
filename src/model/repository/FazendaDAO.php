@@ -19,10 +19,10 @@ class FazendaDAO implements IDAO
 
     /**
      * @param Fazenda $obj
-     * @return bool|mixed
+     * @return int|null
      * @throws Exception
      */
-    public function create($obj): bool
+    public function create($obj): ?int
     {
         $entity = new FazendaEntity();
         $entity->nome = $obj->getNome();

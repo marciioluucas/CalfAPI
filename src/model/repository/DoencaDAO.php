@@ -20,10 +20,10 @@ class DoencaDAO implements IDAO
 
     /**
      * @param Doenca $obj
-     * @return bool
+     * @return int|null
      * @throws Exception
      */
-    public function create($obj): bool
+    public function create($obj): ?int
     {
         try {
             $entity = new DoencaEntity();

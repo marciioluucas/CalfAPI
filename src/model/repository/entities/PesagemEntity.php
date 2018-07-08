@@ -15,6 +15,8 @@ namespace src\model\repository\entities;
  * @property \src\model\Usuario usuario_cadastro
  * @property int usuario_alteracao
  * @property string data_cadastro
+ * @property mixed id
+ * @property int|null animais_id
  */
 class PesagemEntity extends CalfEntity
 {

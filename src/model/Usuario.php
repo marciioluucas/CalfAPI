@@ -43,10 +43,9 @@ class Usuario extends Modelo
     private $grupo;
 
     /**
-     * @return bool
-     * @throws Exception
+     * @return int|null
      */
-    public function cadastrar(): bool
+    public function cadastrar(): ?int
     {
         // TODO: Implement cadastrar() method.
     }

@@ -42,11 +42,12 @@ class AnimalController implements IController
                 $animal->setDataNascimento($data->data_nascimento);
                 $animal->getLote()->setId(1);
                 foreach ($data->doencas as $doenca) {
-                    $animal->adicionarDoenca($doenca);
+                    $animal->adicionarDoenca($doenca->id, $doenca->situacao);
                 }
                 $animal->getFazenda()->setId($data->fazenda->id);
                 $animal->setVivo($data->is_vivo);
-                $animal->getPesagem()->setPeso($data->peso);
+                $animal->getPesagem()->setPeso($data->pesagem->peso);
+                $animal->getPesagem()->setDataPesagem($data->pesagem->data);
                 $idCadastrado = $animal->cadastrar();
                 return View::renderMessage($response,
                     "success", "Animal cadastrado com sucesso! ID cadastrado: " . $idCadastrado,
