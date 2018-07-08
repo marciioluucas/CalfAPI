@@ -11,17 +11,9 @@ namespace CalfManager\Model\Repository;
 
 
 use Exception;
-use Illuminate\Support\Facades\Validator;
-use PDO;
 use CalfManager\Model\Animal;
-use CalfManager\Model\Modelo;
-use CalfManager\Model\Repository\entities\AnimalEntity;
-use Psr\Http\Message\RequestInterface as Request;
-use CalfManager\Model\IModel;
-use CalfManager\Model\Repository\entities\DoencaEntity;
-use CalfManager\Model\Repository\entities\FamiliaEntity;
-use CalfManager\Model\Repository\entities\MaeEntity;
-use CalfManager\Model\Repository\entities\PaiEntity;
+use CalfManager\Model\Repository\Entity\AnimalEntity;
+use CalfManager\Model\Repository\Entity\DoencaEntity;
 use CalfManager\Utils\Config;
 
 /**
@@ -173,7 +165,8 @@ class AnimalDAO implements IDAO
                     ->with('doencas')
                     ->with('lote')
                     ->where('id', $id)
-                    ->paginate(Config::QUANTIDADE_ITENS_POR_PAGINA, ['*'], 'pagina', 1)
+                    ->first()
+                    ->toArray()
             ];
         } catch (Exception $e) {
             throw new Exception("Algo de errado aconteceu ao tentar pesquisar por ID" . $e->getMessage());

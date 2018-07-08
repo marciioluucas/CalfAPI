@@ -1,8 +1,9 @@
 <?php
+
 namespace CalfManager\Controller;
 
 use Exception;
-use CalfManager\Model\Animal;
+use CalfManager\Model\Animal as Animal;
 use CalfManager\Utils\validate\AnimalValidate;
 use CalfManager\View\View;
 use Psr\Http\Message\RequestInterface as Request;
@@ -24,7 +25,7 @@ class AnimalController implements IController
         try {
             $animal = new Animal();
             $data = json_decode($request->getBody()->getContents());
-            $valida = (new AnimalValidate())->validatePost((array) $data);
+            $valida = (new AnimalValidate())->validatePost((array)$data);
             if ($valida === true) {
                 $animal->setCodigoBrinco($data->codigo_brinco);
                 $animal->setNome($data->codigo_brinco);
@@ -33,6 +34,14 @@ class AnimalController implements IController
                 $animal->getLote()->setId(1);
                 foreach ($data->doencas as $doenca) {
                     $animal->adicionarDoenca($doenca->id, $doenca->situacao);
+                }
+                if ($data->pai != null) {
+                    $animal->setPai(new Animal());
+                    $animal->getPai()->setId($data->pai->id);
+                };
+                if ($data->mae != null) {
+                    $animal->setMae(new Animal());
+                    $animal->getMae()->setId($data->mae->id);
                 }
                 $animal->getFazenda()->setId($data->fazenda->id);
                 $animal->setVivo($data->is_vivo);
@@ -43,7 +52,7 @@ class AnimalController implements IController
                     $response,
                     "success",
                     "Animal cadastrado com sucesso! ID cadastrado: " .
-                        $idCadastrado,
+                    $idCadastrado,
                     201,
                     "Sucesso ao cadastrar"
                 );
@@ -66,10 +75,11 @@ class AnimalController implements IController
         Request $request,
         Response $response,
         array $args
-    ): Response {
+    ): Response
+    {
         try {
             $animal = new Animal();
-            $page = (int) $request->getQueryParam('pagina');
+            $page = (int)$request->getQueryParam('pagina');
 
             if ($request->getQueryParam('vivo') == 'false') {
                 $animal->setVivo(false);

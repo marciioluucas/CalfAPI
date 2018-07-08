@@ -11,7 +11,7 @@ namespace CalfManager\Model\Repository;
 
 use Exception;
 use CalfManager\Model\Lote;
-use CalfManager\Model\Repository\entities\LoteEntity;
+use CalfManager\Model\Repository\Entity\LoteEntity;
 use CalfManager\Utils\Config;
 
 /**

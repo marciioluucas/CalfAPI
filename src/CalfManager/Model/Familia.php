@@ -57,22 +57,22 @@ class Familia extends Modelo
         $candidatoASerMae = (new AnimalDAO())->retreaveById(
             $this->mae->getId()
         );
-        if (count($candidatoASerPai) != 0) {
+        if ($candidatoASerPai == null) {
             throw new Exception(
                 `O animal com o nome/código do brinco '{$this->pai->getNome()}' não pode ser pai pois ele não existe`
             );
         }
-        if ($candidatoASerPai['sexo'] != 'M') {
+        if ($candidatoASerPai['animais']['sexo'] != 'M') {
             throw new Exception(
                 `O animal assinalado como pai deve ter o sexo masculino`
             );
         }
-        if (count($candidatoASerMae) != 0) {
+        if ($candidatoASerMae == null) {
             throw new Exception(
                 `O animal com o nome/código do brinco '{$this->pai->getNome()}' não pode ser mãe pois ele não existe`
             );
         }
-        if ($candidatoASerMae['sexo'] != 'F') {
+        if ($candidatoASerMae['animais']['sexo'] != 'F') {
             throw new Exception(
                 `O animal assinalado como mãe deve ter o sexo feminino`
             );

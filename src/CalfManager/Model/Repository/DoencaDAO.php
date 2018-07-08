@@ -11,8 +11,8 @@ namespace CalfManager\Model\Repository;
 
 use Exception;
 use CalfManager\Model\Doenca;
-use CalfManager\Model\Repository\entities\AnimalHasDoencaEntity;
-use CalfManager\Model\Repository\entities\DoencaEntity;
+use CalfManager\Model\Repository\Entity\AnimalHasDoencaEntity;
+use CalfManager\Model\Repository\Entity\DoencaEntity;
 use CalfManager\Utils\Config;
 
 class DoencaDAO implements IDAO

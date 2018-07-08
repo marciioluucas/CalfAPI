@@ -6,10 +6,9 @@
  * Time: 23:12
  */
 require 'vendor/autoload.php';
-require 'src/util/Config.php';
+require 'src/CalfManager/Utils/Config.php';
 
-use src\Utils\Api;
-
+use CalfManager\Utils\Api;
 
 $api = new Api();
 $api->getDatabase();

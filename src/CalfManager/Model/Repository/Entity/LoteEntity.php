@@ -1,6 +1,6 @@
 <?php
 
-namespace CalfManager\Model\Repository\entities;
+namespace CalfManager\Model\Repository\Entity;
 use CalfManager\Model\Usuario;
 
 

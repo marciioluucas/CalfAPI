@@ -11,7 +11,7 @@ namespace CalfManager\Model\Repository;
 use Exception;
 use PDO;
 use CalfManager\Model\Fazenda;
-use CalfManager\Model\Repository\entities\FazendaEntity;
+use CalfManager\Model\Repository\Entity\FazendaEntity;
 use CalfManager\Utils\Config;
 
 class FazendaDAO implements IDAO

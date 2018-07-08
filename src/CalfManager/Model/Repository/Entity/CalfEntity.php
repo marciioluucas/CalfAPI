@@ -6,7 +6,7 @@
  * Time: 17:09
  */
 
-namespace CalfManager\Model\Repository\entities;
+namespace CalfManager\Model\Repository\Entity;
 
 
 use Illuminate\Database\Eloquent\Builder;

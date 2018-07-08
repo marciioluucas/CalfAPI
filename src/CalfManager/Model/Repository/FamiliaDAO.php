@@ -10,9 +10,7 @@ namespace CalfManager\Model\Repository;
 
 
 use CalfManager\Model\Familia;
-use CalfManager\Model\Repository\entities\FamiliaEntity;
-use CalfManager\Model\Repository\entities\MaeEntity;
-use CalfManager\Model\Repository\entities\PaiEntity;
+use CalfManager\Model\Repository\Entity\FamiliaEntity;
 
 class FamiliaDAO implements IDAO
 {

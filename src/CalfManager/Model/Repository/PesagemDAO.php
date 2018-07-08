@@ -9,13 +9,11 @@
 namespace CalfManager\Model\Repository;
 
 
-use bd\Banco;
+use CalfManager\Model\Repository\Entity\PesagemEntity;
 use Carbon\Carbon;
 use Exception;
 use InvalidArgumentException;
-use PDO;
 use CalfManager\Model\Pesagem;
-use CalfManager\Model\Repository\entities\PesagemEntity;
 use CalfManager\Utils\Config;
 
 /**

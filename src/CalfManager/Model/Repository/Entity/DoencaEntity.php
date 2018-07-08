@@ -6,7 +6,7 @@
  * Time: 11:21
  */
 
-namespace CalfManager\Model\Repository\entities;
+namespace CalfManager\Model\Repository\Entity;
 
 use CalfManager\Model\Usuario;
 

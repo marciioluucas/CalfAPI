@@ -6,7 +6,7 @@
  * Time: 15:47
  */
 
-namespace CalfManager\Model\Repository\entities;
+namespace CalfManager\Model\Repository\Entity;
 
 
 /**

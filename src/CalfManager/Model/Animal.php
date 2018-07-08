@@ -1,8 +1,8 @@
 <?php
+
 namespace CalfManager\Model;
 
 use ArrayObject;
-use CalfManager\Model\Repository\FamiliaDAO;
 use Exception;
 use CalfManager\Model\Repository\AnimalDAO;
 use CalfManager\Model\Repository\DoencaDAO;
@@ -93,8 +93,6 @@ class Animal extends Modelo
         $this->lote = new Lote();
         $this->pesagem = new Pesagem($this);
         $this->doencas = new ArrayObject();
-        $this->usuarioCadastro = new Usuario();
-        $this->usuarioAlteracao = new Usuario();
     }
 
     /**
@@ -106,6 +104,8 @@ class Animal extends Modelo
         $this->dataAlteracao = date(Config::PADRAO_DATA_HORA);
         $this->dataCriacao = date(Config::PADRAO_DATA_HORA);
         $this->faseDaVida = FaseDaVida::RECEM_NASCIDO;
+        $this->usuarioCadastro = new Usuario();
+        $this->usuarioAlteracao = new Usuario();
         //        $this->usuarioAlteracao = "Lucas";// vai pegar do token dps de implementar o login;
         $this->usuarioCadastro->setId(1);
         //        $array = (new ClassToArray())->classToArray($this);
@@ -187,7 +187,8 @@ class Animal extends Modelo
         int $doencaId,
         string $situacao = 'CURADO',
         int $animalId = null
-    ) {
+    )
+    {
         $doenca = new Doenca();
         $doenca->setId($doencaId);
         $doenca->setSituacao($situacao);
@@ -198,6 +199,7 @@ class Animal extends Modelo
     }
 
     /**
+     * @param null $idAnimal
      * @throws Exception
      */
     public function adoecerAnimal($idAnimal = null)
@@ -218,7 +220,7 @@ class Animal extends Modelo
     public function depoisDeCadastrar($idAnimal)
     {
         $this->setId($idAnimal);
-        $this->cadastrarFamilia($idAnimal);
+        $this->cadastrarFamilia();
         $this->cadastrarPesagensPadrao();
         $this->adoecerAnimal($idAnimal);
     }
@@ -231,9 +233,15 @@ class Animal extends Modelo
         $this->getPesagem()->cadastrar();
     }
 
-    public function cadastrarFamilia($idAnimal)
+    /**
+     * @throws Exception
+     */
+    public function cadastrarFamilia()
     {
-
+        if ($this->getPai()->getId() != null && $this->getMae()->getId() != null) {
+            $familia = new Familia($this->getPai(), $this->getMae(), $this);
+            $familia->cadastrar();
+        }
     }
 
     /**
@@ -255,7 +263,7 @@ class Animal extends Modelo
     /**
      * @return string
      */
-    public function getNome(): string
+    public function getNome(): ?string
     {
         return $this->nome;
     }
@@ -383,7 +391,7 @@ class Animal extends Modelo
     /**
      * @return Animal
      */
-    public function getPai(): Animal
+    public function getPai(): ?Animal
     {
         return $this->pai;
     }
@@ -399,7 +407,7 @@ class Animal extends Modelo
     /**
      * @return Animal
      */
-    public function getMae(): Animal
+    public function getMae(): ?Animal
     {
         return $this->mae;
     }

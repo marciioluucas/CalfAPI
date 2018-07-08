@@ -6,7 +6,7 @@
  * Time: 23:07
  */
 
-namespace CalfManager\Model\Repository\entities;
+namespace CalfManager\Model\Repository\Entity;
 
 
 class AnimalHasDoencaEntity extends CalfEntity
