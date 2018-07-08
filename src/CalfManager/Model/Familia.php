@@ -8,7 +8,7 @@
 
 namespace CalfManager\Model;
 
-use ArrayObject;
+use CalfManager\Model\Repository\AnimalDAO;
 use Exception;
 use CalfManager\Model\Repository\FamiliaDAO;
 
@@ -31,19 +31,53 @@ class Familia extends Modelo
      */
     private $filho;
 
-    public function __construct()
+    /**
+     * Familia constructor.
+     * @param Animal $pai
+     * @param Animal $mae
+     * @param Animal $filho
+     */
+    public function __construct(Animal $pai, Animal $mae, Animal $filho)
     {
-        $this->pai = new Animal();
-        $this->mae = new Animal();
-        $this->filho = new Animal();
+        $this->pai = $pai;
+        $this->mae = $mae;
+        $this->filho = $filho;
     }
 
     /**
      * @return int|null
+     * @throws Exception
      */
     public function cadastrar(): ?int
     {
-        // TODO: Implement cadastrar() method.
+        $dao = new FamiliaDAO();
+        $candidatoASerPai = (new AnimalDAO())->retreaveById(
+            $this->pai->getId()
+        );
+        $candidatoASerMae = (new AnimalDAO())->retreaveById(
+            $this->mae->getId()
+        );
+        if (count($candidatoASerPai) != 0) {
+            throw new Exception(
+                `O animal com o nome/código do brinco '{$this->pai->getNome()}' não pode ser pai pois ele não existe`
+            );
+        }
+        if ($candidatoASerPai['sexo'] != 'M') {
+            throw new Exception(
+                `O animal assinalado como pai deve ter o sexo masculino`
+            );
+        }
+        if (count($candidatoASerMae) != 0) {
+            throw new Exception(
+                `O animal com o nome/código do brinco '{$this->pai->getNome()}' não pode ser mãe pois ele não existe`
+            );
+        }
+        if ($candidatoASerMae['sexo'] != 'F') {
+            throw new Exception(
+                `O animal assinalado como mãe deve ter o sexo feminino`
+            );
+        }
+        return $dao->create($this);
     }
 
     /**

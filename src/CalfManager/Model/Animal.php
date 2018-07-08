@@ -2,6 +2,7 @@
 namespace CalfManager\Model;
 
 use ArrayObject;
+use CalfManager\Model\Repository\FamiliaDAO;
 use Exception;
 use CalfManager\Model\Repository\AnimalDAO;
 use CalfManager\Model\Repository\DoencaDAO;
@@ -217,6 +218,7 @@ class Animal extends Modelo
     public function depoisDeCadastrar($idAnimal)
     {
         $this->setId($idAnimal);
+        $this->cadastrarFamilia($idAnimal);
         $this->cadastrarPesagensPadrao();
         $this->adoecerAnimal($idAnimal);
     }
@@ -227,6 +229,11 @@ class Animal extends Modelo
     public function cadastrarPesagensPadrao()
     {
         $this->getPesagem()->cadastrar();
+    }
+
+    public function cadastrarFamilia($idAnimal)
+    {
+
     }
 
     /**

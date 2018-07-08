@@ -1,16 +1,8 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: Márcio Lucas
- * Date: 12/09/2017
- * Time: 23:50
- */
-
 namespace CalfManager\Controller;
 
 use Exception;
 use CalfManager\Model\Animal;
-use CalfManager\Model\Doenca;
 use CalfManager\Utils\validate\AnimalValidate;
 use CalfManager\View\View;
 use Psr\Http\Message\RequestInterface as Request;

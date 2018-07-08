@@ -9,13 +9,22 @@
 namespace CalfManager\Model\Repository\entities;
 
 
+/**
+ * @property int|null mae_id
+ * @property int|null pai_id
+ * @property int|null filho_id
+ * @property int id
+ * @property \Carbon\Carbon $created_at
+ * @property \Carbon\Carbon $updated_at
+ */
 class FamiliaEntity extends CalfEntity
 {
     protected $table = 'familias';
     protected $fillable = [
         'pai_id',
         'mae_id',
-        'filho_id'
+        'filho_id',
+        'status',
     ];
 
     public function pai()

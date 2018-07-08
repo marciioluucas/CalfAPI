@@ -9,6 +9,7 @@
 namespace CalfManager\Model\Repository;
 
 
+use CalfManager\Model\Familia;
 use CalfManager\Model\Repository\entities\FamiliaEntity;
 use CalfManager\Model\Repository\entities\MaeEntity;
 use CalfManager\Model\Repository\entities\PaiEntity;
@@ -17,12 +18,17 @@ class FamiliaDAO implements IDAO
 {
 
     /**
-     * @param $obj
+     * @param Familia $obj
      * @return int|null
      */
     public function create($obj): ?int
     {
-        // TODO: Implement create() method.
+        $entity = new FamiliaEntity();
+        $entity->pai_id = $obj->getPai()->getId();
+        $entity->mae_id = $obj->getMae()->getId();
+        $entity->filho_id = $obj->getFilho()->getId();
+        $entity->save();
+        return $entity->id;
     }
 
     /**
