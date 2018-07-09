@@ -8,6 +8,7 @@
 
 namespace CalfManager\Controller;
 
+use CalfManager\Model\Animal;
 use Exception;
 use Psr\Http\Message\RequestInterface as Request;
 use Psr\Http\Message\ResponseInterface as Response;
@@ -26,8 +27,8 @@ class PesagemController implements IController
     public function post(Request $request, Response $response): Response
     {
         try {
-            $pesagem = new Pesagem();
             $data = json_decode($request->getBody()->getContents());
+            $pesagem = new Pesagem();
             $valida = (new PesagemValidate())->validatePost((array) $data);
             if ($valida) {
                 $pesagem->setPeso($data->peso);
@@ -89,7 +90,7 @@ class PesagemController implements IController
      */
     public function put(Request $request, Response $response): Response
     {
-        // TODO: Implement put() method.
+        return View::renderMessage($response, 'warning', 'Não implementado');
     }
 
     /**

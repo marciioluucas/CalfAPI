@@ -22,7 +22,7 @@ class GraphController implements IController
      */
     public function post(Request $request, Response $response): Response
     {
-        // TODO: Implement post() method.
+        return View::renderMessage($response, 'warning', 'Não implementado');
     }
 
     /**
@@ -35,7 +35,8 @@ class GraphController implements IController
         Request $request,
         Response $response,
         array $args
-    ): Response {
+    ): Response
+    {
         try {
             $classToInstance =
                 '\\CalfManager\\model\\' .
@@ -62,7 +63,7 @@ class GraphController implements IController
      */
     public function put(Request $request, Response $response): Response
     {
-        // TODO: Implement put() method.
+        return View::renderMessage($response, 'warning', 'Não implementado');
     }
 
     /**
@@ -72,6 +73,6 @@ class GraphController implements IController
      */
     public function delete(Request $request, Response $response): Response
     {
-        // TODO: Implement delete() method.
+        return View::renderMessage($response, 'warning', 'Não implementado');
     }
 }

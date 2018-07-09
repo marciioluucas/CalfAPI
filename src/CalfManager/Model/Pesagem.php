@@ -37,11 +37,11 @@ class Pesagem extends Modelo
      * @param Animal $animal
      * @throws Exception
      */
-    public function __construct(Animal $animal)
+    public function __construct(Animal $animal = null)
     {
         $this->usuarioCadastro = new Usuario();
         $this->usuarioAlteracao = new Usuario();
-        $this->animal = $animal;
+        if ($animal != null) $this->animal = $animal;
     }
 
     /**

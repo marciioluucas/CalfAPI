@@ -32,7 +32,7 @@ class LoteController implements IController
         try {
             $lote = new Lote();
             $data = json_decode($request->getBody()->getContents());
-            $valida = (new LoteValidate())->validatePost((array) $data);
+            $valida = (new LoteValidate())->validatePost((array)$data);
             if ($valida) {
                 $lote->setCodigo($data->codigo);
 
@@ -73,10 +73,11 @@ class LoteController implements IController
         Request $request,
         Response $response,
         array $args
-    ): Response {
+    ): Response
+    {
         try {
             $lote = new Lote();
-            $page = (int) $request->getQueryParam('pagina');
+            $page = (int)$request->getQueryParam('pagina');
 
             if ($request->getAttribute('id')) {
                 $lote->setId($request->getAttribute('id'));
@@ -99,7 +100,7 @@ class LoteController implements IController
         try {
             $lote = new Lote();
             $data = json_decode($request->getBody()->getContents());
-            $valida = (new LoteValidate())->validatePut((array) $data);
+            $valida = (new LoteValidate())->validatePut((array)$data);
             if ($valida) {
                 $lote->setId($request->getAttribute('id'));
                 if (isset($data->codigo)) {

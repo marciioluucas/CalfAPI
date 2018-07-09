@@ -78,12 +78,9 @@ class FazendaDAO implements IDAO
     public function retreaveById(int $id): array
     {
         try {
-            return [
-                "animais" => FazendaEntity
-                    ::ativo()
-                    ->where('id', $id)
-                    ->get()
-            ];
+            return FazendaEntity::ativo()
+                ->where('id', $id)
+                ->get();
         } catch (Exception $e) {
             throw new Exception("Algo de errado aconteceu ao tentar pesquisar por ID" . $e->getMessage());
         }
@@ -99,8 +96,7 @@ class FazendaDAO implements IDAO
     {
         try {
             return [
-                "fazendas" => FazendaEntity
-                    ::ativo()
+                "fazendas" => FazendaEntity::ativo()
                     ->where('nome', 'like', $nome . "%")
                     ->paginate
                     (
