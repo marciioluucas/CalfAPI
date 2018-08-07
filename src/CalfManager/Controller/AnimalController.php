@@ -126,7 +126,7 @@ class AnimalController implements IController
         $data = json_decode($request->getBody()->getContents());
         $valida = (new AnimalValidate())->validatePost((array)$data);
         if ($valida === true) {
-            $animal->setId($request->getParam('id'));
+            $animal->setId($request->getAttribute('id'));
             $animal->setCodigoBrinco($data->codigo_brinco);
             $animal->setNome($data->codigo_brinco);
             $animal->setCodigoRaca($data->codigo_raca);
