@@ -39,6 +39,7 @@
       <path value="$PROJECT_DIR$/vendor/tebru/gson-php" />
       <path value="$PROJECT_DIR$/vendor/tebru/doctrine-annotation-reader" />
       <path value="$PROJECT_DIR$/vendor/symfony/polyfill-ctype" />
+      <path value="$PROJECT_DIR$/vendor/doctrine/event-manager" />
     </include_path>
   </component>
   <component name="PhpProjectSharedConfiguration" php_language_level="7.2" />

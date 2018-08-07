@@ -8,10 +8,8 @@
 
 namespace CalfManager\Controller;
 
-use ArrayObject;
 use Psr\Http\Message\RequestInterface as Request;
 use Psr\Http\Message\ResponseInterface as Response;
-use CalfManager\Model\Animal;
 use CalfManager\Model\Familia;
 use CalfManager\View\View;
 

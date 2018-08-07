@@ -53,7 +53,7 @@ class FamiliaDAO implements IDAO
      */
     public function retreaveById(int $id): array
     {
-        // TODO: Implement retreaveById() method.
+        return FamiliaEntity::find($id);
     }
 
     /**
@@ -62,7 +62,12 @@ class FamiliaDAO implements IDAO
      */
     public function delete(int $id): bool
     {
-        // TODO: Implement delete() method.
+        $entity = FamiliaEntity::find($id);
+        $entity->status = 0;
+        if ($entity->save()) {
+            return true;
+        };
+        return false;
     }
 
     public function retreaveFamiliaByIdAnimal(int $animalId): ?object

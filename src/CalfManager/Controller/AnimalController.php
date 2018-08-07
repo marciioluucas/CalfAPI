@@ -124,50 +124,40 @@ class AnimalController implements IController
     {
         $animal = new Animal();
         $data = json_decode($request->getBody()->getContents());
-        if ($request->getAttribute('id')) {
-            $animal->setId($request->getAttribute('id'));
-            if (isset($data->codigo_brinco)) {
-                $animal->setCodigoBrinco($data->codigo_brinco);
+        $valida = (new AnimalValidate())->validatePost((array)$data);
+        if ($valida === true) {
+            $animal->setId($request->getParam('id'));
+            $animal->setCodigoBrinco($data->codigo_brinco);
+            $animal->setNome($data->codigo_brinco);
+            $animal->setCodigoRaca($data->codigo_raca);
+            $animal->setDataNascimento($data->data_nascimento);
+            $animal->getLote()->setId(1);
+            foreach ($data->doencas as $doenca) {
+                $animal->adicionarDoenca($doenca->id, $doenca->situacao);
             }
-            if (isset($data->codigo_raca)) {
-                $animal->setCodigoRaca($data->codigo_raca);
+            if ($data->pai != null) {
+                $animal->setPai(new Animal());
+                $animal->getPai()->setId($data->pai->id);
+            };
+            if ($data->mae != null) {
+                $animal->setMae(new Animal());
+                $animal->getMae()->setId($data->mae->id);
             }
-            if (isset($data->nome)) {
-                $animal->setNome($data->nome);
-            }
-            if (isset($data->data_nascimento)) {
-                $animal->setDataNascimento($data->data_nascimento);
-            }
-            if (isset($data->id_pesagem)) {
-                $animal->setFkPesagem($data->id_pesagem);
-            }
-
-            if (isset($data->id_lote)) {
-                $animal->setFkLote($data->id_lote);
-            }
-            if (isset($data->id_fazenda)) {
-                $animal->setFkFazenda($data->id_fazenda);
-            }
-            try {
-                if ($animal->alterar()) {
-                    return View::renderMessage(
-                        $response,
-                        "success",
-                        "Animal alterado com sucesso! ",
-                        202,
-                        "Sucesso ao alterar"
-                    );
-                } else {
-                    return View::renderMessage(
-                        $response,
-                        'error',
-                        "Erro ao tentar mudar animal",
-                        503
-                    );
-                }
-            } catch (Exception $exception) {
-                return View::renderException($response, $exception);
-            }
+            $animal->getFazenda()->setId($data->fazenda->id);
+            $animal->setVivo($data->is_vivo);
+            $animal->getPesagem()->setPeso($data->pesagem->peso);
+            $animal->getPesagem()->setDataPesagem($data->pesagem->data);
+            $idCadastrado = $animal->alterar();
+            return View::renderMessage(
+                $response,
+                "success",
+                "Animal alterado com sucesso! ID cadastrado: " .
+                $idCadastrado,
+                201,
+                "Sucesso ao cadastrar"
+            );
+        } else {
+            return View::renderMessage($response, 'warning', $valida, 400);
         }
     }
 
@@ -187,9 +177,9 @@ class AnimalController implements IController
                     return View::renderMessage(
                         $response,
                         "success",
-                        "Animal desativado com sucesso!",
+                        "Animal excluído com sucesso!",
                         202,
-                        "Sucesso ao desativar"
+                        "Sucesso ao excluir"
                     );
                 }
             }

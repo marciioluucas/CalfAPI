@@ -37,7 +37,7 @@ class Familia extends Modelo
      * @param Animal $mae
      * @param Animal $filho
      */
-    public function __construct(Animal $pai, Animal $mae, Animal $filho)
+    public function __construct(Animal $pai = null, Animal $mae = null, Animal $filho = null)
     {
         $this->pai = $pai;
         $this->mae = $mae;
@@ -86,7 +86,7 @@ class Familia extends Modelo
      */
     public function alterar(): bool
     {
-        // TODO: Implement alterar() method.
+        throw new Exception('Não implementado');
     }
 
     /**
@@ -96,7 +96,7 @@ class Familia extends Modelo
      */
     public function pesquisar(int $page): array
     {
-        // TODO: Implement pesquisar() method.
+        throw new Exception('Não implementado');
     }
 
     /**
@@ -105,7 +105,7 @@ class Familia extends Modelo
      */
     public function deletar(): bool
     {
-        // TODO: Implement deletar() method.
+       return (new FamiliaDAO())->delete($this->id);
     }
 
     public function pesquisaFamiliaByIdAnimal($id)

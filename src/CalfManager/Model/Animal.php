@@ -117,7 +117,7 @@ class Animal extends Modelo
         }
         try {
             $idAnimal = (new AnimalDAO())->create($this);
-            $this->depoisDeCadastrar($idAnimal);
+            $this->depoisDeSalvar($idAnimal);
             return $idAnimal;
         } catch (Exception $e) {
             throw new Exception($e->getMessage());
@@ -187,15 +187,20 @@ class Animal extends Modelo
         int $doencaId,
         string $situacao = 'CURADO',
         int $animalId = null
-    )
+    ) : void
     {
-        $doenca = new Doenca();
-        $doenca->setId($doencaId);
-        $doenca->setSituacao($situacao);
-        if ($animalId != null) {
-            $doenca->getAnimal()->setId($animalId);
+        foreach ($this->doencas as $d) {
+            if ($this->doencas->count() > 0)
+                if ($doencaId == $d->getId()) continue;
+            $doenca = new Doenca();
+            $doenca->setId($doencaId);
+            $doenca->setSituacao($situacao);
+            if ($animalId != null) {
+                $doenca->getAnimal()->setId($animalId);
+            }
+            $this->doencas->append($doenca);
         }
-        $this->doencas->append($doenca);
+
     }
 
     /**
@@ -217,18 +222,18 @@ class Animal extends Modelo
      * @param $idAnimal
      * @throws Exception
      */
-    public function depoisDeCadastrar($idAnimal)
+    public function depoisDeSalvar($idAnimal)
     {
         $this->setId($idAnimal);
         $this->cadastrarFamilia();
-        $this->cadastrarPesagensPadrao();
+        $this->cadastrarPesagens();
         $this->adoecerAnimal($idAnimal);
     }
 
     /**
      * @throws Exception
      */
-    public function cadastrarPesagensPadrao()
+    public function cadastrarPesagens()
     {
         $this->getPesagem()->cadastrar();
     }
