@@ -37,11 +37,11 @@ class AnimalController implements IController
                 }
                 if ($data->pai != null) {
                     $animal->setPai(new Animal());
-                    $animal->getPai()->setId($data->pai->id);
+                    $animal->getPai()->setId($data->pai);
                 };
                 if ($data->mae != null) {
                     $animal->setMae(new Animal());
-                    $animal->getMae()->setId($data->mae->id);
+                    $animal->getMae()->setId($data->mae);
                 }
                 $animal->getFazenda()->setId($data->fazenda->id);
                 $animal->setVivo($data->is_vivo);

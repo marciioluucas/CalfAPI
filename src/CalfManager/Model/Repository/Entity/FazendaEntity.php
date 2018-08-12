@@ -23,11 +23,6 @@ class FazendaEntity extends CalfEntity
     protected $table = 'fazendas';
     protected $fillable = [
         'nome',
-        'data_alteracao',
-        'data_cadastro',
-        'usuario_cadastro',
-        'usuario_alteracao',
-        'status',
     ];
 
     protected $appends = ['quantidade_animais'];

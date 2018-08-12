@@ -189,9 +189,9 @@ class Animal extends Modelo
         int $animalId = null
     ) : void
     {
-        foreach ($this->doencas as $d) {
-            if ($this->doencas->count() > 0)
-                if ($doencaId == $d->getId()) continue;
+//        foreach ($this->doencas as $d) {
+//            if ($this->doencas->count() > 0)
+//                if ($doencaId == $d->getId()) continue;
             $doenca = new Doenca();
             $doenca->setId($doencaId);
             $doenca->setSituacao($situacao);
@@ -199,7 +199,7 @@ class Animal extends Modelo
                 $doenca->getAnimal()->setId($animalId);
             }
             $this->doencas->append($doenca);
-        }
+//        }
 
     }
 
@@ -209,6 +209,7 @@ class Animal extends Modelo
      */
     public function adoecerAnimal($idAnimal = null)
     {
+
         foreach ($this->doencas as $doenca) {
             (new DoencaDAO())->adoecer(
                 $this->id == null ? $idAnimal : $this->id,
@@ -260,7 +261,7 @@ class Animal extends Modelo
     /**
      * @param int $id
      */
-    public function setId(int $id): void
+    public function setId(?int $id): void
     {
         $this->id = $id;
     }

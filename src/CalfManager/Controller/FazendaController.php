@@ -31,9 +31,6 @@ class FazendaController implements IController
             $valida = (new FazendaValidate())->validatePost((array) $data);
             if ($valida) {
                 $fazenda->setNome($data->nome);
-                if (isset($data->limite)) {
-                    $fazenda->setLimite($data->limite);
-                }
                 if ($fazenda->cadastrar()) {
                     return View::renderMessage(
                         $response,
@@ -74,10 +71,10 @@ class FazendaController implements IController
 
             if ($request->getAttribute('id')) {
                 $fazenda->setId($request->getAttribute('id'));
-            } elseif ($request->getAttribute('nome')) {
+            } elseif ($request->getQueryParam('nome')) {
                 $name = implode(
                     " ",
-                    explode("-", $request->getAttribute('nome'))
+                    explode("-", $request->getQueryParam('nome'))
                 );
                 $fazenda->setNome($name);
             }

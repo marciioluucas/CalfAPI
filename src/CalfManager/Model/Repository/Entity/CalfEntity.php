@@ -16,6 +16,7 @@ abstract class CalfEntity extends Model
 {
     const CREATED_AT = 'data_cadastro';
     const UPDATED_AT = 'data_alteracao';
+    protected $fillable = ['status'];
     protected $guarded = ['id'];
     protected $primaryKey = 'id';
 

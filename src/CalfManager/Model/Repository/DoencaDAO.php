@@ -97,7 +97,7 @@ class DoencaDAO implements IDAO
     {
         try {
             return [
-                "animais" => DoencaEntity
+                "doencas" => DoencaEntity
                     ::ativo()
                     ->where('id', $id)
                     ->get()
@@ -117,7 +117,7 @@ class DoencaDAO implements IDAO
     {
         try {
             return [
-                "animais" => DoencaEntity
+                "doencas" => DoencaEntity
                     ::ativo()
                     ->where('nome', 'like', $nome . "%")
                     ->paginate(Config::QUANTIDADE_ITENS_POR_PAGINA, ['*'], 'pagina', $page)
