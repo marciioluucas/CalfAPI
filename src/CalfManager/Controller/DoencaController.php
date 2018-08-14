@@ -73,8 +73,8 @@ class DoencaController implements IController
 
             if ($request->getAttribute('id')) {
                 $doenca->setId($request->getAttribute('id'));
-            } elseif ($request->getAttribute('nome')) {
-                $doenca->setNome($request->getAttribute('nome'));
+            } elseif ($request->getQueryParam('nome')) {
+                $doenca->setNome($request->getQueryParam('nome'));
             }
             return View::render($response, $doenca->pesquisar($page));
         } catch (Exception $exception) {
