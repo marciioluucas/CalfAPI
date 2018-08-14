@@ -32,7 +32,9 @@ class PesagemController implements IController
             $valida = (new PesagemValidate())->validatePost((array) $data);
             if ($valida) {
                 $pesagem->setPeso($data->peso);
+                $pesagem->setAnimal(new Animal());
                 $pesagem->getAnimal()->setId($data->animal_id);
+                $pesagem->setDataPesagem($data->data_pesagem);
 
                 if ($pesagem->cadastrar()) {
                     return View::renderMessage(

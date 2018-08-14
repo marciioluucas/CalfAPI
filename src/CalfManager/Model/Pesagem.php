@@ -138,7 +138,7 @@ class Pesagem extends Modelo
     /**
      * @return float
      */
-    public function getPeso(): float
+    public function getPeso(): ?float
     {
         return $this->peso;
     }
@@ -146,7 +146,7 @@ class Pesagem extends Modelo
     /**
      * @param float $peso
      */
-    public function setPeso(float $peso): void
+    public function setPeso(?float $peso): void
     {
         $this->peso = $peso;
     }
@@ -162,9 +162,10 @@ class Pesagem extends Modelo
     /**
      * @param string $dataPesagem
      */
-    public function setDataPesagem(string $dataPesagem): void
+    public function setDataPesagem(?string $dataPesagem): void
     {
-        $this->dataPesagem = date('Y-m-d', strtotime($dataPesagem));
+//        $dataPesagem = $dataPesagem == null ? date('Y-m-d') : $dataPesagem;
+        $this->dataPesagem = date('Y-m-d', strtotime(str_replace("/", "-", $dataPesagem)));
     }
 
     /**

@@ -28,7 +28,7 @@ class FazendaDAO implements IDAO
         $entity->nome = $obj->getNome();
         $entity->data_alteracao = $obj->getDataAlteracao();
         $entity->data_cadastro = $obj->getDataCriacao();
-        $entity->usuario_cadastro = $obj->getUsuarioCadastro();
+        $entity->usuario_cadastro = $obj->getUsuarioCadastro()->getId();
         try {
             if ($entity->save()) {
                 return true;
