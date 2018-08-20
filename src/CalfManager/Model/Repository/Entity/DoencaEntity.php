@@ -14,7 +14,6 @@ use CalfManager\Model\Usuario;
 /**
  * @property string nome
  * @property string descricao
- * @property string situacao
  * @property string data_cadastro
  * @property string data_alteracao
  * @property Usuario usuario_cadastro

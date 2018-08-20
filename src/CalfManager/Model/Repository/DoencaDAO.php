@@ -58,9 +58,6 @@ class DoencaDAO implements IDAO
         if (!is_null($obj->getDescricao())) {
             $entity->descricao = $obj->getDescricao();
         }
-        if (!is_null($obj->getSituacao())) {
-            $entity->situacao = $obj->getSituacao();
-        }
         try {
             if ($entity->save()) {
                 return true;

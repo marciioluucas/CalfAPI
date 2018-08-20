@@ -106,7 +106,7 @@ class DoencaController implements IController
                         $response,
                         "success",
                         "Doença alterada com sucesso!",
-                        202,
+                        200,
                         "Sucesso ao alterar"
                     );
                 }
