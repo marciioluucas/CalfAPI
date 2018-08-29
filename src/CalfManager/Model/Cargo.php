@@ -8,7 +8,111 @@
 
 namespace CalfManager\Model;
 
-class Cargo
+use CalfManager\Model\Repository\CargoDAO;
+use CalfManager\Utils\Config;
+use Exception;
+
+class Cargo extends Modelo
 {
+    private $id;
+    private $nome;
+    private $descricao;
+
+    public function __construct()
+    {
+        $this->usuarioCadastro = new Usuario();
+        $this->usuarioAlteracao = new Usuario();
+    }
+
+    public function cadastrar(): ?int
+    {
+        $this->dataCriacao = date(Config::PADRAO_DATA_HORA);
+        $this->dataAlteracao = date(Config::PADRAO_DATA_HORA);
+        $this->usuarioCadastro->setId(1);
+        try{
+            return (new CargoDAO())->create($this);
+        }catch (Exception $e){
+            throw new Exception($e->getMessage());
+        }
+
+    }
+
+    public function alterar(): bool
+    {
+        $this->dataAlteracao = date(Config::PADRAO_DATA_HORA);
+        $this->usuarioAlteracao->setId(1);
+        try{
+            return (new CargoDAO())->update($this);
+        }catch (Exception $e){
+            throw new Exception($e->getMessage());
+        }
+    }
+
+    public function pesquisar(int $page): array
+    {
+        if ($this->id) {
+            return (new CargoDAO())->retreaveById($this->id);
+        } elseif ($this->nome) {
+            return (new CargoDAO())->retreaveByNome($this->nome, $page);
+        }
+        return (new CargoDAO())->retreaveAll($page);
+    }
+
+    public function deletar(): bool
+    {
+        try {
+            return (new CargoDAO())->delete($this->id);
+        } catch (Exception $e) {
+            throw new Exception($e->getMessage());
+        }
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getId()
+    {
+        return $this->id;
+    }
+
+    /**
+     * @param mixed $id
+     */
+    public function setId($id)
+    {
+        $this->id = $id;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getNome()
+    {
+        return $this->nome;
+    }
+
+    /**
+     * @param mixed $nome
+     */
+    public function setNome($nome)
+    {
+        $this->nome = $nome;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getDescricao()
+    {
+        return $this->descricao;
+    }
+
+    /**
+     * @param mixed $descricao
+     */
+    public function setDescricao($descricao)
+    {
+        $this->descricao = $descricao;
+    }
 
 }
