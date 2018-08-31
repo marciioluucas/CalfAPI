@@ -1,3 +1,5 @@
+USE `controleanimal`;
+
 CREATE TABLE `pessoas` (
 	`id` INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
 	`endereco_id` INT NOT NULL,
@@ -11,13 +13,13 @@ CREATE TABLE `pessoas` (
     `data_cadastro` DATETIME NOT NULL,
     `usuario_cadastro` INT(11) NOT NULL,
     `usuario_alteracao` INT(11),
-    `status` INT(11),
+    `status` INT(11) NOT NULL,
     
     
-    CONSTRAINT `pessoa_endereco` FOREIGN KEY (`endereco_id`) 
+    CONSTRAINT `pessoas_enderecos` FOREIGN KEY (`endereco_id`) 
     REFERENCES `enderecos` (`id`)
-    ON DELETE NO ACTION 
-    ON UPDATE NO ACTION
+    ON DELETE RESTRICT
+    ON UPDATE CASCADE
 );
 
 CREATE TABLE `enderecos` (
@@ -33,8 +35,18 @@ CREATE TABLE `enderecos` (
 	`data_cadastro` DATETIME NOT NULL,
 	`usuario_cadastro` INT(11) NOT NULL,
 	`usuario_alteracao` INT(11),
-    `status` INT(11)
+    `status` INT(11) NOT NULL
 );
+ CREATE TABLE `cargos`(
+	`id` INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+    `nome` VARCHAR(100),
+    `descricao` VARCHAR(100),
+	`data_alteracao` DATETIME,
+	`data_cadastro` DATETIME NOT NULL,
+	`usuario_cadastro` INT(11) NOT NULL,
+	`usuario_alteracao` INT(11),
+    `status` INT(11) NOT NULL
+ );
 
 CREATE TABLE `funcionarios` (
 	`id` INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
@@ -46,58 +58,59 @@ CREATE TABLE `funcionarios` (
     `data_cadastro` DATETIME NOT NULL,
     `usuario_cadastro` INT(11) NOT NULL,
     `usuario_alteracao` INT(11),
-    `status` INT(11),
+    `status` INT(11) NOT NULL,
     
     CONSTRAINT `funcionarios_cargos` FOREIGN KEY (`cargo_id`)
     REFERENCES `cargos` (`id`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION,
+    ON DELETE RESTRICT
+    ON UPDATE CASCADE,
     
     CONSTRAINT `funcionarios_pessoas` FOREIGN KEY (`pessoa_id`) 
     REFERENCES `pessoas` (`id`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION,
+	ON DELETE RESTRICT
+    ON UPDATE CASCADE,
     
     CONSTRAINT `funcionarios_usuarios` FOREIGN KEY (`usuario_id`)
     REFERENCES `usuarios` (`id`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION
+    ON DELETE RESTRICT
+    ON UPDATE CASCADE
 );
 
-CREATE TABLE `grupos` (
-	`id` INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
-    `nome` VARCHAR(100) NOT NULL,
-    `descricao` VARCHAR(100),
-    `data_alteracao` DATETIME,
-    `data_cadastro` DATETIME NOT NULL,
-    `usuario_cadastro` INT(11) NOT NULL,
-    `usuario_alteracao` INT(11),
-    `status` INT(11)
-);
 
 CREATE TABLE `laboratorios` (
 	`id` INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
     `doenca_id` INT,
-    `animal_id` INT NOT NULL, 
+    `animal_id` INT UNSIGNED, 
     `medicamento_id` INT,
-    `dose_aplicada` INT(11),
     `hemograma_id` INT,
+    `dose_aplicada` INT,
     `data_entrada` DATETIME NOT NULL,
     `data_saida` DATETIME,
     `data_alteracao` DATETIME,
     `data_cadastro` DATETIME NOT NULL,
     `usuario_cadastro` INT(11) NOT NULL,
     `usuario_alteracao` INT(11),
-    `status` INT(11), 
+    `status` INT(11) NOT NULL, 
     
-    CONSTRAINT `laboratorios_doenca` FOREIGN KEY (`doenca_id`) REFERENCES `doencas` (`id`)
-    ON DELETE NO ACTION ON UPDATE NO ACTION,
+    CONSTRAINT `laboratorios_doencas` FOREIGN KEY (`doenca_id`)
+    REFERENCES `doencas` (`id`)
+    ON DELETE RESTRICT
+    ON UPDATE CASCADE,
     
-    CONSTRAINT `laboratorios_medicamentos` FOREIGN KEY (`medicamentos_id`) REFERENCES `medicamentos` (`id`)
-    ON DELETE NO ACTION ON UPDATE NO ACTION,
+    CONSTRAINT `laboratorios_animais` FOREIGN KEY (`animal_id`)
+    REFERENCES `animais` (`id`)
+    ON DELETE RESTRICT
+    ON UPDATE CASCADE,
     
-    CONSTRAINT `laboratorios_animais` FOREIGN KEY (`animal_id`) REFERENCES `animais` (`id`)
-    ON DELETE NO ACTION ON UPDATE NO ACTION
+    CONSTRAINT `laboratorios_medicamentos` FOREIGN KEY (`medicamento_id`)
+    REFERENCES `medicamentos` (`id`)
+    ON DELETE RESTRICT
+    ON UPDATE CASCADE,
+    
+	CONSTRAINT `laboratorios_hemogramas` FOREIGN KEY (`hemograma_id`)
+    REFERENCES `hemogramas` (`id`)
+    ON DELETE RESTRICT
+    ON UPDATE CASCADE
 );
 
 CREATE TABLE `hemogramas` (
@@ -109,7 +122,7 @@ CREATE TABLE `hemogramas` (
     `data_cadastro` DATETIME NOT NULL,
     `usuario_cadastro` INT(11) NOT NULL,
     `usuario_alteracao` INT(11),
-    `status` INT(11)
+    `status` INT(11) NOT NULL
 );
 
 CREATE TABLE `medicamentos` (
@@ -120,23 +133,10 @@ CREATE TABLE `medicamentos` (
     `data_cadastro` DATETIME NOT NULL,
     `usuario_cadastro` INT(11) NOT NULL,
     `usuario_alteracao` INT(11),
-    `status` INT(11)
+    `status` INT(11) NOT NULL
 );
 
-CREATE TABLE `permissoes` (
-	`id` INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
-    `grupo_id` INT,
-    `nome` VARCHAR(100),
-    `data_alteracao` DATETIME,
-    `data_cadastro` DATETIME NOT NULL,
-    `usuario_cadastro` INT(11) NOT NULL,
-    `usuario_alteracao` INT(11),
-    `status` INT(11), 
-    
-    CONSTRAINT `permissoes_grupos` FOREIGN KEY (`grupo_id`) REFERENCES `grupos` (`id`)
-    ON DELETE NO ACTION ON UPDATE NO ACTION
-    
-);
+
 
 
 
