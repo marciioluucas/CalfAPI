@@ -8,12 +8,18 @@
 
 namespace CalfManager\Model\Repository;
 
+use CalfManager\Model\Laboratorio;
 use CalfManager\Model\Modelo;
 use CalfManager\Model\Repository\Entity\LaboratorioEntity;
 use Exception;
 
 class LaboratorioDAO implements IDAO
 {
+    /**
+     * @param Laboratorio $obj
+     * @return int|null
+     * @throws Exception
+     */
     public function create($obj): ?int
     {
         $entity = new LaboratorioEntity();
@@ -22,6 +28,7 @@ class LaboratorioDAO implements IDAO
         $entity->dose_aplicada_id = $obj->getDoseAplicada()->getId();
         $entity->hemograma_id = $obj->getHemograma()->getId();
         $entity->data_saida =$obj->getDataSaida();
+
         $entity->data_cadastro = $obj->getDataCriacao();
         $entity->data_alteracao = $obj->getDataAlteracao();
         $entity->usuario_cadastro = $obj->getUsuarioCadastro()->getId();
@@ -35,6 +42,11 @@ class LaboratorioDAO implements IDAO
 
     }
 
+    /**
+     * @param Laboratorio $obj
+     * @return bool
+     * @throws Exception
+     */
     public function update($obj): bool
     {
         $entity = LaboratorioEntity::find($obj->getId());
@@ -46,8 +58,8 @@ class LaboratorioDAO implements IDAO
         if(!is_null($obj->getDoenca()->getId())) {
             $entity->doenca_id = $obj->getDoenca()->getId();
         }
-        if(!is_null($obj->getAnimal()->setId())) {
-            $entity->animal_id = $obj->getAnimal()->setId();
+        if(!is_null($obj->getAnimal()->getId())) {
+            $entity->animal_id = $obj->getAnimal()->getId();
         }
         if(!is_null($obj->getMedicamento()->getId())) {
             $entity->medicamento_id = $obj->getMedicamento()->getId();
@@ -67,6 +79,10 @@ class LaboratorioDAO implements IDAO
         }
     }
 
+    /**
+     * @param int $page
+     * @return array
+     */
     public function retreaveAll(int $page): array
     {
         $entity = LaboratorioEntity::ativo();
@@ -82,6 +98,10 @@ class LaboratorioDAO implements IDAO
         return ["laboratorios" => $registros];
     }
 
+    /**
+     * @param int $id
+     * @return array
+     */
     public function retreaveById(int $id): array
     {
         $entity = LaboratorioEntity::ativo();
@@ -94,6 +114,11 @@ class LaboratorioDAO implements IDAO
         return ["laboratorios" => $registros];
     }
 
+    /**
+     * @param int $idAnimal
+     * @param int $page
+     * @return array
+     */
     public function retreaveByIdAnimal(int $idAnimal,int $page): array
     {
         $entity = LaboratorioEntity::ativo();
@@ -109,6 +134,12 @@ class LaboratorioDAO implements IDAO
             );
         return ["laboratorios" => $registros];
     }
+
+    /**
+     * @param int $idHemograma
+     * @param int $page
+     * @return array
+     */
     public function retreaveByIdHemograma(int $idHemograma,int $page): array
     {
         $entity = LaboratorioEntity::ativo();
@@ -124,6 +155,12 @@ class LaboratorioDAO implements IDAO
             );
         return ["laboratorios" => $registros];
     }
+
+    /**
+     * @param int $idDoseAplicada
+     * @param int $page
+     * @return array
+     */
     public function retreaveByIdDoseAplicada(int $idDoseAplicada,int $page): array
     {
         $entity = LaboratorioEntity::ativo();
@@ -140,7 +177,11 @@ class LaboratorioDAO implements IDAO
         return ["laboratorios" => $registros];
     }
 
-
+    /**
+     * @param int $id
+     * @return bool
+     * @throws Exception
+     */
     public function delete(int $id): bool
     {
         try {

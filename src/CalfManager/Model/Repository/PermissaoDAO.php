@@ -9,13 +9,18 @@
 namespace CalfManager\Model\Repository;
 
 
-use CalfManager\Model\Modelo;
+use CalfManager\Model\Permissao;
 use CalfManager\Model\Repository\Entity\PermissaoEntity;
 use CalfManager\Utils\Config;
 use Exception;
 
 class PermissaoDAO implements IDAO
 {
+    /**
+     * @param Permissao $obj
+     * @return int|null
+     * @throws Exception
+     */
     public function create($obj): ?int
     {
         $entity = new PermissaoEntity();
@@ -34,10 +39,15 @@ class PermissaoDAO implements IDAO
 
     }
 
+    /**
+     * @param Permissao $obj
+     * @return bool
+     * @throws Exception
+     */
     public function update($obj): bool
     {
         $entity = PermissaoEntity::find($obj->getId());
-        $entity->usuario_alteracao = $obj->getUsuarioAlteracao()->getId();
+
         if(!is_null($obj->getNomeModulo())){
             $entity->nome_modulo = $obj->getNomeModulo();
         }
@@ -60,6 +70,10 @@ class PermissaoDAO implements IDAO
         }
     }
 
+    /**
+     * @param int $page
+     * @return array
+     */
     public function retreaveAll(int $page): array
     {
         $permissoes = PermissaoEntity::ativo()
@@ -72,6 +86,11 @@ class PermissaoDAO implements IDAO
         return ["permissoes" => $permissoes];
     }
 
+    /**
+     * @param int $id
+     * @return array
+     * @throws Exception
+     */
     public function retreaveById(int $id): array
     {
         try{
@@ -85,11 +104,17 @@ class PermissaoDAO implements IDAO
         }
     }
 
-    public function retreaveByIdGrupo(int $id, $page): array
+    /**
+     * @param int $idGrupo
+     * @param $page
+     * @return array
+     * @throws Exception
+     */
+    public function retreaveByIdGrupo(int $idGrupo, $page): array
     {
         try{
             $permissoes = PermissaoEntity::ativo()
-                ->where('permissoes_id', $id)
+                ->where('grupo_id', $idGrupo)
                 ->paginate(
                 Config::QUANTIDADE_ITENS_POR_PAGINA,
                 ['*'],
@@ -98,10 +123,16 @@ class PermissaoDAO implements IDAO
             );
             return ["permissoes" => $permissoes];
         }catch (Exception $e){
-            throw new Exception("Erro ao pesquisar o grupo pelo ID ".$id.". Mensagem: ".$e->getMessage());
+            throw new Exception("Erro ao pesquisar o grupo pelo ID ".$idGrupo.". Mensagem: ".$e->getMessage());
         }
     }
 
+    /**
+     * @param string $nome
+     * @param int $page
+     * @return array
+     * @throws Exception
+     */
     public function retreaveByNomeModulo(string $nome,int $page): array
     {
         try {
@@ -119,6 +150,11 @@ class PermissaoDAO implements IDAO
         }
     }
 
+    /**
+     * @param int $id
+     * @return bool
+     * @throws Exception
+     */
     public function delete(int $id): bool
     {
         try {

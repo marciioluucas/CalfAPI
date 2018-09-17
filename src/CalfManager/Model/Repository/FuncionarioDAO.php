@@ -9,6 +9,7 @@
 namespace CalfManager\Model\Repository;
 
 
+use CalfManager\Model\Funcionario;
 use CalfManager\Model\Modelo;
 use CalfManager\Model\Repository\Entity\FuncionarioEntity;
 use CalfManager\Utils\Validate\FuncionarioValidate;
@@ -16,17 +17,21 @@ use Symfony\Component\Config\Definition\Exception\Exception;
 
 class FuncionarioDAO implements IDAO
 {
+    /**
+     * @param Funcionario $obj
+     * @return int|null
+     */
     public function create($obj): ?int
     {
-
         $entity = new FuncionarioEntity();
         $entity->cargo_id = $obj->getCargo()->getId();
         $entity->pessoa_id = $obj->getPessoa()->getId();
         $entity->usuario_id = $obj->getUsuario()->getId();
         $entity->fazenda_id = $obj->getFazenda()->getId();
         $entity->salario = $obj->getSalario();
+
         $entity->data_alteracao = $obj->getDataAlteracao();
-        $entity->data_cadastro = $obj->getDataCadastro();
+        $entity->data_cadastro = $obj->getDataCriacao();
         $entity->usuario_cadastro = $obj->getUsuarioCadastro()->getId();
         try{
             if($entity->save()){
@@ -37,6 +42,10 @@ class FuncionarioDAO implements IDAO
         }
     }
 
+    /**
+     * @param Funcionario $obj
+     * @return bool
+     */
     public function update($obj): bool
     {
         $entity = FuncionarioEntity::find($obj->getId());
@@ -57,6 +66,10 @@ class FuncionarioDAO implements IDAO
         }
     }
 
+    /**
+     * @param int $page
+     * @return array
+     */
     public function retreaveAll(int $page): array
     {
         $entity = FuncionarioEntity::ativo();
@@ -75,6 +88,10 @@ class FuncionarioDAO implements IDAO
         ];
     }
 
+    /**
+     * @param int $id
+     * @return array
+     */
     public function retreaveById(int $id): array
     {
         try{
@@ -93,6 +110,12 @@ class FuncionarioDAO implements IDAO
             throw new Exception("Erro ao pesquisar funcionário por ID ".$id. ". Mensagem: " ,  $e->getMessage());
         }
     }
+
+    /**
+     * @param int $idCargo
+     * @param int $page
+     * @return array
+     */
     public function retreaveByIdCargo(int $idCargo, int $page){
        try {
            $entity = FuncionarioEntity::ativo();
@@ -112,6 +135,12 @@ class FuncionarioDAO implements IDAO
            throw new Exception("Erro ao pesquisar o cargo deste funcionário pelo ID ".$idCargo. ". Mensagem: " ,  $e->getMessage());
        }
     }
+
+    /**
+     * @param int $idUsuario
+     * @param int $page
+     * @return array
+     */
     public function retreaveByIdUsuario(int $idUsuario, int $page){
         try{
             $entity = FuncionarioEntity::ativo();
@@ -131,6 +160,12 @@ class FuncionarioDAO implements IDAO
             throw new Exception("Erro ao pesquisar o usuário deste funcionário pelo ID ".$idUsuario. ". Mensagem: " ,  $e->getMessage());
         }
     }
+
+    /**
+     * @param int $idFazenda
+     * @param int $page
+     * @return array
+     */
     public function retreaveByIdFazenda(int $idFazenda, int $page){
         try{
             $entity = FuncionarioEntity::ativo();
@@ -150,6 +185,12 @@ class FuncionarioDAO implements IDAO
             throw new Exception("Erro ao pesquisar a fazenda que este funcionário trabalha pelo ID ".$idFazenda. ". Mensagem: " ,  $e->getMessage());
         }
     }
+
+    /**
+     * @param int $idPessoa
+     * @param int $page
+     * @return array
+     */
     public function retreaveByIdPessoa(int $idPessoa, int $page){
         try{
             $entity = FuncionarioEntity::ativo();
@@ -170,6 +211,10 @@ class FuncionarioDAO implements IDAO
         }
     }
 
+    /**
+     * @param int $id
+     * @return bool
+     */
     public function delete(int $id): bool
     {
         try {

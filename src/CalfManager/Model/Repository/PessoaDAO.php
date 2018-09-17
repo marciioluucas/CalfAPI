@@ -9,11 +9,17 @@
 namespace CalfManager\Model\Repository;
 
 use CalfManager\Model\Repository\Entity\PessoaEntity;
+use CalfManager\Model\Pessoa;
 use CalfManager\Utils\Config;
-use Couchbase\Exception;
+use Exception;
 
 class PessoaDAO implements IDAO
 {
+    /**
+     * @param Pessoa $obj
+     * @return int|null
+     * @throws Exception
+     */
     public function create($obj): ?int
     {
         $entity = new PessoaEntity();
@@ -24,7 +30,7 @@ class PessoaDAO implements IDAO
         $entity->numero_telefone = $obj->getNumeroTelefone();
         $entity->data_nascimento = $obj->getDataNascimento();
         $entity->data_alteracao = $obj->getDataAlteracao();
-        $entity->data_cadastro = $obj->getDataCadastro();
+        $entity->data_cadastro = $obj->getDataCriacao();
         $entity->usuario_cadastro = $obj->getUsuarioCadastro();
 
         try{
@@ -32,10 +38,15 @@ class PessoaDAO implements IDAO
                 return $entity->id;
             }
         }catch (Exception $e){
-            throw new Exception( "Erro ao cadastrar pessoa ".$e->getMessage());
+            throw new Exception( "Erro ao cadastrar pessoa. Mensagem: ".$e->getMessage());
         }
     }
 
+    /**
+     * @param Pessoa $obj
+     * @return int|null
+     * @throws Exception
+     */
     public function update($obj): bool
     {
         $entity = PessoaEntity::find($obj->getId());
@@ -62,12 +73,16 @@ class PessoaDAO implements IDAO
             return $entity->id;
         }
             }catch (Exception $e){
-            throw new Exception("Erro ao alterar pessoa ". $e->getMessage());
+            throw new Exception("Erro ao alterar pessoa. Mensagem: ". $e->getMessage());
         }
         return false;
 
     }
 
+    /**
+     * @param int $page
+     * @return array
+     */
     public function retreaveAll(int $page): array
     {
         $entity = PessoaEntity::ativo();
@@ -82,6 +97,11 @@ class PessoaDAO implements IDAO
         return ["pessoas" => $pessoas];
     }
 
+    /**
+     * @param int $id
+     * @return array
+     * @throws Exception
+     */
     public function retreaveById(int $id): array
     {
         $entity = PessoaEntity::ativo();
@@ -99,6 +119,12 @@ class PessoaDAO implements IDAO
         }
     }
 
+    /**
+     * @param $nome
+     * @param $page
+     * @return array
+     * @throws Exception
+     */
     public function retreaveByNome($nome, $page){
         $entity = PessoaEntity::ativo();
         $pessoas = $entity->with('endereco')
@@ -117,6 +143,13 @@ class PessoaDAO implements IDAO
         }
 
     }
+
+    /**
+     * @param $idEndereco
+     * @param $page
+     * @return array
+     * @throws Exception
+     */
     public function reatreaveByEnderecoId($idEndereco, $page){
         try {
             $entity = PessoaEntity::ativo();
@@ -135,6 +168,11 @@ class PessoaDAO implements IDAO
         }
     }
 
+    /**
+     * @param int $id
+     * @return bool
+     * @throws Exception
+     */
     public function delete(int $id): bool
     {
         $entity = PessoaEntity::find($id);
@@ -144,7 +182,7 @@ class PessoaDAO implements IDAO
                 return true;
             }
         } catch (Exception $e) {
-            throw new Exception("Erro ao excluir pessoa" . $e->getMessage());
+            throw new Exception("Erro ao excluir pessoa. Mensagem: " . $e->getMessage());
         }
     }
 

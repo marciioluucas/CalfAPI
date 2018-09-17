@@ -150,24 +150,23 @@ class AnimalDAO implements IDAO
      */
     public function retreaveById(int $id): array
     {
-        $entity = AnimalEntity::ativo();
-        if (!is_null($this->vivo)) {
-            $entity->where('is_vivo', $this->vivo);
-        }
-        if (!is_null($this->sexo)) {
-            $entity->where('sexo', $this->sexo);
-        }
         try {
-            return [
-                "animais" => $entity
-                    ->with('fazenda')
-                    ->with('pesagens')
-                    ->with('doencas')
-                    ->with('lote')
-                    ->where('id', $id)
-                    ->first()
-                    ->toArray()
-            ];
+            $entity = AnimalEntity::ativo();
+            if (!is_null($this->vivo)) {
+                $entity->where('is_vivo', $this->vivo);
+            }
+            if (!is_null($this->sexo)) {
+                $entity->where('sexo', $this->sexo);
+            }
+            $animal = $entity
+                ->with('fazenda')
+                ->with('pesagens')
+                ->with('doencas')
+                ->with('lote')
+                ->where('id', $id)
+                ->first()
+                ->toArray();
+            return ["animais" => $animal];
         } catch (Exception $e) {
             throw new Exception("Algo de errado aconteceu ao tentar pesquisar por ID" . $e->getMessage());
         }
@@ -195,15 +194,19 @@ class AnimalDAO implements IDAO
             if (!is_null($this->sexo)) {
                 $entity->where('sexo', $this->sexo);
             }
-            return [
-                "animais" => $entity
-                    ->with('fazenda')
-                    ->with('pesagens')
-                    ->with('doencas')
-                    ->with('lote')
-                    ->where('nome', 'like', $nome . "%")
-                    ->paginate(Config::QUANTIDADE_ITENS_POR_PAGINA, ['*'], 'pagina', $page)
-            ];
+            $animais = $entity
+                ->with('fazenda')
+                ->with('pesagens')
+                ->with('doencas')
+                ->with('lote')
+                ->where('nome', 'like', $nome . "%")
+                ->paginate(
+                    Config::QUANTIDADE_ITENS_POR_PAGINA,
+                    ['*'],
+                    'pagina',
+                    $page
+                );
+            return ["animais" => $animais];
         } catch (Exception $e) {
             throw new Exception("Algo de errado aconteceu ao tentar pesquisar por nome" . $e->getMessage());
         }
@@ -219,17 +222,20 @@ class AnimalDAO implements IDAO
     public function retreaveByIdLote(int $idLote, int $page)
     {
         try {
-            return [
-                "animais" => AnimalEntity
-                    ::ativo()
-                    ->with('fazenda')
-                    ->with('pesagens')
-                    ->with('doencas')
-                    ->with('lote')
-                    ->where('lotes_id', $idLote)
-                    ->where('is_vivo', $this->vivo)
-                    ->paginate(Config::QUANTIDADE_ITENS_POR_PAGINA, ['*'], 'pagina', $page)
-            ];
+            $entity = AnimalEntity::ativo();
+            $animaisLote = $entity->with('fazenda')
+                ->with('pesagens')
+                ->with('doencas')
+                ->with('lote')
+                ->where('lotes_id', $idLote)
+                ->where('is_vivo', $this->vivo)
+                ->paginate(
+                    Config::QUANTIDADE_ITENS_POR_PAGINA,
+                    ['*'],
+                    'pagina',
+                    $page
+                );
+            return ["animais" => $animaisLote];
         } catch (Exception $e) {
             throw new Exception("Algo de errado aconteceu ao tentar pesquisar por ID" . $e->getMessage());
         }
@@ -246,23 +252,25 @@ class AnimalDAO implements IDAO
     public function retreaveByIdLoteAndName(int $idLote, string $nome, int $page)
     {
         try {
-            return [
-                "animais" => AnimalEntity
-                    ::ativo()
-                    ->with('fazenda')
-                    ->with('pesagens')
-                    ->with('doencas')
-                    ->with('lote')
-                    ->where('nome', 'like', $nome . "%")
-                    ->where('lotes_id', $idLote)
-                    ->where('is_vivo', $this->vivo)
-                    ->paginate(Config::QUANTIDADE_ITENS_POR_PAGINA, ['*'], 'pagina', $page)
-            ];
+            $entity = AnimalEntity::ativo();
+            $animais = $entity ->with('fazenda')
+                ->with('pesagens')
+                ->with('doencas')
+                ->with('lote')
+                ->where('nome', 'like', $nome . "%")
+                ->where('lotes_id', $idLote)
+                ->where('is_vivo', $this->vivo)
+                ->paginate(
+                    Config::QUANTIDADE_ITENS_POR_PAGINA,
+                    ['*'],
+                    'pagina',
+                    $page
+                );
+            return ["animais" => $animais];
         } catch (Exception $e) {
             throw new Exception("Algo de errado aconteceu ao tentar pesquisar por por nome e lote" . $e->getMessage());
         }
     }
-
 
     /**
      * @param int $id
