@@ -20,6 +20,7 @@ class CargoEntity extends CalfEntity
         'data_cadastro',
         'usuario_cadastro',
         'usuario_alteracao',
+        'status'
     ];
     public function funcionarios() {
         return $this->hasMany("\CalfManager\Model\Repository\Entity\FuncionarioEntity");

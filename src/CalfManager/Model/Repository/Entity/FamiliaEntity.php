@@ -24,6 +24,10 @@ class FamiliaEntity extends CalfEntity
         'pai_id',
         'mae_id',
         'filho_id',
+        'data_alteracao',
+        'data_cadastro',
+        'usuario_cadastro',
+        'usuario_alteracao',
         'status',
     ];
 

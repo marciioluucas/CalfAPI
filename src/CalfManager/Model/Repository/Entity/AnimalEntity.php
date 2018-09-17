@@ -70,6 +70,10 @@ class AnimalEntity extends CalfEntity
         return $this->belongsTo('CalfManager\Model\Repository\Entity\LoteEntity', 'lotes_id');
     }
 
+    public function Laboratorio(){
+        return $this->hasMany("CalfManager\Model\Repository\Entity\LaboratorioEntity");
+    }
+
     public function scopeEstaMorto(Builder $query)
     {
         return $query->where('is_vivo', 0);
