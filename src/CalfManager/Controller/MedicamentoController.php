@@ -27,13 +27,21 @@ class MedicamentoController implements IController
             if ($valida) {
                 $medicamento->setNome($data->nome);
                 $medicamento->getPrescricao($data->prescricao);
-                $medicamento->cadastrar();
-                return View::renderMessage(
-                    $response,
-                    "success",
-                    "Medicamento cadastrado com sucesso!",
-                    201,
-                    "Sucesso ao cadastrar ");
+                if($medicamento->cadastrar()) {
+                    return View::renderMessage(
+                        $response,
+                        "success",
+                        "Medicamento cadastrado com sucesso!",
+                        201,
+                        "Sucesso ao cadastrar ");
+                } else {
+                    return View::renderMessage(
+                        $response,
+                        "error",
+                        "Erro ao cadastrar medicamento!",
+                        500,
+                        "Erro ao cadastrar ");
+                }
             } else {
                 return View::renderMessage($response, "warning", $valida, 400);
             }
@@ -70,13 +78,21 @@ class MedicamentoController implements IController
                 $medicamento->setId($request->getAttribute('id'));
                 $medicamento->setNome($data->nome);
                 $medicamento->getPrescricao($data->prescricao);
-                $medicamento->cadastrar();
-                return View::renderMessage(
-                    $response,
-                    "success",
-                    "Medicamento alterado com sucesso!",
-                    201,
-                    "Sucesso ao alterar ");
+                if($medicamento->alterar()) {
+                    return View::renderMessage(
+                        $response,
+                        "success",
+                        "Medicamento alterado com sucesso!",
+                        201,
+                        "Sucesso ao alterar ");
+                }else {
+                    return View::renderMessage(
+                        $response,
+                        "error",
+                        "Erro ao alterar medicamento!",
+                        500,
+                        "Erro ao alterar ");
+                }
             } else {
                 return View::renderMessage($response, "warning", $valida, 400);
             }
@@ -98,6 +114,14 @@ class MedicamentoController implements IController
                         "Medicamento excluído com successo!",
                         201
                     );
+                }
+                else {
+                    return View::renderMessage(
+                        $response,
+                        "error",
+                        "Erro ao excluir medicamento!",
+                        500,
+                        "Erro ao excluir ");
                 }
             }
         }catch (Exception $e){

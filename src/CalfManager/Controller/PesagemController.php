@@ -44,13 +44,15 @@ class PesagemController implements IController
                         201,
                         "Sucesso ao cadastrar"
                     );
+                } else {
+                    return View::renderMessage(
+                        $response,
+                        "error",
+                        "Erro ao cadastrar pesagem!",
+                        500,
+                        "Erro ao cadastrar"
+                    );
                 }
-                return View::renderMessage(
-                    $response,
-                    "error",
-                    "Pesagem não cadastrada",
-                    500
-                );
             } else {
                 return View::renderMessage($response, 'warning', $valida, 400);
             }
@@ -65,11 +67,7 @@ class PesagemController implements IController
      * @param array $args
      * @return Response
      */
-    public function get(
-        Request $request,
-        Response $response,
-        array $args
-    ): Response {
+    public function get(Request $request, Response $response, array $args): Response {
         try {
             $pesagem = new Pesagem();
             $page = (int) $request->getQueryParam('pagina');
@@ -92,7 +90,45 @@ class PesagemController implements IController
      */
     public function put(Request $request, Response $response): Response
     {
-        return View::renderMessage($response, 'warning', 'Não implementado');
+        try {
+            $data = json_decode($request->getBody()->getContents());
+            $pesagem = new Pesagem();
+            $valida = (new PesagemValidate())->validatePost((array) $data);
+            if ($valida) {
+                $pesagem->setId($request->getAttribute('id'));
+                $pesagem->setAnimal(new Animal());
+                if($data->peso) {
+                    $pesagem->setPeso($data->peso);
+                }
+                if($data->animal->id) {
+                    $pesagem->getAnimal()->setId($data->animal->id);
+                }
+                if($data->data_pesagem) {
+                    $pesagem->setDataPesagem($data->data_pesagem);
+                }
+                if ($pesagem->cadastrar()) {
+                    return View::renderMessage(
+                        $response,
+                        "success",
+                        "Pesagem alterada com sucesso! ",
+                        201,
+                        "Sucesso ao alterar"
+                    );
+                } else {
+                    return View::renderMessage(
+                        $response,
+                        "error",
+                        "Erro ao alterar pesagem!",
+                        500,
+                        "Erro ao alterar"
+                    );
+                }
+            } else {
+                return View::renderMessage($response, 'warning', $valida, 400);
+            }
+        } catch (Exception $e) {
+            return View::renderException($response, $e);
+        }
     }
 
     /**
@@ -110,9 +146,17 @@ class PesagemController implements IController
                     return View::renderMessage(
                         $response,
                         "success",
-                        "Pesagem desativada com sucesso!",
+                        "Pesagem excluída com sucesso!",
                         202,
-                        "Sucesso ao desativar"
+                        "Sucesso ao excluir"
+                    );
+                }else {
+                    return View::renderMessage(
+                        $response,
+                        "error",
+                        "Erro ao excluir pesagem!",
+                        500,
+                        "Erro ao excluir"
                     );
                 }
             }

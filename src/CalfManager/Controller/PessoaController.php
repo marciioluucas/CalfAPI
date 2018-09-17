@@ -39,14 +39,15 @@ class PessoaController implements IController
                         "success",
                         "Pessoa cadastrado com sucesso!",
                         201,
-                        "Sucesso ao cadastrar!"
+                        "Sucesso ao cadastrar"
                     );
                 } else {
                     return View::renderMessage(
                         $response,
                         "error",
-                        "Pessoa não cadastrada!",
-                        500
+                        "Erro ao cadastrar pessoa!",
+                        500,
+                        "Erro ao cadastrar"
                     );
                 }
             } else {
@@ -82,28 +83,44 @@ class PessoaController implements IController
             $data = json_decode($response->getBody()->getContents());
             $valida = (new PessoaValidate())->validatePost((array)$data);
             if($valida){
-                $pessoa->setNome($data->nome);
-                $pessoa->setRg($data->rg);
-                $pessoa->setCpf($data->cpf);
-                $pessoa->setSexo($data->sexo);
-                $pessoa->setNumeroTelefone($data->numero_telefone);
-                $pessoa->setDataNascimento($data->data_nascimento);
-                $pessoa->getEndereco()->setId($data->endereco->id);
+                $pessoa->setId($request->getAttribute('id'));
+                if($data->nome) {
+                    $pessoa->setNome($data->nome);
+                }
+                if($data->rg) {
+                    $pessoa->setRg($data->rg);
+                }
+                if($data->cpf) {
+                    $pessoa->setCpf($data->cpf);
+                }
+                if($data->sexo) {
+                    $pessoa->setSexo($data->sexo);
+                }
+                if($data->numero_telefone) {
+                    $pessoa->setNumeroTelefone($data->numero_telefone);
+                }
+                if($data->data_nascimento) {
+                    $pessoa->setDataNascimento($data->data_nascimento);
+                }
+                if($data->endereco->id) {
+                    $pessoa->getEndereco()->setId($data->endereco->id);
+                }
 
-                if($id = $pessoa->cadastrar()){
+                if($id = $pessoa->alterar()){
                     return View::renderMessage(
                         $response,
                         "success",
-                        "Pessoa cadastrado com sucesso!",
+                        "Pessoa alterada com sucesso!",
                         201,
-                        "Sucesso ao cadastrar!"
+                        "Sucesso ao alterar!"
                     );
                 } else {
                     return View::renderMessage(
                         $response,
                         "error",
-                        "Pessoa não cadastrada!",
-                        500
+                        "Erro ao alterar pessoa!",
+                        500,
+                        "Erro ao alterar"
                     );
                 }
             } else {
@@ -129,6 +146,14 @@ class PessoaController implements IController
                         "Pessoa excluída com sucesso!",
                         202,
                         "Sucesso ao excluir"
+                    );
+                }else {
+                    return View::renderMessage(
+                        $response,
+                        "error",
+                        "Erro ao excluir pessoa!",
+                        500,
+                        "Erro ao excluir"
                     );
                 }
             }

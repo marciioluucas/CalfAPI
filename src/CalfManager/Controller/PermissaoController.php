@@ -18,6 +18,11 @@ use Psr\Http\Message\ResponseInterface as Response;
 
 class PermissaoController implements IController
 {
+    /**
+     * @param Request $request
+     * @param Response $response
+     * @return Response
+     */
     public function post(Request $request, Response $response): Response
     {
         try {
@@ -38,21 +43,38 @@ class PermissaoController implements IController
                         $response,
                         "success",
                         "Permissão cadastrada com sucesso!",
-                        201, "Sucesso ao cadastrar"
+                        201,
+                        "Sucesso ao cadastrar"
                     );
                 } else {
                     return View::renderMessage($response,
                         "error",
-                        "Pesagem não cadastrada",
-                        500);
+                        "Erro ao cadastrar permissão!",
+                        500,
+                        "Erro ao cadastrar"
+                );
                 }
 
             }
+            else {
+                return View::renderMessage(
+                $response,
+                'warning',
+                $valida,
+                400
+            );
+            }
         }catch (Exception $e){
-            return View::renderMessage($response, 'warning', $valida, 400);
+            return View::renderException($response, $e);
         }
     }
 
+    /**
+     * @param Request $request
+     * @param Response $response
+     * @param array $args
+     * @return Response
+     */
     public function get(Request $request, Response $response, array $args): Response
     {
         try{
@@ -73,6 +95,11 @@ class PermissaoController implements IController
         }
     }
 
+    /**
+     * @param Request $request
+     * @param Response $response
+     * @return Response
+     */
     public function put(Request $request, Response $response): Response
     {
         try {
@@ -106,35 +133,57 @@ class PermissaoController implements IController
                         $response,
                         "success",
                         "Permissão alterada com sucesso!",
-                        201, "Sucesso ao alterar"
+                        201,
+                        "Sucesso ao alterar"
                     );
                 } else {
                     return View::renderMessage($response,
                         "error",
-                        "Pesagem não alterada",
-                        500);
+                        "Erro ao alterar permissão!",
+                        500,
+                        "Erro ao alterar"
+                    );
                 }
 
             }
+            else {
+                return View::renderMessage($response, 'warning', $valida, 400);
+            }
         }catch (Exception $e){
-            return View::renderMessage($response, 'warning', $valida, 400);
+
+            return View::renderException($response, $e);
+
         }
     }
 
+    /**
+     * @param Request $request
+     * @param Response $response
+     * @return Response
+     */
     public function delete(Request $request, Response $response): Response
     {
         try {
             $permissao = new Permissao();
             if ($request->getAttribute('id')) {
                 $permissao->setId($request->getAttribute('id'));
-            }
-            if ($permissao->deletar()) {
-                return View::renderMessage(
-                    $response,
-                    "success",
-                    "Permissão excluída com sucesso!",
-                    201,
-                    "Sucesso ao excluir");
+
+                if ($permissao->deletar()) {
+                    return View::renderMessage(
+                        $response,
+                        "success",
+                        "Permissão excluída com sucesso!",
+                        201,
+                        "Sucesso ao excluir");
+                }
+                else {
+                    return View::renderMessage($response,
+                        "error",
+                        "Erro ao excluir permissão!",
+                        500,
+                        "Erro ao excluir"
+                    );
+                }
             }
         }catch (Exception $e){
             return View::renderException($response, $e);

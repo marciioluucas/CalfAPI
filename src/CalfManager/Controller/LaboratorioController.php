@@ -18,6 +18,11 @@ use Exception;
 
 class LaboratorioController implements IController
 {
+    /**
+     * @param Request $request
+     * @param Response $response
+     * @return Response
+     */
     public function post(Request $request, Response $response): Response
     {
         $laboratorio = new Laboratorio();
@@ -26,13 +31,25 @@ class LaboratorioController implements IController
         try {
             if ($valida) {
                 $laboratorio->setDataEntrada($data->data_entrada);
-                $laboratorio->getAnimal()->getId($data->animal->id);
-                $laboratorio->getHemograma()->getId($data->hemograma->id);
+                $laboratorio->getAnimal()->setId($data->animal->id);
+                $laboratorio->getHemograma()->setId($data->hemograma->id);
                 $laboratorio->getDoseAplicada()->getId($data->dose_aplicada->id);
                 if ($laboratorio->cadastrar()) {
-                    return View::renderMessage($response, "success", "Registro cadastrado com sucesso em laboratório", 201, "Sucesso ao cadastrar");
+                    return View::renderMessage(
+                        $response,
+                        "success",
+                        "Sucesso ao cadastrar registro em laboratório",
+                        201,
+                        "Sucesso ao cadastrar"
+                    );
                 } else {
-                    return View::renderMessage($response, "error", "Erro ao cadastrar registro em laboratório", 300, "Erro ao cadastrar");
+                    return View::renderMessage(
+                        $response,
+                        "error",
+                        "Erro ao cadastrar registro em laboratório",
+                        500,
+                        "Erro ao cadastrar"
+                    );
                 }
             } else {
                 return View::renderMessage($response, "warning", $valida, 400);
@@ -43,6 +60,12 @@ class LaboratorioController implements IController
         }
     }
 
+    /**
+     * @param Request $request
+     * @param Response $response
+     * @param array $args
+     * @return Response
+     */
     public function get(Request $request, Response $response, array $args): Response
     {
         try{
@@ -61,22 +84,26 @@ class LaboratorioController implements IController
                 $laboratorio->getDoseAplicada()->setId($request->getQueryParam('dose_aplicada'));
             }
 
-            if($search = $laboratorio->pesquisar($page)){
-                return View::render($response, $search);
-            }else{
-                return View::renderMessage($response, "error", "Registro não encontrado em laboratório", 400, "Erro ao pesquisar");
-            }
+            $search = $laboratorio->pesquisar($page);
+            return View::render($response, $search);
+
         }catch (Exception $e){
             return View::renderException($response, $e);
         }
     }
 
+    /**
+     * @param Request $request
+     * @param Response $response
+     * @return Response
+     */
     public function put(Request $request, Response $response): Response
     {
-        $laboratorio = new Laboratorio();
-        $data = json_decode($request->getBody()->getContents());
-        $valida = (new LaboratorioValidate())->validatePost((array) $data);
         try {
+            $laboratorio = new Laboratorio();
+            $data = json_decode($request->getBody()->getContents());
+            $valida = (new LaboratorioValidate())->validatePost((array) $data);
+
             if ($valida) {
 
                 $laboratorio->setId($request->getAttribute('id'));
@@ -92,10 +119,22 @@ class LaboratorioController implements IController
                 if(!is_null($data->dose_aplicada->id)) {
                     $laboratorio->getDoseAplicada()->getId($data->dose_aplicada->id);
                 }
-                if ($laboratorio->cadastrar()) {
-                    return View::renderMessage($response, "success", "Registro cadastrado com sucesso em laboratório", 201, "Sucesso ao cadastrar");
+                if ($laboratorio->alterar()) {
+                    return View::renderMessage(
+                        $response,
+                        "success",
+                        "SRegistro alterar com  em laboratório",
+                        201,
+                        "Sucesso ao alterar"
+                    );
                 } else {
-                    return View::renderMessage($response, "error", "Erro ao cadastrar registro em laboratório", 300, "Erro ao cadastrar");
+                    return View::renderMessage(
+                        $response,
+                        "error",
+                        "Erro ao alterar registro em laboratório",
+                        300,
+                        "Erro ao alterar"
+                    );
                 }
             } else {
                 return View::renderMessage($response, "warning", $valida, 400);
@@ -106,17 +145,36 @@ class LaboratorioController implements IController
         }
     }
 
+    /**
+     * @param Request $request
+     * @param Response $response
+     * @return Response
+     */
     public function delete(Request $request, Response $response): Response
     {
-        $laboratorio = new Laboratorio();
         try {
+            $laboratorio = new Laboratorio();
+
             if ($request->getAttribute('id')) {
                 $laboratorio->setId($request->getAttribute('id'));
-            }
-            if ($laboratorio->deletar()) {
-                return View::renderMessage($response, "success", "Registro em laboratório excluído com sucesso", 201, "Sucesso ao excluir");
-            } else {
-                return View::renderMessage($response, "error", "Erro ao excluir registro em laboratório", 400, "erro ao excluir");
+
+                if ($laboratorio->deletar()) {
+                    return View::renderMessage(
+                        $response,
+                        "success",
+                        "Registro em laboratório excluído com sucesso",
+                        201,
+                        "Sucesso ao excluir"
+                    );
+                } else {
+                    return View::renderMessage(
+                        $response,
+                        "error",
+                        "Erro ao excluir registro em laboratório",
+                        500,
+                        "erro ao excluir"
+                    );
+                }
             }
         }catch (Exception $e){
             return View::renderException($response, $e);

@@ -30,14 +30,31 @@ class FuncionarioController implements IController
                 $funcionario->getUsuario()->setId($data->usuario->id);
                 $funcionario->getFazenda()->setId($data->fazenda->id);
                 if($funcionario->cadastrar()){
-                    return View::renderMessage($response, "success", "Funcionário cadastrado com sucesso!", 201, "Sucesso ao cadastrar");
+                    return View::renderMessage(
+                        $response,
+                        "success",
+                        "Funcionário cadastrado com sucesso!",
+                        201,
+                        "Sucesso ao cadastrar"
+                    );
                 }
                 else{
-                    return View::renderMessage($response, "error", "Erro ao cadastrar funcionário", 400, "Erro ao cadastrar");
+                    return View::renderMessage(
+                        $response,
+                        "error",
+                        "Erro ao cadastrar funcionário",
+                        500,
+                        "Erro ao cadastrar"
+                    );
                 }
             }
             else{
-                return View::renderMessage($response, 'warning', $valida, 400);
+                return View::renderMessage(
+                    $response,
+                    'warning',
+                    $valida,
+                    400
+                );
             }
         }catch (Exception $e){
             return View::renderException($response, $e);
@@ -89,13 +106,30 @@ class FuncionarioController implements IController
                     $funcionario->getFazenda()->setId($data->fazenda_id);
                 }
                 if($funcionario->alterar()){
-                    return View::renderMessage($response, "success", "Funcionario alterado com sucesso!", 201, "Sucesso ao alterar");
+                    return View::renderMessage(
+                        $response,
+                        "success",
+                        "Funcionario alterado com sucesso!",
+                        201,
+                        "Sucesso ao alterar"
+                    );
                 }else{
-                    return View::renderMessage($response, "error", "Erro ao alterar cadastro de funcionário", 500);
+                    return View::renderMessage(
+                        $response,
+                        "error",
+                        "Erro ao alterar cadastro de funcionário",
+                        500,
+                        "Erro ao alterar"
+                    );
                 }
             }
             else{
-                return View::renderMessage($response, 'warning', $valida, 400);
+                return View::renderMessage(
+                    $response,
+                    'warning',
+                    $valida,
+                    400
+                );
             }
         }catch (Exception $e){
             return View::renderException($response, $e);
@@ -106,13 +140,28 @@ class FuncionarioController implements IController
     {
         try{
             $funcionario = new Funcionario();
-            if($request->getAttribute('id')){
+            if($request->getAttribute('id')) {
                 $funcionario->setId($request->getAttribute('id'));
-            }
-            if($funcionario->deletar()){
-                return View::renderMessage($response, "success", "Funcionario excluído com sucesso!", 201, "Sucesso ao excluir");
-            }
 
+                if ($funcionario->deletar()) {
+                    return View::renderMessage(
+                        $response,
+                        "success",
+                        "Funcionario excluído com sucesso!",
+                        201,
+                        "Sucesso ao excluir"
+                    );
+                }
+                else{
+                    return View::renderMessage(
+                        $response,
+                        "error",
+                        "Erro ao excluir funcionário",
+                        500,
+                        "Erro ao excluir"
+                    );
+                }
+            }
         }catch (Exception $e){
             return View::renderException($response, $e);
         }
