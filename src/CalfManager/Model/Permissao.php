@@ -7,7 +7,7 @@
  */
 namespace CalfManager\Model;
 
-use CalfManager\Model\Repository\PermissoesDAO;
+use CalfManager\Model\Repository\PermissaoDAO;
 use CalfManager\Utils\Config;
 use Exception;
 
@@ -22,10 +22,7 @@ class Permissao extends Modelo
 
     private $grupo;
 
-    /**
-     * Permissao constructor.
-     * @param $grupo
-     */
+
     public function __construct()
     {
         $this->grupo = new Grupo();
@@ -40,7 +37,7 @@ class Permissao extends Modelo
         $this->dataCriacao = date(Config::PADRAO_DATA_HORA);
         $this->dataAlteracao = date(Config::PADRAO_DATA_HORA);
         try{
-            return (new PermissoesDAO())->create($this);
+            return (new PermissaoDAO())->create($this);
         }catch (Exception $e){
             throw new Exception($e->getMessage());
         }
@@ -51,7 +48,7 @@ class Permissao extends Modelo
         $this->usuarioAlteracao->setId(1);
         $this->dataAlteracao = date(Config::PADRAO_DATA_HORA);
         try{
-            return (new PermissoesDAO())->update($this);
+            return (new PermissaoDAO())->update($this);
         }catch (Exception $e){
             throw new Exception($e->getMessage());
         }
@@ -62,14 +59,14 @@ class Permissao extends Modelo
     {
         try{
             if($this->id){
-                return (new PermissoesDAO())->retreaveById($this->id);
+                return (new PermissaoDAO())->retreaveById($this->id);
             } else if($this->nomeModulo){
-                return (new PermissoesDAO())->retreaveByNomeModulo($this->nomeModulo, $page);
+                return (new PermissaoDAO())->retreaveByNomeModulo($this->nomeModulo, $page);
             }
-            else if($this->grupo->getId()){
-                return (new PermissoesDAO())->retreaveByIdGrupo($this->grupo->getId(), $page);
+            else if($this->getGrupo()->getId()){
+                return (new PermissaoDAO())->retreaveByIdGrupo($this->getGrupo()->getId(), $page);
             }
-            return (new PermissoesDAO())->retreaveAll($page);
+            return (new PermissaoDAO())->retreaveAll($page);
         }catch (Exception $e){
             throw new Exception($e->getMessage());
         }
@@ -78,7 +75,7 @@ class Permissao extends Modelo
     public function deletar(): bool
     {
         try{
-            return (new PermissoesDAO())->delete($this->id);
+            return (new PermissaoDAO())->delete($this->id);
         }catch (Exception $e){
             throw new Exception($e->getMessage());
         }

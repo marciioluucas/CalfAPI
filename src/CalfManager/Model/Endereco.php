@@ -9,6 +9,7 @@
 namespace CalfManager\Model;
 
 
+use CalfManager\Model\Repository\EnderecoDAO;
 use CalfManager\Utils\Config;
 use Exception;
 
@@ -35,22 +36,48 @@ class Endereco extends Modelo
         $this->dataCriacao = date(Config::PADRAO_DATA_HORA);
         $this->dataAlteracao = date(Config::PADRAO_DATA_HORA);
         $this->usuarioCadastro = $this->setId(1);
+        try{
+            return (new EnderecoDAO())->create($this);
+        }catch (Exception $e){
+            throw new Exception($e->getMessage());
+        }
     }
 
     public function alterar(): bool
     {
         $this->dataAlteracao = date(Config::PADRAO_DATA_HORA);
         $this->usuarioAlteracao = $this->setId(1);
+        try{
+            return (new EnderecoDAO())->update($this);
+        }catch (Exception $e){
+            throw new Exception($e->getMessage());
+        }
     }
 
     public function pesquisar(int $page): array
     {
-        // TODO: Implement pesquisar() method.
+        try{
+            if($this->id and !$this->logradouro){
+                return (new EnderecoDAO())->retreaveById($this->id);
+            }
+            if(!$this->id and $this->logradouro){
+                return (new EnderecoDAO())->retreaveByLogradouro($this->logradouro, $page);
+            }
+            else {
+                return (new EnderecoDAO())->retreaveAll($page);
+            }
+        }catch (Exception $e){
+            throw new Exception($e->getMessage());
+        }
     }
 
     public function deletar(): bool
     {
-        // TODO: Implement deletar() method.
+        try{
+            return (new EnderecoDAO())->delete($this->id);
+        }catch (Exception $e){
+            throw new Exception($e->getMessage());
+        }
     }
 
     /**

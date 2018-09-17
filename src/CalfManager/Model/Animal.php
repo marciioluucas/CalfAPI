@@ -60,6 +60,7 @@ class Animal extends Modelo
      * @var Pesagem
      */
     private $pesagem;
+
     /**
      * @var Animal
      */
@@ -150,11 +151,14 @@ class Animal extends Modelo
         $dao->setSexo($this->sexo);
         if ($this->id and !$this->nome and !$this->getLote()->getId()) {
             return $dao->retreaveById($this->id);
-        } elseif ($this->nome and !$this->id and !$this->getLote()->getId()) {
+        }
+        elseif ($this->nome and !$this->id and !$this->getLote()->getId()) {
             return $dao->retreaveByNome($this->nome, $page);
-        } elseif ($this->getLote()->getId() and !$this->nome and !$this->id) {
+        }
+        elseif ($this->getLote()->getId() and !$this->nome and !$this->id) {
             return $dao->retreaveByIdLote($this->getLote()->getId(), $page);
-        } elseif ($this->nome and $this->getLote()->getId() and !$this->id) {
+        }
+        elseif ($this->nome and $this->getLote()->getId() and !$this->id) {
             return $dao->retreaveByIdLoteAndName(
                 $this->getLote()->getId(),
                 $this->getNome(),
@@ -177,12 +181,10 @@ class Animal extends Modelo
             throw new Exception($e->getMessage());
         }
     }
-
     public function mudarLocalizacao()
     {
 
     }
-
     public function adicionarDoenca(
         int $doencaId,
         string $situacao = 'CURADO',
@@ -192,15 +194,14 @@ class Animal extends Modelo
 //        foreach ($this->doencas as $d) {
 //            if ($this->doencas->count() > 0)
 //                if ($doencaId == $d->getId()) continue;
-            $doenca = new Doenca();
-            $doenca->setId($doencaId);
-            $doenca->setSituacao($situacao);
-            if ($animalId != null) {
-                $doenca->getAnimal()->setId($animalId);
-            }
-            $this->doencas->append($doenca);
+        $doenca = new Doenca();
+        $doenca->setId($doencaId);
+        $doenca->setSituacao($situacao);
+        if ($animalId != null) {
+            $doenca->getAnimal()->setId($animalId);
+        }
+        $this->doencas->append($doenca);
 //        }
-
     }
 
     /**
@@ -209,7 +210,6 @@ class Animal extends Modelo
      */
     public function adoecerAnimal($idAnimal = null)
     {
-
         foreach ($this->doencas as $doenca) {
             (new DoencaDAO())->adoecer(
                 $this->id == null ? $idAnimal : $this->id,

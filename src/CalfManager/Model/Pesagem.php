@@ -66,8 +66,9 @@ class Pesagem extends Modelo
      */
     public function alterar(): bool
     {
+        $this->dataAlteracao = date(Config::PADRAO_DATA_HORA);
+        $this->usuarioAlteracao->setId(1);
         try {
-            $this->dataAlteracao = date(Config::PADRAO_DATA_HORA);
             return (new PesagemDAO())->update($this);
         } catch (Exception $e) {
             throw new Exception($e->getMessage());

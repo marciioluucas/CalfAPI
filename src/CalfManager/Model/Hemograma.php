@@ -10,7 +10,9 @@ namespace CalfManager\Model;
 
 
 use CalfManager\Model\Repository\HemogramaDAO;
+use CalfManager\Utils\Config;
 use Exception;
+
 
 class Hemograma extends Modelo
 {
@@ -30,7 +32,7 @@ class Hemograma extends Modelo
     {
         $this->dataCriacao = date(Config::PADRAO_DATA_HORA);
         $this->dataAlteracao = date(Config::PADRAO_DATA_HORA);
-        $this->usuarioCadastro = $this->setId(1);
+        $this->usuarioCadastro->setId(1);
         try{
             return (new HemogramaDAO())->create($this);
         }catch (Exception $e){
@@ -41,7 +43,7 @@ class Hemograma extends Modelo
     public function alterar(): bool
     {
         $this->dataAlteracao = date(Config::PADRAO_DATA_HORA);
-        $this->usuarioAlteracao = $this->setId(1);
+        $this->usuarioAlteracao->setId(1);
         try{
             return (new HemogramaDAO())->update($this);
         }catch (Exception $e){
