@@ -27,11 +27,22 @@ class DoseAplicadaController implements IController
              if($valida) {
                  $dose->setDose($data->dose);
                  $dose->getMedicamento()->setId($data->medicamento->id);
-                 $dose->getDataAplicacao($data->data_aplicacao);
+                 $dose->setDataAplicacao($data->data_aplicacao);
                  if ($dose->cadastrar()) {
-                     return View::renderMessage($response, "success", "Dose aplicada cadastrada com sucesso!", 201, "sucesso ao cadastrar");
+                     return View::renderMessage(
+                         $response,
+                         "success",
+                         "Dose aplicada cadastrada com sucesso!",
+                         201,
+                         "Sucesso ao cadastrar"
+                     );
                  } else {
-                     return View::renderMessage($response, "error", "Erro ao cadastrar dose aplicada", 400, "erro ao cadastrar");
+                     return View::renderMessage(
+                         $response,
+                         "error",
+                         "Erro ao cadastrar dose aplicada",
+                         500,
+                         "Erro ao cadastrar");
                  }
              } else {
                  return View::renderMessage($response, "warning", $valida, 400);
@@ -52,11 +63,9 @@ class DoseAplicadaController implements IController
             if($request->getQueryParam('medicamento')){
                 $dose->getMedicamento()->setId($request->getQueryParam('medicamento'));
             }
-            if($search = $dose->pesquisar($page)){
-                return View::render($response, $search);
-            } else {
-                return View::renderMessage($response, "error", "erro ao pesquisar pela dose aplicada", 400, "erro ao pesquisar");
-            }
+            $search = $dose->pesquisar($page);
+            return View::render($response, $search);
+
         }catch (Exception $e){
             return View::renderException($response, $e);
         }
@@ -77,15 +86,32 @@ class DoseAplicadaController implements IController
                     $dose->getMedicamento()->setId($data->medicamento->id);
                 }
                 if(!is_null($data->data_aplicacao)) {
-                    $dose->getDataAplicacao($data->data_aplicacao);
+                    $dose->setDataAplicacao($data->data_aplicacao);
                 }
                 if ($dose->cadastrar()) {
-                    return View::renderMessage($response, "success", "Dose aplicada alterada com sucesso!", 201, "sucesso ao alterar");
+                    return View::renderMessage(
+                        $response,
+                        "success",
+                        "Dose aplicada alterada com sucesso!",
+                        201,
+                        "sucesso ao alterar"
+                    );
                 } else {
-                    return View::renderMessage($response, "error", "Erro ao alterar dose aplicada", 400, "erro ao alterar");
+                    return View::renderMessage(
+                        $response,
+                        "error",
+                        "Erro ao alterar dose aplicada",
+                        500,
+                        "erro ao alterar"
+                    );
                 }
             } else {
-                return View::renderMessage($response, "warning", $valida, 400);
+                return View::renderMessage(
+                    $response,
+                    "warning",
+                    $valida,
+                    400
+                );
             }
         }catch (Exception $e){
             return View::renderException($response, $e);
@@ -98,11 +124,24 @@ class DoseAplicadaController implements IController
          try {
              if ($request->getAttribute('id')) {
                  $dose->setId($request->getAttribute('id'));
-             }
-             if ($dose->deletar()) {
-                 return View::renderMessage($response, "success", "Dose aplicada excluída com sucesse!", 201, "Sucesso ao excluir");
-             } else {
-                 return View::renderMessage($response, "error", "Erro ao excluir dose aplicada", 400, "Erro ao excluir");
+
+                 if ($dose->deletar()) {
+                     return View::renderMessage(
+                         $response,
+                         "success",
+                         "Dose aplicada excluída com sucesso!",
+                         201,
+                         "Sucesso ao excluir"
+                     );
+                 } else {
+                     return View::renderMessage(
+                         $response,
+                         "error",
+                         "Erro ao excluir dose aplicada",
+                         400,
+                         "Erro ao excluir"
+                     );
+                 }
              }
          }catch (Exception $e){
              return View::renderException($response, $e);
