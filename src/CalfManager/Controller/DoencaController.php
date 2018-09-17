@@ -37,7 +37,7 @@ class DoencaController implements IController
                     return View::renderMessage(
                         $response,
                         "success",
-                        "Doença cadastrado com sucesso! ID cadastrado: " . $id,
+                        "Doença cadastrada com sucesso! ID cadastrado: " . $id,
                         201,
                         "Sucesso ao cadastrar"
                     );
@@ -45,11 +45,18 @@ class DoencaController implements IController
                 return View::renderMessage(
                     $response,
                     "error",
-                    "Doença não cadastrada",
-                    500
+                    "Erro ao cadastrar doença!",
+                    500,
+                    "Erro ao cadastrar"
                 );
             } else {
-                return View::renderMessage($response, 'warning', $valida, 400);
+                return View::renderMessage(
+                    $response,
+                    'warning',
+                    $valida,
+                    400,
+                    "Erro ao validar"
+                );
             }
         } catch (Exception $e) {
             return View::renderException($response, $e);
@@ -62,11 +69,7 @@ class DoencaController implements IController
      * @param array $args
      * @return Response
      */
-    public function get(
-        Request $request,
-        Response $response,
-        array $args
-    ): Response {
+    public function get(Request $request, Response $response, array $args): Response {
         try {
             $doenca = new Doenca();
             $page = (int) $request->getQueryParam('pagina');
@@ -109,12 +112,27 @@ class DoencaController implements IController
                         200,
                         "Sucesso ao alterar"
                     );
+                } else {
+                    return View::renderMessage(
+                        $response,
+                        "error",
+                        "Erro ao alterar doença!",
+                        500,
+                        "Erro ao alterar"
+                    );
                 }
+            } else {
+                return View::renderMessage(
+                    $response,
+                    "warning",
+                    $valida,
+                    400,
+                    "Erro ao validar"
+                );
             }
         } catch (Exception $exception) {
             return View::renderException($response, $exception);
         }
-        return $response;
     }
 
     /**
@@ -132,11 +150,20 @@ class DoencaController implements IController
                     return View::renderMessage(
                         $response,
                         "success",
-                        "Doenca desativada com sucesso!",
+                        "Doenca excluída com sucesso!",
                         202,
-                        "Sucesso ao desativar"
+                        "Sucesso ao excluir"
+                    );
+                } else {
+                    return View::renderMessage(
+                        $response,
+                        "error",
+                        "Erro ao excluir doença!",
+                        200,
+                        "Erro ao excluir"
                     );
                 }
+
             }
         } catch (Exception $exception) {
             return View::renderException($response, $exception);

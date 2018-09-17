@@ -38,7 +38,7 @@ class DoencaDAO implements IDAO
             }
 
         } catch (Exception $e) {
-            throw new Exception("Erro ao tentar salvar uma nova Doença. " . $e->getMessage());
+            throw new Exception("Erro ao cadastrar doença. Mensagem: " . $e->getMessage());
         }
         return false;
     }
@@ -51,6 +51,7 @@ class DoencaDAO implements IDAO
     public function update($obj): bool
     {
         $entity = DoencaEntity::find($obj->getId());
+        $entity->data_alteracao = date(Config::PADRAO_DATA_HORA);
         $entity->usuario_alteracao = $obj->getUsuarioAlteracao()->getId();
         if (!is_null($obj->getNome())) {
             $entity->nome = $obj->getNome();
@@ -63,7 +64,7 @@ class DoencaDAO implements IDAO
                 return true;
             }
         } catch (Exception $e) {
-            throw new Exception("Erro ao tentar alterar uma doença. " . $e->getMessage());
+            throw new Exception("Erro ao alterar doença. Mensagem: " . $e->getMessage());
         }
         return false;
     }
@@ -74,15 +75,18 @@ class DoencaDAO implements IDAO
      */
     public function retreaveAll(int $page): array
     {
-        return [
-            "doencas" => DoencaEntity
-                ::ativo()
-                ->paginate(
-                    Config::QUANTIDADE_ITENS_POR_PAGINA,
-                    ['*'],
-                    'pagina',
-                    $page
-                )];
+        try {
+            $entity = DoencaEntity::ativo();
+            $doencas = $entity->paginate(
+                Config::QUANTIDADE_ITENS_POR_PAGINA,
+                ['*'],
+                'pagina',
+                $page
+            );
+            return ["doencas" => $doencas];
+        } catch (Exception $e){
+            throw new Exception("Erro ao pesquisar todos os registros de doenças. Mensagem: " . $e->getMessage());
+        }
     }
 
     /**
@@ -93,14 +97,11 @@ class DoencaDAO implements IDAO
     public function retreaveById(int $id): array
     {
         try {
-            return [
-                "doencas" => DoencaEntity
-                    ::ativo()
-                    ->where('id', $id)
-                    ->get()
-            ];
+            $entity =  DoencaEntity::ativo();
+            $doenca = $entity->where('id', $id)->get();
+            return ["doencas" => $doenca];
         } catch (Exception $e) {
-            throw new Exception("Algo de errado aconteceu ao tentar pesquisar por ID" . $e->getMessage());
+            throw new Exception("Erro ao pesquisar doença pelo ID ". $id. ". Mensagem: " . $e->getMessage());
         }
     }
 
@@ -120,7 +121,7 @@ class DoencaDAO implements IDAO
                     ->paginate(Config::QUANTIDADE_ITENS_POR_PAGINA, ['*'], 'pagina', $page)
             ];
         } catch (Exception $e) {
-            throw new Exception("Algo de errado aconteceu ao tentar pesquisar por nome" . $e->getMessage());
+            throw new Exception("Erro ao pesquisar doença pelo nome ". $nome . ". Mensagem: " . $e->getMessage());
         }
     }
 
@@ -138,7 +139,7 @@ class DoencaDAO implements IDAO
                 return true;
             };
         } catch (Exception $e) {
-            throw new Exception("Algo de errado aconteceu ao tentar desativar uma fazenda" . $e->getMessage());
+            throw new Exception("Erro ao excluir animal. Mensagem: " . $e->getMessage());
         }
         return false;
     }
