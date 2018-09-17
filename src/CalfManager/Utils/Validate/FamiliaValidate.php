@@ -2,41 +2,41 @@
 /**
  * Created by PhpStorm.
  * User: Brunno
- * Date: 28/08/2018
- * Time: 21:42
+ * Date: 31/08/2018
+ * Time: 10:24
  */
 
 namespace CalfManager\Utils\Validate;
 
 
-class MedicamentoValidate implements IValidate
+class FamiliaValidate implements IValidate
 {
     public function validatePost($params)
     {
         $valida = new Validator($params);
-        $valida->rule('required', ['nome', 'prescricao']);
-        if($valida->validate()){
+        $valida->rule('required', ['pai_id', 'mae_id', 'filho_id']);
+        if ($valida->validate()) {
             return true;
         } else {
-            $toreturn = $this->filtrarValidacao($valida);
-            return $toreturn;
+            $toReturn = $this->filtrarValidacao($valida);
+            return $toReturn;
         }
     }
 
     public function validateGet($params)
     {
-        // TODO: Implement validateGet() method.
+
     }
 
     public function validatePut($params)
     {
         $valida = new Validator($params);
-        $valida->rule('required', ['id', 'nome', 'prescricao']);
-        if($valida->validate()){
+        $valida->rule('required', ['id', 'pai_id', 'mae_id', 'filho_id']);
+        if ($valida->validate()) {
             return true;
         } else {
-            $toreturn = $this->filtrarValidacao($valida);
-            return $toreturn;
+            $toReturn = $this->filtrarValidacao($valida);
+            return $toReturn;
         }
     }
 
@@ -44,5 +44,6 @@ class MedicamentoValidate implements IValidate
     {
         // TODO: Implement validateDelete() method.
     }
+
 
 }

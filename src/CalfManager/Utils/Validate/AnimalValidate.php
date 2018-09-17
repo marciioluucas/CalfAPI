@@ -33,7 +33,14 @@ class AnimalValidate extends Validate
 
     public function validatePut($params)
     {
-        // TODO: Implement validatePut() method.
+        $v = new Validator($params);
+        $v->rule('required', ['id', 'data_nascimento', 'codigo_raca', 'codigo_brinco']);
+        if ($v->validate()) {
+            return true;
+        } else {
+            $toReturn = $this->filtrarValidacao($v);
+            return $toReturn;
+        }
     }
 
     public function validateDelete($params)
