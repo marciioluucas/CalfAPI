@@ -8,86 +8,124 @@
 
 namespace CalfManager\Model\Repository;
 
-
-use CalfManager\Model\Modelo;
+use CalfManager\Model\Cargo;
 use CalfManager\Model\Repository\Entity\CargoEntity;
 use CalfManager\Utils\Config;
-use Symfony\Component\Config\Definition\Exception\Exception;
+use Exception;
 
 class CargoDAO implements IDAO
 {
+    /* @param Cargo $obj
+     * @return int|null
+     * @throws Exception
+     */
     public function create($obj): ?int
     {
+
+        $entity = new CargoEntity();
+        $entity->nome = $obj->getNome();
+        $entity->descricao = $obj->getDescricao();
+        $entity->data_cadatro = $obj->getDataCriacao();
+        $entity->data_alteracao = $obj->getDataAlteracao();
+        $entity->usuario_cadastro = $obj->getUsuarioCadastro()->getId();
         try{
-            $entity = new CargoEntity();
-            $entity->nome = $obj->getNome();
-            $entity->descricao = $obj->getDescricao();
-            $entity->data_cadatro = $obj->getDataCadastro();
-            $entity->data_alteracao = $obj->getDataAlteracao();
-            $entity->usuario_cadastro = $obj->getUsuarioCadastro()->getId();
-            if(!is_null($entity->save())){
-                return true;
+            if($entity->save()){
+                return $entity->id;
             }
         }catch (Exception $e) {
-            throw new Exception("Erro ao cadastrar novo cargo");
+            throw new Exception("Erro ao cadastrar novo cargo. Mensagem:" . $e->getMessage());
         }
+        return false;
     }
 
+    /* @param Cargo $obj
+     * @return bool
+     * @throws Exception
+     */
     public function update($obj): bool
     {
+        $entity = CargoEntity::find($obj->getId());
+        $entity->data_alteracao = $obj->getDataAlteracao();
+        $entity->usuario_alteracao = $obj->getUsuarioAlteracao()->getId();
+        if(!is_null($obj->getNome())){
+            $entity->nome = $obj->getNome();
+        }
+        if(!is_null($obj->getDescricao())){
+            $entity->descricao = $obj->getDescricao();
+        }
         try{
-            $entity = CargoEntity::find($obj->getId());
-            $entity->data_alteracao = $obj->getDataAlteracao();
-            $entity->usuario_alteracao = $obj->getUsuarioAlteracao()->getId();
-            if(!is_null($obj->getNome())){
-                $entity->nome = $obj->getNome();
-            }
-            if(!is_null($obj->getDescricao())){
-                $entity->descricao = $obj->getDescricao();
-            }
             if($entity->save()){
-                return true;
+                return $entity->id;
             }
         }catch (Exception $e){
-            throw new Exception("Erro ao alterar o cargo");
+            throw new Exception("Erro ao alterar o cargo. Mensagem: ". $e->getMessage());
         }
     }
 
+    /* @param int $page
+     * @return array
+     * @throws Exception
+     */
     public function retreaveAll(int $page): array
     {
-        return [
-            "cargos" => CargoEntity::ativo()->paginate(
+        try {
+            $entity = CargoEntity::ativo();
+            $cargos = $entity->paginate(
                 Config::QUANTIDADE_ITENS_POR_PAGINA,
                 ['*'],
                 'pagina',
                 $page
-            )];
-
+            );
+            return ["cargos" => $cargos];
+        }
+        catch (Exception $e){
+            throw new Exception("Erro ao pesquisar todos os registros. Mensagen: " .$e->getMessage());
+        }
     }
 
+    /**
+     * @param int $id
+     * @return array
+     * @throws Exception
+     */
     public function retreaveById(int $id): array
     {
         try{
-            return [
-                "cargos" => CargoEntity::ativo()->where('id', $id)->get()
-            ];
+            $entity = CargoEntity::ativo();
+            $cargo = $entity->where('id', $id)->first()->toArray();
+            return [ "cargos" => $cargo ];
         }catch (Exception $e){
             throw new Exception("Erro ao pesquisar cargo pelo ID". $id. "Mensagen: " .$e->getMessage());
         }
     }
+
+    /**
+     * @param string $nome
+     * @param int $page
+     * @return array
+     * @throws Exception
+     */
     public function retreaveByNome(string $nome, int $page){
         try{
-            return [
-                "cargos" => CargoEntity::ativo()->where('nome', 'like', "%" . $nome . '%')->paginate(
-                    Config::QUANTIDADE_ITENS_POR_PAGINA, ['*'], 'pagina', $page
-                    )
-            ];
+            $entity = CargoEntity::ativo();
+            $cargosNome = $entity->where('nome', 'like', "%" . $nome . '%')->paginate(
+                Config::QUANTIDADE_ITENS_POR_PAGINA,
+                ['*'],
+                'pagina',
+                $page
+            );
+            return [ "cargos" => $cargosNome ];
         }catch (Exception $e){
             throw new Exception("Erro ao pesquisar doença pelo nome ". $nome . ". Mensagem :" . $e->getMessage());
         }
 
     }
 
+    /**
+     * @param int $id
+     * @return bool
+     * @throws Exception
+     */
     public function delete(int $id): bool
     {
         try{
@@ -95,7 +133,7 @@ class CargoDAO implements IDAO
             $entity->status = 0;
             if($entity->save()){ return true; }
         }catch (Exception $e){
-            throw new Exception("Erro ao excluir cargo. ". $e->getMessage());
+            throw new Exception("Erro ao excluir cargo. Mensagem: ". $e->getMessage());
         }
     }
 

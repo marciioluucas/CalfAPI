@@ -18,6 +18,11 @@ use Symfony\Component\Config\Definition\Exception\Exception;
 
 class CargoController implements IController
 {
+    /**
+     * @param Request $request
+     * @param Response $response
+     * @return Response
+     */
     public function post(Request $request, Response $response): Response
     {
         try{
@@ -26,10 +31,9 @@ class CargoController implements IController
             $valida = (new CargoValidate())->validatePost((array)$data);
             if($valida){
                 $cargo->setNome($data->nome);
-                if(isset($data->descricao)){
-                    $cargo->setDescricao($data->descricao);
-                }
-                if($id = $cargo->cadastrar()){
+                $cargo->setDescricao($data->descricao);
+
+                if($cargo->cadastrar()){
                     return View::renderMessage(
                         $response,
                         "success",
@@ -41,18 +45,33 @@ class CargoController implements IController
                     return View::renderMessage(
                         $response,
                         "error",
-                        "Cargo não cadastrado!",
-                        500
+                        "Erro ao cadastrar cargo!",
+                        500,
+                        "Erro ao cadastrar!"
                     );
                 }
-            } else {
-                return View::renderMessage($response, 'warning', $valida, 400);
             }
-        }catch (Exception $e) {
+            else {
+                return View::renderMessage(
+                    $response,
+                    'warning',
+                    $valida,
+                    400,
+                    "Erro ao validar"
+                );
+            }
+        }
+        catch (Exception $e) {
             return View::renderException($response, $e);
         }
     }
 
+    /**
+     * @param Request $request
+     * @param Response $response
+     * @param array $args
+     * @return Response
+     */
     public function get(Request $request, Response $response, array $args): Response
     {
         try{
@@ -60,58 +79,91 @@ class CargoController implements IController
             $page = (int) $request->getQueryParam('pagina');
             if ($request->getAttribute('id')) {
                 $cargo->setId($request->getAttribute('id'));
-            } elseif ($request->getQueryParam('nome')) {
+            }
+            if ($request->getQueryParam('nome')) {
                 $cargo->setNome($request->getQueryParam('nome'));
             }
-            return View::render($response, $cargo->pesquisar($page));
+            $search = $cargo->pesquisar($page);
+            return View::render($response, $search);
         }catch (Exception $e){
             return View::renderException($response, $e);
         }
     }
 
+    /**
+     * @param Request $request
+     * @param Response $response
+     * @return Response
+     */
     public function put(Request $request, Response $response): Response
     {
         try{
             $cargo = new Cargo();
             $data = json_decode($response->getBody()->getContents());
             $valida = (new CargoValidate())->validatePut((array)$data);
-
             if($valida){
                 $cargo->setId($request->getAttribute('id'));
-                if(isset($data->nome)){
+                if(!is_null($data->nome)){
                     $cargo->setNome($data->nome);
                 }
-                if(isset($data->descricao)){
+                if(!is_null($data->descricao)){
                     $cargo->setDescricao($data->descricao);
                 }
                 if($cargo->alterar()){
-                    return View::renderMessage($response, "success","Cargo alterado com sucesso!", 200, "Sucesso ao alterar");
+                    return View::renderMessage(
+                        $response,
+                        "success",
+                        "Cargo alterado com sucesso!",
+                        200,
+                        "Sucesso ao alterar"
+                    );
+                }else {
+                    return View::renderMessage(
+                        $response,
+                        "error",
+                        "Erro ao alterar cargo!",
+                        500,
+                        "Erro ao alterar"
+                    );
                 }
-
+            }
+            else {
+                return View::renderMessage(
+                    $response,
+                    "warning",
+                    $valida,
+                    400,
+                    "Erro ao validar"
+                );
             }
 
         }catch (Exception $e) {
             return View::renderException($response, $e);
         }
-        return $response;
     }
 
+    /**
+     * @param Request $request
+     * @param Response $response
+     * @return Response
+     */
     public function delete(Request $request, Response $response): Response
     {
         try{
             $cargo = new Cargo();
-            if($request->getAttribute('id')){
+            if($request->getAttribute('id')) {
                 $cargo->setId($request->getAttribute('id'));
-            }
-            if($cargo->deletar()){
-                return View::renderMessage(
-                    $response,
-                    "success",
-                    "Cargo desativado com sucesso!",
-                    200, "Sucesso ao desativar"
-                );
-            }
 
+                if ($cargo->deletar()) {
+                    return View::renderMessage(
+                        $response,
+                        "success",
+                        "Cargo excluído com sucesso!",
+                        200,
+                        "Sucesso ao excluir"
+                    );
+                }
+            }
         }catch (Exception $e){
             return View::renderException($response, $e);
         }
