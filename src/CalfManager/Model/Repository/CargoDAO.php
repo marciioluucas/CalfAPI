@@ -25,17 +25,17 @@ class CargoDAO implements IDAO
         $entity = new CargoEntity();
         $entity->nome = $obj->getNome();
         $entity->descricao = $obj->getDescricao();
-        $entity->data_cadatro = $obj->getDataCriacao();
-        $entity->data_alteracao = $obj->getDataAlteracao();
+
+        $entity->data_cadastro = $obj->getDataCriacao();
         $entity->usuario_cadastro = $obj->getUsuarioCadastro()->getId();
+        $entity->status = 1;
         try{
             if($entity->save()){
-                return $entity->id;
+                return true;
             }
         }catch (Exception $e) {
             throw new Exception("Erro ao cadastrar novo cargo. Mensagem:" . $e->getMessage());
         }
-        return false;
     }
 
     /* @param Cargo $obj

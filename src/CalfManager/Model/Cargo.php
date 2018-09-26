@@ -18,16 +18,11 @@ class Cargo extends Modelo
     private $nome;
     private $descricao;
 
-    public function __construct()
-    {
-        $this->usuarioCadastro = new Usuario();
-        $this->usuarioAlteracao = new Usuario();
-    }
-
     public function cadastrar(): ?int
     {
         $this->dataCriacao = date(Config::PADRAO_DATA_HORA);
-        $this->dataAlteracao = date(Config::PADRAO_DATA_HORA);
+
+        $this->usuarioCadastro = new Usuario();
         $this->usuarioCadastro->setId(1);
         try{
             return (new CargoDAO())->create($this);
@@ -40,6 +35,8 @@ class Cargo extends Modelo
     public function alterar(): bool
     {
         $this->dataAlteracao = date(Config::PADRAO_DATA_HORA);
+
+        $this->usuarioAlteracao = new Usuario();
         $this->usuarioAlteracao->setId(1);
         try{
             return (new CargoDAO())->update($this);

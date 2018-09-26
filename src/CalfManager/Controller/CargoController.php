@@ -27,9 +27,9 @@ class CargoController implements IController
     {
         try{
             $cargo = new Cargo();
-            $data = json_decode($response->getBody()->getContents());
+            $data = json_decode($request->getBody()->getContents());
             $valida = (new CargoValidate())->validatePost((array)$data);
-            if($valida){
+            if($valida === true){
                 $cargo->setNome($data->nome);
                 $cargo->setDescricao($data->descricao);
 
@@ -55,7 +55,7 @@ class CargoController implements IController
                 return View::renderMessage(
                     $response,
                     'warning',
-                    $valida,
+                    $data,
                     400,
                     "Erro ao validar"
                 );
@@ -99,7 +99,7 @@ class CargoController implements IController
     {
         try{
             $cargo = new Cargo();
-            $data = json_decode($response->getBody()->getContents());
+            $data = json_decode($request->getBody()->getContents());
             $valida = (new CargoValidate())->validatePut((array)$data);
             if($valida){
                 $cargo->setId($request->getAttribute('id'));
