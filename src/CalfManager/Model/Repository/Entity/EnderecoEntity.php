@@ -18,7 +18,6 @@ class EnderecoEntity extends CalfEntity
         'numero',
         'bairro',
         'cidade',
-        'cidade',
         'estado',
         'pais',
         'cep',

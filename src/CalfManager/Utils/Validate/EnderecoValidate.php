@@ -8,6 +8,7 @@
 
 namespace CalfManager\Utils\Validate;
 
+use Valitron\Validator;
 
 class EnderecoValidate extends Validate
 {
@@ -31,7 +32,7 @@ class EnderecoValidate extends Validate
     public function validatePut($params)
     {
         $valida = new Validator($params);
-        $valida->rule('required', ['id','logradouro', 'bairro', 'cidade', 'estado', 'pais', 'cep']);
+        $valida->rule('required', ['logradouro', 'bairro', 'cidade', 'estado', 'pais', 'cep']);
         if($valida->validate()){
             return true;
         } else {

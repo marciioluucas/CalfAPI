@@ -30,9 +30,10 @@ class EnderecoDAO implements IDAO
         $entity->estado = $obj->getEstado();
         $entity->pais = $obj->getPais();
         $entity->cep = $obj->getCep();
+
         $entity->data_cadastro = $obj->getDataCriacao();
-        $entity->data_alteracao = $obj->getDataAlteracao();
         $entity->usuario_cadastro = $obj->getUsuarioCadastro()->getId();
+        $entity->status = 1;
         try{
             if($entity->save()) {return $entity->id;}
         }catch (Exception $e){
@@ -147,7 +148,7 @@ class EnderecoDAO implements IDAO
      */
     public function delete(int $id): bool
     {
-        $entity = EnderecoDAO::ativo();
+        $entity = EnderecoEntity::find($id);
         $entity->status = 0;
         try {
             if ($entity->save()) {

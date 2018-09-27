@@ -24,18 +24,12 @@ class Endereco extends Modelo
     private $pais;
     private $cep;
 
-    public function __construct()
-    {
-        $this->usuarioCadastro = new Usuario();
-        $this->usuarioAlteracao = new Usuario();
-    }
-
-
     public function cadastrar(): ?int
     {
         $this->dataCriacao = date(Config::PADRAO_DATA_HORA);
-        $this->dataAlteracao = date(Config::PADRAO_DATA_HORA);
-        $this->usuarioCadastro = $this->setId(1);
+
+        $this->usuarioCadastro = new Usuario();
+        $this->usuarioCadastro->setId(1);
         try{
             return (new EnderecoDAO())->create($this);
         }catch (Exception $e){
@@ -46,7 +40,9 @@ class Endereco extends Modelo
     public function alterar(): bool
     {
         $this->dataAlteracao = date(Config::PADRAO_DATA_HORA);
-        $this->usuarioAlteracao = $this->setId(1);
+
+        $this->usuarioAlteracao = new Usuario();
+        $this->usuarioAlteracao->setId(1);
         try{
             return (new EnderecoDAO())->update($this);
         }catch (Exception $e){

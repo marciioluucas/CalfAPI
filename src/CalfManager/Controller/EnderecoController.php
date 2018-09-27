@@ -29,14 +29,15 @@ class EnderecoController implements IController
            $endereco = new Endereco();
            $data = json_decode($request->getBody()->getContents());
            $valida = (new EnderecoValidate())->validatePost((array)$data);
-           if($valida){
-               $endereco->setLogradouro($data->lograouro);
+           if($valida === true){
+               $endereco->setLogradouro($data->logradouro);
                $endereco->setNumero($data->numero);
                $endereco->setBairro($data->bairro);
                $endereco->setCidade($data->cidade);
                $endereco->setEstado($data->estado);
                $endereco->setPais($data->pais);
                $endereco->setCep($data->cep);
+
                if($endereco->cadastrar()) {
                    return View::renderMessage(
                        $response,
@@ -59,7 +60,8 @@ class EnderecoController implements IController
                    $response,
                    "warning",
                    $valida,
-                   400
+                   400,
+                   "Erro ao Validar"
                );
            }
         }catch (Exception $e){
@@ -144,7 +146,7 @@ class EnderecoController implements IController
                     );
                 }
             }else{
-                return View::renderMessage($response, "warning", $valida, 400);
+                return View::renderMessage($response, "warning", $valida, 400, "Erro ao validar");
             }
         }catch (Exception $e){
             return View::renderException($response, $e);
