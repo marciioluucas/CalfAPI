@@ -20,22 +20,13 @@ class Permissao extends Modelo
     private $update;
     private $delete;
 
-    private $grupo;
-
-
-    public function __construct()
-    {
-        $this->grupo = new Grupo();
-        $this->usuarioCadastro = new Usuario();
-        $this->usuarioAlteracao = new Usuario();
-    }
-
-
     public function cadastrar(): ?int
     {
-        $this->usuarioCadastro->setId(1);
+
         $this->dataCriacao = date(Config::PADRAO_DATA_HORA);
-        $this->dataAlteracao = date(Config::PADRAO_DATA_HORA);
+
+        $this->usuarioCadastro = new Usuario();
+        $this->usuarioCadastro->setId(1);
         try{
             return (new PermissaoDAO())->create($this);
         }catch (Exception $e){
@@ -45,8 +36,11 @@ class Permissao extends Modelo
 
     public function alterar(): bool
     {
-        $this->usuarioAlteracao->setId(1);
         $this->dataAlteracao = date(Config::PADRAO_DATA_HORA);
+
+        $this->usuarioAlteracao = new Usuario();
+        $this->usuarioAlteracao->setId(1);
+
         try{
             return (new PermissaoDAO())->update($this);
         }catch (Exception $e){
@@ -62,9 +56,6 @@ class Permissao extends Modelo
                 return (new PermissaoDAO())->retreaveById($this->id);
             } else if($this->nomeModulo){
                 return (new PermissaoDAO())->retreaveByNomeModulo($this->nomeModulo, $page);
-            }
-            else if($this->getGrupo()->getId()){
-                return (new PermissaoDAO())->retreaveByIdGrupo($this->getGrupo()->getId(), $page);
             }
             return (new PermissaoDAO())->retreaveAll($page);
         }catch (Exception $e){

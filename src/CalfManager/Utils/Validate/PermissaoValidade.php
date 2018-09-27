@@ -8,8 +8,9 @@
 
 namespace CalfManager\Utils\Validate;
 
+use Valitron\Validator;
 
-class PermissaoValidade implements IValidate
+class PermissaoValidade extends Validate
 {
     public function validatePost($params)
     {
@@ -38,7 +39,7 @@ class PermissaoValidade implements IValidate
     public function validatePut($params)
     {
         $valida = new Validator($params);
-        $valida->rule('required', ['id','nome_modulo', 'create', 'read', 'update', 'delete']);
+        $valida->rule('required', ['nome_modulo', 'create', 'read', 'update', 'delete']);
         if ($valida->validate()) {
             return true;
         } else {

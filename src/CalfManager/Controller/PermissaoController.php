@@ -29,14 +29,12 @@ class PermissaoController implements IController
             $permissao = new Permissao();
             $data = json_decode($request->getBody()->getContents());
             $valida = (new PermissaoValidade())->validatePost((array)$data);
-            if ($valida) {
+            if ($valida === true) {
                 $permissao->setNomeModulo($data->nome_modulo);
                 $permissao->setCreate($data->create);
-                $permissao->setUpdate($data->update);
                 $permissao->setRead($data->read);
+                $permissao->setUpdate($data->update);
                 $permissao->setDelete($data->delete);
-                $permissao->setGrupo(new Grupo());
-                $permissao->getGrupo()->setId($data->grupo_id);
 
                 if ($permissao->cadastrar()) {
                     return View::renderMessage(
@@ -61,7 +59,8 @@ class PermissaoController implements IController
                 $response,
                 'warning',
                 $valida,
-                400
+                400,
+                "Erro ao validar"
             );
             }
         }catch (Exception $e){
@@ -86,10 +85,8 @@ class PermissaoController implements IController
             if($request->getQueryParam('nome_modulo')){
                 $permissao->setNomeModulo($request->getQueryParam('nome_modulo'));
             }
-            if($request->getQueryParam('grupo')){
-                $permissao->getGrupo()->setId($request->getQueryParam('grupo'));
-            }
-            return View::renderMessage($response, $permissao->pesquisar($page));
+
+            return View::render($response, $permissao->pesquisar($page));
         }catch (Exception $e){
             return View::renderException($response, $e);
         }
@@ -105,8 +102,8 @@ class PermissaoController implements IController
         try {
             $permissao = new Permissao();
             $data = json_decode($request->getBody()->getContents());
-            $valida = (new PermissaoValidade())->validatePost((array)$data);
-            if ($valida) {
+            $valida = (new PermissaoValidade())->validatePut((array)$data);
+            if ($valida === true) {
                 $permissao->setId($request->getAttribute('id'));
                 if($data->nome_modulo){
                     $permissao->setNomeModulo($data->nome_modulo);
@@ -114,25 +111,21 @@ class PermissaoController implements IController
                 if($data->create){
                     $permissao->setCreate($data->create);
                 }
-                if($data->update){
-                    $permissao->setUpdate($data->update);
-                }
                 if($data->read){
                     $permissao->setRead($data->read);
                 }
+                if($data->update){
+                    $permissao->setUpdate($data->update);
+                }
                 if($data->delete){
                     $permissao->setDelete($data->delete);
-                }
-                if($data->grupo_id) {
-                    $permissao->setGrupo(new Grupo());
-                    $permissao->getGrupo()->setId($data->grupo_id);
                 }
 
                 if ($permissao->alterar()) {
                     return View::renderMessage(
                         $response,
                         "success",
-                        "Permissão alterada com sucesso!",
+                         "Permissão alterada com sucesso!",
                         201,
                         "Sucesso ao alterar"
                     );

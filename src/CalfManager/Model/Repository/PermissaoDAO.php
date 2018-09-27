@@ -29,9 +29,14 @@ class PermissaoDAO implements IDAO
         $entity->read = $obj->getRead();
         $entity->update = $obj->getUpdate();
         $entity->delete = $obj->getDelete();
-        $entity->grupo_id = $obj->getGrupo()->getId();
+
+        $entity->data_cadastro = $obj->getDataCriacao();
+        $entity->usuario_cadastro = $obj->getUsuarioCadastro()->getId();
+        $entity->status = 1;
         try{
-            if($entity->save()){ return $entity->id; }
+            if($entity->save()){
+                return $entity->id;
+            }
         }catch (Exception $e){
             throw new Exception("Erro ao cadastrar nova permissão! ".$e->getMessage());
         }
@@ -47,6 +52,8 @@ class PermissaoDAO implements IDAO
     public function update($obj): bool
     {
         $entity = PermissaoEntity::find($obj->getId());
+        $entity->usuario_alteracao = $obj->getUsuarioAlteracao()->getId();
+        $entity->data_alteracao = $obj->getDataAlteracao();
 
         if(!is_null($obj->getNomeModulo())){
             $entity->nome_modulo = $obj->getNomeModulo();
@@ -64,7 +71,9 @@ class PermissaoDAO implements IDAO
             $entity->delete = $obj->getDelete();
         }
         try {
-            if ($entity->save()) {return true;}
+            if ($entity->save()) {
+                return true;
+            }
         }catch (Exception $e){
             throw new Exception("Erro ao alterar esta permissão! ".$e->getMessage());
         }
@@ -105,29 +114,6 @@ class PermissaoDAO implements IDAO
     }
 
     /**
-     * @param int $idGrupo
-     * @param $page
-     * @return array
-     * @throws Exception
-     */
-    public function retreaveByIdGrupo(int $idGrupo, $page): array
-    {
-        try{
-            $permissoes = PermissaoEntity::ativo()
-                ->where('grupo_id', $idGrupo)
-                ->paginate(
-                Config::QUANTIDADE_ITENS_POR_PAGINA,
-                ['*'],
-                'pagina',
-                $page
-            );
-            return ["permissoes" => $permissoes];
-        }catch (Exception $e){
-            throw new Exception("Erro ao pesquisar o grupo pelo ID ".$idGrupo.". Mensagem: ".$e->getMessage());
-        }
-    }
-
-    /**
      * @param string $nome
      * @param int $page
      * @return array
@@ -164,7 +150,7 @@ class PermissaoDAO implements IDAO
                 return true;
             }
         }catch (Exception $e){
-            throw new Exception("Erro ao excluir esta permissão".$e->getMessage());
+            throw new Exception("Erro ao excluir esta permissão! ".$e->getMessage());
         }
     }
 
