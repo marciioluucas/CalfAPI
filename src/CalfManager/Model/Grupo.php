@@ -18,24 +18,21 @@ class Grupo extends Modelo
     private $nome;
     private $descricao;
 
-    private $usuario;
     private $permissao;
 
     public function __construct()
     {
-        $this->usuario = new Usuario();
-        $this->permissao = new Permissao();
-        $this->usuarioCadastro = new Usuario();
-        $this->usuarioAlteracao = new Usuario();
+            $this->permissao = new Permissao();
     }
-
 
     public function cadastrar(): ?int
     {
-        $this->dataAlteracao = date(Config::PADRAO_DATA_HORA);
         $this->dataCriacao = date(Config::PADRAO_DATA_HORA);
+
+        $this->usuarioCadastro = new Usuario();
         $this->usuarioCadastro->setId(1);
         try{
+//            $this->antesDeSalvar();
             $idGrupo = (new GrupoDAO())->create($this);
             return $idGrupo;
         }catch (Exception $e){
@@ -46,6 +43,8 @@ class Grupo extends Modelo
     public function alterar(): bool
     {
         $this->dataAlteracao = date(Config::PADRAO_DATA_HORA);
+
+        $this->usuarioAlteracao = new Usuario();
         $this->usuarioAlteracao->setId(1);
         try{
            return (new GrupoDAO())->update($this);
@@ -65,6 +64,9 @@ class Grupo extends Modelo
             if (!$this->id and $this->nome) {
                 return $dao->retreaveByNome($this->nome, $page);
             }
+            if(!$this->id and !$this->nome and $this->getPermissao()->getId()){
+                return $dao->retreaveIdPermissao($this->getPermissao()->getId(), $page);
+            }
             return $dao->retreaveAll($page);
         }catch (Exception $e){
             throw new Exception($e->getMessage());
@@ -79,8 +81,7 @@ class Grupo extends Modelo
             throw new Exception($e->getMessage());
         }
     }
-    public function depoisDeSalvar($idGrupo){
-        $this->setId($idGrupo);
+    public function antesDeSalvar(){
         $this->cadastrarPermissao();
     }
 
@@ -152,23 +153,4 @@ class Grupo extends Modelo
     {
         $this->permissao = $permissao;
     }
-
-    /**
-     * @return mixed
-     */
-    public function getUsuario(): Usuario
-    {
-        return $this->usuario;
-    }
-
-    /**
-     * @param mixed $usuario
-     */
-    public function setUsuario(Usuario $usuario)
-    {
-        $this->usuario = $usuario;
-    }
-
-
-
 }

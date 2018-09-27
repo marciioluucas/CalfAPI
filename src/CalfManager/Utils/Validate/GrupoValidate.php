@@ -8,8 +8,9 @@
 
 namespace CalfManager\Utils\Validate;
 
+use Valitron\Validator;
 
-class GrupoValidate implements IValidate
+class GrupoValidate extends Validate
 {
     public function validatePost($params)
     {

@@ -24,9 +24,11 @@ class GrupoDAO implements IDAO {
         $entity = new GrupoEntity();
         $entity->nome = $obj->getNome();
         $entity->descricao = $obj->getDescricao();
-        $entity->data_alteracao = $obj->getDataAlteracao();
+        $entity->permissao_id = $obj->getPermissao()->getId();
+
         $entity->data_cadastro = $obj->getDataCriacao();
         $entity->usuario_cadastro = $obj->getUsuarioCadastro()->getId();
+        $entity->status = 1;
         try{
             if($entity->save()){
                 return $entity->id;
@@ -52,6 +54,9 @@ class GrupoDAO implements IDAO {
         if(!is_null($obj->getDescricao())){
             $entity->descricao = $obj->getDescricao();
         }
+        if(!is_null($obj->getPermissao()->getId())){
+            $entity->permissao_id = $obj->getPermissao()->getId();
+        }
         try{
             if($entity->save()){
                 return $entity->id;
@@ -69,7 +74,7 @@ class GrupoDAO implements IDAO {
     {
         try {
             $entity = GrupoEntity::ativo();
-            $grupos = $entity->paginate(Config::QUANTIDADE_ITENS_POR_PAGINA, ['*'], 'pagina', $page);
+            $grupos = $entity->with('permissao')->paginate(Config::QUANTIDADE_ITENS_POR_PAGINA, ['*'], 'pagina', $page);
             return ["grupos" => $grupos];
         }catch(Exception $e){
             throw new Exception("Erro ao pesquisar todos os grupos. Mensagem: ".$e->getMessage());
@@ -84,7 +89,7 @@ class GrupoDAO implements IDAO {
     {
         try {
             $entity = GrupoEntity::ativo();
-            $grupo = $entity->where('id', $id)->first()->toArray();
+            $grupo = $entity->with('permissao')->where('id', $id)->first()->toArray();
             return ["grupos" => $grupo];
         }catch(Exception $e){
             throw new Exception("Erro ao pesquisar grupo pelo ID ".$id.". Mensagem: ".$e->getMessage());
@@ -99,7 +104,7 @@ class GrupoDAO implements IDAO {
     public function retreaveByNome(string $nome, int $page){
         try {
             $entity = GrupoEntity::ativo();
-            $grupo = $entity->where('nome', 'like', $nome)
+            $grupo = $entity->with('permissao')->where('nome', 'like', $nome)
                 ->paginate(
                     Config::QUANTIDADE_ITENS_POR_PAGINA,
                     ['*'],
@@ -111,6 +116,22 @@ class GrupoDAO implements IDAO {
             throw new Exception("Erro ao pesquisar grupo pelo nome ".$nome. ". Mensagem: ".$e->getMessage());
         }
     }
+    public function retreaveIdPermissao(int $idPermissao, int $page){
+        try{
+            $entity = GrupoEntity::ativo();
+            $grupos = $entity->with('permissao')
+                ->where('permissao_id', $idPermissao)
+                ->paginate(
+                    Config::QUANTIDADE_ITENS_POR_PAGINA,
+                    ['*'],
+                    'pagina',
+                    $page
+                );
+            return ["grupos" => $grupos];
+        } catch (Exception $e){
+            throw new Exception("Erro ao pesquisar a permissão deste grupo pelo ".$idPermissao. ". Mensagem: ".$e->getMessage());
+        }
+    }
 
     /**
      * @param int $id
@@ -120,7 +141,7 @@ class GrupoDAO implements IDAO {
     public function delete(int $id): bool
     {
         try{
-            $entity = GrupoEntity::ativo();
+            $entity = GrupoEntity::find($id);
             $entity->status = 0;
             if($entity->save()){
                 return true;

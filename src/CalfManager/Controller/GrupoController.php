@@ -29,9 +29,10 @@ class GrupoController implements IController
             $grupo = new Grupo();
             $data = json_decode($request->getBody()->getContents());
             $valida = (new GrupoValidate())->validatePost((array)$data);
-            if ($valida) {
+            if ($valida === true) {
                 $grupo->setNome($data->nome);
                 $grupo->setDescricao($data->descricao);
+                $grupo->getPermissao()->setId($data->permissao_id);
                 if($grupo->cadastrar()) {
                     return View::renderMessage(
                         $response,
@@ -75,8 +76,11 @@ class GrupoController implements IController
             if ($request->getAttribute('id')) {
                 $grupo->setId($request->getAttribute('id'));
             }
-            if ($request->getAttribute('nome')) {
+            if ($request->getQueryParam('nome')) {
                 $grupo->setNome($request->getQueryParam('nome'));
+            }
+            if($request->getQueryParam('permissao_id')){
+                $grupo->getPermissao()->setId($request->getQueryParam('permissao_id'));
             }
             $search = $grupo->pesquisar($page);
             return View::render($response, $search);
@@ -104,13 +108,16 @@ class GrupoController implements IController
                 if(!is_null($data->descricao)) {
                     $grupo->setDescricao($data->descricao);
                 }
+                if(!is_null($data->permissao_id)){
+                    $grupo->getPermissao()->setId($data->permissao_id);
+                }
                 if($grupo->alterar()) {
                     return View::renderMessage(
                         $response,
                         "success",
-                        "Grupo cadastrado com sucesso!",
+                        "Grupo alterado com sucesso!",
                         201,
-                        "Sucesso ao cadastrar"
+                        "Sucesso ao alterar"
                     );
                 } else{
                     return View::renderMessage(
@@ -126,7 +133,8 @@ class GrupoController implements IController
                     $response,
                     "warning",
                     $valida,
-                    400
+                    400,
+                    "Erro ao validar"
                 );
             }
         }catch(Exception $e){
