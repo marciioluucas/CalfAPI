@@ -19,18 +19,13 @@ class Medicamento extends Modelo
     private $nome;
     private $prescricao;
 
-    public function __construct()
-    {
-        $this->usuarioCadastro = new Usuario();
-        $this->usuarioAlteracao = new Usuario();
-    }
-
-
     public function cadastrar(): ?int
     {
+        $this->usuarioCadastro = new Usuario();
+        $this->usuarioCadastro->setId(1);
+
         $this->dataCriacao = date(Config::PADRAO_DATA_HORA);
-        $this->dataAlteracao = date(Config::PADRAO_DATA_HORA);
-        $this->usuarioCadastro = $this->setId(1);
+
         try{
             return (new MedicamentoDAO())->create($this);
         } catch (Exception $e){
@@ -41,7 +36,9 @@ class Medicamento extends Modelo
     public function alterar(): bool
     {
         $this->dataAlteracao = date(Config::PADRAO_DATA_HORA);
-        $this->usuarioAlteracao = $this->setId(1);
+
+        $this->usuarioAlteracao = new Usuario();
+        $this->usuarioAlteracao->setId(1);
         try{
             return (new MedicamentoDAO())->update($this);
         } catch (Exception $e){
@@ -57,7 +54,7 @@ class Medicamento extends Modelo
             } elseif ($this->nome) {
                 return (new MedicamentoDAO())->retreaveByNome($this->nome, $page);
             }
-            return (new LoteDAO())->retreaveAll($page);
+            return (new MedicamentoDAO()    )->retreaveAll($page);
         } catch (Exception $exception) {
             throw new Exception($exception->getMessage());
         }

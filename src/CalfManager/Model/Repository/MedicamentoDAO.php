@@ -27,8 +27,8 @@ class MedicamentoDAO implements IDAO
         $entity->prescricao = $obj->getPrescricao();
 
         $entity->data_cadastro = $obj->getDataCriacao();
-        $entity->data_alteracao = $obj->getDataAlteracao();
-        $entity->usuario_cadastro = $obj->getUsuarioCadastro();
+        $entity->usuario_cadastro = $obj->getUsuarioCadastro()->getId();
+        $entity->status = 1;
         try{
             if($entity->save()){
                 return $entity->id;

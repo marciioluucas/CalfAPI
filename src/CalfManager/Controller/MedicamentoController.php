@@ -24,9 +24,9 @@ class MedicamentoController implements IController
             $medicamento = new Medicamento();
             $data = json_decode($request->getBody()->getContents());
             $valida = (new MedicamentoValidate())->validatePost((array)$data);
-            if ($valida) {
+            if ($valida === true) {
                 $medicamento->setNome($data->nome);
-                $medicamento->getPrescricao($data->prescricao);
+                $medicamento->setPrescricao($data->prescricao);
                 if($medicamento->cadastrar()) {
                     return View::renderMessage(
                         $response,
@@ -43,7 +43,7 @@ class MedicamentoController implements IController
                         "Erro ao cadastrar ");
                 }
             } else {
-                return View::renderMessage($response, "warning", $valida, 400);
+                return View::renderMessage($response, "warning", $valida, 400, "Erro ao validar");
             }
         } catch (Exception $e){
             return View::renderException($response, $e);
@@ -73,11 +73,11 @@ class MedicamentoController implements IController
         try {
             $medicamento = new Medicamento();
             $data = json_decode($request->getBody()->getContents());
-            $valida = (new MedicamentoValidate())->validatePost((array)$data);
+            $valida = (new MedicamentoValidate())->validatePut((array)$data);
             if ($valida) {
                 $medicamento->setId($request->getAttribute('id'));
                 $medicamento->setNome($data->nome);
-                $medicamento->getPrescricao($data->prescricao);
+                $medicamento->setPrescricao($data->prescricao);
                 if($medicamento->alterar()) {
                     return View::renderMessage(
                         $response,

@@ -8,18 +8,18 @@
 
 namespace CalfManager\Utils\Validate;
 
+use Valitron\Validator;
 
-class MedicamentoValidate implements IValidate
-{
+class MedicamentoValidate extends Validate {
     public function validatePost($params)
     {
         $valida = new Validator($params);
         $valida->rule('required', ['nome', 'prescricao']);
         if($valida->validate()){
             return true;
-        } else {
-            $toreturn = $this->filtrarValidacao($valida);
-            return $toreturn;
+        } else{
+            $toReturn = $this->filtrarValidacao($valida);
+            return $toReturn;
         }
     }
 
@@ -31,15 +31,14 @@ class MedicamentoValidate implements IValidate
     public function validatePut($params)
     {
         $valida = new Validator($params);
-        $valida->rule('required', ['id', 'nome', 'prescricao']);
+        $valida->rule('required', [ 'nome', 'prescricao']);
         if($valida->validate()){
             return true;
-        } else {
-            $toreturn = $this->filtrarValidacao($valida);
-            return $toreturn;
+        } else{
+            $toReturn = $this->filtrarValidacao($valida);
+            return $toReturn;
         }
     }
-
     public function validateDelete($params)
     {
         // TODO: Implement validateDelete() method.
