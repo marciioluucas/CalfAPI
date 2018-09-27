@@ -7,9 +7,9 @@
  */
 
 namespace CalfManager\Utils\Validate;
+use Valitron\Validator;
 
-
-class HemogramaValidate implements IValidate
+class HemogramaValidate extends Validate
 {
     public function validatePost($params)
     {

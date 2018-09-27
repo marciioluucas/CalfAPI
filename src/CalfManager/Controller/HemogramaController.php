@@ -30,7 +30,7 @@ class HemogramaController implements IController
             $hemograma = new Hemograma();
             $data = json_decode($request->getBody()->getContents());
             $valida = (new HemogramaValidate())->validatePost((array)$data);
-            if($valida) {
+            if($valida === true) {
                 $hemograma->setDataExame($data->data_exame);
                 $hemograma->setPpt($data->ppt);
                 $hemograma->setHematocrito($data->hematocrito);
@@ -53,7 +53,7 @@ class HemogramaController implements IController
                     );
                 }
             }else {
-                return View::renderMessage($response, 'warning', $valida, 400);
+                return View::renderMessage($response, 'warning', $valida, 400, "Erro ao validar");
             }
         } catch (Exception $e){
             throw new Exception(View::renderException($response, $e ));
@@ -94,7 +94,7 @@ class HemogramaController implements IController
             $hemograma = new Hemograma();
             $data = json_decode($request->getBody()->getContents());
             $valida = (new HemogramaValidate())->validatePost((array)$data);
-            if($valida) {
+            if($valida === true) {
                 $hemograma->setId($request->getAttribute('id'));
                 if(!is_null($data->data_exame)) {
                     $hemograma->setDataExame($data->data_exame);
@@ -124,7 +124,7 @@ class HemogramaController implements IController
                 }
             }
             else {
-                return View::renderMessage($response, 'warning', $valida, 400);
+                return View::renderMessage($response, 'warning', $valida, 400, "Erro ao validar");
             }
 
         } catch (Exception $e){

@@ -15,8 +15,8 @@ class HemogramaEntity extends CalfEntity
     protected $fillable = [
         'id',
         'data_exame',
-        'teste_ppt',
-        'teste_hematocrito',
+        'ppt',
+        'hematocrito',
         'data_alteracao',
         'data_cadastro',
         'usuario_alteracao',

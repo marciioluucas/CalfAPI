@@ -28,9 +28,9 @@ class HemogramaDAO implements IDAO
         $entity->ppt = $obj->getPpt();
         $entity->hematocrito = $obj->getHematocrito();
 
-        $entity->data_alteracao = $obj->getDataAlteracao();
         $entity->data_cadastro = $obj->getDataCriacao();
         $entity->usuario_cadastro = $obj->getUsuarioCadastro()->getId();
+        $entity->status = 1;
         try {
             if ($entity->save()){
                 return $entity->id;
@@ -50,7 +50,7 @@ class HemogramaDAO implements IDAO
         $entity = HemogramaEntity::find($obj->getId());
         $entity->data_exame = $obj->getDataExame();
         $entity->data_alteracao = $obj->getDataAlteracao();
-        $entity->usuario_alteracao = $obj->getUsuarioAlteracao();
+        $entity->usuario_alteracao = $obj->getUsuarioAlteracao()->getId();
         if(!is_null($obj->getPpt())){
             $entity->ppt = $obj->getPpt();
         }

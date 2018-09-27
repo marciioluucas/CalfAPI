@@ -21,17 +21,11 @@ class Hemograma extends Modelo
     private $ppt;
     private $hematocrito;
 
-    public function __construct()
-    {
-        $this->usuarioCadastro = new Usuario();
-        $this->usuarioAlteracao = new Usuario();
-    }
-
-
     public function cadastrar(): ?int
     {
         $this->dataCriacao = date(Config::PADRAO_DATA_HORA);
-        $this->dataAlteracao = date(Config::PADRAO_DATA_HORA);
+
+        $this->usuarioCadastro = new Usuario();
         $this->usuarioCadastro->setId(1);
         try{
             return (new HemogramaDAO())->create($this);
@@ -43,6 +37,8 @@ class Hemograma extends Modelo
     public function alterar(): bool
     {
         $this->dataAlteracao = date(Config::PADRAO_DATA_HORA);
+
+        $this->usuarioAlteracao = new Usuario();
         $this->usuarioAlteracao->setId(1);
         try{
             return (new HemogramaDAO())->update($this);
