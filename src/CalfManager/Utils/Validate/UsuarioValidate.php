@@ -8,6 +8,7 @@
 
 namespace CalfManager\Utils\Validate;
 
+use Valitron\Validator;
 
 class UsuarioValidate extends Validate
 {
@@ -31,7 +32,7 @@ class UsuarioValidate extends Validate
     public function validatePut($params)
     {
         $valida = new Validator($params);
-        $valida->rule('required', ['id','login', 'senha']);
+        $valida->rule('required', ['login', 'senha']);
         if($valida->validate()){
             return true;
         } else {

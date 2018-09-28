@@ -33,16 +33,11 @@ class Usuario extends Modelo
     private $senha;
 
     private $grupo;
-    private $funcionario;
 
     public function __construct()
     {
-        $this->funcionario = new Funcionario();
         $this->grupo = new Grupo();
-        $this->usuarioCadastro = new Usuario();
-        $this->usuarioAlteracao = new Usuario();
     }
-
 
     /**
      * @return int|null
@@ -50,11 +45,11 @@ class Usuario extends Modelo
     public function cadastrar(): ?int
     {
         $this->dataCriacao = date(Config::PADRAO_DATA_HORA);
-        $this->dataAlteracao = date(Config::PADRAO_DATA_HORA);
+
+        $this->usuarioCadastro = new Usuario();
         $this->usuarioCadastro->setId(1);
         try{
             $idUsuario = (new UsuarioDAO())->create($this);
-            $this->depoisDeSalvar($idUsuario);
             return $idUsuario;
         }catch (Exception $e){
             throw new Exception($e->getMessage());
@@ -68,6 +63,8 @@ class Usuario extends Modelo
     public function alterar(): bool
     {
         $this->dataAlteracao = date(Config::PADRAO_DATA_HORA);
+
+        $this->usuarioAlteracao = new Usuario();
         $this->usuarioAlteracao->setId(1);
         try{
             return (new UsuarioDAO())->update($this);
@@ -112,11 +109,11 @@ class Usuario extends Modelo
         }
     }
 
-    public function depoisDeSalvar($idUsuario){
-        $this->setId($idUsuario);
+    public function antesDeSalvar(){
+        $this->cadastrarGrupo();
     }
-    public function cadastrarFuncionario(){
-        $this->getFuncionario()->cadastrar();
+    public function cadastrarGrupo(){
+       $this->getGrupo()->cadastrar();
     }
 
     /**
@@ -182,22 +179,5 @@ class Usuario extends Modelo
     {
         $this->grupo = $grupo;
     }
-
-    /**
-     * @return Funcionario
-     */
-    public function getFuncionario(): Funcionario
-    {
-        return $this->funcionario;
-    }
-
-    /**
-     * @param Funcionario $funcionario
-     */
-    public function setFuncionario(Funcionario $funcionario)
-    {
-        $this->funcionario = $funcionario;
-    }
-
 
 }

@@ -16,7 +16,12 @@ class UsuarioEntity extends CalfEntity
         'id',
         'login',
         'senha',
-        'grupo_id'
+        'grupo_id',
+        'data_alteracao',
+        'data_cadastro',
+        'usuario_cadastro',
+        'usuario_alteracao',
+        'status'
     ];
 
     public function grupo(){

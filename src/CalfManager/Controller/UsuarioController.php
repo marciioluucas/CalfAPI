@@ -29,10 +29,10 @@ class UsuarioController implements IController
             $usuario = new Usuario();
             $data = json_decode($request->getBody()->getContents());
             $valida = (new UsuarioValidate())->validatePost((array)$data);
-            if ($valida) {
+            if ($valida === true) {
                 $usuario->setLogin($data->login);
                 $usuario->setSenha($data->senha);
-                $usuario->setGrupo($data->grupo->id);
+                $usuario->getGrupo()->setId($data->grupo_id);
 
                 if($usuario->cadastrar()){
                     return View::renderMessage(
@@ -40,7 +40,7 @@ class UsuarioController implements IController
                         "success",
                         "Usuário cadastrado com sucesso!",
                         201,
-                        "Sucesso ao cadastra"
+                        "Sucesso ao cadastrar"
                     );
                 }
                 else {
@@ -54,7 +54,7 @@ class UsuarioController implements IController
 
                 }
             }else{
-                return View::renderMessage($response, "warning", $valida, 400, "erro ao validar");
+                return View::renderMessage($response, "warning", $valida, 400, "Erro ao validar");
             }
         }catch (Exception $e){
             return View::renderException($response, $e);
@@ -99,8 +99,8 @@ class UsuarioController implements IController
         try {
             $usuario = new Usuario();
             $data = json_decode($request->getBody()->getContents());
-            $valida = (new UsuarioValidate())->validatePost((array)$data);
-            if ($valida) {
+            $valida = (new UsuarioValidate())->validatePut((array)$data);
+            if ($valida === true) {
                 $usuario->setId($request->getAttribute('id'));
                 if(!is_null($data->login)) {
                     $usuario->setLogin($data->login);
@@ -109,7 +109,7 @@ class UsuarioController implements IController
                     $usuario->setSenha($data->senha);
                 }
                 if(!is_null($data->grupo_id)) {
-                    $usuario->setGrupo($data->grupo->id);
+                    $usuario->getGrupo()->setId($data->grupo_id);
                 }
                 if ($usuario->alterar()) {
                     return View::renderMessage(
@@ -131,7 +131,7 @@ class UsuarioController implements IController
 
                 }
             } else {
-                return View::renderMessage($response, "warning", $valida, 400, "erro ao validar");
+                return View::renderMessage($response, "warning", $valida, 400, "Erro ao validar");
             }
         } catch (Exception $e) {
             return View::renderException($response, $e);

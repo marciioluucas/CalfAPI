@@ -26,11 +26,11 @@ class UsuarioDAO implements IDAO
         $entity = new UsuarioEntity();
         $entity->login = $obj->getLogin();
         $entity->senha = $obj->getSenha();
-        $entity->grupo = $obj->getGrupo()->getId();
+        $entity->grupo_id = $obj->getGrupo()->getId();
 
-        $entity->usuario_cadastro = $obj->getUsuarioCadastro();
+        $entity->usuario_cadastro = $obj->getUsuarioCadastro()->getId();
         $entity->data_cadastro = $obj->getDataCriacao();
-        $entity->data_alteracao = $obj->getDataAlteracao();
+        $entity->status = 1;
 
         try{
             if($entity->save()){
@@ -50,14 +50,14 @@ class UsuarioDAO implements IDAO
     {
          $entity = UsuarioEntity::find($obj->getId());
          $entity->data_alteracao = $obj->getDataAlteracao();
-         $entity->usuario = $obj->getUsuarioAlteracao();
+         $entity->usuario_alteracao = $obj->getUsuarioAlteracao()->getId();
 
          if(!is_null($obj->getLogin())){
              $entity->login = $obj->getLogin();
          }if(!is_null($obj->getSenha())){
              $entity->senha = $obj->getSenha();
          }if(!is_null($obj->getGrupo()->getId())){
-             $entity->grupo = $obj->getGrupo()->getId();
+             $entity->grupo_id = $obj->getGrupo()->getId();
          }
          try{
              if($entity->save()){
@@ -112,12 +112,14 @@ class UsuarioDAO implements IDAO
      */
     public function retreaveByGrupo(int $idGrupo, $page){
         try{
-            $usuarios = UsuarioEntity::ativo()->with('grupo')
+            $usuarios = UsuarioEntity::ativo()
+                ->with('grupo')
                 ->where('grupo_id', $idGrupo)
                 ->paginate(Config::QUANTIDADE_ITENS_POR_PAGINA,
                     ['*'],
                     'pagina',
-                    $page);
+                    $page
+                );
             return ["usuarios" => $usuarios];
         }
         catch (Exception $e){
