@@ -27,32 +27,37 @@ class Laboratorio extends Modelo
     public function __construct()
     {
         $this->animal = new Animal();
-        $this->doseAplicada = new
+        $this->doseAplicada = new DoseAplicada();
         $this->hemograma = new Hemograma();
-        $this->usuarioCadastro = new Usuario();
-        $this->usuarioAlteracao = new Usuario();
     }
-
 
     public function cadastrar(): ?int
     {
         $this->dataCriacao = date(Config::PADRAO_DATA_HORA);
-        $this->dataAlteracao = date(Config::PADRAO_DATA_HORA);
-        $this->usuarioCadastro = $this->setId(1);
+
+        $this->usuarioCadastro = new Usuario();
+        $this->usuarioCadastro->setId(1);
 
         try{
             $idLaboratorio = (new LaboratorioDao())->create($this);
-            $this->depoisDeSalvar($idLaboratorio);
+
+            return $idLaboratorio;
         }catch (Exception $e){
             throw new Exception($e->getMessage());
         }
-
     }
 
     public function alterar(): bool
     {
         $this->dataAlteracao = date(Config::PADRAO_DATA_HORA);
-        $this->usuarioAlteracao = $this->setId(1);
+
+        $this->usuarioAlteracao = new Usuario();
+        $this->usuarioAlteracao->setId(1);
+        try{
+            return (new LaboratorioDAO())->update($this);
+        }catch (Exception $e){
+            throw new Exception($e->getMessage());
+        }
     }
 
     public function pesquisar(int $page): array
@@ -71,9 +76,8 @@ class Laboratorio extends Modelo
             if (!$this->id and !$this->getAnimal()->getId() and !$this->getDoseAplicada()->getId() and $this->getHemograma()->getId()){
                 return $dao->retreaveByIdHemograma($this->getHemograma()->getId(), $page);
             }
-            else {
-                $dao->retreaveAll($page);
-            }
+            return $dao->retreaveAll($page);
+
         }catch (Exception $e){
             throw new Exception($e->getMessage());
         }
@@ -99,15 +103,15 @@ class Laboratorio extends Modelo
     public function registrarExameRotina(){
 
     }
-    public function adoecerAnimal($idAnimal = null) {
-        foreach ($this->doenca as $doenca) {
-            (new DoencaDAO())->adoecer(
-                $this->id == null ? $idAnimal : $this->id,
-                $doenca->getSituacao(),
-                $doenca->getId()
-            );
-        }
-    }
+//    public function adoecerAnimal($idAnimal = null) {
+//        foreach ($this->doenca as $doenca) {
+//            (new DoencaDAO())->adoecer(
+//                $this->id == null ? $idAnimal : $this->id,
+//                $doenca->getSituacao(),
+//                $doenca->getId()
+//            );
+//        }
+//    }
 
     /**
      * @return mixed
@@ -174,22 +178,6 @@ class Laboratorio extends Modelo
     }
 
     /**
-     * @return Doenca
-     */
-    public function getDoenca(): Doenca
-    {
-        return $this->doenca;
-    }
-
-    /**
-     * @param Doenca $doenca
-     */
-    public function setDoenca(Doenca $doenca)
-    {
-        $this->doenca = $doenca;
-    }
-
-    /**
      * @return Animal
      */
     public function getAnimal(): Animal
@@ -204,23 +192,6 @@ class Laboratorio extends Modelo
     {
         $this->animal = $animal;
     }
-
-    /**
-     * @return Medicamento
-     */
-    public function getMedicamento(): Medicamento
-    {
-        return $this->medicamento;
-    }
-
-    /**
-     * @param Medicamento $medicamento
-     */
-    public function setMedicamento(Medicamento $medicamento)
-    {
-        $this->medicamento = $medicamento;
-    }
-
     /**
      * @return Hemograma
      */

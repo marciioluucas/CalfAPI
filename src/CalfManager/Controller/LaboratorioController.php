@@ -29,16 +29,16 @@ class LaboratorioController implements IController
         $data = json_decode($request->getBody()->getContents());
         $valida = (new LaboratorioValidate())->validatePost((array) $data);
         try {
-            if ($valida) {
+            if ($valida === true) {
                 $laboratorio->setDataEntrada($data->data_entrada);
-                $laboratorio->getAnimal()->setId($data->animal->id);
-                $laboratorio->getHemograma()->setId($data->hemograma->id);
-                $laboratorio->getDoseAplicada()->getId($data->dose_aplicada->id);
+                $laboratorio->getAnimal()->setId($data->animal_id);
+                $laboratorio->getHemograma()->setId($data->hemograma_id);
+                $laboratorio->getDoseAplicada()->setId($data->dose_aplicada_id);
                 if ($laboratorio->cadastrar()) {
                     return View::renderMessage(
                         $response,
                         "success",
-                        "Sucesso ao cadastrar registro em laboratório",
+                        "Registro em laboratório cadastrado com sucesso!",
                         201,
                         "Sucesso ao cadastrar"
                     );
@@ -52,7 +52,7 @@ class LaboratorioController implements IController
                     );
                 }
             } else {
-                return View::renderMessage($response, "warning", $valida, 400);
+                return View::renderMessage($response, "warning", $valida, 400, "Erro ao validar");
 
             }
         }catch (Exception $e){
@@ -75,13 +75,13 @@ class LaboratorioController implements IController
                 $laboratorio->setId($request->getAttribute('id'));
             }
             if($request->getQueryParam('animal')){
-                $laboratorio->getAnimal()->setId($request->getQueryParam('animal'));
+                $laboratorio->getAnimal()->setId($request->getQueryParam('animal_id'));
             }
             if($request->getQueryParam('hemograma')){
-                $laboratorio->getHemograma()->setId($request->getQueryParam('hemograma'));
+                $laboratorio->getHemograma()->setId($request->getQueryParam('hemograma_id'));
             }
             if($request->getQueryParam('dose_aplicada')){
-                $laboratorio->getDoseAplicada()->setId($request->getQueryParam('dose_aplicada'));
+                $laboratorio->getDoseAplicada()->setId($request->getQueryParam('dose_aplicada_id'));
             }
 
             $search = $laboratorio->pesquisar($page);
@@ -102,28 +102,28 @@ class LaboratorioController implements IController
         try {
             $laboratorio = new Laboratorio();
             $data = json_decode($request->getBody()->getContents());
-            $valida = (new LaboratorioValidate())->validatePost((array) $data);
+            $valida = (new LaboratorioValidate())->validatePut((array) $data);
 
-            if ($valida) {
+            if ($valida === true) {
 
                 $laboratorio->setId($request->getAttribute('id'));
                 if(!is_null($data->data_entrada)) {
                     $laboratorio->setDataEntrada($data->data_entrada);
                 }
-                if(!is_null($data->animal->id)) {
-                    $laboratorio->getAnimal()->getId($data->animal->id);
+                if(!is_null($data->animal_id)) {
+                    $laboratorio->getAnimal()->setId($data->animal_id);
                 }
-                if(!is_null($data->hemograma->id)) {
-                    $laboratorio->getHemograma()->getId($data->hemograma->id);
+                if(!is_null($data->hemograma_id)) {
+                    $laboratorio->getHemograma()->setId($data->hemograma_id);
                 }
-                if(!is_null($data->dose_aplicada->id)) {
-                    $laboratorio->getDoseAplicada()->getId($data->dose_aplicada->id);
+                if(!is_null($data->dose_aplicada_id)) {
+                    $laboratorio->getDoseAplicada()->setId($data->dose_aplicada_id);
                 }
                 if ($laboratorio->alterar()) {
                     return View::renderMessage(
                         $response,
                         "success",
-                        "SRegistro alterar com  em laboratório",
+                        "Registro alterado com sucesso!",
                         201,
                         "Sucesso ao alterar"
                     );
@@ -137,7 +137,7 @@ class LaboratorioController implements IController
                     );
                 }
             } else {
-                return View::renderMessage($response, "warning", $valida, 400);
+                return View::renderMessage($response, "warning", $valida, 400, "Erro ao validar");
 
             }
         }catch (Exception $e){

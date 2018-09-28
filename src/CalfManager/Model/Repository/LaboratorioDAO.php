@@ -11,6 +11,7 @@ namespace CalfManager\Model\Repository;
 use CalfManager\Model\Laboratorio;
 use CalfManager\Model\Modelo;
 use CalfManager\Model\Repository\Entity\LaboratorioEntity;
+use CalfManager\Utils\Config;
 use Exception;
 
 class LaboratorioDAO implements IDAO
@@ -30,8 +31,8 @@ class LaboratorioDAO implements IDAO
         $entity->data_saida =$obj->getDataSaida();
 
         $entity->data_cadastro = $obj->getDataCriacao();
-        $entity->data_alteracao = $obj->getDataAlteracao();
         $entity->usuario_cadastro = $obj->getUsuarioCadastro()->getId();
+        $entity->status = 1;
         try{
             if($entity->save()){
                 return $entity->id;
@@ -50,19 +51,18 @@ class LaboratorioDAO implements IDAO
     public function update($obj): bool
     {
         $entity = LaboratorioEntity::find($obj->getId());
+
         $entity->data_alteracao = $obj->getDataAlteracao();
         $entity->usuario_alteracao = $obj->getUsuarioAlteracao()->getId();
+
         if(!is_null($obj->getDataEntrada())) {
             $entity->data_entrada = $obj->getDataEntrada();
-        }
-        if(!is_null($obj->getDoenca()->getId())) {
-            $entity->doenca_id = $obj->getDoenca()->getId();
         }
         if(!is_null($obj->getAnimal()->getId())) {
             $entity->animal_id = $obj->getAnimal()->getId();
         }
-        if(!is_null($obj->getMedicamento()->getId())) {
-            $entity->medicamento_id = $obj->getMedicamento()->getId();
+        if(!is_null($obj->getDoseAplicada()->getId())) {
+            $entity->dose_aplicada_id = $obj->getDoseAplicada()->getId();
         }
         if(!is_null($obj->getHemograma()->getId())) {
             $entity->hemograma_id = $obj->getHemograma()->getId();

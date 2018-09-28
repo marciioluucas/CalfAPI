@@ -8,8 +8,9 @@
 
 namespace CalfManager\Utils\Validate;
 
+use Valitron\Validator;
 
-class LaboratorioValidate implements IValidate
+class LaboratorioValidate extends Validate
 {
     public function validatePost($params)
     {
@@ -31,7 +32,7 @@ class LaboratorioValidate implements IValidate
     public function validatePut($params)
     {
         $valida = new Validator($params);
-        $valida->rule('required', ['id','data_entrada', 'animal_id', 'hemograma_id']);
+        $valida->rule('required', ['data_entrada', 'animal_id', 'hemograma_id']);
         if ($valida->validate()) {
             return true;
         } else {
