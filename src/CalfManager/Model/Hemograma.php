@@ -14,17 +14,19 @@ use CalfManager\Utils\Config;
 use Exception;
 
 
-class Hemograma extends Modelo
+class Hemograma extends Exame
 {
     private $id;
-    private $dataExame;
     private $ppt;
     private $hematocrito;
 
+    /**
+     * @return int|null
+     * @throws Exception
+     */
     public function cadastrar(): ?int
     {
         $this->dataCriacao = date(Config::PADRAO_DATA_HORA);
-
         $this->usuarioCadastro = new Usuario();
         $this->usuarioCadastro->setId(1);
         try{
@@ -37,7 +39,6 @@ class Hemograma extends Modelo
     public function alterar(): bool
     {
         $this->dataAlteracao = date(Config::PADRAO_DATA_HORA);
-
         $this->usuarioAlteracao = new Usuario();
         $this->usuarioAlteracao->setId(1);
         try{
@@ -87,22 +88,6 @@ class Hemograma extends Modelo
     /**
      * @return mixed
      */
-    public function getDataExame()
-    {
-        return $this->dataExame;
-    }
-
-    /**
-     * @param mixed $dataExame
-     */
-    public function setDataExame($dataExame)
-    {
-        $this->dataExame = $dataExame;
-    }
-
-    /**
-     * @return mixed
-     */
     public function getPpt()
     {
         return $this->ppt;
@@ -132,4 +117,18 @@ class Hemograma extends Modelo
         $this->hematocrito = $hematocrito;
     }
 
+    function gerarResultado(int $idExame)
+    {
+        // TODO: Implement gerarResultado() method.
+    }
+
+    function enviarResultadoPorEmail(int $idExame)
+    {
+        // TODO: Implement enviarResultadoPorEmail() method.
+    }
+
+    function imprimirResultado(int $idExame)
+    {
+        // TODO: Implement imprimirResultado() method.
+    }
 }
