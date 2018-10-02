@@ -32,14 +32,6 @@ class Fazenda extends Modelo
      */
     private $limite = 0;
 
-    /**
-     * Fazenda constructor.
-     */
-    public function __construct()
-    {
-        $this->usuarioCadastro = new Usuario();
-        $this->usuarioAlteracao = new Usuario();
-    }
 
     /**
      * @return int|null
@@ -48,7 +40,7 @@ class Fazenda extends Modelo
     public function cadastrar(): ?int
     {
         $this->dataCriacao = date(Config::PADRAO_DATA_HORA);
-        $this->dataAlteracao = date(Config::PADRAO_DATA_HORA);
+        $this->usuarioCadastro = new Usuario();
         $this->usuarioCadastro->setId(1);
         try {
             return (new FazendaDAO())->create($this);
@@ -63,8 +55,10 @@ class Fazenda extends Modelo
      */
     public function alterar(): bool
     {
+        $this->usuarioAlteracao = new Usuario();
+        $this->usuarioAlteracao->setId(1);
+        $this->dataAlteracao = date(Config::PADRAO_DATA_HORA);
         try {
-            $this->dataAlteracao = date(Config::PADRAO_DATA_HORA);
             return (new FazendaDAO())->update($this);
         } catch (Exception $e) {
             throw new Exception($e->getMessage());

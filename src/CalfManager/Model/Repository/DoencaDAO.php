@@ -30,7 +30,6 @@ class DoencaDAO implements IDAO
             $entity->nome = $obj->getNome();
             $entity->descricao = $obj->getDescricao();
             $entity->data_cadastro = $obj->getDataCriacao();
-            $entity->data_alteracao = $obj->getDataAlteracao();
             $entity->usuario_cadastro = $obj->getUsuarioCadastro()->getId();
 
             if ($entity->save()) {

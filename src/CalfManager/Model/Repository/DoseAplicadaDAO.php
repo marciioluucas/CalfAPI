@@ -11,6 +11,8 @@ namespace CalfManager\Model\Repository;
 
 use CalfManager\Model\DoseAplicada;
 use CalfManager\Model\Repository\Entity\DoseAplicadaEntity;
+use CalfManager\Model\Repository\Entity\LaboratorioEntity;
+use CalfManager\Utils\Config;
 use Exception;
 
 class DoseAplicadaDAO implements IDAO
@@ -24,10 +26,11 @@ class DoseAplicadaDAO implements IDAO
         $entity = new DoseAplicadaEntity();
         $entity->dose = $obj->getDose();
         $entity->medicamento_id = $obj->getMedicamento()->getId();
+        $entity->data_aplicacao = $obj->getDataAplicacao();
 
         $entity->data_cadastro = $obj->getDataCriacao();
-        $entity->data_alteracao = $obj->getDataAlteracao();
         $entity->usuario_cadastro = $obj->getUsuarioCadastro()->getId();
+        $entity->status = 1;
         try{
             if($entity->save()){
                 return $entity->id;
@@ -46,9 +49,13 @@ class DoseAplicadaDAO implements IDAO
     {
         $entity = new DoseAplicadaEntity();
         $entity->data_alteracao = $obj->getDataAlteracao();
-        $entity->usuario_alteracao = $obj->getUsuarioCadastro()->getId();
+        $entity->usuario_alteracao = $obj->getUsuarioAlteracao()->getId();
+
         if (!is_null($obj->getDose())){
             $entity->dose = $obj->getDose();
+        }
+        if(!is_null($obj->getDataAplicacao())){
+            $entity->data_aplicacao = $obj->getDataAplicacao();
         }
         if(!is_null($obj->getMedicamento()->getId())) {
             $entity->medicamento_id = $obj->getMedicamento()->getId();
@@ -72,7 +79,7 @@ class DoseAplicadaDAO implements IDAO
     public function retreaveAll(int $page): array
     {
         try {
-            $entity = LaboratorioEntity::ativo();
+            $entity = DoseAplicadaEntity::ativo();
             $doses = $entity->with('medicamento')
                 ->paginate(
                     Config::QUANTIDADE_ITENS_POR_PAGINA,
@@ -94,7 +101,7 @@ class DoseAplicadaDAO implements IDAO
     public function retreaveById(int $id): array
     {
         try {
-            $entity = LaboratorioEntity::ativo();
+            $entity = DoseAplicadaEntity::ativo();
             $dose = $entity->with('medicamento')
                 ->where('id', $id)
                 ->first()
@@ -106,17 +113,17 @@ class DoseAplicadaDAO implements IDAO
     }
 
     /**
-     * @param int $idmedicamento
+     * @param int $idMedicamento
      * @param int $page
      * @return array
      * @throws Exception
      */
-    public function retreaveByIdMedicamento(int $idmedicamento,int $page): array
+    public function retreaveByIdMedicamento(int $idMedicamento, int $page): array
     {
         try {
-            $entity = LaboratorioEntity::ativo();
+            $entity = DoseAplicadaEntity::ativo();
             $doses = $entity->with('medicamento')
-                ->where('medicamento_id', $idmedicamento)
+                ->where('medicamento_id', $idMedicamento)
                 ->paginate(
                     Config::QUANTIDADE_ITENS_POR_PAGINA,
                     ['*'],
@@ -125,7 +132,7 @@ class DoseAplicadaDAO implements IDAO
                 );
             return ["doses_aplicadas" => $doses];
         }catch (Exception $e){
-            throw new Exception("Erro ao pesquisar em dose aplicada o medicamento pelo ID ".$idmedicamento.". Mensagem: ".$e->getMessage());
+            throw new Exception("Erro ao pesquisar em dose aplicada o medicamento pelo ID ".$idMedicamento.". Mensagem: ".$e->getMessage());
         }
     }
 

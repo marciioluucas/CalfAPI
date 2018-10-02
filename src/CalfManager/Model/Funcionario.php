@@ -10,10 +10,11 @@ namespace CalfManager\Model;
 
 
 use CalfManager\Model\Repository\FuncionarioDAO;
+use CalfManager\Utils\Config;
 use Exception;
 use Symfony\Component\Cache\Tests\CacheItemTest;
 
-class Funcionario extends Pessoa
+class Funcionario extends Modelo
 {
     private $id;
     private $salario;
@@ -21,6 +22,7 @@ class Funcionario extends Pessoa
     private $cargo;
     private $usuario;
     private $fazenda;
+    private $pessoa;
 
 
     /**
@@ -28,22 +30,22 @@ class Funcionario extends Pessoa
      */
     public function __construct()
     {
-        $this->cargo = new Cargo();
-        $this->usuario = new Usuario();
-        $this->fazenda = new Fazenda();
-        $this->usuarioCadastro = new Usuario();
-        $this->usuarioAlteracao = new Usuario();
+         $this->cargo = new Cargo();
+         $this->usuario = new Usuario();
+         $this->fazenda = new Fazenda();
+         $this->pessoa = new Pessoa();
     }
 
 
     public function cadastrar(): ?int
     {
         $this->dataCriacao = date(Config::PADRAO_DATA_HORA);
-        $this->dataAlteracao = date(Config::PADRAO_DATA_HORA);
-        $this->usuarioCadastro = $this->setId(1);
+
+        $this->usuarioCadastro = new Usuario();
+        $this->usuarioCadastro->setId(1);
         try{
+            $this->antesDeSalvar();
             $idFuncionario = (new FuncionarioDAO())->create($this);
-            $this->depoisDeSalvar($idFuncionario);
             return $idFuncionario;
         }catch (Exception $e){
             throw new Exception($e->getMessage());
@@ -54,7 +56,9 @@ class Funcionario extends Pessoa
     public function alterar(): bool
     {
         $this->dataAlteracao = date(Config::PADRAO_DATA_HORA);
-        $this->usuarioAlteracao = $this->setId(1);
+
+        $this->usuarioAlteracao = new Usuario();
+        $this->usuarioAlteracao->setId(1);
         try{
             return (new FuncionarioDAO())->update($this);
         }catch (Exception $e){
@@ -66,17 +70,20 @@ class Funcionario extends Pessoa
     {
         $dao = new FuncionarioDAO();
         try{
-            if($this->id and !$this->getCargo()->getId() and !$this->getUsuario()->getId() and !$this->getFazenda()->getId()){
+            if($this->id and !$this->getCargo()->getId() and !$this->getUsuario()->getId() and !$this->getFazenda()->getId() and !$this->getPessoa()->getId()){
                 return $dao->retreaveById($this->id);
             }
-            if(!$this->id and $this->getCargo()->getId() and !$this->getUsuario()->getId() and !$this->getFazenda()->getId()){
+            if(!$this->id and $this->getCargo()->getId() and !$this->getUsuario()->getId() and !$this->getFazenda()->getId() and !$this->getPessoa()->getId()){
                 return $dao->retreaveByIdCargo($this->getCargo()->getId(), $page);
             }
-            if(!$this->id and !$this->getCargo()->getId() and $this->getUsuario()->getId() and !$this->getFazenda()->getId()){
-                return $dao->retreaveByIdUsuario($this->getUsuario()->getId(), $page);
+            if(!$this->id and !$this->getCargo()->getId() and $this->getUsuario()->getId() and !$this->getFazenda()->getId() and !$this->getPessoa()->getId()){
+                return $dao->retreaveByIdUsuario($this->getUsuario()->getId());
             }
-            if(!$this->id and !$this->getCargo()->getId() and !$this->getUsuario()->getId() and $this->getFazenda()->getId()){
+            if(!$this->id and !$this->getCargo()->getId() and !$this->getUsuario()->getId() and $this->getFazenda()->getId() and !$this->getPessoa()->getId()){
                 return $dao->retreaveByIdFazenda($this->getFazenda()->getId(), $page);
+            }
+            if(!$this->id and !$this->getCargo()->getId() and !$this->getUsuario()->getId() and !$this->getFazenda()->getId() and $this->getPessoa()->getId()){
+                return $dao->retreaveByIdPessoa($this->getFazenda()->getId());
             }
             else{
                 return $dao->retreaveAll($page);
@@ -96,20 +103,12 @@ class Funcionario extends Pessoa
             throw new Exception($e->getMessage());
         }
     }
-    public function depoisDeSalvar($idFuncionario){
-        $this->setId($idFuncionario);
-        $this->cadastrarCargo();
+    public function antesDeSalvar(){
         $this->cadastrarUsuario();
-        $this->cadastrarFazenda();
     }
-    public function cadastrarCargo(){
-        $this->getCargo()->cadastrar();
-    }
+
     public function cadastrarUsuario(){
         $this->getUsuario()->cadastrar();
-    }
-    public function cadastrarFazenda(){
-        $this->getFazenda()->cadastrar();
     }
 
     /**
@@ -190,6 +189,22 @@ class Funcionario extends Pessoa
     public function setFazenda(Fazenda $fazenda)
     {
         $this->fazenda = $fazenda;
+    }
+
+    /**
+     * @return Pessoa
+     */
+    public function getPessoa(): Pessoa
+    {
+        return $this->pessoa;
+    }
+
+    /**
+     * @param Pessoa $pessoa
+     */
+    public function setPessoa(Pessoa $pessoa)
+    {
+        $this->pessoa = $pessoa;
     }
 
 

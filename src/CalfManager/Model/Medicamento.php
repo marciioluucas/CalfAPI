@@ -51,10 +51,11 @@ class Medicamento extends Modelo
         try{
             if ($this->id) {
                 return (new MedicamentoDAO())->retreaveById($this->id);
-            } elseif ($this->nome) {
+            }
+            if ($this->nome) {
                 return (new MedicamentoDAO())->retreaveByNome($this->nome, $page);
             }
-            return (new MedicamentoDAO()    )->retreaveAll($page);
+            return (new MedicamentoDAO())->retreaveAll($page);
         } catch (Exception $exception) {
             throw new Exception($exception->getMessage());
         }

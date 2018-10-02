@@ -8,7 +8,7 @@
 
 namespace CalfManager\Utils\Validate;
 
-
+use Valitron\Validator;
 class FuncionarioValidate extends Validate
 {
     public function validatePost($params)
@@ -31,7 +31,7 @@ class FuncionarioValidate extends Validate
     public function validatePut($params)
     {
         $valida = new Validator($params);
-        $valida->rule('required', ['id', 'cargo_id', 'salario']);
+        $valida->rule('required', ['pessoa_id', 'usuario_id','cargo_id', 'pessoa_id','salario']);
         if($valida->validate()){
             return true;
         } else {

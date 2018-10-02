@@ -28,7 +28,7 @@ class DoencaController implements IController
             $doenca = new Doenca();
             $data = json_decode($request->getBody()->getContents());
             $valida = (new DoencaValidate())->validatePost((array) $data);
-            if ($valida) {
+            if ($valida === true) {
                 $doenca->setNome($data->nome);
                 if (isset($data->descricao)) {
                     $doenca->setDescricao($data->descricao);

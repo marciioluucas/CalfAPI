@@ -39,8 +39,6 @@ class Pesagem extends Modelo
      */
     public function __construct(Animal $animal = null)
     {
-        $this->usuarioCadastro = new Usuario();
-        $this->usuarioAlteracao = new Usuario();
         if ($animal != null) $this->animal = $animal;
     }
 
@@ -51,7 +49,7 @@ class Pesagem extends Modelo
     public function cadastrar(): ?int
     {
         $this->dataCriacao = date(Config::PADRAO_DATA_HORA);
-        $this->dataAlteracao = date(Config::PADRAO_DATA_HORA);
+        $this->usuarioCadastro = new Usuario();
         $this->usuarioCadastro->setId(1);
         try {
             return (new PesagemDAO())->create($this);
@@ -67,6 +65,8 @@ class Pesagem extends Modelo
     public function alterar(): bool
     {
         $this->dataAlteracao = date(Config::PADRAO_DATA_HORA);
+
+        $this->usuarioAlteracao = new Usuario();
         $this->usuarioAlteracao->setId(1);
         try {
             return (new PesagemDAO())->update($this);

@@ -23,26 +23,22 @@ class Pessoa extends Modelo
     private $numero_telefone;
     private $data_nascimento;
     private $endereco;
-    private $funcionario;
+
 
     public function __construct()
     {
-        $this->funcionario = new Funcionario();
         $this->endereco = new Endereco();
-        $this->usuarioCadastro = new Usuario();
-        $this->usuarioAlteracao = new Usuario();
-
     }
 
     public function cadastrar(): ?int
     {
         $this->dataCriacao = date(Config::PADRAO_DATA_HORA);
-        $this->dataAlteracao = date(Config::PADRAO_DATA_HORA);
-        $this->usuarioCadastro = $this->setId(1);
+
+        $this->usuarioCadastro = new Usuario();
+        $this->usuarioCadastro->setId(1);
         try{
-           $idFuncionario = (new PessoaDAO())->create($this);
-           $this->registarFuncionario($idFuncionario);
-           return $idFuncionario;
+            $idPessoa = (new PessoaDAO())->create($this);
+            return $idPessoa;
         }catch (Exception $e){
             throw new Exception($e->getMessage());
         }
@@ -51,6 +47,8 @@ class Pessoa extends Modelo
     public function alterar(): bool
     {
         $this->dataAlteracao = date(Config::PADRAO_DATA_HORA);
+
+        $this->usuarioAlteracao = new Usuario();
         $this->usuarioAlteracao = $this->setId(1);
         try{
             return (new PessoaDAO())->update($this);
@@ -69,11 +67,11 @@ class Pessoa extends Modelo
             return $dao->retreaveByNome($this->nome, $page);
         }
         if (!$this->id and !$this->nome and $this->getEndereco()->getId()) {
-            return $dao->reatreaveByEnderecoId($this->getEndereco()->getId(), $page);
+            return $dao->reatreaveByIdEndereco($this->getEndereco()->getId(), $page);
         }
-        else {
-            return $dao->retreaveAll($page);
-        }
+
+        return $dao->retreaveAll($page);
+
     }
 
     public function deletar(): bool
@@ -84,8 +82,8 @@ class Pessoa extends Modelo
             throw new Exception($e->getMessage());
         }
     }
-    public function registarFuncionario($idFuncionario){
-
+    public function antesDeSalvar(){
+        $this->getEndereco()->cadastrar();
     }
 
     /**
@@ -215,24 +213,4 @@ class Pessoa extends Modelo
     {
         $this->endereco = $endereco;
     }
-
-    /**
-     * @return mixed
-     */
-    public function getFuncionario(): Funcionario
-    {
-        return $this->funcionario;
-    }
-
-    /**
-     * @param mixed $funcionario
-     */
-    public function setFuncionario(Funcionario $funcionario)
-    {
-        $this->funcionario = $funcionario;
-    }
-
-
-
-
 }

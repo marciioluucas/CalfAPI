@@ -29,9 +29,9 @@ class PessoaDAO implements IDAO
         $entity->sexo = $obj->getSexo();
         $entity->numero_telefone = $obj->getNumeroTelefone();
         $entity->data_nascimento = $obj->getDataNascimento();
-        $entity->data_alteracao = $obj->getDataAlteracao();
+
         $entity->data_cadastro = $obj->getDataCriacao();
-        $entity->usuario_cadastro = $obj->getUsuarioCadastro();
+        $entity->usuario_cadastro = $obj->getUsuarioCadastro()->getId();
 
         try{
             if($entity->save()){
@@ -50,8 +50,10 @@ class PessoaDAO implements IDAO
     public function update($obj): bool
     {
         $entity = PessoaEntity::find($obj->getId());
-        $entity->usuario_alteracao = $obj->getUsuarioAlteracao()->getId();
+
         $entity->data_alteracao = $obj->getDataAlteracao();
+        $entity->usuario_alteracao = $obj->getUsuarioAlteracao()->getId();
+
         if(!is_null($obj->getNome())){
             $entity->nome = $obj->getNome();
         }
@@ -60,9 +62,11 @@ class PessoaDAO implements IDAO
         }
         if(!is_null($obj->getCpf())){
             $entity->cpf = $obj->getCpf();
-        }if(!is_null($obj->getSexo())){
+        }
+        if(!is_null($obj->getSexo())){
             $entity->sexo = $obj->getSexo();
-        }if(!is_null($entity->getNumeroTelefone())){
+        }
+        if(!is_null($obj->getNumeroTelefone())){
             $entity->numero_telefone = $obj->getNumeroTelefone();
         }
         if(!is_null($obj->getDataNascimento())){
@@ -86,9 +90,7 @@ class PessoaDAO implements IDAO
     public function retreaveAll(int $page): array
     {
         $entity = PessoaEntity::ativo();
-        $pessoas = $entity->with('endereco')
-            ->with('funcionario')
-            ->paginate(
+        $pessoas = $entity->paginate(
                 Config::QUANTIDADE_ITENS_POR_PAGINA,
                 ['*'],
                 'pagina',
@@ -106,10 +108,7 @@ class PessoaDAO implements IDAO
     {
         $entity = PessoaEntity::ativo();
         try{
-            $pessoa = $entity
-                ->with('endereco')
-                ->with('funcionario')
-                ->where('id', $id)
+            $pessoa = $entity->where('id', $id)
                 ->first()
                 ->toArray();
 
@@ -127,9 +126,7 @@ class PessoaDAO implements IDAO
      */
     public function retreaveByNome($nome, $page){
         $entity = PessoaEntity::ativo();
-        $pessoas = $entity->with('endereco')
-            ->with('funcionario')
-            ->where('nome', 'like', '%'. $nome . '%')
+        $pessoas = $entity->where('nome', 'like', '%'. $nome . '%')
             ->paginate(
                 Config::QUANTIDADE_ITENS_POR_PAGINA,
                 ['*'],
@@ -150,12 +147,10 @@ class PessoaDAO implements IDAO
      * @return array
      * @throws Exception
      */
-    public function reatreaveByEnderecoId($idEndereco, $page){
+    public function reatreaveByIdEndereco($idEndereco, $page){
         try {
             $entity = PessoaEntity::ativo();
-            $pessoa = $entity->with('endereco')
-                ->with('funcionario')
-                ->where('endereco_id', $idEndereco)
+            $pessoa = $entity->where('endereco_id', $idEndereco)
                 ->paginate(
                     Config::QUANTIDADE_ITENS_POR_PAGINA,
                     ['*'],

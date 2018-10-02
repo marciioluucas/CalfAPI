@@ -31,11 +31,6 @@ class Lote extends Modelo
      */
     private $descricao;
 
-    public function __construct()
-    {
-        $this->usuarioCadastro = new Usuario();
-        $this->usuarioAlteracao = new Usuario();
-    }
 
     /**
      * @return int|null
@@ -44,7 +39,7 @@ class Lote extends Modelo
     public function cadastrar(): ?int
     {
         $this->dataCriacao = date(Config::PADRAO_DATA_HORA);
-        $this->dataAlteracao = date(Config::PADRAO_DATA_HORA);
+        $this->usuarioCadastro = new Usuario();
         $this->usuarioCadastro->setId(1);
         try {
             return (new LoteDAO())->create($this);
@@ -59,8 +54,11 @@ class Lote extends Modelo
      */
     public function alterar(): bool
     {
+        $this->dataAlteracao = date(Config::PADRAO_DATA_HORA);
+        $this->usuarioAlteracao = new Usuario();
+        $this->usuarioAlteracao->setId(1);
         try {
-            $this->dataAlteracao = date(Config::PADRAO_DATA_HORA);
+
             return (new LoteDAO())->update($this);
         } catch (Exception $e) {
             throw new Exception($e->getMessage());

@@ -24,9 +24,9 @@ class DoseAplicadaController implements IController
          $data = json_decode($request->getBody()->getContents());
          $valida = (new DoseAplicadaValidate())->validatePost((array) $data);
          try{
-             if($valida) {
+             if($valida === true) {
                  $dose->setDose($data->dose);
-                 $dose->getMedicamento()->setId($data->medicamento->id);
+                 $dose->getMedicamento()->setId($data->medicamento_id);
                  $dose->setDataAplicacao($data->data_aplicacao);
                  if ($dose->cadastrar()) {
                      return View::renderMessage(
@@ -45,7 +45,7 @@ class DoseAplicadaController implements IController
                          "Erro ao cadastrar");
                  }
              } else {
-                 return View::renderMessage($response, "warning", $valida, 400);
+                 return View::renderMessage($response, "warning", $valida, 400, "Erro ao validar");
              }
          }catch (Exception $e){
              return View::renderException($response, $e);
@@ -75,20 +75,20 @@ class DoseAplicadaController implements IController
     {
         $dose = new DoseAplicada();
         $data = json_decode($request->getBody()->getContents());
-        $valida = (new DoseAplicadaValidate())->validatePost((array) $data);
+        $valida = (new DoseAplicadaValidate())->validatePut((array) $data);
         try{
-            if($valida) {
+            if($valida === true) {
                 $dose->setId($request->getAttribute('id'));
                 if(!is_null($data->dose)) {
                     $dose->setDose($data->dose);
                 }
-                if(!is_null($data->medicamento->id)) {
-                    $dose->getMedicamento()->setId($data->medicamento->id);
+                if(!is_null($data->medicamento_id)) {
+                    $dose->getMedicamento()->setId($data->medicamento_id);
                 }
                 if(!is_null($data->data_aplicacao)) {
                     $dose->setDataAplicacao($data->data_aplicacao);
                 }
-                if ($dose->cadastrar()) {
+                if ($dose->alterar()) {
                     return View::renderMessage(
                         $response,
                         "success",
@@ -110,7 +110,8 @@ class DoseAplicadaController implements IController
                     $response,
                     "warning",
                     $valida,
-                    400
+                    400,
+                    "Erro ao validar"
                 );
             }
         }catch (Exception $e){

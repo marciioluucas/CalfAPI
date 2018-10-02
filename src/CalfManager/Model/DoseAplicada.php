@@ -28,16 +28,15 @@ class DoseAplicada extends Modelo
     public function __construct()
     {
         $this->medicamento = new Medicamento();
-        $this->usuarioCadastro = new Usuario();
-        $this->usuarioAlteracao = new Usuario();
     }
 
 
     public function cadastrar(): ?int
     {
         $this->dataCriacao = date(Config::PADRAO_DATA_HORA);
-        $this->dataAlteracao = date(Config::PADRAO_DATA_HORA);
-        $this->usuarioCadastro = $this->setId(1);
+
+        $this->usuarioCadastro = new Usuario();
+        $this->usuarioCadastro->setId(1);
         try{
             return (new DoseAplicadaDAO())->create($this);
         }catch (Exception $e){
@@ -48,7 +47,9 @@ class DoseAplicada extends Modelo
     public function alterar(): bool
     {
          $this->dataAlteracao = date(Config::PADRAO_DATA_HORA);
-         $this->usuarioAlteracao = $this->setId(1);
+
+        $this->usuarioAlteracao = new Usuario();
+         $this->usuarioAlteracao->setId(1);
          try{
              return (new DoseAplicadaDAO())->update($this);
          }catch (Exception $e){
@@ -60,15 +61,14 @@ class DoseAplicada extends Modelo
     {
         $dao = new DoseAplicadaDAO();
         try{
-            if($this->id and !$this->getMedicamento()){
+            if($this->id and !$this->getMedicamento()->getId()){
                 return $dao->retreaveById($this->id);
             }
-            if(!$this->id and $this->getMedicamento()){
+            if(!$this->id and $this->getMedicamento()->getId()){
                 return $dao->retreaveByIdMedicamento($this->getMedicamento()->getId(), $page);
             }
-            else {
-                return $dao->retreaveAll($page);
-            }
+            return $dao->retreaveAll($page);
+
         }catch (Exception $e){
             throw new Exception($e->getMessage());
         }
@@ -82,7 +82,12 @@ class DoseAplicada extends Modelo
              throw new Exception($e->getMessage());
          }
     }
-
+    public function antesDeSalvar(){
+        $this->cadastrarMedicamento();
+    }
+    public function cadastrarMedicamento(){
+        $this->getMedicamento()->cadastrar();
+    }
     /**
      * @return mixed
      */

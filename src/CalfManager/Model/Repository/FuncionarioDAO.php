@@ -10,10 +10,10 @@ namespace CalfManager\Model\Repository;
 
 
 use CalfManager\Model\Funcionario;
-use CalfManager\Model\Modelo;
 use CalfManager\Model\Repository\Entity\FuncionarioEntity;
-use CalfManager\Utils\Validate\FuncionarioValidate;
-use Symfony\Component\Config\Definition\Exception\Exception;
+use CalfManager\Utils\Config;
+
+use Exception;
 
 class FuncionarioDAO implements IDAO
 {
@@ -25,12 +25,11 @@ class FuncionarioDAO implements IDAO
     {
         $entity = new FuncionarioEntity();
         $entity->cargo_id = $obj->getCargo()->getId();
-        $entity->pessoa_id = $obj->getPessoa()->getId();
         $entity->usuario_id = $obj->getUsuario()->getId();
         $entity->fazenda_id = $obj->getFazenda()->getId();
+        $entity->pessoa_id = $obj->getPessoa()->getId();
         $entity->salario = $obj->getSalario();
 
-        $entity->data_alteracao = $obj->getDataAlteracao();
         $entity->data_cadastro = $obj->getDataCriacao();
         $entity->usuario_cadastro = $obj->getUsuarioCadastro()->getId();
         try{
@@ -38,7 +37,7 @@ class FuncionarioDAO implements IDAO
                 return $entity->id;
             }
         }catch (Exception $e) {
-            throw new Exception("Erro ao cadastrar de funcionário. Mensagem: ", $e->getMessage());
+            throw new Exception("Erro ao cadastrar funcionário. Mensagem: ", $e->getMessage());
         }
     }
 
@@ -51,8 +50,15 @@ class FuncionarioDAO implements IDAO
         $entity = FuncionarioEntity::find($obj->getId());
         $entity->usuario_alteracao = $obj->getUsuarioAlteracao()->getId();
         $entity->data_alteracao = $obj->getDataAlteracao();
-        if(!is_null($obj->getCargo())) {
-            $entity->cargo = $obj->getCargo()->getId();
+
+        if(!is_null($obj->getCargo()->getId())) {
+            $entity->cargo_id = $obj->getCargo()->getId();
+        }
+        if(!is_null($obj->getUsuario()->getId())){
+            $entity->usuario_id = $obj->getUsuario()->getId();
+        }
+        if(!is_null($obj->getFazenda()->getId())){
+            $entity->fazenda_id = $obj->getFazenda()->getId();
         }
         if(!is_null($obj->getSalario())) {
             $entity->salario = $obj->getSalario();
@@ -141,7 +147,7 @@ class FuncionarioDAO implements IDAO
      * @param int $page
      * @return array
      */
-    public function retreaveByIdUsuario(int $idUsuario, int $page){
+    public function retreaveByIdUsuario(int $idUsuario){
         try{
             $entity = FuncionarioEntity::ativo();
             $funcionarios = $entity->with('cargo')
@@ -149,12 +155,8 @@ class FuncionarioDAO implements IDAO
                 ->with('usuario')
                 ->with('fazenda')
                 ->where('usuario_id', $idUsuario)
-                ->paginate(
-                    Config::QUANTIDADE_ITENS_POR_PAGINA,
-                    ['*'],
-                    'pagina',
-                    $page
-                );
+                ->first()
+                ->toArray();
             return ["funcionarios" => $funcionarios];
         }catch (Exception $e) {
             throw new Exception("Erro ao pesquisar o usuário deste funcionário pelo ID ".$idUsuario. ". Mensagem: " ,  $e->getMessage());
@@ -185,31 +187,24 @@ class FuncionarioDAO implements IDAO
             throw new Exception("Erro ao pesquisar a fazenda que este funcionário trabalha pelo ID ".$idFazenda. ". Mensagem: " ,  $e->getMessage());
         }
     }
-
-    /**
-     * @param int $idPessoa
-     * @param int $page
-     * @return array
-     */
-    public function retreaveByIdPessoa(int $idPessoa, int $page){
+    public function retreaveByIdPessoa (int $idPessoa){
         try{
             $entity = FuncionarioEntity::ativo();
-            $funcionarios = $entity->with('cargo')
+            $funcionario = $entity->with('cargo')
                 ->with('pessoa')
                 ->with('usuario')
                 ->with('fazenda')
                 ->where('pessoa_id', $idPessoa)
-                ->paginate(
-                    Config::QUANTIDADE_ITENS_POR_PAGINA,
-                    ['*'],
-                    'pagina',
-                    $page
-                );
-            return ["funcionarios" => $funcionarios];
-        }catch (Exception $e) {
-            throw new Exception("Erro ao pesquisar os dados deste funcionário pelo ID ".$idPessoa. ". Mensagem: " ,  $e->getMessage());
+                ->first()
+                ->toArray();
+
+            return["funcionarios" => $funcionario];
+
+        }catch (Exception $e){
+            throw new Exception("Erro ao pesquisar este funcionário pelo ID pessoa: ".$idPessoa.". Mensagem: ".$e->getMessage());
         }
     }
+
 
     /**
      * @param int $id

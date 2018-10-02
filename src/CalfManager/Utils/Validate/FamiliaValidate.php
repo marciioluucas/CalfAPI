@@ -8,8 +8,9 @@
 
 namespace CalfManager\Utils\Validate;
 
+use Valitron\Validator;
 
-class FamiliaValidate implements IValidate
+class FamiliaValidate extends Validate
 {
     public function validatePost($params)
     {

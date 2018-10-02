@@ -8,6 +8,7 @@
 
 namespace CalfManager\Utils\Validate;
 
+use Valitron\Validator;
 
 class PessoaValidate extends Validate
 {
@@ -31,7 +32,7 @@ class PessoaValidate extends Validate
     public function validatePut($params)
     {
         $valida = new Validator($params);
-        $valida->rule('required', ['id', 'nome', 'rg', 'cpf', 'sexo', 'numero_telefone', 'data_nascimento']);
+        $valida->rule('required', ['nome', 'rg', 'cpf', 'sexo', 'numero_telefone', 'data_nascimento']);
         if($valida->validate()){
             return true;
         } else {

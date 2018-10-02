@@ -38,11 +38,12 @@ class Doenca extends Modelo
     /**
      * Doenca constructor.
      */
+
     public function __construct()
     {
-        $this->usuarioCadastro = new Usuario();
-        $this->usuarioAlteracao = new Usuario();
+        if (!new Animal()) $this->animal = new Animal();
     }
+
 
     /**
      * @return int|null
@@ -50,8 +51,10 @@ class Doenca extends Modelo
     public function cadastrar(): ?int
     {
         $this->dataCriacao = date(Config::PADRAO_DATA_HORA);
-        $this->dataAlteracao = date(Config::PADRAO_DATA_HORA);
+
+        $this->usuarioCadastro = new Usuario();
         $this->usuarioCadastro->setId(1);
+
         $this->nome = ucfirst($this->nome);
         try {
             return (new DoencaDAO())->create($this);
@@ -68,6 +71,8 @@ class Doenca extends Modelo
     public function alterar(): bool
     {
         $this->dataAlteracao = date(Config::PADRAO_DATA_HORA);
+
+        $this->usuarioAlteracao = new Usuario();
         $this->usuarioAlteracao->setId(1);
         try {
             return (new DoencaDAO())->update($this);

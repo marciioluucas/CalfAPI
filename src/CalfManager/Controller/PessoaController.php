@@ -22,16 +22,16 @@ class PessoaController implements IController
     {
         try{
             $pessoa = new Pessoa();
-            $data = json_decode($response->getBody()->getContents());
+            $data = json_decode($request->getBody()->getContents());
             $valida = (new PessoaValidate())->validatePost((array)$data);
-            if($valida){
+            if($valida === true){
                 $pessoa->setNome($data->nome);
                 $pessoa->setRg($data->rg);
                 $pessoa->setCpf($data->cpf);
                 $pessoa->setSexo($data->sexo);
                 $pessoa->setNumeroTelefone($data->numero_telefone);
                 $pessoa->setDataNascimento($data->data_nascimento);
-                $pessoa->getEndereco()->setId($data->endereco->id);
+                $pessoa->getEndereco()->setId($data->endereco_id);
 
                 if($id = $pessoa->cadastrar()){
                     return View::renderMessage(
@@ -51,7 +51,7 @@ class PessoaController implements IController
                     );
                 }
             } else {
-                return View::renderMessage($response, 'warning', $valida, 400);
+                return View::renderMessage($response, 'warning', $valida, 400, "Erro ao validar");
             }
         }catch (Exception $e) {
             return View::renderException($response, $e);
@@ -66,8 +66,12 @@ class PessoaController implements IController
             $page = (int) $request->getQueryParam('pagina');
             if ($request->getAttribute('id')) {
                 $pessoa->setId($request->getAttribute('id'));
-            } elseif ($request->getQueryParam('nome')) {
+            }
+            if ($request->getQueryParam('nome')) {
                 $pessoa->setNome($request->getQueryParam('nome'));
+            }
+            if ($request->getQueryParam('endereco_id')) {
+                $pessoa->getEndereco()->setId($request->getQueryParam('endereco_id'));
             }
             return View::render($response, $pessoa->pesquisar($page));
         }catch (Exception $e){
@@ -80,9 +84,9 @@ class PessoaController implements IController
     {
         try{
             $pessoa = new Pessoa();
-            $data = json_decode($response->getBody()->getContents());
+            $data = json_decode($request->getBody()->getContents());
             $valida = (new PessoaValidate())->validatePost((array)$data);
-            if($valida){
+            if($valida === true){
                 $pessoa->setId($request->getAttribute('id'));
                 if($data->nome) {
                     $pessoa->setNome($data->nome);
@@ -102,8 +106,8 @@ class PessoaController implements IController
                 if($data->data_nascimento) {
                     $pessoa->setDataNascimento($data->data_nascimento);
                 }
-                if($data->endereco->id) {
-                    $pessoa->getEndereco()->setId($data->endereco->id);
+                if($data->endereco_id) {
+                    $pessoa->getEndereco()->setId($data->endereco_id);
                 }
 
                 if($id = $pessoa->alterar()){

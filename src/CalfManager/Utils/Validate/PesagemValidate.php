@@ -6,12 +6,11 @@
  * Time: 13:35
  */
 
-namespace CalfManager\Utils\validate;
-
+namespace CalfManager\Utils\Validate;
 
 use Valitron\Validator;
 
-class PesagemValidate implements IValidate
+class PesagemValidate extends Validate
 {
 
     public function validatePost($params)

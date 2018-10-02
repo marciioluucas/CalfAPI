@@ -24,7 +24,7 @@ class FuncionarioController implements IController
             $funcionario = new Funcionario();
             $data = json_decode($request->getBody()->getContents());
             $valida = (new FuncionarioValidate())->validatePost((array)$data);
-            if($valida){
+            if($valida === true){
                 $funcionario->setSalario($data->salario);
                 $funcionario->getCargo()->setId($data->funcionario->id);
                 $funcionario->getUsuario()->setId($data->usuario->id);
@@ -53,7 +53,8 @@ class FuncionarioController implements IController
                     $response,
                     'warning',
                     $valida,
-                    400
+                    400,
+                    "Erro ao validar"
                 );
             }
         }catch (Exception $e){
@@ -69,14 +70,17 @@ class FuncionarioController implements IController
             if($request->getAttribute('id')){
                 $funcionario->setId($request->getAttribute('id'));
             }
-            if($request->getQueryParam('cargo')){
-                $funcionario->getCargo()->setId($request->getQueryParam('cargo'));
+            if($request->getQueryParam('cargo_id')){
+                $funcionario->getCargo()->setId($request->getQueryParam('cargo_id'));
             }
-            if($request->getQueryParam('usuario')){
-                $funcionario->getUsuario()->setId($request->getQueryParam('usuario'));
+            if($request->getQueryParam('usuario_id')){
+                $funcionario->getUsuario()->setId($request->getQueryParam('usuario_id'));
             }
-            if($request->getQueryParam('fazenda')){
-                $funcionario->getFazenda()->setId($request->getQueryParam('fazenda'));
+            if($request->getQueryParam('fazenda_id')){
+                $funcionario->getFazenda()->setId($request->getQueryParam('fazenda_id'));
+            }
+            if($request->getQueryParam('pessoa_id')){
+                $funcionario->getPessoa()->setId($request->getQueryParam('pessoa_id'));
             }
             $search = $funcionario->pesquisar($page);
             return View::render($response, $search);
@@ -90,8 +94,8 @@ class FuncionarioController implements IController
         try{
             $funcionario = new Funcionario();
             $data = json_decode($request->getBody()->getContents());
-            $valida = (new FuncionarioValidate())->validatePost((array)$data);
-            if($valida){
+            $valida = (new FuncionarioValidate())->validatePut((array)$data);
+            if($valida === true){
                 $funcionario->setId($request->getAttribute('id'));
                 if(!is_null($data->salario)){
                     $funcionario->setSalario($data->salario);
@@ -104,6 +108,9 @@ class FuncionarioController implements IController
                 }
                 if(!is_null($data->fazenda_id)){
                     $funcionario->getFazenda()->setId($data->fazenda_id);
+                }
+                if(!is_null($data->pessoa_id)){
+                    $funcionario->getPessoa()->setId($data->pessoa_id);
                 }
                 if($funcionario->alterar()){
                     return View::renderMessage(
@@ -128,7 +135,8 @@ class FuncionarioController implements IController
                     $response,
                     'warning',
                     $valida,
-                    400
+                    400,
+                    "Erro ao validar"
                 );
             }
         }catch (Exception $e){
