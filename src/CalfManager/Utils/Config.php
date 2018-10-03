@@ -19,7 +19,7 @@ class Config
     const DBHOST = 'localhost';
     const DBNAME = 'controleanimal';
     const DBUSER = 'root';
-    const DBPASS = '';
+    const DBPASS = 'root';
     const DBPORT = '3306';
 
     //Dev args

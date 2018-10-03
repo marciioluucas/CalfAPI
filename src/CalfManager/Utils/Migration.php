@@ -27,7 +27,9 @@ class Migration extends AbstractMigration
             'password' => Database::DBPASS,
             'charset' => 'utf8',
             'collation' => 'utf8_unicode_ci',
-            'prefix' => ''
+            'prefix' => '',
+            'unix_socket'   => '/Applications/MAMP/tmp/mysql/mysql.sock'
+
         ));
         $this->capsule->bootEloquent();
         $this->capsule->setAsGlobal();

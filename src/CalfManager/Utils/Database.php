@@ -26,7 +26,9 @@ class Database
                 'port' => Config::DBPORT,
                 'charset' => 'utf8',
                 'collation' => 'utf8_unicode_ci',
-                'prefix' => ''
+                'prefix' => '',
+                'strict' => 'false',
+                'unix_socket'   => '/Applications/MAMP/tmp/mysql/mysql.sock'
             ));
         } catch (PDOException $e) {
             throw new PDOException(
