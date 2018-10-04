@@ -219,6 +219,10 @@ class Animal extends Modelo
         }
     }
 
+    public function curarAnimal($idAnimal, $idDoenca) {
+
+    }
+
     /**
      * @param $idAnimal
      * @throws Exception

@@ -9,7 +9,7 @@
 namespace CalfManager\Model\Repository;
 
 
-use CalfManager\Model\DoseAplicada;
+use CalfManager\Model\Dose;
 use CalfManager\Model\Repository\Entity\DoseAplicadaEntity;
 use CalfManager\Model\Repository\Entity\LaboratorioEntity;
 use CalfManager\Utils\Config;
@@ -17,7 +17,7 @@ use Exception;
 
 class DoseAplicadaDAO implements IDAO
 {
-    /* @param DoseAplicada $obj
+    /* @param Dose $obj
      * @return int|null
      * @throws Exception
      */
@@ -41,7 +41,7 @@ class DoseAplicadaDAO implements IDAO
 
     }
 
-    /* @param DoseAplicada $obj
+    /* @param Dose $obj
      * @return bool
      * @throws Exception
      */

@@ -30,9 +30,9 @@ class Doenca extends Modelo
      * @var string
      */
     private $descricao = "Sem descrição";
-
     private $situacao = 'CURADO';
-
+    private $dataAdoecimento;
+    private $dataCura;
     private $animal;
 
     /**
@@ -187,5 +187,37 @@ class Doenca extends Modelo
     public function setAnimal(Animal $animal): void
     {
         $this->animal = $animal;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getDataAdoecimento()
+    {
+        return $this->dataAdoecimento;
+    }
+
+    /**
+     * @param mixed $dataAdoecimento
+     */
+    public function setDataAdoecimento($dataAdoecimento): void
+    {
+        $this->dataAdoecimento = $dataAdoecimento;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getDataCura()
+    {
+        return $this->dataCura;
+    }
+
+    /**
+     * @param mixed $dataCura
+     */
+    public function setDataCura($dataCura): void
+    {
+        $this->dataCura = $dataCura;
     }
 }

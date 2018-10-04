@@ -15,7 +15,9 @@ class AnimalHasDoencaEntity extends CalfEntity
     protected $fillable = [
         'animais_id',
         'doencas_id',
-        'situacao'
+        'situacao',
+        'data_cura',
+        'data_adoecimento'
     ];
 
 

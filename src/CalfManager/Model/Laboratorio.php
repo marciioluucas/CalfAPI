@@ -12,22 +12,23 @@ use ArrayObject;
 use CalfManager\Model\Repository\LaboratorioDAO;
 use CalfManager\Utils\Config;
 use Exception;
-
+//TODO tirar o extends do Modelo
 class Laboratorio extends Modelo
 {
-    private $id;
-    private $dataEntrada;
-    private $dataSaida;
 
     private $animal;
-    private $doseAplicada;
+    private $dose;
     private $hemograma;
 
 
+    /**
+     * Laboratorio constructor.
+     * @throws Exception
+     */
     public function __construct()
     {
         $this->animal = new Animal();
-        $this->doseAplicada = new DoseAplicada();
+        $this->dose = new Dose();
         $this->hemograma = new Hemograma();
     }
 
@@ -95,7 +96,7 @@ class Laboratorio extends Modelo
         $this->setId($idLaboratorio);
     }
     public function aplicarMedicamento(){
-
+        //TODO instanciar a dose, colocar os dados que precisam e salvar a dose.
     }
     public function realizarHemograma(){
 
@@ -166,15 +167,15 @@ class Laboratorio extends Modelo
      */
     public function getDoseAplicada()
     {
-        return $this->doseAplicada;
+        return $this->dose;
     }
 
     /**
-     * @param mixed $doseAplicada
+     * @param mixed $dose
      */
-    public function setDoseAplicada($doseAplicada)
+    public function setDoseAplicada($dose)
     {
-        $this->doseAplicada = $doseAplicada;
+        $this->dose = $dose;
     }
 
     /**

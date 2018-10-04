@@ -14,16 +14,14 @@ use CalfManager\Model\Repository\MedicamentoDAO;
 use CalfManager\Utils\Config;
 use Exception;
 
-class DoseAplicada extends Modelo
+class Dose extends Modelo
 {
-    private $id;
-    private $dose;
-    private $dataAplicacao;
-
+    private $quantidadeMg;
+    private $data;
     private $medicamento;
 
     /**
-     * DoseAplicada constructor.
+     * Dose constructor.
      */
     public function __construct()
     {
@@ -88,37 +86,6 @@ class DoseAplicada extends Modelo
     public function cadastrarMedicamento(){
         $this->getMedicamento()->cadastrar();
     }
-    /**
-     * @return mixed
-     */
-    public function getId()
-    {
-        return $this->id;
-    }
-
-    /**
-     * @param mixed $id
-     */
-    public function setId($id)
-    {
-        $this->id = $id;
-    }
-
-    /**
-     * @return mixed
-     */
-    public function getDose()
-    {
-        return $this->dose;
-    }
-
-    /**
-     * @param mixed $dose
-     */
-    public function setDose($dose)
-    {
-        $this->dose = $dose;
-    }
 
     /**
      * @return Medicamento
@@ -139,17 +106,33 @@ class DoseAplicada extends Modelo
     /**
      * @return mixed
      */
-    public function getDataAplicacao()
+    public function getData()
     {
-        return $this->dataAplicacao;
+        return $this->data;
     }
 
     /**
-     * @param mixed $dataAplicacao
+     * @param mixed $data
      */
-    public function setDataAplicacao($dataAplicacao)
+    public function setData($data)
     {
-        $this->dataAplicacao = $dataAplicacao;
+        $this->data = $data;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getQuantidadeMg()
+    {
+        return $this->quantidadeMg;
+    }
+
+    /**
+     * @param mixed $quantidadeMg
+     */
+    public function setQuantidadeMg($quantidadeMg): void
+    {
+        $this->quantidadeMg = $quantidadeMg;
     }
 
 

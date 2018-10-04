@@ -16,7 +16,6 @@ use Exception;
 
 class Hemograma extends Exame
 {
-    private $id;
     private $ppt;
     private $hematocrito;
 

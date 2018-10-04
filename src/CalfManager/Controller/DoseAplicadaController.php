@@ -9,7 +9,7 @@
 namespace CalfManager\Controller;
 
 
-use CalfManager\Model\DoseAplicada;
+use CalfManager\Model\Dose;
 use CalfManager\Utils\Validate\DoseAplicadaValidate;
 use CalfManager\View\View;
 use Psr\Http\Message\RequestInterface as Request;
@@ -20,7 +20,7 @@ class DoseAplicadaController implements IController
 {
     public function post(Request $request, Response $response): Response
     {
-         $dose = new DoseAplicada();
+         $dose = new Dose();
          $data = json_decode($request->getBody()->getContents());
          $valida = (new DoseAplicadaValidate())->validatePost((array) $data);
          try{
@@ -54,7 +54,7 @@ class DoseAplicadaController implements IController
 
     public function get(Request $request, Response $response, array $args): Response
     {
-        $dose = new DoseAplicada();
+        $dose = new Dose();
         $page = (int) $request->getQueryParam('pagina');
         try{
             if($request->getAttribute('id')){
@@ -73,7 +73,7 @@ class DoseAplicadaController implements IController
 
     public function put(Request $request, Response $response): Response
     {
-        $dose = new DoseAplicada();
+        $dose = new Dose();
         $data = json_decode($request->getBody()->getContents());
         $valida = (new DoseAplicadaValidate())->validatePut((array) $data);
         try{
@@ -121,7 +121,7 @@ class DoseAplicadaController implements IController
 
     public function delete(Request $request, Response $response): Response
     {
-         $dose = new DoseAplicada();
+         $dose = new Dose();
          try {
              if ($request->getAttribute('id')) {
                  $dose->setId($request->getAttribute('id'));

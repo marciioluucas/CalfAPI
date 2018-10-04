@@ -150,7 +150,7 @@ class DoencaDAO implements IDAO
      * @return bool
      * @throws Exception
      */
-    public function adoecer($idAnimal, $situacao, $idDoenca)
+    public function adoecer($idAnimal, $situacao, $dataAdoecimento, $idDoenca)
     {
         if (count((new AnimalDAO())->retreaveById($idAnimal)) == 0)
             throw new Exception("Não foi possível adoecer este animal pois ele nao existe");
@@ -159,7 +159,12 @@ class DoencaDAO implements IDAO
         $entity = new AnimalHasDoencaEntity();
         $entity->animais_id = $idAnimal;
         $entity->doencas_id = $idDoenca;
+        $entity->data_adoecimento = $dataAdoecimento;
         $entity->situacao = $situacao;
         return $entity->save();
+    }
+
+    public function curar($idAnimal, $dataCura, $idDoenca, $animalHasDoencaId) {
+        //todo implementar aqui quase igual o adoecer, so mudando data de adoecimento para data cura
     }
 }
