@@ -41,7 +41,7 @@ class Doenca extends Modelo
 
     public function __construct()
     {
-        if (!new Animal()) $this->animal = new Animal();
+        $this->animal = new Animal();
     }
 
 

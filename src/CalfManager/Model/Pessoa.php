@@ -15,7 +15,6 @@ use Exception;
 
 class Pessoa extends Modelo
 {
-    private $id;
     private $nome;
     private $rg;
     private $cpf;
@@ -49,7 +48,7 @@ class Pessoa extends Modelo
         $this->dataAlteracao = date(Config::PADRAO_DATA_HORA);
 
         $this->usuarioAlteracao = new Usuario();
-        $this->usuarioAlteracao = $this->setId(1);
+        $this->usuarioAlteracao->setId(1);
         try{
             return (new PessoaDAO())->update($this);
         }catch (Exception $e){
@@ -84,22 +83,6 @@ class Pessoa extends Modelo
     }
     public function antesDeSalvar(){
         $this->getEndereco()->cadastrar();
-    }
-
-    /**
-     * @return mixed
-     */
-    public function getId()
-    {
-        return $this->id;
-    }
-
-    /**
-     * @param mixed $id
-     */
-    public function setId($id)
-    {
-        $this->id = $id;
     }
 
     /**

@@ -12,11 +12,6 @@ use CalfManager\Utils\FaseDaVida;
 class Animal extends Modelo
 {
     /**
-     * @var int
-     */
-    private $id;
-
-    /**
      * @var string
      */
     private $nome;
@@ -214,6 +209,7 @@ class Animal extends Modelo
             (new DoencaDAO())->adoecer(
                 $this->id == null ? $idAnimal : $this->id,
                 $doenca->getSituacao(),
+                $doenca->getDataAdoecimento(),
                 $doenca->getId()
             );
         }
@@ -252,22 +248,6 @@ class Animal extends Modelo
             $familia = new Familia($this->getPai(), $this->getMae(), $this);
             $familia->cadastrar();
         }
-    }
-
-    /**
-     * @return int|null
-     */
-    public function getId(): ?int
-    {
-        return $this->id;
-    }
-
-    /**
-     * @param int $id
-     */
-    public function setId(?int $id): void
-    {
-        $this->id = $id;
     }
 
     /**

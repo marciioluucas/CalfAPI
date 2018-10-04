@@ -11,7 +11,6 @@ namespace CalfManager\Model;
 
 abstract class Exame extends Modelo
 {
-    protected $id;
     protected $data;
     protected $animal;
     protected $funcionario;

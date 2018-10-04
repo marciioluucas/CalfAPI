@@ -71,22 +71,6 @@ class Hemograma extends Exame
     /**
      * @return mixed
      */
-    public function getId()
-    {
-        return $this->id;
-    }
-
-    /**
-     * @param mixed $id
-     */
-    public function setId($id)
-    {
-        $this->id = $id;
-    }
-
-    /**
-     * @return mixed
-     */
     public function getPpt()
     {
         return $this->ppt;

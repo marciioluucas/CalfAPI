@@ -14,10 +14,7 @@ use CalfManager\Utils\Config;
 
 class Pesagem extends Modelo
 {
-    /**
-     * @var int
-     */
-    private $id;
+
     /**
      * @var float
      */
@@ -118,22 +115,6 @@ class Pesagem extends Modelo
         } catch (Exception $e) {
             throw new Exception($e->getMessage());
         }
-    }
-
-    /**
-     * @return int
-     */
-    public function getId(): int
-    {
-        return $this->id;
-    }
-
-    /**
-     * @param int $id
-     */
-    public function setId(int $id): void
-    {
-        $this->id = $id;
     }
 
     /**

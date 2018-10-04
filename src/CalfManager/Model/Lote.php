@@ -18,10 +18,7 @@ use CalfManager\Utils\Config;
  */
 class Lote extends Modelo
 {
-    /**
-     * @var int
-     */
-    private $id;
+
     /**
      * @var int|string
      */
@@ -95,22 +92,6 @@ class Lote extends Modelo
         } catch (Exception $e) {
             throw new Exception($e->getMessage());
         }
-    }
-
-    /**
-     * @return int
-     */
-    public function getId(): ?int
-    {
-        return $this->id;
-    }
-
-    /**
-     * @param int $id
-     */
-    public function setId(int $id): void
-    {
-        $this->id = $id;
     }
 
     /**

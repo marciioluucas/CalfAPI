@@ -12,8 +12,7 @@ use ArrayObject;
 use CalfManager\Model\Repository\LaboratorioDAO;
 use CalfManager\Utils\Config;
 use Exception;
-//TODO tirar o extends do Modelo
-class Laboratorio extends Modelo
+class Laboratorio
 {
 
     private $animal;
@@ -32,150 +31,42 @@ class Laboratorio extends Modelo
         $this->hemograma = new Hemograma();
     }
 
-    public function cadastrar(): ?int
-    {
-        $this->dataCriacao = date(Config::PADRAO_DATA_HORA);
-
-        $this->usuarioCadastro = new Usuario();
-        $this->usuarioCadastro->setId(1);
-
-        try{
-            $idLaboratorio = (new LaboratorioDao())->create($this);
-
-            return $idLaboratorio;
-        }catch (Exception $e){
-            throw new Exception($e->getMessage());
-        }
-    }
-
-    public function alterar(): bool
-    {
-        $this->dataAlteracao = date(Config::PADRAO_DATA_HORA);
-
-        $this->usuarioAlteracao = new Usuario();
-        $this->usuarioAlteracao->setId(1);
-        try{
-            return (new LaboratorioDAO())->update($this);
-        }catch (Exception $e){
-            throw new Exception($e->getMessage());
-        }
-    }
-
-    public function pesquisar(int $page): array
-    {
-        $dao = new LaboratorioDAO();
-        try {
-            if ($this->id and !$this->getAnimal()->getId() and !$this->getDoseAplicada()->getId() and !$this->getHemograma()->getId()){
-                return $dao->retreaveById($this->id);
-            }
-            if (!$this->id and $this->getAnimal()->getId() and !$this->getDoseAplicada()->getId() and !$this->getHemograma()->getId()){
-                return $dao->retreaveByIdAnimal($this->getAnimal()->getId(), $page);
-            }
-            if (!$this->id and !$this->getAnimal()->getId() and $this->getDoseAplicada()->getId() and !$this->getHemograma()->getId()){
-                return $dao->retreaveByIdDoseAplicada($this->getDoseAplicada()->getId(), $page);
-            }
-            if (!$this->id and !$this->getAnimal()->getId() and !$this->getDoseAplicada()->getId() and $this->getHemograma()->getId()){
-                return $dao->retreaveByIdHemograma($this->getHemograma()->getId(), $page);
-            }
-            return $dao->retreaveAll($page);
-
-        }catch (Exception $e){
-            throw new Exception($e->getMessage());
-        }
-    }
-
-    public function deletar(): bool
-    {
-        try{
-            return (new LaboratorioDAO())->delete($this->id);
-        }catch (Exception $e){
-            throw new Exception($e->getMessage());
-        }
-    }
-    public function depoisDeSalvar($idLaboratorio){
-        $this->setId($idLaboratorio);
-    }
-    public function aplicarMedicamento(){
-        //TODO instanciar a dose, colocar os dados que precisam e salvar a dose.
-    }
-    public function realizarHemograma(){
-
-    }
-    public function registrarExameRotina(){
-
-    }
-//    public function adoecerAnimal($idAnimal = null) {
-//        foreach ($this->doenca as $doenca) {
-//            (new DoencaDAO())->adoecer(
-//                $this->id == null ? $idAnimal : $this->id,
-//                $doenca->getSituacao(),
-//                $doenca->getId()
-//            );
+//    public function pesquisar(int $page): array
+//    {
+//        $dao = new LaboratorioDAO();
+//        try {
+//            if ($this->id and !$this->getAnimal()->getId() and !$this->getDoseAplicada()->getId() and !$this->getHemograma()->getId()) {
+//                return $dao->retreaveById($this->id);
+//            }
+//            if (!$this->id and $this->getAnimal()->getId() and !$this->getDoseAplicada()->getId() and !$this->getHemograma()->getId()) {
+//                return $dao->retreaveByIdAnimal($this->getAnimal()->getId(), $page);
+//            }
+//            if (!$this->id and !$this->getAnimal()->getId() and $this->getDoseAplicada()->getId() and !$this->getHemograma()->getId()) {
+//                return $dao->retreaveByIdDoseAplicada($this->getDoseAplicada()->getId(), $page);
+//            }
+//            if (!$this->id and !$this->getAnimal()->getId() and !$this->getDoseAplicada()->getId() and $this->getHemograma()->getId()) {
+//                return $dao->retreaveByIdHemograma($this->getHemograma()->getId(), $page);
+//            }
+//            return $dao->retreaveAll($page);
+//
+//        } catch (Exception $e) {
+//            throw new Exception($e->getMessage());
 //        }
 //    }
 
-    /**
-     * @return mixed
-     */
-    public function getId()
+    public function aplicarMedicamento()
     {
-        return $this->id;
+        //TODO instanciar a dose, colocar os dados que precisam e salvar a dose.
     }
 
-    /**
-     * @param mixed $id
-     */
-    public function setId($id)
+    public function realizarHemograma()
     {
-        $this->id = $id;
+
     }
 
-    /**
-     * @return mixed
-     */
-    public function getDataEntrada()
+    public function registrarExameRotina()
     {
-        return $this->dataEntrada;
-    }
 
-    /**
-     * @param mixed $dataEntrada
-     */
-    public function setDataEntrada($dataEntrada)
-    {
-        $this->dataEntrada = $dataEntrada;
-    }
-
-    /**
-     * @return mixed
-     */
-    public function getDataSaida()
-    {
-        return $this->dataSaida;
-    }
-
-    /**
-     * @param mixed $dataSaida
-     */
-    public function setDataSaida($dataSaida)
-    {
-        $this->dataSaida = $dataSaida;
-    }
-
-    /**
-     * @return mixed
-     */
-    public function getDoseAplicada()
-    {
-        return $this->dose;
-    }
-
-    /**
-     * @param mixed $dose
-     */
-    public function setDoseAplicada($dose)
-    {
-        $this->dose = $dose;
     }
 
     /**
@@ -193,6 +84,23 @@ class Laboratorio extends Modelo
     {
         $this->animal = $animal;
     }
+
+    /**
+     * @return Dose
+     */
+    public function getDose(): Dose
+    {
+        return $this->dose;
+    }
+
+    /**
+     * @param Dose $dose
+     */
+    public function setDose(Dose $dose)
+    {
+        $this->dose = $dose;
+    }
+
     /**
      * @return Hemograma
      */
@@ -208,5 +116,14 @@ class Laboratorio extends Modelo
     {
         $this->hemograma = $hemograma;
     }
+//    public function adoecerAnimal($idAnimal = null) {
+//        foreach ($this->doenca as $doenca) {
+//            (new DoencaDAO())->adoecer(
+//                $this->id == null ? $idAnimal : $this->id,
+//                $doenca->getSituacao(),
+//                $doenca->getId()
+//            );
+//        }
+//    }
 
 }

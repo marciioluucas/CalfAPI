@@ -14,7 +14,6 @@ use Exception;
 
 class Grupo extends Modelo
 {
-    private $id;
     private $nome;
     private $descricao;
 
@@ -87,22 +86,6 @@ class Grupo extends Modelo
 
     public function cadastrarPermissao(){
         $this->getPermissao()->cadastrar();
-    }
-
-    /**
-     * @return mixed
-     */
-    public function getId()
-    {
-        return $this->id;
-    }
-
-    /**
-     * @param mixed $id
-     */
-    public function setId($id)
-    {
-        $this->id = $id;
     }
 
     /**

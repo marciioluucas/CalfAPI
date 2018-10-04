@@ -15,7 +15,6 @@ use Exception;
 
 class Medicamento extends Modelo
 {
-    private $id;
     private $nome;
     private $prescricao;
 
@@ -68,22 +67,6 @@ class Medicamento extends Modelo
         }catch (Exception $e){
             throw new Exception($e->getMessage());
         }
-    }
-
-    /**
-     * @return mixed
-     */
-    public function getId()
-    {
-        return $this->id;
-    }
-
-    /**
-     * @param mixed $id
-     */
-    public function setId($id)
-    {
-        $this->id = $id;
     }
 
     /**

@@ -20,10 +20,6 @@ use Exception;
 class Usuario extends Modelo
 {
     /**
-     * @var int
-     */
-    private $id;
-    /**
      * @var string
      */
     private $login;
@@ -114,22 +110,6 @@ class Usuario extends Modelo
     }
     public function cadastrarGrupo(){
        $this->getGrupo()->cadastrar();
-    }
-
-    /**
-     * @return int
-     */
-    public function getId(): int
-    {
-        return $this->id;
-    }
-
-    /**
-     * @param int $id
-     */
-    public function setId(int $id)
-    {
-        $this->id = $id;
     }
 
     /**

@@ -13,7 +13,6 @@ use Exception;
 
 class Permissao extends Modelo
 {
-    private $id;
     private $nomeModulo;
     private $create;
     private $read;
@@ -70,22 +69,6 @@ class Permissao extends Modelo
         }catch (Exception $e){
             throw new Exception($e->getMessage());
         }
-    }
-
-    /**
-     * @return mixed
-     */
-    public function getId()
-    {
-        return $this->id;
-    }
-
-    /**
-     * @param mixed $id
-     */
-    public function setId($id)
-    {
-        $this->id = $id;
     }
 
     /**

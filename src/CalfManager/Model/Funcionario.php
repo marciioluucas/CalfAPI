@@ -16,7 +16,6 @@ use Symfony\Component\Cache\Tests\CacheItemTest;
 
 class Funcionario extends Modelo
 {
-    private $id;
     private $salario;
 
     private $cargo;
@@ -109,22 +108,6 @@ class Funcionario extends Modelo
 
     public function cadastrarUsuario(){
         $this->getUsuario()->cadastrar();
-    }
-
-    /**
-     * @return mixed
-     */
-    public function getId()
-    {
-        return $this->id;
-    }
-
-    /**
-     * @param mixed $id
-     */
-    public function setId($id)
-    {
-        $this->id = $id;
     }
 
     /**

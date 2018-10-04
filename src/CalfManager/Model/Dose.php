@@ -19,6 +19,8 @@ class Dose extends Modelo
     private $quantidadeMg;
     private $data;
     private $medicamento;
+    private $animal;
+    private $funcionario;
 
     /**
      * Dose constructor.
@@ -31,6 +33,7 @@ class Dose extends Modelo
 
     public function cadastrar(): ?int
     {
+
         $this->dataCriacao = date(Config::PADRAO_DATA_HORA);
 
         $this->usuarioCadastro = new Usuario();
@@ -134,6 +137,39 @@ class Dose extends Modelo
     {
         $this->quantidadeMg = $quantidadeMg;
     }
+
+    /**
+     * @return mixed
+     */
+    public function getAnimal()
+    {
+        return $this->animal;
+    }
+
+    /**
+     * @param mixed $animal
+     */
+    public function setAnimal($animal)
+    {
+        $this->animal = $animal;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getFuncionario()
+    {
+        return $this->funcionario;
+    }
+
+    /**
+     * @param mixed $funcionario
+     */
+    public function setFuncionario($funcionario)
+    {
+        $this->funcionario = $funcionario;
+    }
+
 
 
 

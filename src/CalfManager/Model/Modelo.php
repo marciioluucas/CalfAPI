@@ -16,6 +16,7 @@ use Exception;
  */
 abstract class Modelo
 {
+    protected $id;
     /**
      * @var string
      */
@@ -61,6 +62,22 @@ abstract class Modelo
      * @throws Exception
      */
     abstract public function deletar(): bool;
+
+    /**
+     * @return mixed
+     */
+    public function getId()
+    {
+        return $this->id;
+    }
+
+    /**
+     * @param mixed $id
+     */
+    public function setId($id)
+    {
+        $this->id = $id;
+    }
 
     /**
      * @return string
