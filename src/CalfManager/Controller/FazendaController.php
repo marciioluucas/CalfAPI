@@ -29,7 +29,7 @@ class FazendaController implements IController
             $fazenda = new Fazenda();
             $data = json_decode($request->getBody()->getContents());
             $valida = (new FazendaValidate())->validatePost((array) $data);
-            if ($valida) {
+            if ($valida === true) {
                 $fazenda->setNome($data->nome);
                 if ($fazenda->cadastrar()) {
                     return View::renderMessage(

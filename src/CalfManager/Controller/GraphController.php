@@ -38,9 +38,7 @@ class GraphController implements IController
     ): Response
     {
         try {
-            $classToInstance =
-                '\\CalfManager\\model\\' .
-                ucfirst($request->getQueryParam('module'));
+            $classToInstance = '\\CalfManager\\model\\' . ucfirst($request->getQueryParam('module'));
             $instance = new $classToInstance();
             $toArray = explode("-", $request->getQueryParam('chart'));
             $methodCamelCase = "graph";

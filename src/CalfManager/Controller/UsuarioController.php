@@ -32,7 +32,7 @@ class UsuarioController implements IController
             if ($valida === true) {
                 $usuario->setLogin($data->login);
                 $usuario->setSenha($data->senha);
-                $usuario->getGrupo()->setId($data->grupo_id);
+                $usuario->getGrupo()->setId($data->grupo->id);
 
                 if($usuario->cadastrar()){
                     return View::renderMessage(
@@ -79,8 +79,8 @@ class UsuarioController implements IController
                 $usuario->setLogin($request->getQueryParam('login'));
             }if($request->getQueryParam('senha')){
                 $usuario->setSenha($request->getQueryParam('senha'));
-            }if($request->getQueryParam('grupo')){
-                $usuario->getGrupo()->setId($request->getQueryParam('grupo'));
+            }if($request->getQueryParam('grupo->id')){
+                $usuario->getGrupo()->setId($request->getQueryParam('grupo->id'));
             }
             $search = $usuario->pesquisar($page);
             return View::render($response, $search);
@@ -108,8 +108,8 @@ class UsuarioController implements IController
                 if(!is_null($data->senha)) {
                     $usuario->setSenha($data->senha);
                 }
-                if(!is_null($data->grupo_id)) {
-                    $usuario->getGrupo()->setId($data->grupo_id);
+                if(!is_null($data->grupo->id)) {
+                    $usuario->getGrupo()->setId($data->grupo->id);
                 }
                 if ($usuario->alterar()) {
                     return View::renderMessage(

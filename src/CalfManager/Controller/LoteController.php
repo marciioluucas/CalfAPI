@@ -33,9 +33,9 @@ class LoteController implements IController
             $lote = new Lote();
             $data = json_decode($request->getBody()->getContents());
             $valida = (new LoteValidate())->validatePost((array)$data);
-            if ($valida) {
+            if ($valida === true) {
                 $lote->setCodigo($data->codigo);
-
+                $lote->getFazenda()->setId($data->fazenda->id);
                 if (isset($data->descricao)) {
                     $lote->setDescricao($data->descricao);
                 }
@@ -69,11 +69,7 @@ class LoteController implements IController
      * @return Response
      * @throws Exception
      */
-    public function get(
-        Request $request,
-        Response $response,
-        array $args
-    ): Response
+    public function get(Request $request, Response $response, array $args): Response
     {
         try {
             $lote = new Lote();
@@ -81,8 +77,12 @@ class LoteController implements IController
 
             if ($request->getAttribute('id')) {
                 $lote->setId($request->getAttribute('id'));
-            } elseif ($request->getQueryParam('codigo')) {
+            }
+            elseif ($request->getQueryParam('codigo')) {
                 $lote->setCodigo($request->getQueryParam('codigo'));
+            }
+            elseif ($request->getQueryParam('fazenda')) {
+                $lote->getFazenda()->setId($request->getQueryParam('fazenda'));
             }
             return View::render($response, $lote->pesquisar($page));
         } catch (Exception $exception) {
@@ -101,10 +101,13 @@ class LoteController implements IController
             $lote = new Lote();
             $data = json_decode($request->getBody()->getContents());
             $valida = (new LoteValidate())->validatePut((array)$data);
-            if ($valida) {
+            if ($valida === true) {
                 $lote->setId($request->getAttribute('id'));
                 if (isset($data->codigo)) {
                     $lote->setCodigo($data->codigo);
+                }
+                if (isset($data->fazenda->id)){
+                    $lote->getFazenda()->setId($data->fazenda->id);
                 }
                 if (isset($data->descricao)) {
                     $lote->setDescricao($data->descricao);

@@ -2,6 +2,7 @@
 
 namespace CalfManager\Controller;
 
+use CalfManager\Model\Dose;
 use Exception;
 use CalfManager\Model\Animal as Animal;
 use CalfManager\Utils\validate\AnimalValidate;

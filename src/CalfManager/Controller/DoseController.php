@@ -10,24 +10,25 @@ namespace CalfManager\Controller;
 
 
 use CalfManager\Model\Dose;
-use CalfManager\Utils\Validate\DoseAplicadaValidate;
+use CalfManager\Utils\Validate\DoseValidate;
 use CalfManager\View\View;
 use Psr\Http\Message\RequestInterface as Request;
 use Psr\Http\Message\ResponseInterface as Response;
 use Exception;
 
-class DoseAplicadaController implements IController
+class DoseController implements IController
 {
     public function post(Request $request, Response $response): Response
     {
          $dose = new Dose();
          $data = json_decode($request->getBody()->getContents());
-         $valida = (new DoseAplicadaValidate())->validatePost((array) $data);
+         $valida = (new DoseValidate())->validatePost((array) $data);
          try{
              if($valida === true) {
-                 $dose->setDose($data->dose);
-                 $dose->getMedicamento()->setId($data->medicamento_id);
-                 $dose->setDataAplicacao($data->data_aplicacao);
+                 $dose->setQuantidadeMg($data->quantidade_mg);
+                 $dose->getMedicamento()->setId($data->medicamento->id);
+                 $dose->getAnimal()->setId($data->animal->id);
+                 $dose->setData($data->data);
                  if ($dose->cadastrar()) {
                      return View::renderMessage(
                          $response,
@@ -63,6 +64,9 @@ class DoseAplicadaController implements IController
             if($request->getQueryParam('medicamento')){
                 $dose->getMedicamento()->setId($request->getQueryParam('medicamento'));
             }
+            if($request->getQueryParam('animal')){
+                $dose->getAnimal()->setId($request->getQueryParam('animal'));
+            }
             $search = $dose->pesquisar($page);
             return View::render($response, $search);
 
@@ -75,18 +79,21 @@ class DoseAplicadaController implements IController
     {
         $dose = new Dose();
         $data = json_decode($request->getBody()->getContents());
-        $valida = (new DoseAplicadaValidate())->validatePut((array) $data);
+        $valida = (new DoseValidate())->validatePut((array) $data);
         try{
             if($valida === true) {
                 $dose->setId($request->getAttribute('id'));
-                if(!is_null($data->dose)) {
-                    $dose->setDose($data->dose);
+                if(!is_null($data->quantidade_mg)) {
+                    $dose->setQuantidadeMg($data->quantidade_mg);
                 }
-                if(!is_null($data->medicamento_id)) {
-                    $dose->getMedicamento()->setId($data->medicamento_id);
+                if(!is_null($data->medicamento->id)) {
+                    $dose->getMedicamento()->setId($data->medicamento->id);
                 }
-                if(!is_null($data->data_aplicacao)) {
-                    $dose->setDataAplicacao($data->data_aplicacao);
+                if(!is_null($data->animal->id)) {
+                    $dose->getAnimal()->setId($data->animal->id);
+                }
+                if(!is_null($data->data)) {
+                    $dose->setData($data->data);
                 }
                 if ($dose->alterar()) {
                     return View::renderMessage(

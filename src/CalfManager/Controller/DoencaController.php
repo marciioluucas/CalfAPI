@@ -159,7 +159,7 @@ class DoencaController implements IController
                         $response,
                         "error",
                         "Erro ao excluir doença!",
-                        200,
+                        500,
                         "Erro ao excluir"
                     );
                 }
