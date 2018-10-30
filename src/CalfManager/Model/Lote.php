@@ -28,6 +28,15 @@ class Lote extends Modelo
      */
     private $descricao;
 
+    private $fazenda;
+
+    /**
+     * Lote constructor.
+     */
+    public function __construct()
+    {
+        $this->fazenda = new Fazenda();
+    }
 
     /**
      * @return int|null
@@ -70,10 +79,14 @@ class Lote extends Modelo
     public function pesquisar(int $page): array
     {
         try {
-            if ($this->id) {
+            if ($this->id and !$this->codigo and !$this->getFazenda()->getId()) {
                 return (new LoteDAO())->retreaveById($this->id);
-            } elseif ($this->codigo) {
+            }
+            elseif (!$this->id and $this->codigo and !$this->getFazenda()->getId()) {
                 return (new LoteDAO())->retreaveByCodigo($this->codigo, $page);
+            }
+            elseif (!$this->id and !$this->codigo and $this->getFazenda()->getId()) {
+                return (new LoteDAO())->retreaveByIdFazenda($this->getFazenda()->getId(), $page);
             }
             return (new LoteDAO())->retreaveAll($page);
         } catch (Exception $exception) {
@@ -125,4 +138,21 @@ class Lote extends Modelo
     {
         $this->descricao = $descricao;
     }
+
+    /**
+     * @return Fazenda
+     */
+    public function getFazenda(): Fazenda
+    {
+        return $this->fazenda;
+    }
+
+    /**
+     * @param Fazenda $fazenda
+     */
+    public function setFazenda(Fazenda $fazenda)
+    {
+        $this->fazenda = $fazenda;
+    }
+
 }

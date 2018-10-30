@@ -20,6 +20,14 @@ class Hemograma extends Exame
     private $hematocrito;
 
     /**
+     * Hemograma constructor.
+     * @param Animal|null $animal
+     */
+    function __construct(Animal $animal = null) {
+        $this->animal = $animal != null ? $animal : new Animal();
+    }
+
+    /**
      * @return int|null
      * @throws Exception
      */
@@ -66,6 +74,10 @@ class Hemograma extends Exame
         }catch (Exception $e){
             throw new Exception($e->getMessage());
         }
+    }
+    public function graph(string $whatChart, array $params)
+    {
+        return (new HemogramaDAO())->{$whatChart}($params);
     }
 
     /**

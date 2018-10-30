@@ -18,6 +18,7 @@ class Laboratorio
     private $animal;
     private $dose;
     private $hemograma;
+    private $funcionario;
 
 
     /**
@@ -29,30 +30,8 @@ class Laboratorio
         $this->animal = new Animal();
         $this->dose = new Dose();
         $this->hemograma = new Hemograma();
+        $this->funcionario = new Funcionario();
     }
-
-//    public function pesquisar(int $page): array
-//    {
-//        $dao = new LaboratorioDAO();
-//        try {
-//            if ($this->id and !$this->getAnimal()->getId() and !$this->getDoseAplicada()->getId() and !$this->getHemograma()->getId()) {
-//                return $dao->retreaveById($this->id);
-//            }
-//            if (!$this->id and $this->getAnimal()->getId() and !$this->getDoseAplicada()->getId() and !$this->getHemograma()->getId()) {
-//                return $dao->retreaveByIdAnimal($this->getAnimal()->getId(), $page);
-//            }
-//            if (!$this->id and !$this->getAnimal()->getId() and $this->getDoseAplicada()->getId() and !$this->getHemograma()->getId()) {
-//                return $dao->retreaveByIdDoseAplicada($this->getDoseAplicada()->getId(), $page);
-//            }
-//            if (!$this->id and !$this->getAnimal()->getId() and !$this->getDoseAplicada()->getId() and $this->getHemograma()->getId()) {
-//                return $dao->retreaveByIdHemograma($this->getHemograma()->getId(), $page);
-//            }
-//            return $dao->retreaveAll($page);
-//
-//        } catch (Exception $e) {
-//            throw new Exception($e->getMessage());
-//        }
-//    }
 
     public function aplicarMedicamento()
     {
@@ -116,14 +95,21 @@ class Laboratorio
     {
         $this->hemograma = $hemograma;
     }
-//    public function adoecerAnimal($idAnimal = null) {
-//        foreach ($this->doenca as $doenca) {
-//            (new DoencaDAO())->adoecer(
-//                $this->id == null ? $idAnimal : $this->id,
-//                $doenca->getSituacao(),
-//                $doenca->getId()
-//            );
-//        }
-//    }
+
+    /**
+     * @return Funcionario
+     */
+    public function getFuncionario(): Funcionario
+    {
+        return $this->funcionario;
+    }
+
+    /**
+     * @param Funcionario $funcionario
+     */
+    public function setFuncionario(Funcionario $funcionario)
+    {
+        $this->funcionario = $funcionario;
+    }
 
 }

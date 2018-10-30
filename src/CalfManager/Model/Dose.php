@@ -9,7 +9,7 @@
 namespace CalfManager\Model;
 
 
-use CalfManager\Model\Repository\DoseAplicadaDAO;
+use CalfManager\Model\Repository\DoseDAO;
 use CalfManager\Model\Repository\MedicamentoDAO;
 use CalfManager\Utils\Config;
 use Exception;
@@ -28,6 +28,8 @@ class Dose extends Modelo
     public function __construct()
     {
         $this->medicamento = new Medicamento();
+        $this->animal = new Animal();
+        $this->funcionario = new Funcionario();
     }
 
 
@@ -38,8 +40,9 @@ class Dose extends Modelo
 
         $this->usuarioCadastro = new Usuario();
         $this->usuarioCadastro->setId(1);
+        $this->funcionario->setId(1);
         try{
-            return (new DoseAplicadaDAO())->create($this);
+            return (new DoseDAO())->create($this);
         }catch (Exception $e){
             throw new Exception($e->getMessage());
         }
@@ -51,8 +54,9 @@ class Dose extends Modelo
 
         $this->usuarioAlteracao = new Usuario();
          $this->usuarioAlteracao->setId(1);
+        $this->funcionario->setId(1);
          try{
-             return (new DoseAplicadaDAO())->update($this);
+             return (new DoseDAO())->update($this);
          }catch (Exception $e){
              throw new Exception($e->getMessage());
          }
@@ -60,13 +64,19 @@ class Dose extends Modelo
 
     public function pesquisar(int $page): array
     {
-        $dao = new DoseAplicadaDAO();
+        $dao = new DoseDAO();
         try{
-            if($this->id and !$this->getMedicamento()->getId()){
+            if($this->id and !$this->getMedicamento()->getId() and !$this->getAnimal()->getId() and !$this->getFuncionario()->getId()){
                 return $dao->retreaveById($this->id);
             }
-            if(!$this->id and $this->getMedicamento()->getId()){
+            if($this->id and !$this->getMedicamento()->getId() and !$this->getAnimal()->getId() and !$this->getFuncionario()->getId()){
                 return $dao->retreaveByIdMedicamento($this->getMedicamento()->getId(), $page);
+            }
+            if ($this->id and !$this->getMedicamento()->getId() and !$this->getAnimal()->getId() and !$this->getFuncionario()->getId()){
+                return $dao->retreaveByIdAnimal($this->getAnimal()->getId(), $page);
+            }
+            if ($this->id and !$this->getMedicamento()->getId() and !$this->getAnimal()->getId() and !$this->getFuncionario()->getId()){
+                return $dao->retreaveByIdFuncionario($this->getFuncionario()->getId(), $page);
             }
             return $dao->retreaveAll($page);
 
@@ -78,7 +88,7 @@ class Dose extends Modelo
     public function deletar(): bool
     {
          try{
-             return (new DoseAplicadaDAO())->delete($this->id);
+             return (new DoseDAO())->delete($this->id);
          }catch (Exception $e){
              throw new Exception($e->getMessage());
          }
@@ -91,19 +101,19 @@ class Dose extends Modelo
     }
 
     /**
-     * @return Medicamento
+     * @return mixed
      */
-    public function getMedicamento(): Medicamento
+    public function getQuantidadeMg()
     {
-        return $this->medicamento;
+        return $this->quantidadeMg;
     }
 
     /**
-     * @param Medicamento $medicamento
+     * @param mixed $quantidadeMg
      */
-    public function setMedicamento(Medicamento $medicamento)
+    public function setQuantidadeMg($quantidadeMg)
     {
-        $this->medicamento = $medicamento;
+        $this->quantidadeMg = $quantidadeMg;
     }
 
     /**
@@ -123,54 +133,52 @@ class Dose extends Modelo
     }
 
     /**
-     * @return mixed
+     * @return Medicamento
      */
-    public function getQuantidadeMg()
+    public function getMedicamento(): Medicamento
     {
-        return $this->quantidadeMg;
+        return $this->medicamento;
     }
 
     /**
-     * @param mixed $quantidadeMg
+     * @param Medicamento $medicamento
      */
-    public function setQuantidadeMg($quantidadeMg): void
+    public function setMedicamento(Medicamento $medicamento)
     {
-        $this->quantidadeMg = $quantidadeMg;
+        $this->medicamento = $medicamento;
     }
 
     /**
-     * @return mixed
+     * @return Animal
      */
-    public function getAnimal()
+    public function getAnimal(): Animal
     {
         return $this->animal;
     }
 
     /**
-     * @param mixed $animal
+     * @param Animal $animal
      */
-    public function setAnimal($animal)
+    public function setAnimal(Animal $animal)
     {
         $this->animal = $animal;
     }
 
     /**
-     * @return mixed
+     * @return Funcionario
      */
-    public function getFuncionario()
+    public function getFuncionario(): Funcionario
     {
         return $this->funcionario;
     }
 
     /**
-     * @param mixed $funcionario
+     * @param Funcionario $funcionario
      */
-    public function setFuncionario($funcionario)
+    public function setFuncionario(Funcionario $funcionario)
     {
         $this->funcionario = $funcionario;
     }
-
-
 
 
 }

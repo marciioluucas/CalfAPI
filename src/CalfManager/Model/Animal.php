@@ -79,6 +79,8 @@ class Animal extends Modelo
      */
     private $doencas;
 
+    private $hemograma;
+
     /**
      * Animal constructor.
      * @throws Exception
@@ -89,6 +91,7 @@ class Animal extends Modelo
         $this->lote = new Lote();
         $this->pesagem = new Pesagem($this);
         $this->doencas = new ArrayObject();
+        $this->hemograma = new Hemograma($this);
     }
 
     /**
@@ -180,11 +183,7 @@ class Animal extends Modelo
     {
 
     }
-    public function adicionarDoenca(
-        int $doencaId,
-        string $situacao = 'CURADO',
-        int $animalId = null
-    ) : void
+    public function adicionarDoenca(int $doencaId, string $situacao = 'CURADO', int $animalId = null) : void
     {
 //        foreach ($this->doencas as $d) {
 //            if ($this->doencas->count() > 0)
@@ -457,4 +456,21 @@ class Animal extends Modelo
     {
         $this->doencas = $doencas;
     }
+
+    /**
+     * @return Hemograma
+     */
+    public function getHemograma(): Hemograma
+    {
+        return $this->hemograma;
+    }
+
+    /**
+     * @param Hemograma $hemograma
+     */
+    public function setHemograma(Hemograma $hemograma)
+    {
+        $this->hemograma = $hemograma;
+    }
+
 }

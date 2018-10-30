@@ -36,7 +36,7 @@ class Pesagem extends Modelo
      */
     public function __construct(Animal $animal = null)
     {
-        if ($animal != null) $this->animal = $animal;
+        $this->animal = $animal;
     }
 
     /**
@@ -82,11 +82,8 @@ class Pesagem extends Modelo
         try {
             if ($this->id) {
                 return (new PesagemDAO())->retreaveById($this->id);
-            } elseif ($this->animal->getId()) {
-                return (new PesagemDAO())->retreaveByIdAnimal(
-                    $this->animal->getId(),
-                    $page
-                );
+            } elseif ($this->getAnimal()->getId()) {
+                return (new PesagemDAO())->retreaveByIdAnimal($this->getAnimal()->getId(), $page);
             }
             return (new PesagemDAO())->retreaveAll($page);
         } catch (Exception $exception) {

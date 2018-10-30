@@ -28,6 +28,12 @@ class Fazenda extends Modelo
      */
     private $limite = 0;
 
+    /**
+     * Fazenda constructor.
+     * @param $lote
+     */
+
+
 
     /**
      * @return int|null
@@ -36,6 +42,7 @@ class Fazenda extends Modelo
     public function cadastrar(): ?int
     {
         $this->dataCriacao = date(Config::PADRAO_DATA_HORA);
+        $this->dataAlteracao = date(Config::PADRAO_DATA_HORA);
         $this->usuarioCadastro = new Usuario();
         $this->usuarioCadastro->setId(1);
         try {
@@ -69,11 +76,13 @@ class Fazenda extends Modelo
     public function pesquisar(int $page): array
     {
         try {
-            if ($this->id) {
+            if ($this->id and !$this->nome) {
                 return (new FazendaDAO())->retreaveById($this->id);
-            } elseif ($this->nome) {
+            }
+            elseif (!$this->id and $this->nome) {
                 return (new FazendaDAO())->retreaveByNome($this->nome, $page);
             }
+
             return (new FazendaDAO())->retreaveAll($page);
         } catch (Exception $exception) {
             throw new Exception($exception->getMessage());
@@ -124,4 +133,5 @@ class Fazenda extends Modelo
     {
         $this->limite = $limite;
     }
+
 }

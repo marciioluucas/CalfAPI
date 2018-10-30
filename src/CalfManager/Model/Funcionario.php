@@ -43,7 +43,6 @@ class Funcionario extends Modelo
         $this->usuarioCadastro = new Usuario();
         $this->usuarioCadastro->setId(1);
         try{
-            $this->antesDeSalvar();
             $idFuncionario = (new FuncionarioDAO())->create($this);
             return $idFuncionario;
         }catch (Exception $e){
