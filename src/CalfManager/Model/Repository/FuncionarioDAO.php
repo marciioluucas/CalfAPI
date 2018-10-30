@@ -32,12 +32,13 @@ class FuncionarioDAO implements IDAO
 
         $entity->data_cadastro = $obj->getDataCriacao();
         $entity->usuario_cadastro = $obj->getUsuarioCadastro()->getId();
+        $entity->status = 1;
         try{
             if($entity->save()){
                 return $entity->id;
             }
         }catch (Exception $e) {
-            throw new Exception("Erro ao cadastrar funcionário. Mensagem: ", $e->getMessage());
+            throw new Exception("Erro ao cadastrar funcionário. Mensagem: ". $e->getMessage());
         }
     }
 
@@ -68,7 +69,7 @@ class FuncionarioDAO implements IDAO
                 return true;
             }
         }catch (Exception $e){
-            throw new Exception("Erro ao alterar funcionário. Mensagem: ", $e->getMessage());
+            throw new Exception("Erro ao alterar funcionário. Mensagem: ". $e->getMessage());
         }
     }
 
@@ -113,7 +114,7 @@ class FuncionarioDAO implements IDAO
                 "funcionarios" => $funcionario
             ];
         }catch (Exception $e) {
-            throw new Exception("Erro ao pesquisar funcionário por ID ".$id. ". Mensagem: " ,  $e->getMessage());
+            throw new Exception("Erro ao pesquisar funcionário por ID ".$id. ". Mensagem: " .  $e->getMessage());
         }
     }
 
@@ -138,7 +139,7 @@ class FuncionarioDAO implements IDAO
                );
            return ["funcionarios" => $funcionarios];
        }catch (Exception $e) {
-           throw new Exception("Erro ao pesquisar o cargo deste funcionário pelo ID ".$idCargo. ". Mensagem: " ,  $e->getMessage());
+           throw new Exception("Erro ao pesquisar o cargo deste funcionário pelo ID ".$idCargo. ". Mensagem: " .  $e->getMessage());
        }
     }
 
@@ -159,7 +160,7 @@ class FuncionarioDAO implements IDAO
                 ->toArray();
             return ["funcionarios" => $funcionarios];
         }catch (Exception $e) {
-            throw new Exception("Erro ao pesquisar o usuário deste funcionário pelo ID ".$idUsuario. ". Mensagem: " ,  $e->getMessage());
+            throw new Exception("Erro ao pesquisar o usuário deste funcionário pelo ID ".$idUsuario. ". Mensagem: " . $e->getMessage());
         }
     }
 
@@ -184,7 +185,7 @@ class FuncionarioDAO implements IDAO
                 );
             return ["funcionarios" => $funcionarios];
         }catch (Exception $e) {
-            throw new Exception("Erro ao pesquisar a fazenda que este funcionário trabalha pelo ID ".$idFazenda. ". Mensagem: " ,  $e->getMessage());
+            throw new Exception("Erro ao pesquisar a fazenda que este funcionário trabalha pelo ID ".$idFazenda. ". Mensagem: " .  $e->getMessage());
         }
     }
     public function retreaveByIdPessoa (int $idPessoa){

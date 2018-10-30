@@ -128,7 +128,7 @@ class EnderecoDAO implements IDAO
     {
         try {
             $endereco = EnderecoEntity::ativo()
-                ->where('lograroudo','like',"%".$logradouro."%")
+                ->where('logradouro','like',"%".$logradouro."%")
                 ->paginate(
                     Config::QUANTIDADE_ITENS_POR_PAGINA,
                     ['*'],

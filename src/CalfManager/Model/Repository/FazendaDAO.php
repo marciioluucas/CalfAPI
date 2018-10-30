@@ -53,6 +53,7 @@ class FazendaDAO implements IDAO
         if (!is_null($obj->getNome())) {
             $entity->nome = $obj->getNomeAnimal();
         }
+
         return (new FazendaDAO())->update($obj);
     }
 
@@ -62,8 +63,7 @@ class FazendaDAO implements IDAO
      */
     public function retreaveAll(int $page): array
     {
-        return ["fazendas" => FazendaEntity
-            ::ativo()
+        return ["fazendas" => FazendaEntity::ativo()
             ->paginate(
                 Config::QUANTIDADE_ITENS_POR_PAGINA,
                 ['*'],

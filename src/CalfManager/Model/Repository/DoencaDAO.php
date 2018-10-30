@@ -26,13 +26,13 @@ class DoencaDAO implements IDAO
     public function create($obj): ?int
     {
         try {
-            $entity = new DoencaEntity();
-            $entity->nome = $obj->getNome();
-            $entity->descricao = $obj->getDescricao();
-            $entity->data_cadastro = $obj->getDataCriacao();
-            $entity->usuario_cadastro = $obj->getUsuarioCadastro()->getId();
+            $doencaEntity = new DoencaEntity();
+            $doencaEntity->nome = $obj->getNome();
+            $doencaEntity->descricao = $obj->getDescricao();
+            $doencaEntity->data_cadastro = $obj->getDataCriacao();
+            $doencaEntity->usuario_cadastro = $obj->getUsuarioCadastro()->getId();
 
-            if ($entity->save()) {
+            if ($doencaEntity->save()) {
                 return true;
             }
 
@@ -164,7 +164,10 @@ class DoencaDAO implements IDAO
         return $entity->save();
     }
 
-    public function curar($idAnimal, $dataCura, $idDoenca, $animalHasDoencaId) {
-        //todo implementar aqui quase igual o adoecer, so mudando data de adoecimento para data cura
+    public function curar($idAnimal, $dataCura) {
+        $entity = AnimalHasDoencaEntity::find($idAnimal);
+        $entity->data_cura = $dataCura;
+        $entity->situacao = "curado";
+        return $entity->save();
     }
 }

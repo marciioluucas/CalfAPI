@@ -29,6 +29,8 @@ class LoteDAO implements IDAO
     {
         $entity = new LoteEntity();
         $entity->codigo = $obj->getCodigo();
+        $entity->fazenda_id = $obj->getFazenda()->getId();
+
         $entity->data_alteracao = $obj->getDataAlteracao();
         $entity->data_cadastro = $obj->getDataCriacao();
         $entity->usuario_cadastro = $obj->getUsuarioCadastro();
@@ -55,6 +57,9 @@ class LoteDAO implements IDAO
         if (!is_null($obj->getCodigo())) {
             $entity->codigo = $obj->getCodigo();
         }
+        if (!is_null($obj->getFazenda()->getId())) {
+            $entity->fazenda_id = $obj->getFazenda()->getId();
+        }
         try {
             if ($entity->save()) {
                 return true;
@@ -71,8 +76,8 @@ class LoteDAO implements IDAO
      */
     public function retreaveAll(int $page): array
     {
-        return ["lotes" => LoteEntity
-            ::ativo()
+        return ["lotes" => LoteEntity::ativo()
+            ->with('fazenda')
             ->paginate(
                 Config::QUANTIDADE_ITENS_POR_PAGINA,
                 ['*'],
@@ -90,8 +95,8 @@ class LoteDAO implements IDAO
     {
         try {
             return [
-                "lotes" => LoteEntity
-                    ::ativo()
+                "lotes" => LoteEntity::ativo()
+                    ->with('fazenda')
                     ->where('id', $id)
                     ->get()
             ];
@@ -110,8 +115,8 @@ class LoteDAO implements IDAO
     {
         try {
             return [
-                "lotes" => LoteEntity
-                    ::ativo()
+                "lotes" => LoteEntity::ativo()
+                    ->with('fazenda')
                     ->where('codigo', 'like', $codigo . '%')
                     ->paginate
                     (
@@ -123,6 +128,25 @@ class LoteDAO implements IDAO
             ];
         } catch (Exception $e) {
             throw new Exception("Algo de errado aconteceu ao tentar pesquisar por nome" . $e->getMessage());
+        }
+    }
+    public function retreaveByIdFazenda($idFazenda, int $page): array
+    {
+        try {
+            return [
+                "lotes" => LoteEntity::ativo()
+                    ->with('fazenda')
+                    ->where('fazenda_id', $idFazenda)
+                    ->paginate
+                    (
+                        Config::QUANTIDADE_ITENS_POR_PAGINA,
+                        ['*'],
+                        'pagina',
+                        $page
+                    )
+            ];
+        } catch (Exception $e) {
+            throw new Exception("Algo de errado aconteceu ao pesquisar fazenda pelo ID" . $e->getMessage());
         }
     }
 

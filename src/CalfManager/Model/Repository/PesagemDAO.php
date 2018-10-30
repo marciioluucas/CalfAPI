@@ -8,7 +8,6 @@
 
 namespace CalfManager\Model\Repository;
 
-
 use CalfManager\Model\Repository\Entity\PesagemEntity;
 use Carbon\Carbon;
 use Exception;
@@ -30,14 +29,19 @@ class PesagemDAO implements IDAO
     public function create($obj): ?int
     {
         $entity = new PesagemEntity();
+        $entity->animais_id = $obj->getAnimal()->getId();
         $entity->data_pesagem = $obj->getDataPesagem();
         $entity->peso = $obj->getPeso();
         $entity->usuario_cadastro = $obj->getUsuarioCadastro()->getId();
         $entity->usuario_alteracao = $obj->getUsuarioAlteracao()->getId();
-        $entity->animais_id = $obj->getAnimal()->getId();
         $entity->data_cadastro = $obj->getDataCriacao();
-        $entity->save();
-        return $entity->id;
+        try {
+            if ($entity->save()) {
+                return $entity->id;
+            }
+        } catch (Exception $e){
+            throw new Exception('Erro ao cadastrar pesagem. Mensagem: '.$e->getMessage());
+        }
     }
 
     /**

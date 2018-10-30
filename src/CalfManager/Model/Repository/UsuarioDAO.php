@@ -97,11 +97,29 @@ class UsuarioDAO implements IDAO
     public function retreaveById(int $id): array
     {
          try{
-             $usuario = UsuarioEntity::ativo()->with('grupo')->where('id', $id)->first()->toArray();
+             $usuario = UsuarioEntity::ativo()->with('grupo')
+                 ->where('id', $id)
+                 ->first()
+                 ->toArray();
              return ["usuarios" => $usuario];
          }catch (Exception $e){
             throw new Exception("Erro ao pesquisar usuario pelo ID ".$id. ". Mensagem: ". $e->getMessage());
          }
+    }
+    public function retreaveByLogin(string $login, int $page ){
+        try{
+            $usuario = UsuarioEntity::ativo()->with('grupo')
+                ->where('login','like', '%'.$login.'%')
+                ->paginate(
+                    Config::QUANTIDADE_ITENS_POR_PAGINA,
+                    ['*'],
+                    'pagina',
+                    $page
+                );
+            return ["usuarios" => $usuario];
+        }catch (Exception $e){
+            throw new Exception("Erro ao pesquisar usuario pelo Login: ".$login.". Mensagem: ". $e->getMessage());
+        }
     }
 
     /**

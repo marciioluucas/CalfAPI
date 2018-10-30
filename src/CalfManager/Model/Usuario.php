@@ -80,11 +80,16 @@ class Usuario extends Modelo
         try{
             if($this->id and !$this->login and !$this->senha and !$this->getGrupo()->getId()){
                 return $dao->retreaveById($this->id);
-            } else if (!$this->id and $this->login and $this->senha and !$this->getGrupo()->getId()){
+            }else if (!$this->id and $this->login and !$this->senha and !$this->getGrupo()->getId()){
+                return $dao->retreaveByLogin($this->login, $page);
+            }
+            else if (!$this->id and $this->login and $this->senha and !$this->getGrupo()->getId()){
                 return $dao->retreaveByLoginSenha($this->login, $this->senha);
-            } else if(!$this->id and !$this->login and !$this->senha and $this->getGrupo()->getId()){
+            }
+            else if(!$this->id and !$this->login and !$this->senha and $this->getGrupo()->getId()){
                 return $dao->retreaveByGrupo($this->getGrupo()->getId(), $page);
-            } else {
+            }
+            else {
                 return $dao->retreaveAll($page);
             }
         }catch (Exception $e){
@@ -115,7 +120,7 @@ class Usuario extends Modelo
     /**
      * @return string
      */
-    public function getLogin(): string
+    public function getLogin():? string
     {
         return $this->login;
     }
@@ -131,7 +136,7 @@ class Usuario extends Modelo
     /**
      * @return string
      */
-    public function getSenha(): string
+    public function getSenha():? string
     {
         return $this->senha;
     }

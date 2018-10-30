@@ -12,6 +12,8 @@ namespace CalfManager\Model\Repository;
 use CalfManager\Model\Hemograma;
 use CalfManager\Model\Repository\Entity\HemogramaEntity;
 use CalfManager\Utils\Config;
+use Carbon\Carbon;
+use InvalidArgumentException;
 use Exception;
 
 class HemogramaDAO implements IDAO
@@ -103,6 +105,22 @@ class HemogramaDAO implements IDAO
         }catch (Exception $e){
             throw new Exception("Erro ao pesquisar hemograma pelo ID ".$id.". Mensagem: ".$e->getMessage());
         }
+    }
+
+    /**
+     * @param array $params
+     * @return array
+     */
+    public function graphMonitorDeSaude($params = []): array {
+        if(isset($params['animal'])){
+            throw new InvalidArgumentException('Argumento animal é requerido!');
+        }
+        return [
+            HemogramaEntity::ativo()
+                ->where('animal_id', $params['animal'])
+                ->whereDate('data', '>=', Carbon::now()->subDays(30)->toDateString())
+                ->get(['ppt', 'data'],['hematocrito', 'data'])
+        ];
     }
 
     /**

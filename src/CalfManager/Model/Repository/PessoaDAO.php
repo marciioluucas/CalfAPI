@@ -29,10 +29,12 @@ class PessoaDAO implements IDAO
         $entity->sexo = $obj->getSexo();
         $entity->numero_telefone = $obj->getNumeroTelefone();
         $entity->data_nascimento = $obj->getDataNascimento();
+        $entity->endereco_id = $obj->getEndereco()->getId();
+
 
         $entity->data_cadastro = $obj->getDataCriacao();
         $entity->usuario_cadastro = $obj->getUsuarioCadastro()->getId();
-
+        $entity->status = 1;
         try{
             if($entity->save()){
                 return $entity->id;
@@ -72,6 +74,9 @@ class PessoaDAO implements IDAO
         if(!is_null($obj->getDataNascimento())){
             $entity->data_nascimento = $obj->getDataNascimento();
         }
+        if(!is_null($obj->getEndereco()->getId())){
+            $entity->endereco_id = $obj->getEndereco()->getId();
+        }
         try{
         if($entity->save()){
             return $entity->id;
@@ -90,7 +95,8 @@ class PessoaDAO implements IDAO
     public function retreaveAll(int $page): array
     {
         $entity = PessoaEntity::ativo();
-        $pessoas = $entity->paginate(
+        $pessoas = $entity->with('endereco')
+            ->paginate(
                 Config::QUANTIDADE_ITENS_POR_PAGINA,
                 ['*'],
                 'pagina',
@@ -106,9 +112,9 @@ class PessoaDAO implements IDAO
      */
     public function retreaveById(int $id): array
     {
-        $entity = PessoaEntity::ativo();
         try{
-            $pessoa = $entity->where('id', $id)
+        $pessoa = PessoaEntity::ativo()->with('endereco')
+            ->where('id', $id)
                 ->first()
                 ->toArray();
 
@@ -126,7 +132,8 @@ class PessoaDAO implements IDAO
      */
     public function retreaveByNome($nome, $page){
         $entity = PessoaEntity::ativo();
-        $pessoas = $entity->where('nome', 'like', '%'. $nome . '%')
+        $pessoas = $entity->with('endereco')
+            ->where('nome', 'like', '%'. $nome . '%')
             ->paginate(
                 Config::QUANTIDADE_ITENS_POR_PAGINA,
                 ['*'],
@@ -150,7 +157,8 @@ class PessoaDAO implements IDAO
     public function reatreaveByIdEndereco($idEndereco, $page){
         try {
             $entity = PessoaEntity::ativo();
-            $pessoa = $entity->where('endereco_id', $idEndereco)
+            $pessoa = $entity->with('endereco')
+                ->where('endereco_id', $idEndereco)
                 ->paginate(
                     Config::QUANTIDADE_ITENS_POR_PAGINA,
                     ['*'],

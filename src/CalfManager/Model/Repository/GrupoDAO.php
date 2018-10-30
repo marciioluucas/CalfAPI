@@ -74,7 +74,13 @@ class GrupoDAO implements IDAO {
     {
         try {
             $entity = GrupoEntity::ativo();
-            $grupos = $entity->with('permissao')->paginate(Config::QUANTIDADE_ITENS_POR_PAGINA, ['*'], 'pagina', $page);
+            $grupos = $entity->with('permissao')
+                ->paginate(
+                    Config::QUANTIDADE_ITENS_POR_PAGINA,
+                    ['*'],
+                    'pagina',
+                    $page
+                );
             return ["grupos" => $grupos];
         }catch(Exception $e){
             throw new Exception("Erro ao pesquisar todos os grupos. Mensagem: ".$e->getMessage());
@@ -89,7 +95,10 @@ class GrupoDAO implements IDAO {
     {
         try {
             $entity = GrupoEntity::ativo();
-            $grupo = $entity->with('permissao')->where('id', $id)->first()->toArray();
+            $grupo = $entity->with('permissao')
+                ->where('id', $id)
+                ->first()
+                ->toArray();
             return ["grupos" => $grupo];
         }catch(Exception $e){
             throw new Exception("Erro ao pesquisar grupo pelo ID ".$id.". Mensagem: ".$e->getMessage());
@@ -104,7 +113,7 @@ class GrupoDAO implements IDAO {
     public function retreaveByNome(string $nome, int $page){
         try {
             $entity = GrupoEntity::ativo();
-            $grupo = $entity->with('permissao')->where('nome', 'like', $nome)
+            $grupo = $entity->with('permissao')->where('nome', 'like', '%'.$nome.'%')
                 ->paginate(
                     Config::QUANTIDADE_ITENS_POR_PAGINA,
                     ['*'],
