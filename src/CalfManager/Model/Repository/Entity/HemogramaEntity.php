@@ -9,12 +9,17 @@
 namespace CalfManager\Model\Repository\Entity;
 
 
+/**
+ * Class HemogramaEntity
+ * @package CalfManager\Model\Repository\Entity
+ */
 class HemogramaEntity extends CalfEntity
 {
     protected $table = "hemogramas";
     protected $fillable = [
         'id',
-        'data_exame',
+        'animal_id',
+        'data',
         'ppt',
         'hematocrito',
         'data_alteracao',
@@ -23,7 +28,8 @@ class HemogramaEntity extends CalfEntity
         'usuario_cadastro',
         'status'
     ];
-    public function laboratorio() {
-        return $this->hasMany('CalfManager\Model\Repository\Entity\LaboratorioEntity');
+
+    public function animal() {
+        return $this->belongsTo('CalfManager\Model\Repository\Entity\AnimalEntity', 'animal_id');
     }
 }

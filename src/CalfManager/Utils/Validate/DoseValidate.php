@@ -10,12 +10,12 @@ namespace CalfManager\Utils\Validate;
 
 use Valitron\Validator;
 
-class DoseAplicadaValidate extends Validate
+class DoseValidate extends Validate
 {
     public function validatePost($params)
     {
         $valida = new Validator($params);
-        $valida->rule('required', ['medicamento_id', 'dose', 'data_aplicacao']);
+        $valida->rule('required', ['medicamento_id', 'quantidade_mg', 'data']);
         if ($valida->validate()) {
             return true;
         } else {
@@ -31,7 +31,7 @@ class DoseAplicadaValidate extends Validate
     public function validatePut($params)
     {
         $valida = new Validator($params);
-        $valida->rule('required', ['medicamento_id', 'dose', 'data_aplicacao']);
+        $valida->rule('required', ['medicamento_id', 'doquantidade_mg', 'data']);
         if ($valida->validate()) {
             return true;
         } else {

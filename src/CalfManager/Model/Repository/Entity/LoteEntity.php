@@ -15,6 +15,7 @@ class LoteEntity extends CalfEntity
     protected $table = 'lotes';
     protected $fillable = [
         'codigo',
+        'fazenda_id',
         'data_alteracao',
         'data_cadastro',
         'usuario_cadastro',
@@ -24,5 +25,8 @@ class LoteEntity extends CalfEntity
 
     public function animais() {
         return $this->hasMany('\CalfManager\Model\Repository\Entity\AnimalEntity');
+    }
+    public function fazenda(){
+        return $this->belongsTo('\CalfManager\Model\Repository\Entity\FazendaEntity', 'fazenda_id');
     }
 }

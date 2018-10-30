@@ -14,7 +14,8 @@ class MedicamentoValidate extends Validate {
     public function validatePost($params)
     {
         $valida = new Validator($params);
-        $valida->rule('required', ['nome', 'prescricao']);
+        $valida->rule('required', ['nome']);
+        $valida->rule('required', ['prescricao']);
         if($valida->validate()){
             return true;
         } else{

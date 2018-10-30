@@ -9,21 +9,30 @@
 namespace CalfManager\Model\Repository\Entity;
 
 
-class DoseAplicadaEntity extends CalfEntity
+class DoseEntity extends CalfEntity
 {
-    protected $table = "doses_aplicadas";
+    protected $table = "doses";
     protected $fillable = [
         'id',
+        'animal_id',
         'medicamento_id',
-        'dose',
-        'data_aplicacao',
+        'funcionario_id',
+        'quantidade_mg',
+        'data',
         'data_criacao',
         'data_alteracao',
         'usuario_cadastro',
         'usuario_alteracao',
         'status'
     ];
+    public function animal(){
+        return $this->belongsTo("CalfManager\Model\Repository\Entity\AnimalEntity", "animal_id");
+    }
     public function medicamento(){
         return $this->belongsTo("CalfManager\Model\Repository\Entity\MedicamentoEntity", "medicamento_id");
+    }
+
+    public function funcionario(){
+        return $this->belongsTo("CalfManager\Model\Repository\Entity\FuncionarioEntity", "funcionario_id");
     }
 }

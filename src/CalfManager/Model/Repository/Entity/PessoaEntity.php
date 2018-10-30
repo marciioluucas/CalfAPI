@@ -20,14 +20,15 @@ class PessoaEntity extends CalfEntity
         'sexo',
         'numero_telefone',
         'data_nascimento',
+        'endereco_id',
         'data_alteracao',
         'data_cadastro',
-        'usuario_cadastro',
         'usuario_alteracao',
+        'usuario_cadastro',
         'status'
     ];
     public function endereco() {
-        return $this->hasMany("\CalfManager\Model\Repository\Entity\EnderecoEntity");
+        return $this->belongsTo("\CalfManager\Model\Repository\Entity\EnderecoEntity", "endereco_id");
     }
     public function funcionario(){
         return $this->hasMany("CalfManager\Model\Repository\Entity\FuncionarioEntity");

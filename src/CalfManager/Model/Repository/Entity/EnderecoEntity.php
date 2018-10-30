@@ -23,8 +23,8 @@ class EnderecoEntity extends CalfEntity
         'cep',
         'data_alteracao',
         'data_cadastro',
-        'usuario_cadastro',
         'usuario_alteracao',
+        'usuario_cadastro',
         'status'
     ];
     public function pessoas() {
