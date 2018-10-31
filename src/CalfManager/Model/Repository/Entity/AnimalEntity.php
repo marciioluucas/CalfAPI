@@ -41,18 +41,12 @@ class AnimalEntity extends CalfEntity
         'data_cadastro',
         'usuario_cadastro',
         'usuario_alteracao',
-        'fazendas_id',
         'lotes_id',
         'is_vivo'
     ];
     protected $casts = [
         'data_nascimento' => 'date:d/m/Y'
     ];
-
-    public function fazenda()
-    {
-        return $this->belongsTo('CalfManager\Model\Repository\Entity\FazendaEntity', 'fazendas_id');
-    }
 
     public function pesagens()
     {
