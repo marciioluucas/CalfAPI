@@ -32,20 +32,17 @@ class FazendaEntity extends CalfEntity
 
     protected $appends = ['quantidade_animais'];
 
-    public function animais()
-    {
-        return $this->hasMany('\CalfManager\Model\Repository\Entity\AnimalEntity');
-    }
+
     public function lote(){
-        return $this->hasMany('\CalfManager\Model\Repository\Entity\LoteEntity');
+        return $this->hasMany('\CalfManager\Model\Repository\Entity\LoteEntity' , 'fazenda_id');
     }
 
     public function getQuantidadeAnimaisAttribute()
     {
-        return $this->hasMany(
-            '\CalfManager\Model\Repository\Entity\AnimalEntity',
-            'fazendas_id',
-            'id')
-            ->count();
+//        return $this->hasMany(
+//            '\CalfManager\Model\Repository\Entity\AnimalEntity',
+//            'fazendas_id',
+//            'id')
+//            ->count();
     }
 }

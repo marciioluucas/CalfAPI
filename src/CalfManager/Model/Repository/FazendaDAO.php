@@ -51,7 +51,7 @@ class FazendaDAO implements IDAO
         $entity->usuario_alteracao = $obj->getUsuarioAlteracao()->getId();
         $entity->data_alteracao = $obj->getDataAlteracao();
         if (!is_null($obj->getNome())) {
-            $entity->nome = $obj->getNomeAnimal();
+            $entity->nome = $obj->getNome();
         }
 
         return (new FazendaDAO())->update($obj);
@@ -63,7 +63,7 @@ class FazendaDAO implements IDAO
      */
     public function retreaveAll(int $page): array
     {
-        return ["fazendas" => FazendaEntity::ativo()
+        return ["fazendas" => FazendaEntity::ativo()->with('lote')
             ->paginate(
                 Config::QUANTIDADE_ITENS_POR_PAGINA,
                 ['*'],
@@ -80,7 +80,7 @@ class FazendaDAO implements IDAO
     public function retreaveById(int $id): array
     {
         try {
-            return FazendaEntity::ativo()
+            return FazendaEntity::ativo()->with('lote')
                 ->where('id', $id)
                 ->get();
         } catch (Exception $e) {
@@ -98,7 +98,7 @@ class FazendaDAO implements IDAO
     {
         try {
             return [
-                "fazendas" => FazendaEntity::ativo()
+                "fazendas" => FazendaEntity::ativo()->with('lote')
                     ->where('nome', 'like', $nome . "%")
                     ->paginate
                     (

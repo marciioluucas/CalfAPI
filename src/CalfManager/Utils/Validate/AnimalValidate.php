@@ -17,7 +17,7 @@ class AnimalValidate extends Validate
     public function validatePost($params)
     {
         $v = new Validator($params);
-        $v->rule('required', ['data_nascimento', 'codigo_raca', 'codigo_brinco']);
+        $v->rule('required', ['nome','data_nascimento', 'codigo_raca', 'codigo_brinco']);
         if ($v->validate()) {
             return true;
         } else {
@@ -34,7 +34,7 @@ class AnimalValidate extends Validate
     public function validatePut($params)
     {
         $v = new Validator($params);
-        $v->rule('required', ['id', 'data_nascimento', 'codigo_raca', 'codigo_brinco']);
+        $v->rule('required', ['id','nome', 'data_nascimento', 'codigo_raca', 'codigo_brinco']);
         if ($v->validate()) {
             return true;
         } else {
