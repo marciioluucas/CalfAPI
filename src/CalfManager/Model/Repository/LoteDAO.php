@@ -31,9 +31,8 @@ class LoteDAO implements IDAO
         $entity->codigo = $obj->getCodigo();
         $entity->fazenda_id = $obj->getFazenda()->getId();
 
-        $entity->data_alteracao = $obj->getDataAlteracao();
         $entity->data_cadastro = $obj->getDataCriacao();
-        $entity->usuario_cadastro = $obj->getUsuarioCadastro();
+        $entity->usuario_cadastro = $obj->getUsuarioCadastro()->getId();
         try {
             if ($entity->save()) {
                 return true;
