@@ -53,6 +53,7 @@ class AnimalDAO implements IDAO
         $entity->data_alteracao = $obj->getDataAlteracao();
         $entity->usuario_cadastro = $obj->getUsuarioCadastro()->getId();
         $entity->usuario_alteracao = $obj->getUsuarioAlteracao()->getId();
+        $entity->fazendas_id = $obj->getFazenda()->getId();
         $entity->lotes_id = $obj->getLote()->getId();
         $entity->is_vivo = $obj->isVivo();
         try {
@@ -103,6 +104,9 @@ class AnimalDAO implements IDAO
         if (!is_null($obj->getDataAlteracao())) {
             $entity->data_alteracao = $obj->getDataAlteracao();
         }
+        if (!is_null($obj->getFazenda()->getId())) {
+            $entity->fazendas_id = $obj->getFazenda()->getId();
+        }
         if (!is_null($obj->getLote()->getId())) {
             $entity->lotes_id = $obj->getLote()->getId();
         }
@@ -126,7 +130,8 @@ class AnimalDAO implements IDAO
             $entity->where('sexo', $this->sexo);
         }
 
-        $animais = $entity->with('hemogramas')
+        $animais = $entity->with('fazenda')
+            ->with('hemogramas')
             ->with('pesagens')
             ->with('doencas')
             ->with('lote')
@@ -154,7 +159,8 @@ class AnimalDAO implements IDAO
             if (!is_null($this->sexo)) {
                 $entity->where('sexo', $this->sexo);
             }
-            $animal = $entity->with('hemogramas')
+            $animal = $entity->with('fazenda')
+                ->with('hemogramas')
                 ->with('pesagens')
                 ->with('doencas')
                 ->with('lote')
@@ -189,7 +195,8 @@ class AnimalDAO implements IDAO
             if (!is_null($this->sexo)) {
                 $entity->where('sexo', $this->sexo);
             }
-            $animais = $entity->with('hemogramas')
+            $animais = $entity->with('fazenda')
+                ->with('hemogramas')
                 ->with('pesagens')
                 ->with('doencas')
                 ->with('lote')
@@ -217,7 +224,8 @@ class AnimalDAO implements IDAO
     {
         try {
             $entity = AnimalEntity::ativo();
-            $animaisLote = $entity->with('hemogramas')
+            $animaisLote = $entity->with('fazenda')
+                ->with('hemogramas')
                 ->with('pesagens')
                 ->with('doencas')
                 ->with('lote')
@@ -247,7 +255,8 @@ class AnimalDAO implements IDAO
     {
         try {
             $entity = AnimalEntity::ativo();
-            $animais = $entity->with('hemogramas')
+            $animais = $entity ->with('fazenda')
+                ->with('hemogramas')
                 ->with('pesagens')
                 ->with('doencas')
                 ->with('lote')

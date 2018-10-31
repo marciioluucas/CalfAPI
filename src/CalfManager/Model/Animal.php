@@ -70,6 +70,11 @@ class Animal extends Modelo
     private $lote;
 
     /**
+     * @var Fazenda
+     */
+    private $fazenda;
+
+    /**
      * @var ArrayObject
      */
     private $doencas;
@@ -82,6 +87,7 @@ class Animal extends Modelo
      */
     public function __construct()
     {
+        $this->fazenda = new Fazenda();
         $this->lote = new Lote();
         $this->pesagem = new Pesagem($this);
         $this->doencas = new ArrayObject();
@@ -417,6 +423,22 @@ class Animal extends Modelo
     public function setLote(Lote $lote): void
     {
         $this->lote = $lote;
+    }
+
+    /**
+     * @return Fazenda
+     */
+    public function getFazenda(): Fazenda
+    {
+        return $this->fazenda;
+    }
+
+    /**
+     * @param Fazenda $fazenda
+     */
+    public function setFazenda(Fazenda $fazenda): void
+    {
+        $this->fazenda = $fazenda;
     }
 
     /**

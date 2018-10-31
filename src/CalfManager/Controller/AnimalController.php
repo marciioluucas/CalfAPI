@@ -28,12 +28,11 @@ class AnimalController implements IController
             $data = json_decode($request->getBody()->getContents());
             $valida = (new AnimalValidate())->validatePost((array)$data);
             if ($valida === true) {
-                $animal->setNome($data->nome);
                 $animal->setCodigoBrinco($data->codigo_brinco);
                 $animal->setNome($data->codigo_brinco);
                 $animal->setCodigoRaca($data->codigo_raca);
                 $animal->setDataNascimento($data->data_nascimento);
-                $animal->getLote()->setId($data->lote->id);
+                $animal->getLote()->setId(1);
                 foreach ($data->doencas as $doenca) {
                     $animal->adicionarDoenca($doenca->id, $doenca->situacao);
                 }
@@ -45,6 +44,7 @@ class AnimalController implements IController
                     $animal->setMae(new Animal());
                     $animal->getMae()->setId($data->mae);
                 }
+                $animal->getFazenda()->setId($data->fazenda->id);
                 $animal->setVivo($data->is_vivo);
                 $animal->getPesagem()->setPeso($data->pesagem->peso);
                 $animal->getPesagem()->setDataPesagem($data->pesagem->data);
@@ -128,12 +128,11 @@ class AnimalController implements IController
         $valida = (new AnimalValidate())->validatePost((array)$data);
         if ($valida === true) {
             $animal->setId($request->getAttribute('id'));
-            $animal->setNome($data->nome);
             $animal->setCodigoBrinco($data->codigo_brinco);
             $animal->setNome($data->codigo_brinco);
             $animal->setCodigoRaca($data->codigo_raca);
             $animal->setDataNascimento($data->data_nascimento);
-            $animal->getLote()->setId($data->lote->id);
+            $animal->getLote()->setId(1);
             foreach ($data->doencas as $doenca) {
                 $animal->adicionarDoenca($doenca->id, $doenca->situacao);
             }
@@ -145,6 +144,7 @@ class AnimalController implements IController
                 $animal->setMae(new Animal());
                 $animal->getMae()->setId($data->mae->id);
             }
+            $animal->getFazenda()->setId($data->fazenda->id);
             $animal->setVivo($data->is_vivo);
             $animal->getPesagem()->setPeso($data->pesagem->peso);
             $animal->getPesagem()->setDataPesagem($data->pesagem->data);
