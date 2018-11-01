@@ -33,8 +33,8 @@ class PesagemController implements IController
             if ($valida) {
                 $pesagem->setPeso($data->peso);
                 $pesagem->setAnimal(new Animal());
-                $pesagem->getAnimal()->setId($data->animal_id);
-                $pesagem->setDataPesagem($data->data_pesagem);
+                $pesagem->getAnimal()->setId($data->animal->id);
+                $pesagem->setDataPesagem($data->data);
 
                 if ($pesagem->cadastrar()) {
                     return View::renderMessage(
@@ -103,8 +103,8 @@ class PesagemController implements IController
                 if($data->animal->id) {
                     $pesagem->getAnimal()->setId($data->animal->id);
                 }
-                if($data->data_pesagem) {
-                    $pesagem->setDataPesagem($data->data_pesagem);
+                if($data->data) {
+                    $pesagem->setDataPesagem($data->data);
                 }
                 if ($pesagem->cadastrar()) {
                     return View::renderMessage(

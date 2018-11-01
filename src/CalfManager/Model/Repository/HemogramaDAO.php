@@ -26,9 +26,10 @@ class HemogramaDAO implements IDAO
     public function create($obj): ?int
     {
         $entity = new HemogramaEntity();
-        $entity->data_exame = $obj->getDataExame();
+        $entity->data = $obj->getData();
         $entity->ppt = $obj->getPpt();
         $entity->hematocrito = $obj->getHematocrito();
+        $entity->animal_id = $obj->getAnimal()->getId();
 
         $entity->data_cadastro = $obj->getDataCriacao();
         $entity->usuario_cadastro = $obj->getUsuarioCadastro()->getId();
@@ -50,7 +51,8 @@ class HemogramaDAO implements IDAO
     public function update($obj): bool
     {
         $entity = HemogramaEntity::find($obj->getId());
-        $entity->data_exame = $obj->getDataExame();
+        $entity->data = $obj->getData();
+
         $entity->data_alteracao = $obj->getDataAlteracao();
         $entity->usuario_alteracao = $obj->getUsuarioAlteracao()->getId();
         if(!is_null($obj->getPpt())){

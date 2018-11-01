@@ -27,9 +27,6 @@ class FamiliaDAO implements IDAO
         $entity->pai_id = $obj->getPai()->getId();
         $entity->mae_id = $obj->getMae()->getId();
         $entity->filho_id = $obj->getFilho()->getId();
-        $entity->data_alteracao = $obj->getDataAlteracao();
-        $entity->usuario_cadastro = $obj->getUsuarioCadastro()->getId();
-        $entity->data_cadastro = $obj->getDataCriacao();
         try {
             if($entity->save()) {
                 return $entity->id;
@@ -47,9 +44,6 @@ class FamiliaDAO implements IDAO
     public function update($obj): bool
     {
         $entity = FamiliaEntity::find($obj->getId());
-
-        $entity->usuario_alteracao = $obj->getUsuarioAlteracao()->getId();
-        $entity->data_alteracao = $obj->getDataAlteracao();
 
         if(!is_null($obj->getPai()->getId())) {
             $entity->pai_id = $obj->getPai()->getId();

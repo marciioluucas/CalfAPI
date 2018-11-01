@@ -32,8 +32,8 @@ class PesagemDAO implements IDAO
         $entity->animais_id = $obj->getAnimal()->getId();
         $entity->data_pesagem = $obj->getDataPesagem();
         $entity->peso = $obj->getPeso();
+
         $entity->usuario_cadastro = $obj->getUsuarioCadastro()->getId();
-        $entity->usuario_alteracao = $obj->getUsuarioAlteracao()->getId();
         $entity->data_cadastro = $obj->getDataCriacao();
         try {
             if ($entity->save()) {
@@ -54,6 +54,9 @@ class PesagemDAO implements IDAO
         $entity = PesagemEntity::find($obj->getId());
         $entity->usuario_alteracao = $obj->getUsuarioAlteracao()->getId();
         $entity->data_alteracao = $obj->getDataAlteracao();
+        if(!is_null($obj->getDataPesagem())){
+            $entity->data_pesagem = $obj->getDataPesagem();
+        }
         if (!is_null($obj->getPeso())) {
             $entity->peso = $obj->getPeso();
         }
@@ -74,8 +77,7 @@ class PesagemDAO implements IDAO
     public function retreaveAll(int $page): array
     {
         return [
-            "pesagens" => PesagemEntity
-                ::ativo()
+            "pesagens" => PesagemEntity::ativo()
                 ->paginate(
                     Config::QUANTIDADE_ITENS_POR_PAGINA,
                     ['*'],
@@ -93,8 +95,7 @@ class PesagemDAO implements IDAO
     {
         try {
             return [
-                "pesagens" => PesagemEntity
-                    ::ativo()
+                "pesagens" => PesagemEntity::ativo()
                     ->where('id', $id)
                     ->get()
             ];

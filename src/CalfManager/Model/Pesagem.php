@@ -34,9 +34,8 @@ class Pesagem extends Modelo
      * @param Animal $animal
      * @throws Exception
      */
-    public function __construct(Animal $animal = null)
-    {
-        $this->animal = $animal;
+    function __construct(Animal $animal = null) {
+        $this->animal = $animal != null ? $animal : new Animal();
     }
 
     /**
@@ -150,7 +149,7 @@ class Pesagem extends Modelo
     /**
      * @return Animal
      */
-    public function getAnimal(): Animal
+    public function getAnimal()
     {
         return $this->animal;
     }
@@ -158,7 +157,7 @@ class Pesagem extends Modelo
     /**
      * @param Animal $animal
      */
-    public function setAnimal(Animal $animal): void
+    public function setAnimal( $animal): void
     {
         $this->animal = $animal;
     }

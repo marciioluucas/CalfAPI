@@ -31,9 +31,10 @@ class HemogramaController implements IController
             $data = json_decode($request->getBody()->getContents());
             $valida = (new HemogramaValidate())->validatePost((array)$data);
             if($valida === true) {
-                $hemograma->setDataExame($data->data_exame);
+                $hemograma->setData($data->data);
                 $hemograma->setPpt($data->ppt);
                 $hemograma->setHematocrito($data->hematocrito);
+                $hemograma->getAnimal()->setId($data->animal->id);
 
                 if($hemograma->cadastrar()) {
                     return View::renderMessage(
@@ -96,14 +97,17 @@ class HemogramaController implements IController
             $valida = (new HemogramaValidate())->validatePost((array)$data);
             if($valida === true) {
                 $hemograma->setId($request->getAttribute('id'));
-                if(!is_null($data->data_exame)) {
-                    $hemograma->setDataExame($data->data_exame);
+                if(!is_null($data->data)) {
+                    $hemograma->setData($data->data);
                 }
                 if(!is_null($data->ppt)) {
                     $hemograma->setPpt($data->ppt);
                 }
                 if(!is_null($data->hematocrito)) {
                     $hemograma->setHematocrito($data->hematocrito);
+                }
+                if(!is_null($data->animal->id)){
+                    $hemograma->getAnimal()->setId($data->animal->id);
                 }
                 if($hemograma->alterar()) {
                     return View::renderMessage(
