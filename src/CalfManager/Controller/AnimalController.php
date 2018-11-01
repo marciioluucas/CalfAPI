@@ -29,13 +29,16 @@ class AnimalController implements IController
             $valida = (new AnimalValidate())->validatePost((array)$data);
             if ($valida === true) {
                 $animal->setNome($data->nome);
+                $animal->setSexo($data->sexo);
                 $animal->setCodigoBrinco($data->codigo_brinco);
                 $animal->setNome($data->codigo_brinco);
                 $animal->setCodigoRaca($data->codigo_raca);
                 $animal->setDataNascimento($data->data_nascimento);
                 $animal->getLote()->setId($data->lote->id);
-                foreach ($data->doencas as $doenca) {
-                    $animal->adicionarDoenca($doenca->id, $doenca->situacao);
+                if($data->doencas) {
+                    foreach ($data->doencas as $doenca) {
+                        $animal->adicionarDoenca($doenca->id, $doenca->situacao);
+                    }
                 }
                 if ($data->pai != null) {
                     $animal->setPai(new Animal());
@@ -48,15 +51,28 @@ class AnimalController implements IController
                 $animal->setVivo($data->is_vivo);
                 $animal->getPesagem()->setPeso($data->pesagem->peso);
                 $animal->getPesagem()->setDataPesagem($data->pesagem->data);
-                $idCadastrado = $animal->cadastrar();
-                return View::renderMessage(
-                    $response,
-                    "success",
-                    "Animal cadastrado com sucesso! ID cadastrado: " .
-                    $idCadastrado,
-                    201,
-                    "Sucesso ao cadastrar"
-                );
+                $animal->getHemograma()->setPpt($data->hemograma->ppt);
+                $animal->getHemograma()->setHematocrito($data->hemograma->hematocrito);
+                $animal->getHemograma()->setData($data->hemograma->data);
+                if($idCadastrado = $animal->cadastrar()) {
+                    return View::renderMessage(
+                        $response,
+                        "success",
+                        "Animal cadastrado com sucesso! ID cadastrado: " .
+                        $idCadastrado,
+                        201,
+                        "Sucesso ao cadastrar"
+                    );
+                }
+                else {
+                    return View::renderMessage(
+                        $response,
+                        "error",
+                        "Erro ao cadastrar animal!",
+                        500,
+                        "Erro ao cadastrar"
+                    );
+                }
             } else {
                 return View::renderMessage($response, 'warning', $valida, 400);
             }
@@ -129,13 +145,16 @@ class AnimalController implements IController
         if ($valida === true) {
             $animal->setId($request->getAttribute('id'));
             $animal->setNome($data->nome);
+            $animal->setSexo($data->sexo);
             $animal->setCodigoBrinco($data->codigo_brinco);
             $animal->setNome($data->codigo_brinco);
             $animal->setCodigoRaca($data->codigo_raca);
             $animal->setDataNascimento($data->data_nascimento);
             $animal->getLote()->setId($data->lote->id);
-            foreach ($data->doencas as $doenca) {
-                $animal->adicionarDoenca($doenca->id, $doenca->situacao);
+            if($data->doencas) {
+                foreach ($data->doencas as $doenca) {
+                    $animal->adicionarDoenca($doenca->id, $doenca->situacao);
+                }
             }
             if ($data->pai != null) {
                 $animal->setPai(new Animal());
@@ -148,15 +167,28 @@ class AnimalController implements IController
             $animal->setVivo($data->is_vivo);
             $animal->getPesagem()->setPeso($data->pesagem->peso);
             $animal->getPesagem()->setDataPesagem($data->pesagem->data);
-            $idCadastrado = $animal->alterar();
-            return View::renderMessage(
-                $response,
-                "success",
-                "Animal alterado com sucesso! ID cadastrado: " .
-                $idCadastrado,
-                201,
-                "Sucesso ao cadastrar"
-            );
+            $animal->getHemograma()->setPpt($data->hemograma->ppt);
+            $animal->getHemograma()->setHematocrito($data->hemograma->hematocrito);
+            $animal->getHemograma()->setData($data->hemograma->data);
+            if($idCadastrado = $animal->alterar()) {
+                return View::renderMessage(
+                    $response,
+                    "success",
+                    "Animal alterado com sucesso! ID cadastrado: " .
+                    $idCadastrado,
+                    201,
+                    "Sucesso ao cadastrar"
+                );
+            }
+            else {
+                return View::renderMessage(
+                    $response,
+                    "error",
+                    "Erro ao alterar animal!",
+                    500,
+                    "Erro ao alterar"
+                );
+            }
         } else {
             return View::renderMessage($response, 'warning', $valida, 400);
         }

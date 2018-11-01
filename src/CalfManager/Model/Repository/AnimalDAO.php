@@ -46,6 +46,7 @@ class AnimalDAO implements IDAO
     {
         $entity = new AnimalEntity();
         $entity->nome = $obj->getNome();
+        $entity->sexo = $obj->getSexo();
         $entity->data_nascimento = $obj->getDataNascimento();
         $entity->codigo_brinco = $obj->getCodigoBrinco();
         $entity->codigo_raca = $obj->getCodigoRaca();
@@ -84,9 +85,13 @@ class AnimalDAO implements IDAO
     public function update($obj): bool
     {
         $entity = AnimalEntity::find($obj->getId());
+        $entity->data_alteracao = $obj->getDataAlteracao();
         $entity->usuario_alteracao = $obj->getUsuarioAlteracao()->getId();
         if (!is_null($obj->getNome())) {
             $entity->nome = $obj->getNome();
+        }
+        if(!is_null($obj->getSexo())){
+            $entity->sexo = $obj->getSexo();
         }
         if (!is_null($obj->getDataNascimento())) {
             $entity->data_nascimento = $obj->getDataNascimento();

@@ -125,6 +125,7 @@ class Animal extends Modelo
     {
         try {
             $this->dataAlteracao = date(Config::PADRAO_DATA_HORA);
+            $this->usuarioAlteracao->setId(1);
             return (new AnimalDAO())->update($this);
         } catch (Exception $e) {
             throw new Exception($e->getMessage());
@@ -221,6 +222,7 @@ class Animal extends Modelo
         $this->setId($idAnimal);
         $this->cadastrarFamilia();
         $this->cadastrarPesagens();
+        $this->cadastrarHemograma();
         $this->adoecerAnimal($idAnimal);
     }
 
@@ -232,6 +234,9 @@ class Animal extends Modelo
         $this->getPesagem()->cadastrar();
     }
 
+    public function cadastrarHemograma(){
+        $this->getHemograma()->cadastrar();
+    }
     /**
      * @throws Exception
      */
