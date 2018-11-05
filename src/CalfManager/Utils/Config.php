@@ -34,7 +34,7 @@ class Config
     const SLIM_CONTAINER = ['settings' => ['displayErrorDetails' => true]];
 
     //Configuração consultas
-    const QUANTIDADE_ITENS_POR_PAGINA = 10;
+    const QUANTIDADE_ITENS_POR_PAGINA = 20;
 
     public static function loadTimezone(): void
     {
