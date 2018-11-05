@@ -63,13 +63,14 @@ class FazendaDAO implements IDAO
      */
     public function retreaveAll(int $page): array
     {
-        return ["fazendas" => FazendaEntity::ativo()->with('lote')
+        $fazenda = FazendaEntity::ativo()->with('lote')
             ->paginate(
                 Config::QUANTIDADE_ITENS_POR_PAGINA,
                 ['*'],
                 'pagina',
                 $page
-            )];
+            );
+        return ["fazendas" => $fazenda];
     }
 
     /**
@@ -80,9 +81,11 @@ class FazendaDAO implements IDAO
     public function retreaveById(int $id): array
     {
         try {
-            return FazendaEntity::ativo()->with('lote')
+            $fazenda = FazendaEntity::ativo()->with('lote')
                 ->where('id', $id)
-                ->get();
+                ->first()
+                ->toArray();
+            return[ "fazendas" => $fazenda];
         } catch (Exception $e) {
             throw new Exception("Algo de errado aconteceu ao tentar pesquisar por ID" . $e->getMessage());
         }
