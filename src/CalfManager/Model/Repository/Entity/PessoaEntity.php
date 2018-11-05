@@ -27,6 +27,9 @@ class PessoaEntity extends CalfEntity
         'usuario_cadastro',
         'status'
     ];
+    protected $casts = [
+        'data_nascimento' => 'date:d/m/Y'
+    ];
     public function endereco() {
         return $this->belongsTo("\CalfManager\Model\Repository\Entity\EnderecoEntity", "endereco_id");
     }

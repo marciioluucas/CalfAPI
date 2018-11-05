@@ -178,7 +178,7 @@ class Pessoa extends Modelo
      */
     public function setDataNascimento($data_nascimento)
     {
-        $this->data_nascimento = $data_nascimento;
+        $this->data_nascimento = date('Y-m-d', strtotime(str_replace("/", "-", $data_nascimento)));
     }
 
     /**

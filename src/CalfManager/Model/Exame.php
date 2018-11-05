@@ -32,7 +32,7 @@ abstract class Exame extends Modelo
      */
     public function setData($data)
     {
-        $this->data = $data;
+        $this->data = date('Y-m-d', strtotime(str_replace("/", "-", $data)));
     }
 
     /**
@@ -46,7 +46,7 @@ abstract class Exame extends Modelo
     /**
      * @param mixed $animal
      */
-    public function setAnimal($animal)
+    public function setAnimal($animal): void
     {
         $this->animal = $animal;
     }

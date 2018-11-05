@@ -28,6 +28,9 @@ class HemogramaEntity extends CalfEntity
         'usuario_cadastro',
         'status'
     ];
+    protected $casts = [
+    'data' => 'date:d/m/Y'
+];
 
     public function animal() {
         return $this->belongsTo('CalfManager\Model\Repository\Entity\AnimalEntity', 'animal_id');

@@ -19,6 +19,10 @@ class AnimalHasDoencaEntity extends CalfEntity
         'data_cura',
         'data_adoecimento'
     ];
+    protected $casts = [
+        'data_cura' => 'date:d/m/Y',
+        'data_adoecimento' => 'date:d/m/Y'
+    ];
 
 
 }

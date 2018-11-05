@@ -25,6 +25,9 @@ class DoseEntity extends CalfEntity
         'usuario_alteracao',
         'status'
     ];
+    protected $casts = [
+        'data' => 'date:d/m/Y'
+    ];
     public function animal(){
         return $this->belongsTo("CalfManager\Model\Repository\Entity\AnimalEntity", "animal_id");
     }

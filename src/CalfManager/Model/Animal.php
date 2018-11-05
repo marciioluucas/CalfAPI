@@ -449,9 +449,9 @@ class Animal extends Modelo
     }
 
     /**
-     * @param Hemograma $hemograma
+     * @param Hemograma|null $hemograma
      */
-    public function setHemograma(Hemograma $hemograma)
+    public function setHemograma(?Hemograma $hemograma): void
     {
         $this->hemograma = $hemograma;
     }
