@@ -13,8 +13,13 @@ class FuncionarioValidate extends Validate
 {
     public function validatePost($params)
     {
+        $rules = [
+            'required' => ['pessoa_id', 'usuario_id','cargo_id','fazenda_id', 'salario'],
+            'integer' => ['pessoa_id', 'usuario_id','cargo_id','fazenda_id'],
+            'numeric' => 'salario'
+        ];
         $valida = new Validator($params);
-        $valida->rule('required', ['pessoa', 'usuario','cargo','fazenda', 'salario']);
+        $valida->rules($rules);
         if($valida->validate()){
             return true;
         } else {
@@ -30,8 +35,13 @@ class FuncionarioValidate extends Validate
 
     public function validatePut($params)
     {
+        $rules = [
+            'required' => ['pessoa_id', 'usuario_id','cargo_id','fazenda_id', 'salario'],
+            'integer' => ['pessoa_id', 'usuario_id','cargo_id','fazenda_id'],
+            'numeric' => 'salario'
+        ];
         $valida = new Validator($params);
-        $valida->rule('required', ['pessoa', 'usuario','cargo', 'pessoa','fazenda' ,'salario']);
+        $valida->rules($rules);
         if($valida->validate()){
             return true;
         } else {

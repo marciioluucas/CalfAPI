@@ -15,10 +15,16 @@ class PesagemValidate extends Validate
 
     public function validatePost($params)
     {
+        $rules = [
+            'required'=> ['peso', 'data_pesagem', 'animais_id'],
+            'numeric' => 'peso',
+            'dateFormat' => [['data_pesagem', 'd/m/Y']],
+            'integer' => 'animais_id',
+            'lengthMin' => [['peso', 1]],
+            'lengthMax' => [['peso', 11]]
+        ];
         $v = new Validator($params);
-        $v->rule('required', ['peso', 'dataPesagem']);
-        $v->rule('integer', 'peso');
-        $v->rule('date', 'dataPesagem');
+        $v->rules($rules);
         if ($v->validate()) {
             return true;
         } else {

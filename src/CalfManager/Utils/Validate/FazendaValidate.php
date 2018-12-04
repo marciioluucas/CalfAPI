@@ -14,10 +14,13 @@ class FazendaValidate extends Validate
 
     public function validatePost($params)
     {
+        $rules = [
+            'required'=> ['nome'],
+            'lengthMin' => [['nome',4]],
+            'lengthMax' => [['nome',30]]
+        ];
         $v = new Validator($params);
-        $v->rule('required', ['nome']);
-        $v->rule('lengthMin','nome',4);
-        $v->rule('lengthMax','nome',100);
+        $v->rules($rules);
         if ($v->validate()) {
             return true;
         } else {
@@ -33,8 +36,13 @@ class FazendaValidate extends Validate
 
     public function validatePut($params)
     {
+        $rules = [
+            'required'=> ['nome'],
+            'lengthMin' => [['nome',4]],
+            'lengthMax' => [['nome',30]]
+        ];
         $v = new Validator($params);
-        $v->rule('required', ['nome','id', 'limite']);
+        $v->rules($rules);
         if ($v->validate()) {
             return true;
         } else {

@@ -14,8 +14,15 @@ class GrupoValidate extends Validate
 {
     public function validatePost($params)
     {
+        $rules = [
+            'required' => ['nome', 'descricao', 'permissao_id'],
+            'integer' => 'permissao_id',
+            'lengthMin' => [['nome', 4],['descricao', 4]],
+            'lengthMax' => [['nome', 25],['descricao', 50]]
+
+        ];
         $valida = new Validator($params);
-        $valida->rule('required', ['nome', 'descricao']);
+        $valida->rules($rules);
         if ($valida->validate()) {
             return true;
         } else {
@@ -26,19 +33,18 @@ class GrupoValidate extends Validate
 
     public function validateGet($params)
     {
-        $valida = new Validator($params);
-        $valida->rule('required', ['nome']);
-        if ($valida->validate()) {
-            return true;
-        } else {
-            $toReturn = $this->filtrarValidacao($valida);
-            return $toReturn;
-        }    }
+    }
 
     public function validatePut($params)
     {
+        $rules = [
+            'required' => ['nome', 'descricao', 'permissao_id'],
+            'integer' => 'permissao_id',
+            'lengthMin' => [['nome', 4],['descricao', 4]],
+            'lengthMax' => [['nome', 25],['descricao', 50]]
+        ];
         $valida = new Validator($params);
-        $valida->rule('required', ['id', 'nome', 'descricao']);
+        $valida->rules($rules);
         if ($valida->validate()) {
             return true;
         } else {

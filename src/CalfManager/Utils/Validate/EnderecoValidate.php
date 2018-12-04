@@ -14,8 +14,30 @@ class EnderecoValidate extends Validate
 {
     public function validatePost($params)
     {
+        $rules = [
+            'required' => ['logradouro', 'numero', 'bairro', 'cidade', 'estado', 'pais', 'cep'],
+            'alpha' => ['estado', 'pais'],
+            'length' => [['estado', 2]],
+            'lengthMin' => [
+                ['logradouro', 4],
+                ['numero', 1],
+                ['bairro', 2],
+                ['cidade', 4],
+                ['pais', 3],
+                ['cep', 2]
+            ],
+            'lengthMax' => [
+                ['logradouro', 100],
+                ['numero', 11],
+                ['bairro', 50],
+                ['cidade', 50],
+                ['pais', 25],
+                ['cep', 11]
+            ],
+            'integer' => 'cep'
+        ];
         $valida = new Validator($params);
-        $valida->rule('required', ['logradouro', 'bairro', 'cidade', 'estado', 'pais', 'cep']);
+        $valida->rules($rules);
         if($valida->validate()){
             return true;
         } else {
@@ -31,8 +53,30 @@ class EnderecoValidate extends Validate
 
     public function validatePut($params)
     {
+        $rules = [
+            'required' => ['logradouro', 'numero', 'bairro', 'cidade', 'estado', 'pais', 'cep'],
+            'alpha' => ['estado', 'pais'],
+            'length' => [['estado', 2]],
+            'lengthMin' => [
+                ['logradouro', 4],
+                ['numero', 1],
+                ['bairro', 2],
+                ['cidade', 4],
+                ['pais', 3],
+                ['cep', 2]
+            ],
+            'lengthMax' => [
+                ['logradouro', 100],
+                ['numero', 11],
+                ['bairro', 50],
+                ['cidade', 50],
+                ['pais', 25],
+                ['cep', 11]
+            ],
+            'integer' => 'cep'
+        ];
         $valida = new Validator($params);
-        $valida->rule('required', ['logradouro', 'bairro', 'cidade', 'estado', 'pais', 'cep']);
+        $valida->rules($rules);
         if($valida->validate()){
             return true;
         } else {

@@ -16,8 +16,26 @@ class AnimalValidate extends Validate
 
     public function validatePost($params)
     {
+        $rules = [
+            'optional' => ['codigo_raca','pai', 'mae','fase_vida'],
+            'required' => ['nome','sexo','lote','pesagem','hemograma','data_nascimento', 'codigo_brinco', 'is_vivo', 'is_primogenito'],
+            'alpha' => ['nome', 'sexo'],
+            'lengthMax' => [['sexo',1]],
+            'in' => [
+                ['sexo', ['m','f']],
+                ['fase_vida', ['RECEM_NASCIDO','BEZERRO','NOVILHO','ADULTO']]
+            ],
+            'integer' => ['pai', 'mae'],
+            'dateFormat' => [
+                ['data_nascimento', 'd/m/Y']
+            ],
+            'numeric' => 'codigo_brinco',
+            'alphaNum' => 'codigo_raca',
+            'boolean' => ['is_vivo', 'is_primogenito']
+        ];
         $v = new Validator($params);
-        $v->rule('required', ['nome','data_nascimento', 'codigo_raca', 'codigo_brinco']);
+        $v->rules($rules);
+
         if ($v->validate()) {
             return true;
         } else {
@@ -33,8 +51,26 @@ class AnimalValidate extends Validate
 
     public function validatePut($params)
     {
+        $rules = [
+            'optional' => ['codigo_raca','pai', 'mae','fase_vida'],
+            'required' => ['nome','sexo','lote','pesagem','hemograma','data_nascimento', 'codigo_brinco', 'is_vivo', 'is_primogenito'],
+            'alpha' => ['nome', 'sexo'],
+            'lengthMax' => [['sexo', 1]],
+            'in' => [
+                ['sexo', ['m','f']],
+                ['fase_vida', ['RECEM_NASCIDO','BEZERRO','NOVILHO','ADULTO']]
+            ],
+            'integer' => ['pai', 'mae'],
+            'dateFormat' => [
+                ['data_nascimento', 'd/m/Y']
+            ],
+            'numeric' => 'codigo_brinco',
+            'alphaNum' => 'codigo_raca',
+            'boolean' => ['is_vivo', 'is_primogenito']
+        ];
         $v = new Validator($params);
-        $v->rule('required', ['id','nome', 'data_nascimento', 'codigo_raca', 'codigo_brinco']);
+        $v->rules($rules);
+
         if ($v->validate()) {
             return true;
         } else {

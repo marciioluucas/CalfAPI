@@ -14,8 +14,19 @@ class PermissaoValidade extends Validate
 {
     public function validatePost($params)
     {
+        $rules = [
+            'required' => ['nome_modulo', 'create', 'read', 'update', 'delete'],
+            'lengthMin' => [['nome_modulo', 4]],
+            'lengthMax' => [['nome_modulo', 25]],
+            'in' => [
+                ['create',['0','1']],
+                ['read',['0','1']],
+                ['update',['0','1']],
+                ['delete',['0','1']]
+            ]
+        ];
         $valida = new Validator($params);
-        $valida->rule('required', ['nome_modulo', 'create', 'read', 'update', 'delete']);
+        $valida->rules($rules);
         if ($valida->validate()) {
             return true;
         } else {
@@ -25,21 +36,25 @@ class PermissaoValidade extends Validate
 
     public function validateGet($params)
     {
-        $valida = new Validator($params);
-        $valida->rule('required', ['nome_modulo']);
-        if ($valida->validate()) {
-            return true;
-        } else {
-            $toReturn = $this->filtrarValidacao($valida);
-            return $toReturn;
-        }
+
     }
 
 
     public function validatePut($params)
     {
+        $rules = [
+            'required' => ['nome_modulo', 'create', 'read', 'update', 'delete'],
+            'lengthMin' => [['nome_modulo', 4]],
+            'lengthMax' => [['nome_modulo', 25]],
+            'in' => [
+                ['create',['0','1']],
+                ['read',['0','1']],
+                ['update',['0','1']],
+                ['delete',['0','1']]
+            ]
+        ];
         $valida = new Validator($params);
-        $valida->rule('required', ['nome_modulo', 'create', 'read', 'update', 'delete']);
+        $valida->rules($rules);
         if ($valida->validate()) {
             return true;
         } else {
