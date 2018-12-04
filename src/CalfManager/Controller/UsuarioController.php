@@ -20,6 +20,12 @@ class UsuarioController implements IController
 {
     /**
      * @param Request $request
+     */
+    public function authenticate(Request $request){
+
+    }
+    /**
+     * @param Request $request
      * @param Response $response
      * @return Response
      */
@@ -32,7 +38,7 @@ class UsuarioController implements IController
             if ($valida === true) {
                 $usuario->setLogin($data->login);
                 $usuario->setSenha($data->senha);
-                $usuario->getGrupo()->setId($data->grupo->id);
+                $usuario->getGrupo()->setId($data->grupo_id);
 
                 if($usuario->cadastrar()){
                     return View::renderMessage(

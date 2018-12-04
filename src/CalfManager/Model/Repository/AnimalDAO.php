@@ -54,6 +54,7 @@ class AnimalDAO implements IDAO
         $entity->data_alteracao = $obj->getDataAlteracao();
         $entity->usuario_cadastro = $obj->getUsuarioCadastro()->getId();
         $entity->usuario_alteracao = $obj->getUsuarioAlteracao()->getId();
+        $entity->fase_vida = $obj->getFaseDaVida();
         $entity->lotes_id = $obj->getLote()->getId();
         $entity->is_vivo = $obj->isVivo();
         try {
@@ -98,6 +99,9 @@ class AnimalDAO implements IDAO
         }
         if (!is_null($obj->getPrimogenito())) {
             $entity->primogenito = $obj->getPrimogenito();
+        }
+        if (!is_null($obj->getFaseDaVida())) {
+            $entity->fase_vida = $obj->getFaseDaVida();
         }
         if (!is_null($obj->getCodigoBrinco())) {
             $entity->codigo_brinco = $obj->getCodigoBrinco();

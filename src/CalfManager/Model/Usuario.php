@@ -104,7 +104,7 @@ class Usuario extends Modelo
     public function deletar(): bool
     {
         try{
-            return (new GrupoDAO())->delete($this->id);
+            return (new UsuarioDAO())->delete($this->id);
         }catch (Exception $e){
             throw new Exception($e->getMessage());
         }

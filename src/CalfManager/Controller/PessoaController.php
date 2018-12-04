@@ -31,7 +31,7 @@ class PessoaController implements IController
                 $pessoa->setSexo($data->sexo);
                 $pessoa->setNumeroTelefone($data->numero_telefone);
                 $pessoa->setDataNascimento($data->data_nascimento);
-                $pessoa->getEndereco()->setId($data->endereco->id);
+                $pessoa->getEndereco()->setId($data->endereco_id);
 
                 if($id = $pessoa->cadastrar()){
                     return View::renderMessage(
@@ -70,8 +70,8 @@ class PessoaController implements IController
             if ($request->getQueryParam('nome')) {
                 $pessoa->setNome($request->getQueryParam('nome'));
             }
-            if ($request->getQueryParam('endereco->id')) {
-                $pessoa->getEndereco()->setId($request->getQueryParam('endereco->id'));
+            if ($request->getQueryParam('endereco')) {
+                $pessoa->getEndereco()->setId($request->getQueryParam('endereco'));
             }
             return View::render($response, $pessoa->pesquisar($page));
         }catch (Exception $e){
@@ -106,8 +106,8 @@ class PessoaController implements IController
                 if($data->data_nascimento) {
                     $pessoa->setDataNascimento($data->data_nascimento);
                 }
-                if($data->endereco->id) {
-                    $pessoa->getEndereco()->setId($data->endereco->id);
+                if($data->endereco_id) {
+                    $pessoa->getEndereco()->setId($data->endereco_id);
                 }
 
                 if($id = $pessoa->alterar()){

@@ -166,7 +166,7 @@ class PermissaoController implements IController
                         $response,
                         "success",
                         "Permissão excluída com sucesso!",
-                        201,
+                        202,
                         "Sucesso ao excluir");
                 }
                 else {

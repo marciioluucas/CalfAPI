@@ -181,7 +181,7 @@ class PessoaDAO implements IDAO
         $entity = PessoaEntity::find($id);
         $entity->status = 0;
         try{
-            if($entity->save){
+            if($entity->save()){
                 return true;
             }
         } catch (Exception $e) {

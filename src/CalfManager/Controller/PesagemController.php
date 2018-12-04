@@ -30,11 +30,11 @@ class PesagemController implements IController
             $data = json_decode($request->getBody()->getContents());
             $pesagem = new Pesagem();
             $valida = (new PesagemValidate())->validatePost((array) $data);
-            if ($valida) {
+            if ($valida === true) {
                 $pesagem->setPeso($data->peso);
                 $pesagem->setAnimal(new Animal());
-                $pesagem->getAnimal()->setId($data->animal->id);
-                $pesagem->setDataPesagem($data->data);
+                $pesagem->getAnimal()->setId($data->animais_id);
+                $pesagem->setDataPesagem($data->data_pesagem);
 
                 if ($pesagem->cadastrar()) {
                     return View::renderMessage(
@@ -100,11 +100,11 @@ class PesagemController implements IController
                 if($data->peso) {
                     $pesagem->setPeso($data->peso);
                 }
-                if($data->animal->id) {
-                    $pesagem->getAnimal()->setId($data->animal->id);
+                if($data->animais_id) {
+                    $pesagem->getAnimal()->setId($data->animais_id);
                 }
-                if($data->data) {
-                    $pesagem->setDataPesagem($data->data);
+                if($data->data_pesagem) {
+                    $pesagem->setDataPesagem($data->data_pesagem);
                 }
                 if ($pesagem->cadastrar()) {
                     return View::renderMessage(

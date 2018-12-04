@@ -96,7 +96,6 @@ class Animal extends Modelo
     {
         $this->dataAlteracao = date(Config::PADRAO_DATA_HORA);
         $this->dataCriacao = date(Config::PADRAO_DATA_HORA);
-        $this->faseDaVida = FaseDaVida::RECEM_NASCIDO;
         $this->usuarioCadastro = new Usuario();
         $this->usuarioAlteracao = new Usuario();
         //        $this->usuarioAlteracao = "Lucas";// vai pegar do token dps de implementar o login;
@@ -125,7 +124,11 @@ class Animal extends Modelo
     {
         try {
             $this->dataAlteracao = date(Config::PADRAO_DATA_HORA);
+            $this->usuarioAlteracao = new Usuario();
             $this->usuarioAlteracao->setId(1);
+            if ($this->primogenito == 1){
+                $this->faseDaVida = FaseDaVida::ADULTO;
+            }
             return (new AnimalDAO())->update($this);
         } catch (Exception $e) {
             throw new Exception($e->getMessage());
@@ -325,7 +328,7 @@ class Animal extends Modelo
      */
     public function setDataNascimento(string $dataNascimento): void
     {
-        $this->dataNascimento = date('Y-m-d', strtotime($dataNascimento));
+        $this->dataNascimento = date('Y-m-d', strtotime(str_replace("/", "-", $dataNascimento)));
     }
 
     /**
@@ -455,5 +458,23 @@ class Animal extends Modelo
     {
         $this->hemograma = $hemograma;
     }
+
+    /**
+     * @return bool
+     */
+    public function getPrimogenito(): bool
+    {
+        return $this->primogenito;
+    }
+
+    /**
+     * @param bool $primogenito
+     */
+    public function setPrimogenito(bool $primogenito)
+    {
+        $this->primogenito = $primogenito;
+    }
+
+
 
 }

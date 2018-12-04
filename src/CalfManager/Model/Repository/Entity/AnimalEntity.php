@@ -41,6 +41,7 @@ class AnimalEntity extends CalfEntity
         'data_cadastro',
         'usuario_cadastro',
         'usuario_alteracao',
+        'fase_vida',
         'lotes_id',
         'is_vivo'
     ];

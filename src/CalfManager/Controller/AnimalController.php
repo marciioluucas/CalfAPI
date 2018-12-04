@@ -31,9 +31,11 @@ class AnimalController implements IController
                 $animal->setNome($data->nome);
                 $animal->setSexo($data->sexo);
                 $animal->setCodigoBrinco($data->codigo_brinco);
-                $animal->setNome($data->codigo_brinco);
-                $animal->setCodigoRaca($data->codigo_raca);
+                if($data->codigo_raca != null){
+                    $animal->setCodigoRaca($data->codigo_raca);
+                }
                 $animal->setDataNascimento($data->data_nascimento);
+                $animal->setFaseDaVida($data->fase_vida);
                 $animal->getLote()->setId($data->lote->id);
                 if($data->doencas) {
                     foreach ($data->doencas as $doenca) {
@@ -49,17 +51,17 @@ class AnimalController implements IController
                     $animal->getMae()->setId($data->mae);
                 }
                 $animal->setVivo($data->is_vivo);
+                $animal->setPrimogenito($data->is_primogenito);
                 $animal->getPesagem()->setPeso($data->pesagem->peso);
                 $animal->getPesagem()->setDataPesagem($data->pesagem->data);
                 $animal->getHemograma()->setPpt($data->hemograma->ppt);
                 $animal->getHemograma()->setHematocrito($data->hemograma->hematocrito);
                 $animal->getHemograma()->setData($data->hemograma->data);
-                if($idCadastrado = $animal->cadastrar()) {
+                if($animal->cadastrar()) {
                     return View::renderMessage(
                         $response,
                         "success",
-                        "Animal cadastrado com sucesso! ID cadastrado: " .
-                        $idCadastrado,
+                        "Animal cadastrado com sucesso! ID cadastrado: ",
                         201,
                         "Sucesso ao cadastrar"
                     );
@@ -104,24 +106,19 @@ class AnimalController implements IController
             if ($request->getQueryParam('vivo') == 'true') {
                 $animal->setVivo(true);
             }
-            if (
-                $request->getQueryParam('sexo') == 'm' ||
-                $request->getQueryParam('sexo') == 'M'
-            ) {
+            if ($request->getQueryParam('sexo') == 'm' || $request->getQueryParam('sexo') == 'M') {
                 $animal->setSexo('M');
             }
-            if (
-                $request->getQueryParam('sexo') == 'f' ||
-                $request->getQueryParam('sexo') == 'F'
-            ) {
+            if ($request->getQueryParam('sexo') == 'f' || $request->getQueryParam('sexo') == 'F') {
                 $animal->setSexo('F');
             }
-
             if ($request->getAttribute('id')) {
                 $animal->setId($request->getAttribute('id'));
-            } elseif ($request->getQueryParam('nome')) {
+            }
+            elseif ($request->getQueryParam('nome')) {
                 $animal->setNome($request->getQueryParam('nome'));
-            } elseif ($request->getQueryParam('lote')) {
+            }
+            elseif ($request->getQueryParam('lote')) {
                 $animal->getLote()->setId($request->getQueryParam('lote'));
             }
             $search = $animal->pesquisar($page);
@@ -147,7 +144,6 @@ class AnimalController implements IController
             $animal->setNome($data->nome);
             $animal->setSexo($data->sexo);
             $animal->setCodigoBrinco($data->codigo_brinco);
-            $animal->setNome($data->codigo_brinco);
             $animal->setCodigoRaca($data->codigo_raca);
             $animal->setDataNascimento($data->data_nascimento);
             $animal->getLote()->setId($data->lote->id);
@@ -164,18 +160,19 @@ class AnimalController implements IController
                 $animal->setMae(new Animal());
                 $animal->getMae()->setId($data->mae->id);
             }
+            $animal->setFaseDaVida($data->fase_vida);
+            $animal->setPrimogenito($data->is_primogenito);
             $animal->setVivo($data->is_vivo);
             $animal->getPesagem()->setPeso($data->pesagem->peso);
             $animal->getPesagem()->setDataPesagem($data->pesagem->data);
             $animal->getHemograma()->setPpt($data->hemograma->ppt);
             $animal->getHemograma()->setHematocrito($data->hemograma->hematocrito);
             $animal->getHemograma()->setData($data->hemograma->data);
-            if($idCadastrado = $animal->alterar()) {
+            if($animal->alterar()) {
                 return View::renderMessage(
                     $response,
                     "success",
-                    "Animal alterado com sucesso! ID cadastrado: " .
-                    $idCadastrado,
+                    "Animal alterado com sucesso! ID cadastrado: ",
                     201,
                     "Sucesso ao cadastrar"
                 );
