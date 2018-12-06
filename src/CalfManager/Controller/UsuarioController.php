@@ -21,7 +21,7 @@ class UsuarioController implements IController
     /**
      * @param Request $request
      */
-    public function authenticate(Request $request){
+    public function authenticar($login, $senha){
 
     }
     /**

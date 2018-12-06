@@ -35,6 +35,19 @@ class Usuario extends Modelo
         $this->grupo = new Grupo();
     }
 
+    public function login(){
+        try{
+            $usuario = (new UsuarioDAO())->retreaveByLoginSenha($this->login, $this->senha);
+//            $this->setId($usuario->id);
+            $this->setLogin($usuario->login);
+            $this->setSenha($usuario->senha);
+//            $this->getGrupo()->setId($usuario->grupo_id);
+
+        } catch (Exception $e){
+            throw new Exception("Erro ao efetuar o login");
+        }
+    }
+
     /**
      * @return int|null
      */

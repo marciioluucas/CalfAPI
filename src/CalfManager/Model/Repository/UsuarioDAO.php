@@ -151,7 +151,7 @@ class UsuarioDAO implements IDAO
                 ->where('senha', $senha)
                 ->first()
                 ->toArray();
-            return ["usuarios" => $usuario];
+            return $usuario;
         }catch (Exception $e){
             throw new Exception("Erro ao pesquisar usuario pelo Login: ".$login. " e Senha: ".$senha. ". Mensagem: ". $e->getMessage());
         }
