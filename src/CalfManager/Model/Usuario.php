@@ -12,6 +12,7 @@ use CalfManager\Model\Repository\GrupoDAO;
 use CalfManager\Model\Repository\UsuarioDAO;
 use CalfManager\Utils\Config;
 use Exception;
+use Tebru\Gson\Element\JsonObject;
 
 /**
  * Class Usuario
@@ -36,12 +37,27 @@ class Usuario extends Modelo
     }
 
     public function login(){
-        try{
+        try {
             $usuario = (new UsuarioDAO())->retreaveByLoginSenha($this->login, $this->senha);
-//            $this->setId($usuario->id);
-            $this->setLogin($usuario->login);
-            $this->setSenha($usuario->senha);
-//            $this->getGrupo()->setId($usuario->grupo_id);
+            if($usuario !== false){
+                $this->setId($usuario->id);
+                $this->setLogin($usuario->login);
+                $this->setSenha($usuario->senha);
+                $this->getGrupo()->setId($usuario->grupo->id);
+                $this->getGrupo()->setNome($usuario->grupo->nome);
+                $this->getGrupo()->getPermissao()->setId($usuario->grupo->permissao_id);
+                return $this;
+            }else {
+                return false;
+            }
+//            if($usuario){
+//                $this->setId($usuario->id);
+//                $this->getGrupo()->setId($usuario->grupo->id);
+//                $this->getGrupo()->setNome($usuario->grupo->nome);
+//                return $usuario;
+//            } else {
+//                return false;
+//            }
 
         } catch (Exception $e){
             throw new Exception("Erro ao efetuar o login");

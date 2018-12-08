@@ -20,8 +20,8 @@ use Psr\Http\Message\ResponseInterface as Response;
 class LoginController implements IController
 {
     public function token(Usuario $usuario){
-        $login = $usuario->getLogin();
-        $grupo = $usuario->getGrupo()->getNome();
+        $id = $usuario->getId();
+        $time = time();
         $key = 'bob-esponja';
         $header = [
             'typ' => 'JWT',
@@ -31,8 +31,9 @@ class LoginController implements IController
         $header = base64_encode($header);
         $payload = [
             "iss" => "api.calfmanager.com",
-//            "user" => "$login",
-//            "grupo" => "$grupo"
+            "id" => $id,
+            "iat" => $time,
+            "exp" => $time + (86400)
         ];
         $payload = json_encode($payload);
         $payload = base64_encode($payload);
@@ -48,34 +49,57 @@ class LoginController implements IController
             $usuario = new Usuario();
             $data = json_decode($request->getBody()->getContents());
             $valida = (new LoginValidate())->validatePost((array)$data);
-            if ($valida === true) {
+            if($valida){
                 $usuario->setLogin($data->login);
                 $usuario->setSenha($data->senha);
                 if($usuario->login()){
-                    $token = $this->token($usuario);
-                    return View::render($response, $token);
+                    return View::render($response,$this->token($usuario->login()));
                 }
                 else {
-                    return View::renderMessage(
-                        $response,
-                        "error",
-                        "Usuário ou senha incorretos",
-                        "401",
-                        "Erro ao autenticar"
-                        );
+                    return View::renderMessage($response,
+                        'error',
+                    'Usuário ou senha incorretos!',
+                    401,
+                    'erro ao autenticar'
+                    );
                 }
             }
             else {
-                return View::renderMessage(
-                    $response,
-                    "error",
-                    "Usuário ou senha incorretos - else",
-                    "401",
-                    "Erro ao autenticar"
-                );
-            }
+                return View::renderMessage($response, 'error' ,"Usuario ou senha inválidos", "400" ,"Erro ao validar");
 
-        }catch (Exception $e){
+            }
+//            if($valida === true) {
+//                $usuario->setLogin($data->login);
+//                $usuario->setSenha($data->senha);
+//                $user = $usuario->login();
+//                if ($usuario) {
+//                    if($token = $this->token($usuario)) {
+//
+//                        return View::render($response, $token);
+//                    }
+//                }
+//                else {
+//                    return View::renderMessage(
+//                        $response,
+//                        "error",
+//                        "Usuário ou senha incorretos",
+//                        "401",
+//                        "Erro ao autenticar"
+//                    );
+//                }
+//            }
+//            else {
+//                return View::renderMessage(
+//                    $response,
+//                    "error",
+//                    "Usuário ou senha incorretos - else",
+//                    "401",
+//                    "Erro ao validar"
+//                );
+//            }
+
+        }
+        catch (Exception $e){
             return View::render($response, $e);
         }
     }

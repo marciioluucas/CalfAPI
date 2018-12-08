@@ -16,14 +16,14 @@ class LoginValidate extends Validate
     public function validatePost($params)
     {
         $rules = [
-//            'required' => ['login','senha'],
-//            'slug' => ['login', 'senha'],
-////            'equals' => [['senha', 're-senha']],
+            'required' => ['login','senha'],
+            'slug' => ['login', 'senha'],
+//            'equals' => [['senha', 're-senha']],
 //            'different' => [['login','senha']],
-//            'lengthMin' => [
-//                ['login', 5],
-//                ['senha', 8]
-//            ]
+            'lengthMin' => [
+                ['login', 5],
+                ['senha', 8]
+            ]
         ];
         $valida = new Validator($params);
         $valida->rules($rules);
