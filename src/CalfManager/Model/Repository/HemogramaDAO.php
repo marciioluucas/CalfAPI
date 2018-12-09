@@ -115,7 +115,7 @@ class HemogramaDAO implements IDAO
      */
     public function graphMonitorDeSaude($params = []): array {
         if(isset($params['animal'])){
-            throw new InvalidArgumentException('Argumento animal é requerido!');
+            throw new InvalidArgumentException('Argumento animal é requerido, adicione o id do animal pela requisição (?animal={id})');
         }
         return [
             HemogramaEntity::ativo()

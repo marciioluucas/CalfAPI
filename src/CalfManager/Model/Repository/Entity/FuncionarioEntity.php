@@ -31,7 +31,7 @@ class FuncionarioEntity extends CalfEntity
     }
 
     public function usuario() {
-        return $this->belongsTo("\CalfManager\Model\Repository\Entity\UsuarioEntity", "usuario_id");
+        return $this->hasOne("\CalfManager\Model\Repository\Entity\UsuarioEntity", "usuario_id");
     }
     public function fazenda(){
         return $this->belongsTo("CalfManager\Model\Repository\Entity\FazendaEntity", "fazenda_id");

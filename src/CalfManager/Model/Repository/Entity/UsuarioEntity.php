@@ -24,8 +24,12 @@ class UsuarioEntity extends CalfEntity
         'status'
     ];
 
-    public function grupo(){
+    public function grupo() {
         return $this->belongsTo("CalfManager\Model\Repository\Entity\GrupoEntity", "grupo_id");
+    }
+
+    public function funcionario() {
+        return $this->belongsTo(FuncionarioEntity::class);
     }
 
 }

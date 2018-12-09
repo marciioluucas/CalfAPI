@@ -150,6 +150,8 @@ class UsuarioDAO implements IDAO
                 $usuario = UsuarioEntity::ativo()->with('grupo')
                     ->where('login', $login)
                     ->where('senha', $senha)
+                    ->with('funcionario')
+                    ->with('funcionario.pessoa')
                     ->get();
                 if(count($usuario)){
                     return $usuario[0];

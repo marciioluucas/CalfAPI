@@ -237,8 +237,15 @@ class Animal extends Modelo
         $this->getPesagem()->cadastrar();
     }
 
+    /**
+     * @throws Exception
+     */
     public function cadastrarHemograma(){
-        $this->getHemograma()->cadastrar();
+        try {
+            $this->getHemograma()->cadastrar();
+        } catch (Exception $e) {
+            throw new Exception('Erro ao cadastrar hemograma');
+        }
     }
     /**
      * @throws Exception
