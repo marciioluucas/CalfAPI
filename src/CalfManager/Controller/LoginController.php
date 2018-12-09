@@ -14,12 +14,14 @@ use CalfManager\Model\Usuario;
 use CalfManager\Utils\Validate\LoginValidate;
 use CalfManager\View\View;
 use Exception;
+use Lcobucci\JWT\Parser;
+use Lcobucci\JWT\Signer\Hmac\Sha256;
 use Psr\Http\Message\RequestInterface as Request;
 use Psr\Http\Message\ResponseInterface as Response;
 
 class LoginController implements IController
 {
-    public function token(Usuario $usuario){
+    public function gerarToken(Usuario $usuario){
         $id = $usuario->getId();
         $time = time();
         $key = 'bob-esponja';
@@ -42,6 +44,15 @@ class LoginController implements IController
 
         return ["token" => $token = "$header.$payload.$signature"];
     }
+    public function validaToken($token)
+    {
+
+    }
+    public function recebeToken()
+    {
+        return apache_request_headers()["Authorization"]; // Pega o token do cabeçalho
+    }
+
     public function post(Request $request, Response $response): Response
     {
 
@@ -53,7 +64,8 @@ class LoginController implements IController
                 $usuario->setLogin($data->login);
                 $usuario->setSenha($data->senha);
                 if($usuario->login()){
-                    return View::render($response,$this->token($usuario->login()));
+                    $token = $this->gerarToken($usuario);
+                    return View::render($response, $token);
                 }
                 else {
                     return View::renderMessage($response,
@@ -65,39 +77,15 @@ class LoginController implements IController
                 }
             }
             else {
-                return View::renderMessage($response, 'error' ,"Usuario ou senha inválidos", "400" ,"Erro ao validar");
+                return View::renderMessage($response,
+                    'error' ,
+                    "Usuario ou senha inválidos",
+                    "400" ,
+                    "Erro ao validar"
+                );
 
             }
-//            if($valida === true) {
-//                $usuario->setLogin($data->login);
-//                $usuario->setSenha($data->senha);
-//                $user = $usuario->login();
-//                if ($usuario) {
-//                    if($token = $this->token($usuario)) {
 //
-//                        return View::render($response, $token);
-//                    }
-//                }
-//                else {
-//                    return View::renderMessage(
-//                        $response,
-//                        "error",
-//                        "Usuário ou senha incorretos",
-//                        "401",
-//                        "Erro ao autenticar"
-//                    );
-//                }
-//            }
-//            else {
-//                return View::renderMessage(
-//                    $response,
-//                    "error",
-//                    "Usuário ou senha incorretos - else",
-//                    "401",
-//                    "Erro ao validar"
-//                );
-//            }
-
         }
         catch (Exception $e){
             return View::render($response, $e);

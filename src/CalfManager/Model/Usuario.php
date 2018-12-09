@@ -50,14 +50,6 @@ class Usuario extends Modelo
             }else {
                 return false;
             }
-//            if($usuario){
-//                $this->setId($usuario->id);
-//                $this->getGrupo()->setId($usuario->grupo->id);
-//                $this->getGrupo()->setNome($usuario->grupo->nome);
-//                return $usuario;
-//            } else {
-//                return false;
-//            }
 
         } catch (Exception $e){
             throw new Exception("Erro ao efetuar o login");
