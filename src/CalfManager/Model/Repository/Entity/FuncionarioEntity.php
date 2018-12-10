@@ -27,16 +27,16 @@ class FuncionarioEntity extends CalfEntity
 
     ];
     public function cargo() {
-        return $this->belongsTo("\CalfManager\Model\Repository\Entity\CargoEntity", "cargo_id");
+        return $this->hasOne("CalfManager\Model\Repository\Entity\CargoEntity", "cargo_id");
     }
 
     public function usuario() {
-        return $this->hasOne("\CalfManager\Model\Repository\Entity\UsuarioEntity", "usuario_id");
+        return $this->hasOne("CalfManager\Model\Repository\Entity\UsuarioEntity", "usuario_id");
     }
     public function fazenda(){
-        return $this->belongsTo("CalfManager\Model\Repository\Entity\FazendaEntity", "fazenda_id");
+        return $this->hasOne("CalfManager\Model\Repository\Entity\FazendaEntity", "fazenda_id");
     }
     public function pessoa(){
-        return $this->belongsTo("CalfManager\Model\Repository\Entity\PessoaEntity", "pessoa_id");
+        return $this->hasOne("CalfManager\Model\Repository\Entity\PessoaEntity", "pessoa_id");
     }
 }

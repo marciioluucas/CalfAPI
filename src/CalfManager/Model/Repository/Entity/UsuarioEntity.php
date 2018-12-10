@@ -29,7 +29,7 @@ class UsuarioEntity extends CalfEntity
     }
 
     public function funcionario() {
-        return $this->belongsTo(FuncionarioEntity::class);
+        return $this->belongsTo(FuncionarioEntity::class,'usuario_id', 'id');
     }
 
 }

@@ -22,8 +22,10 @@ class Hemograma extends Exame
     /**
      * Hemograma constructor.
      * @param Animal|null $animal
+     * @throws Exception
      */
-    function __construct(Animal $animal = null) {
+    function __construct(Animal $animal = null)
+    {
         $this->animal = $animal != null ? $animal : new Animal();
     }
 
@@ -36,9 +38,9 @@ class Hemograma extends Exame
         $this->dataCriacao = date(Config::PADRAO_DATA_HORA);
         $this->usuarioCadastro = new Usuario();
         $this->usuarioCadastro->setId(1);
-        try{
+        try {
             return (new HemogramaDAO())->create($this);
-        }catch (Exception $e){
+        } catch (Exception $e) {
             throw new Exception($e->getMessage());
         }
     }
@@ -48,33 +50,34 @@ class Hemograma extends Exame
         $this->dataAlteracao = date(Config::PADRAO_DATA_HORA);
         $this->usuarioAlteracao = new Usuario();
         $this->usuarioAlteracao->setId(1);
-        try{
+        try {
             return (new HemogramaDAO())->update($this);
-        }catch (Exception $e){
+        } catch (Exception $e) {
             throw new Exception($e->getMessage());
         }
     }
 
     public function pesquisar(int $page): array
     {
-        try{
-            if($this->id){
+        try {
+            if ($this->id) {
                 return (new HemogramaDAO())->retreaveById($this->id);
             }
             return (new HemogramaDAO())->retreaveAll($page);
-        }catch (Exception $e){
+        } catch (Exception $e) {
             throw new Exception($e->getMessage());
         }
     }
 
     public function deletar(): bool
     {
-        try{
+        try {
             return (new HemogramaDAO())->delete($this->id);
-        }catch (Exception $e){
+        } catch (Exception $e) {
             throw new Exception($e->getMessage());
         }
     }
+
     public function graph(string $whatChart, array $params)
     {
         return (new HemogramaDAO())->{$whatChart}($params);
