@@ -14,6 +14,7 @@ use CalfManager\Model\Usuario;
 use CalfManager\Utils\Validate\LoginValidate;
 use CalfManager\View\View;
 use Exception;
+use Firebase\JWT\JWT;
 use Lcobucci\JWT\Parser;
 use Lcobucci\JWT\Signer\Hmac\Sha256;
 use Psr\Http\Message\RequestInterface as Request;
@@ -44,8 +45,15 @@ class LoginController implements IController
 
         return ["token" => $token = "$header.$payload.$signature"];
     }
-    public function validaToken($token)
+    public function validaToken()
     {
+        $key = 'bob-esponja';
+        $token = $this->recebeToken();
+        if($token){
+//            $data = base64_decode($token);
+            $data = JWT::decode($token, $key, array('HS256'));
+            return $token;
+        }
 
     }
     public function recebeToken()
@@ -60,6 +68,7 @@ class LoginController implements IController
             $usuario = new Usuario();
             $data = json_decode($request->getBody()->getContents());
             $valida = (new LoginValidate())->validatePost((array)$data);
+
             if($valida){
                 $usuario->setLogin($data->login);
                 $usuario->setSenha($data->senha);
@@ -98,7 +107,11 @@ class LoginController implements IController
         array $args
     ): Response
     {
-        // TODO: Implement get() method.
+        if($this->validaToken()){
+            return View::render($response, $this->validaToken());
+        }else {
+            return View::render($response, "Token invalido");
+        }
     }
 
     public function put(Request $request, Response $response): Response

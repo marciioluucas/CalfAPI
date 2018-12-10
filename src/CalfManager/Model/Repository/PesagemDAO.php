@@ -157,8 +157,7 @@ class PesagemDAO implements IDAO
             throw new InvalidArgumentException('Argumento animal e requirido');
         }
         return [
-            PesagemEntity
-                ::ativo()
+            PesagemEntity::ativo()
                 ->where('animais_id', $params['animal'])
                 ->whereDate('data_pesagem', '<=', Carbon::now()->subDays(30)->toDateString())
                 ->get(['peso', 'data_pesagem'])
