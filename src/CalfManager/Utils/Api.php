@@ -1,4 +1,7 @@
-<?php
+<?php /** @noinspection PhpUnusedParameterInspection */
+
+/** @noinspection PhpUnusedParameterInspection */
+
 namespace CalfManager\Utils;
 
 use Exception;
@@ -121,7 +124,7 @@ class Api
                     $request,
                     $response
                 );
-                return $class->post($request, $response, $args);
+                return $class->post($request, $response);
             });
 
             $app->put('/{id:[0-9]+}', function (
@@ -134,7 +137,7 @@ class Api
                     $request,
                     $response
                 );
-                return $class->put($request, $response, $args);
+                return $class->put($request, $response);
             });
             $app->delete('/{id:[0-9]+}', function (
                 Request $request,
@@ -186,7 +189,8 @@ class Api
         string $classname,
         Request $request,
         Response $response
-    ) {
+    )
+    {
         $class =
             "\\CalfManager\\controller\\" . ucfirst($classname) . "Controller";
         if (!class_exists($class)) {

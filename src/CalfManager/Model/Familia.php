@@ -102,16 +102,20 @@ class Familia extends Modelo
      */
     public function deletar(): bool
     {
-       return (new FamiliaDAO())->delete($this->id);
+        return (new FamiliaDAO())->delete($this->id);
     }
 
     public function pesquisaFamiliaByIdAnimal($id)
     {
         if ($id != null) {
-            $obj = (new FamiliaDAO())->retreaveFamiliaByIdAnimal($id);
-            return $obj;
+            try {
+                $obj = (new FamiliaDAO())->retreaveFamiliaByIdAnimal($id);
+
+                return $obj;
+            } catch (Exception $e) {
+            }
         }
-        return false;
+        return null;
     }
 
     /**

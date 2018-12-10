@@ -11,6 +11,9 @@ use CalfManager\Model\Repository\PermissaoDAO;
 use CalfManager\Utils\Config;
 use Exception;
 
+/**
+ * @property Grupo|mixed grupo
+ */
 class Permissao extends Modelo
 {
     private $nomeModulo;

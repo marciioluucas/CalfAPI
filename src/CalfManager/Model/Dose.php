@@ -10,7 +10,6 @@ namespace CalfManager\Model;
 
 
 use CalfManager\Model\Repository\DoseDAO;
-use CalfManager\Model\Repository\MedicamentoDAO;
 use CalfManager\Utils\Config;
 use Exception;
 
@@ -24,6 +23,7 @@ class Dose extends Modelo
 
     /**
      * Dose constructor.
+     * @throws Exception
      */
     public function __construct()
     {
@@ -97,7 +97,10 @@ class Dose extends Modelo
         $this->cadastrarMedicamento();
     }
     public function cadastrarMedicamento(){
-        $this->getMedicamento()->cadastrar();
+        try {
+            $this->getMedicamento()->cadastrar();
+        } catch (Exception $e) {
+        }
     }
 
     /**

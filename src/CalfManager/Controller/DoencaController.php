@@ -12,7 +12,7 @@ use Exception;
 use Psr\Http\Message\RequestInterface as Request;
 use Psr\Http\Message\ResponseInterface as Response;
 use CalfManager\Model\Doenca;
-use CalfManager\Utils\validate\DoencaValidate;
+use CalfManager\Utils\Validate\DoencaValidate;
 use CalfManager\View\View;
 
 class DoencaController implements IController

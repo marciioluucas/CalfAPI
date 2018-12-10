@@ -8,9 +8,6 @@
 
 namespace CalfManager\Model;
 
-use ArrayObject;
-use CalfManager\Model\Repository\LaboratorioDAO;
-use CalfManager\Utils\Config;
 use Exception;
 class Laboratorio
 {

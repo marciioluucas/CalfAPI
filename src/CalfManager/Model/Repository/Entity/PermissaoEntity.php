@@ -9,6 +9,17 @@
 namespace CalfManager\Model\Repository\Entity;
 
 
+/**
+ * @property mixed id
+ * @property int status
+ * @property mixed usuario_cadastro
+ * @property string data_cadastro
+ * @property mixed delete
+ * @property mixed update
+ * @property mixed read
+ * @property mixed create
+ * @property mixed nome_modulo
+ */
 class PermissaoEntity extends CalfEntity
 {
     protected $table = "permissoes";

@@ -11,7 +11,6 @@ namespace CalfManager\Model\Repository;
 
 use CalfManager\Model\Dose;
 use CalfManager\Model\Repository\Entity\DoseEntity;
-use CalfManager\Model\Repository\Entity\LaboratorioEntity;
 use CalfManager\Utils\Config;
 use Exception;
 

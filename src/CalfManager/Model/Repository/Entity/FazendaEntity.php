@@ -37,6 +37,10 @@ class FazendaEntity extends CalfEntity
         return $this->hasMany('\CalfManager\Model\Repository\Entity\LoteEntity' , 'fazenda_id');
     }
 
+    public function funcionarios() {
+        return $this->hasMany(FuncionarioEntity::class,'funcionario_id', 'id');
+    }
+
     public function getQuantidadeAnimaisAttribute()
     {
 //        return $this->hasMany(

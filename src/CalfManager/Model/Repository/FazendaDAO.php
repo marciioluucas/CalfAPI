@@ -9,7 +9,6 @@
 namespace CalfManager\Model\Repository;
 
 use Exception;
-use PDO;
 use CalfManager\Model\Fazenda;
 use CalfManager\Model\Repository\Entity\FazendaEntity;
 use CalfManager\Utils\Config;

@@ -126,7 +126,7 @@ class Animal extends Modelo
             $this->dataAlteracao = date(Config::PADRAO_DATA_HORA);
             $this->usuarioAlteracao = new Usuario();
             $this->usuarioAlteracao->setId(1);
-            if ($this->primogenito == 1){
+            if ($this->primogenito == 1) {
                 $this->faseDaVida = FaseDaVida::ADULTO;
             }
             return (new AnimalDAO())->update($this);
@@ -147,14 +147,11 @@ class Animal extends Modelo
         $dao->setSexo($this->sexo);
         if ($this->id and !$this->nome and !$this->getLote()->getId()) {
             return $dao->retreaveById($this->id);
-        }
-        elseif ($this->nome and !$this->id and !$this->getLote()->getId()) {
+        } elseif ($this->nome and !$this->id and !$this->getLote()->getId()) {
             return $dao->retreaveByNome($this->nome, $page);
-        }
-        elseif ($this->getLote()->getId() and !$this->nome and !$this->id) {
+        } elseif ($this->getLote()->getId() and !$this->nome and !$this->id) {
             return $dao->retreaveByIdLote($this->getLote()->getId(), $page);
-        }
-        elseif ($this->nome and $this->getLote()->getId() and !$this->id) {
+        } elseif ($this->nome and $this->getLote()->getId() and !$this->id) {
             return $dao->retreaveByIdLoteAndName(
                 $this->getLote()->getId(),
                 $this->getNome(),
@@ -177,22 +174,28 @@ class Animal extends Modelo
             throw new Exception($e->getMessage());
         }
     }
+
     public function mudarLocalizacao()
     {
 
     }
-    public function adicionarDoenca(int $doencaId, string $situacao = 'CURADO', int $animalId = null) : void
+
+    public function adicionarDoenca(int $doencaId, string $situacao = 'CURADO', int $animalId = null): void
     {
 //        foreach ($this->doencas as $d) {
 //            if ($this->doencas->count() > 0)
 //                if ($doencaId == $d->getId()) continue;
-        $doenca = new Doenca();
-        $doenca->setId($doencaId);
-        $doenca->setSituacao($situacao);
-        if ($animalId != null) {
-            $doenca->getAnimal()->setId($animalId);
+        try {
+            $doenca = new Doenca();
+            $doenca->setId($doencaId);
+            $doenca->setSituacao($situacao);
+            if ($animalId != null) {
+                $doenca->getAnimal()->setId($animalId);
+            }
+            $this->doencas->append($doenca);
+        } catch (Exception $e) {
+            throw new Exception($e->getMessage());
         }
-        $this->doencas->append($doenca);
 //        }
     }
 
@@ -212,7 +215,8 @@ class Animal extends Modelo
         }
     }
 
-    public function curarAnimal($idAnimal, $idDoenca) {
+    public function curarAnimal($idAnimal, $idDoenca)
+    {
 
     }
 
@@ -240,13 +244,15 @@ class Animal extends Modelo
     /**
      * @throws Exception
      */
-    public function cadastrarHemograma(){
+    public function cadastrarHemograma()
+    {
         try {
             $this->getHemograma()->cadastrar();
         } catch (Exception $e) {
             throw new Exception('Erro ao cadastrar hemograma');
         }
     }
+
     /**
      * @throws Exception
      */
@@ -481,7 +487,6 @@ class Animal extends Modelo
     {
         $this->primogenito = $primogenito;
     }
-
 
 
 }

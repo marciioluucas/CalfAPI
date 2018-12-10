@@ -9,6 +9,14 @@
 namespace CalfManager\Model\Repository\Entity;
 
 
+/**
+ * @property mixed id
+ * @property int status
+ * @property mixed usuario_cadastro
+ * @property string data_cadastro
+ * @property mixed prescricao
+ * @property mixed nome
+ */
 class MedicamentoEntity extends CalfEntity
 {
     protected $table = "medicamentos";

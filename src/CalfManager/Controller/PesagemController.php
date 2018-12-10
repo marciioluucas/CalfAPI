@@ -13,7 +13,7 @@ use Exception;
 use Psr\Http\Message\RequestInterface as Request;
 use Psr\Http\Message\ResponseInterface as Response;
 use CalfManager\Model\Pesagem;
-use CalfManager\Utils\validate\PesagemValidate;
+use CalfManager\Utils\Validate\PesagemValidate;
 use CalfManager\View\View;
 
 class PesagemController implements IController

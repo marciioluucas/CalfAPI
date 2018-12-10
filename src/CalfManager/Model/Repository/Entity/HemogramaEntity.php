@@ -11,6 +11,14 @@ namespace CalfManager\Model\Repository\Entity;
 
 /**
  * Class HemogramaEntity
+ * @property mixed id
+ * @property int status
+ * @property mixed usuario_cadastro
+ * @property string data_cadastro
+ * @property  int animal_id
+ * @property mixed hematocrito
+ * @property mixed ppt
+ * @property mixed data
  * @package CalfManager\Model\Repository\Entity
  */
 class HemogramaEntity extends CalfEntity
@@ -29,10 +37,11 @@ class HemogramaEntity extends CalfEntity
         'status'
     ];
     protected $casts = [
-    'data' => 'date:d/m/Y'
-];
+        'data' => 'date:d/m/Y'
+    ];
 
-    public function animal() {
+    public function animal()
+    {
         return $this->belongsTo('CalfManager\Model\Repository\Entity\AnimalEntity', 'animal_id');
     }
 }

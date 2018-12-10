@@ -9,11 +9,12 @@
 namespace CalfManager\Utils;
 
 
-class TokenApp {
+class TokenApp
+{
 
 
-
-    function gerarToken($id){
+    function gerarToken($id)
+    {
         $time = time();
         $key = 'bob-esponja';
         $header = [
@@ -35,21 +36,21 @@ class TokenApp {
 
         return ["token" => $token = "$header.$payload.$signature"];
     }
-    function tokenVazio(){
+
+    function tokenVazio()
+    {
         $headers = apache_request_headers();
-        if(isset($headers['Authorization'])){
+        if (isset($headers['Authorization'])) {
             return true;
-        } else{
+        } else {
             return false;
         }
     }
 
-    function token($id){
-        if($this->tokenVazio()){
+    function token($id)
+    {
+        if ($this->tokenVazio()) {
             $this->gerarToken($id);
-        }
-        else{
-
         }
     }
 }

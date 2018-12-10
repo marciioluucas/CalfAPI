@@ -82,7 +82,10 @@ class Pessoa extends Modelo
         }
     }
     public function antesDeSalvar(){
-        $this->getEndereco()->cadastrar();
+        try {
+            $this->getEndereco()->cadastrar();
+        } catch (Exception $e) {
+        }
     }
 
     /**

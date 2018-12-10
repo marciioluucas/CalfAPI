@@ -33,6 +33,7 @@ class Doenca extends Modelo
 
     /**
      * Doenca constructor.
+     * @throws Exception
      */
 
     public function __construct()

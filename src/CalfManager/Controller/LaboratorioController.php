@@ -9,12 +9,8 @@
 namespace CalfManager\Controller;
 
 
-use CalfManager\Model\Laboratorio;
-use CalfManager\Utils\Validate\LaboratorioValidate;
-use CalfManager\View\View;
 use Psr\Http\Message\RequestInterface as Request;
 use Psr\Http\Message\ResponseInterface as Response;
-use Exception;
 
 class LaboratorioController implements IController
 {

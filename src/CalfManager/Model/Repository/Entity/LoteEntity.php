@@ -9,6 +9,7 @@ use CalfManager\Model\Usuario;
  * @property  string data_alteracao
  * @property  string data_cadastro
  * @property  Usuario usuario_cadastro
+ * @property mixed fazenda_id
  */
 class LoteEntity extends CalfEntity
 {

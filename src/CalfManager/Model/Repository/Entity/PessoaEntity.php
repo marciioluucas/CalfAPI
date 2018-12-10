@@ -9,6 +9,19 @@
 namespace CalfManager\Model\Repository\Entity;
 
 
+/**
+ * @property mixed id
+ * @property int status
+ * @property mixed usuario_cadastro
+ * @property string data_cadastro
+ * @property mixed endereco_id
+ * @property mixed data_nascimento
+ * @property mixed numero_telefone
+ * @property mixed sexo
+ * @property mixed cpf
+ * @property mixed rg
+ * @property mixed nome
+ */
 class PessoaEntity extends CalfEntity
 {
     protected $table = "pessoas";

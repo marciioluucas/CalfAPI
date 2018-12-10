@@ -20,6 +20,8 @@ class FuncionarioDAO implements IDAO
     /**
      * @param Funcionario $obj
      * @return int|null
+     * @throws Exception
+     * @throws Exception
      */
     public function create($obj): ?int
     {
@@ -45,6 +47,8 @@ class FuncionarioDAO implements IDAO
     /**
      * @param Funcionario $obj
      * @return bool
+     * @throws Exception
+     * @throws Exception
      */
     public function update($obj): bool
     {
@@ -98,6 +102,8 @@ class FuncionarioDAO implements IDAO
     /**
      * @param int $id
      * @return array
+     * @throws Exception
+     * @throws Exception
      */
     public function retreaveById(int $id): array
     {
@@ -122,6 +128,8 @@ class FuncionarioDAO implements IDAO
      * @param int $idCargo
      * @param int $page
      * @return array
+     * @throws Exception
+     * @throws Exception
      */
     public function retreaveByIdCargo(int $idCargo, int $page){
        try {
@@ -145,8 +153,9 @@ class FuncionarioDAO implements IDAO
 
     /**
      * @param int $idUsuario
-     * @param int $page
      * @return array
+     * @throws Exception
+     * @throws Exception
      */
     public function retreaveByIdUsuario(int $idUsuario){
         try{
@@ -168,6 +177,8 @@ class FuncionarioDAO implements IDAO
      * @param int $idFazenda
      * @param int $page
      * @return array
+     * @throws Exception
+     * @throws Exception
      */
     public function retreaveByIdFazenda(int $idFazenda, int $page){
         try{
@@ -210,6 +221,8 @@ class FuncionarioDAO implements IDAO
     /**
      * @param int $id
      * @return bool
+     * @throws Exception
+     * @throws Exception
      */
     public function delete(int $id): bool
     {

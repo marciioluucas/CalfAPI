@@ -9,13 +9,10 @@
 namespace CalfManager\Controller;
 
 
-use CalfManager\Model\Repository\UsuarioDAO;
 use CalfManager\Model\Usuario;
 use CalfManager\Utils\Validate\LoginValidate;
 use CalfManager\View\View;
 use Exception;
-use Lcobucci\JWT\Parser;
-use Lcobucci\JWT\Signer\Hmac\Sha256;
 use Psr\Http\Message\RequestInterface as Request;
 use Psr\Http\Message\ResponseInterface as Response;
 

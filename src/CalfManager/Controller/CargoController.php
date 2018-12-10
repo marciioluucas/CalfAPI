@@ -22,6 +22,8 @@ class CargoController implements IController
      * @param Request $request
      * @param Response $response
      * @return Response
+     * @throws \Exception
+     * @throws \Exception
      */
     public function post(Request $request, Response $response): Response
     {
@@ -71,6 +73,8 @@ class CargoController implements IController
      * @param Response $response
      * @param array $args
      * @return Response
+     * @throws \Exception
+     * @throws \Exception
      */
     public function get(Request $request, Response $response, array $args): Response
     {
@@ -94,6 +98,8 @@ class CargoController implements IController
      * @param Request $request
      * @param Response $response
      * @return Response
+     * @throws \Exception
+     * @throws \Exception
      */
     public function put(Request $request, Response $response): Response
     {
@@ -146,6 +152,8 @@ class CargoController implements IController
      * @param Request $request
      * @param Response $response
      * @return Response
+     * @throws \Exception
+     * @throws \Exception
      */
     public function delete(Request $request, Response $response): Response
     {

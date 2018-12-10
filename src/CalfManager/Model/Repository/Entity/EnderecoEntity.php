@@ -9,6 +9,19 @@
 namespace CalfManager\Model\Repository\Entity;
 
 
+/**
+ * @property mixed id
+ * @property int status
+ * @property mixed usuario_cadastro
+ * @property string data_cadastro
+ * @property mixed cep
+ * @property mixed pais
+ * @property mixed estado
+ * @property mixed cidade
+ * @property mixed bairro
+ * @property mixed numero
+ * @property mixed logradouro
+ */
 class EnderecoEntity extends CalfEntity
 {
     protected $table = "enderecos";

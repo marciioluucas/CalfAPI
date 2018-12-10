@@ -71,6 +71,8 @@ class DoencaDAO implements IDAO
     /**
      * @param int $page
      * @return array
+     * @throws Exception
+     * @throws Exception
      */
     public function retreaveAll(int $page): array
     {
@@ -146,6 +148,7 @@ class DoencaDAO implements IDAO
     /**
      * @param $idAnimal
      * @param $situacao
+     * @param $dataAdoecimento
      * @param $idDoenca
      * @return bool
      * @throws Exception

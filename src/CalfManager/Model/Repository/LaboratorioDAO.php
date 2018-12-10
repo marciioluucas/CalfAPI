@@ -9,9 +9,6 @@
 namespace CalfManager\Model\Repository;
 
 use CalfManager\Model\Laboratorio;
-use CalfManager\Model\Modelo;
-use CalfManager\Model\Repository\Entity\LaboratorioEntity;
-use CalfManager\Utils\Config;
 use Exception;
 
 class LaboratorioDAO implements IDAO

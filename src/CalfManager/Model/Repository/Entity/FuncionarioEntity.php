@@ -9,6 +9,17 @@
 namespace CalfManager\Model\Repository\Entity;
 
 
+/**
+ * @property mixed id
+ * @property int status
+ * @property mixed usuario_cadastro
+ * @property string data_cadastro
+ * @property mixed salario
+ * @property mixed pessoa_id
+ * @property mixed fazenda_id
+ * @property  int usuario_id
+ * @property  int cargo_id
+ */
 class FuncionarioEntity extends CalfEntity
 {
     protected $table = "funcionarios";
@@ -17,7 +28,6 @@ class FuncionarioEntity extends CalfEntity
         'salario',
         'cargo_id',
         'pessoa_id',
-        'usuario_id',
         'fazenda_id',
         'data_alteracao',
         'data_cadastro',
@@ -26,17 +36,24 @@ class FuncionarioEntity extends CalfEntity
         'status'
 
     ];
-    public function cargo() {
-        return $this->hasOne("CalfManager\Model\Repository\Entity\CargoEntity", "cargo_id");
+
+    public function cargo()
+    {
+        return $this->belongsTo("CalfManager\Model\Repository\Entity\CargoEntity", "cargo_id");
     }
 
-    public function usuario() {
-        return $this->hasOne("CalfManager\Model\Repository\Entity\UsuarioEntity", "usuario_id");
+    public function usuario()
+    {
+        return $this->belongsTo(UsuarioEntity::class, 'usuario_id', 'id');
     }
-    public function fazenda(){
-        return $this->hasOne("CalfManager\Model\Repository\Entity\FazendaEntity", "fazenda_id");
+
+    public function fazenda()
+    {
+        return $this->belongsTo("CalfManager\Model\Repository\Entity\FazendaEntity", "fazenda_id");
     }
-    public function pessoa(){
+
+    public function pessoa()
+    {
         return $this->hasOne("CalfManager\Model\Repository\Entity\PessoaEntity", "pessoa_id");
     }
 }

@@ -8,11 +8,9 @@
 
 namespace CalfManager\Model;
 
-use CalfManager\Model\Repository\GrupoDAO;
 use CalfManager\Model\Repository\UsuarioDAO;
 use CalfManager\Utils\Config;
 use Exception;
-use Tebru\Gson\Element\JsonObject;
 
 /**
  * Class Usuario
@@ -58,6 +56,8 @@ class Usuario extends Modelo
 
     /**
      * @return int|null
+     * @throws Exception
+     * @throws Exception
      */
     public function cadastrar(): ?int
     {
@@ -135,7 +135,10 @@ class Usuario extends Modelo
         $this->cadastrarGrupo();
     }
     public function cadastrarGrupo(){
-       $this->getGrupo()->cadastrar();
+        try {
+            $this->getGrupo()->cadastrar();
+        } catch (Exception $e) {
+        }
     }
 
     /**

@@ -10,7 +10,7 @@ namespace CalfManager\Controller;
 
 use Exception;
 use CalfManager\Model\Fazenda;
-use CalfManager\Utils\validate\FazendaValidate;
+use CalfManager\Utils\Validate\FazendaValidate;
 use Psr\Http\Message\ResponseInterface as Response;
 use Psr\Http\Message\RequestInterface as Request;
 use CalfManager\View\View;

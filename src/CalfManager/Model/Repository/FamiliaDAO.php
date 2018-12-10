@@ -20,6 +20,8 @@ class FamiliaDAO implements IDAO
     /**
      * @param Familia $obj
      * @return int|null
+     * @throws Exception
+     * @throws Exception
      */
     public function create($obj): ?int
     {
@@ -40,6 +42,8 @@ class FamiliaDAO implements IDAO
     /**
      * @param Familia $obj
      * @return bool
+     * @throws Exception
+     * @throws Exception
      */
     public function update($obj): bool
     {
@@ -129,10 +133,10 @@ class FamiliaDAO implements IDAO
 
     /**
      * @param int $animalId
-     * @return null|object
+     * @return array|null|object
      * @throws Exception
      */
-    public function retreaveFamiliaByIdAnimal(int $animalId): ?object
+    public function retreaveFamiliaByIdAnimal(int $animalId)
     {
         try {
             $familias = FamiliaEntity::ativo()

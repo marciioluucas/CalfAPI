@@ -6,7 +6,7 @@
  * Time: 00:12
  */
 
-namespace CalfManager\Utils\validate;
+namespace CalfManager\Utils\Validate;
 
 use Valitron\Validator;
 
