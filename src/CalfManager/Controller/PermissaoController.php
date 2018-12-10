@@ -8,7 +8,6 @@
 
 namespace CalfManager\Controller;
 
-use CalfManager\Model\Grupo;
 use CalfManager\Model\Permissao;
 use CalfManager\Utils\Validate\PermissaoValidade;
 use CalfManager\View\View;

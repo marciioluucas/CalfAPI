@@ -9,6 +9,13 @@
 namespace CalfManager\Model\Repository\Entity;
 
 
+/**
+ * @property int status
+ * @property mixed usuario_cadastro
+ * @property string data_cadastro
+ * @property mixed descricao
+ * @property mixed nome
+ */
 class CargoEntity extends CalfEntity
 {
     protected $table = "cargos";
@@ -22,7 +29,9 @@ class CargoEntity extends CalfEntity
         'usuario_alteracao',
         'status'
     ];
-    public function funcionarios() {
+
+    public function funcionarios()
+    {
         return $this->hasMany("\CalfManager\Model\Repository\Entity\FuncionarioEntity");
     }
 }

@@ -9,6 +9,15 @@
 namespace CalfManager\Model\Repository\Entity;
 
 
+/**
+ * @property mixed id
+ * @property int status
+ * @property mixed usuario_cadastro
+ * @property string data_cadastro
+ * @property mixed permissao_id
+ * @property mixed descricao
+ * @property mixed nome
+ */
 class GrupoEntity extends CalfEntity
 {
     protected $table = "grupos";

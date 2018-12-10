@@ -12,7 +12,6 @@ namespace CalfManager\Model;
 use CalfManager\Model\Repository\FuncionarioDAO;
 use CalfManager\Utils\Config;
 use Exception;
-use Symfony\Component\Cache\Tests\CacheItemTest;
 
 class Funcionario extends Modelo
 {

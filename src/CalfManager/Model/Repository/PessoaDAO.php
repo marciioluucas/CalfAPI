@@ -46,7 +46,7 @@ class PessoaDAO implements IDAO
 
     /**
      * @param Pessoa $obj
-     * @return int|null
+     * @return bool
      * @throws Exception
      */
     public function update($obj): bool

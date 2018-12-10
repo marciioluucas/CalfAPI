@@ -13,6 +13,8 @@ use PDOException;
 
 class Database
 {
+
+
     public function __construct()
     {
         $capsule = new Capsule();

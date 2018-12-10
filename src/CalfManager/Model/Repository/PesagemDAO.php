@@ -106,6 +106,7 @@ class PesagemDAO implements IDAO
 
     /**
      * @param int $id
+     * @param $page
      * @return array
      * @throws Exception
      */

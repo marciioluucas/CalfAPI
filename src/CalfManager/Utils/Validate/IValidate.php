@@ -6,7 +6,7 @@
  * Time: 19:12
  */
 
-namespace CalfManager\Utils\validate;
+namespace CalfManager\Utils\Validate;
 
 
 interface IValidate

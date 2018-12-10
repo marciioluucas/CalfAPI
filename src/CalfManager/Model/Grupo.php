@@ -85,7 +85,10 @@ class Grupo extends Modelo
     }
 
     public function cadastrarPermissao(){
-        $this->getPermissao()->cadastrar();
+        try {
+            $this->getPermissao()->cadastrar();
+        } catch (Exception $e) {
+        }
     }
 
     /**

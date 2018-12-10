@@ -10,7 +10,6 @@ namespace CalfManager\View;
 
 use Exception;
 use InvalidArgumentException;
-use CalfManager\Utils\HeaderWriter;
 use Psr\Http\Message\ResponseInterface as Response;
 
 /**

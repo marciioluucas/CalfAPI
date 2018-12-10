@@ -9,6 +9,15 @@
 namespace CalfManager\Model\Repository\Entity;
 
 
+/**
+ * @property mixed id
+ * @property int status
+ * @property string data_cadastro
+ * @property mixed usuario_cadastro
+ * @property mixed grupo_id
+ * @property null|string senha
+ * @property null|string login
+ */
 class UsuarioEntity extends CalfEntity
 {
     protected $table = "usuarios";
@@ -29,7 +38,7 @@ class UsuarioEntity extends CalfEntity
     }
 
     public function funcionario() {
-        return $this->belongsTo(FuncionarioEntity::class,'usuario_id', 'id');
+        return $this->hasOne(FuncionarioEntity::class,'usuario_id', 'id');
     }
 
 }

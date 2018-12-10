@@ -19,7 +19,8 @@ use Exception;
 class UsuarioController implements IController
 {
     /**
-     * @param Request $request
+     * @param $login
+     * @param $senha
      */
     public function authenticar($login, $senha){
 

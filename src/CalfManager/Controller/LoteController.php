@@ -12,7 +12,7 @@ use Exception;
 use Psr\Http\Message\RequestInterface as Request;
 use Psr\Http\Message\ResponseInterface as Response;
 use CalfManager\Model\Lote;
-use CalfManager\Utils\validate\LoteValidate;
+use CalfManager\Utils\Validate\LoteValidate;
 use CalfManager\View\View;
 
 /**

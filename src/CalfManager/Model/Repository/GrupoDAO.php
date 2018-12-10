@@ -69,6 +69,8 @@ class GrupoDAO implements IDAO {
     /**
      * @param int $page
      * @return array
+     * @throws Exception
+     * @throws Exception
      */
     public function retreaveAll(int $page): array
     {
@@ -90,6 +92,8 @@ class GrupoDAO implements IDAO {
     /**
      * @param int $id
      * @return array
+     * @throws Exception
+     * @throws Exception
      */
     public function retreaveById(int $id): array
     {
@@ -109,6 +113,8 @@ class GrupoDAO implements IDAO {
      * @param string $nome
      * @param int $page
      * @return array
+     * @throws Exception
+     * @throws Exception
      */
     public function retreaveByNome(string $nome, int $page){
         try {

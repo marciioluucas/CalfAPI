@@ -2,10 +2,9 @@
 
 namespace CalfManager\Controller;
 
-use CalfManager\Model\Dose;
 use Exception;
 use CalfManager\Model\Animal as Animal;
-use CalfManager\Utils\validate\AnimalValidate;
+use CalfManager\Utils\Validate\AnimalValidate;
 use CalfManager\View\View;
 use Psr\Http\Message\RequestInterface as Request;
 use Psr\Http\Message\ResponseInterface as Response;

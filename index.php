@@ -1,4 +1,4 @@
-<?php
+<?php /** @noinspection PhpIncludeInspection */
 /**
  * Created by PhpStorm.
  * User: marci

@@ -9,6 +9,12 @@
 namespace CalfManager\Model\Repository\Entity;
 
 
+/**
+ * @property  string situacao
+ * @property  string data_adoecimento
+ * @property  int doencas_id
+ * @property  int animais_id
+ */
 class AnimalHasDoencaEntity extends CalfEntity
 {
     protected $table = 'animais_has_doencas';

@@ -9,7 +9,6 @@
 namespace CalfManager\Controller;
 
 
-use CalfManager\Model\Repository\UsuarioDAO;
 use CalfManager\Model\Usuario;
 use CalfManager\Utils\Validate\LoginValidate;
 use CalfManager\View\View;
