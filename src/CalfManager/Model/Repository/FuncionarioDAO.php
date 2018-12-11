@@ -86,7 +86,6 @@ class FuncionarioDAO implements IDAO
         $entity = FuncionarioEntity::ativo();
         $funcionarios = $entity->with('cargo')
             ->with('pessoa')
-            ->with('usuario')
             ->with('fazenda')
             ->paginate(
                 Config::QUANTIDADE_ITENS_POR_PAGINA,
@@ -111,7 +110,6 @@ class FuncionarioDAO implements IDAO
             $entity = FuncionarioEntity::ativo();
             $funcionario = $entity->with('cargo')
                 ->with('pessoa')
-                ->with('usuario')
                 ->with('fazenda')
                 ->where('id', $id)
                 ->first()
@@ -136,7 +134,6 @@ class FuncionarioDAO implements IDAO
            $entity = FuncionarioEntity::ativo();
            $funcionarios = $entity->with('cargo')
                ->with('pessoa')
-               ->with('usuario')
                ->with('fazenda')
                ->where('cargo_id', $idCargo)
                ->paginate(
@@ -152,28 +149,6 @@ class FuncionarioDAO implements IDAO
     }
 
     /**
-     * @param int $idUsuario
-     * @return array
-     * @throws Exception
-     * @throws Exception
-     */
-    public function retreaveByIdUsuario(int $idUsuario){
-        try{
-            $entity = FuncionarioEntity::ativo();
-            $funcionarios = $entity->with('cargo')
-                ->with('pessoa')
-                ->with('usuario')
-                ->with('fazenda')
-                ->where('usuario_id', $idUsuario)
-                ->first()
-                ->toArray();
-            return ["funcionarios" => $funcionarios];
-        }catch (Exception $e) {
-            throw new Exception("Erro ao pesquisar o usuário deste funcionário pelo ID ".$idUsuario. ". Mensagem: " . $e->getMessage());
-        }
-    }
-
-    /**
      * @param int $idFazenda
      * @param int $page
      * @return array
@@ -185,7 +160,6 @@ class FuncionarioDAO implements IDAO
             $entity = FuncionarioEntity::ativo();
             $funcionarios = $entity->with('cargo')
                 ->with('pessoa')
-                ->with('usuario')
                 ->with('fazenda')
                 ->where('fazenda_id', $idFazenda)
                 ->paginate(
@@ -204,7 +178,6 @@ class FuncionarioDAO implements IDAO
             $entity = FuncionarioEntity::ativo();
             $funcionario = $entity->with('cargo')
                 ->with('pessoa')
-                ->with('usuario')
                 ->with('fazenda')
                 ->where('pessoa_id', $idPessoa)
                 ->first()

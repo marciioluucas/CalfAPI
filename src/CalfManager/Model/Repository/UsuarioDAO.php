@@ -76,7 +76,10 @@ class UsuarioDAO implements IDAO
     public function retreaveAll(int $page): array
     {
         try {
-            $usuarios = UsuarioEntity::ativo()->with('grupo')->paginate(
+            $usuarios = UsuarioEntity::ativo()
+                ->with('grupo')
+                ->with('funcionario')
+                ->paginate(
                 Config::QUANTIDADE_ITENS_POR_PAGINA,
                 ['*'],
                 'pagina',
@@ -97,7 +100,9 @@ class UsuarioDAO implements IDAO
     public function retreaveById(int $id): array
     {
          try{
-             $usuario = UsuarioEntity::ativo()->with('grupo')
+             $usuario = UsuarioEntity::ativo()
+                 ->with('grupo')
+                 ->with('funcionario')
                  ->where('id', $id)
                  ->first()
                  ->toArray();
@@ -108,7 +113,9 @@ class UsuarioDAO implements IDAO
     }
     public function retreaveByLogin(string $login, int $page ){
         try{
-            $usuario = UsuarioEntity::ativo()->with('grupo')
+            $usuario = UsuarioEntity::ativo()
+                ->with('grupo')
+                ->with('funcionario')
                 ->where('login','like', '%'.$login.'%')
                 ->paginate(
                     Config::QUANTIDADE_ITENS_POR_PAGINA,
@@ -150,7 +157,7 @@ class UsuarioDAO implements IDAO
                 $usuario = UsuarioEntity::ativo()->with('grupo')
                     ->where('login', $login)
                     ->where('senha', $senha)
-                    ->with('funcionario.pessoa')
+                    ->with('funcionario')
                     ->get();
                 if(count($usuario)){
                     return $usuario[0];

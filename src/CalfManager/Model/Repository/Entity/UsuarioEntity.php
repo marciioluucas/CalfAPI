@@ -26,6 +26,7 @@ class UsuarioEntity extends CalfEntity
         'login',
         'senha',
         'grupo_id',
+        'funcionario_id',
         'data_alteracao',
         'data_cadastro',
         'usuario_cadastro',
@@ -38,7 +39,7 @@ class UsuarioEntity extends CalfEntity
     }
 
     public function funcionario() {
-        return $this->hasOne(FuncionarioEntity::class,'usuario_id', 'id');
+        return $this->hasOne(FuncionarioEntity::class,'id', 'funcionario_id');
     }
 
 }
