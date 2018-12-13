@@ -115,7 +115,6 @@ class HemogramaDAO implements IDAO
      */
     public function graphMonitorDeSaude($params = []): array
     {
-        var_dump($params);
         if (!isset($params['animal'])) {
             throw new InvalidArgumentException('Argumento animal é requerido, adicione o id do animal pela requisição (?animal={id})');
         }
