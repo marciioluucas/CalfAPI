@@ -35,11 +35,11 @@ class HemogramaDAO implements IDAO
         $entity->usuario_cadastro = $obj->getUsuarioCadastro()->getId();
         $entity->status = 1;
         try {
-            if ($entity->save()){
+            if ($entity->save()) {
                 return $entity->id;
             }
-        }catch (Exception $e){
-            throw new Exception("Erro ao cadastrar hemograma. Mensagem: ".$e->getMessage());
+        } catch (Exception $e) {
+            throw new Exception("Erro ao cadastrar hemograma. Mensagem: " . $e->getMessage());
         }
     }
 
@@ -55,18 +55,18 @@ class HemogramaDAO implements IDAO
 
         $entity->data_alteracao = $obj->getDataAlteracao();
         $entity->usuario_alteracao = $obj->getUsuarioAlteracao()->getId();
-        if(!is_null($obj->getPpt())){
+        if (!is_null($obj->getPpt())) {
             $entity->ppt = $obj->getPpt();
         }
-        if(!is_null($obj->getHematocrito())){
+        if (!is_null($obj->getHematocrito())) {
             $entity->hematocrito = $obj->getHematocrito();
         }
-        try{
-            if ($entity->update()){
+        try {
+            if ($entity->update()) {
                 return $entity->id;
             }
-        }catch (Exception $e){
-            throw new Exception("Erro ao alterar hemograma. Mensagem: ".$e->getMessage());
+        } catch (Exception $e) {
+            throw new Exception("Erro ao alterar hemograma. Mensagem: " . $e->getMessage());
         }
     }
 
@@ -85,10 +85,10 @@ class HemogramaDAO implements IDAO
                 ['*'],
                 'pagina',
                 $page
-                );
+            );
             return ["hemogramas" => $hemogramas];
-        }catch (Exception $e){
-            throw new Exception("Erro ao pesquisar todos os hemogramas. Mensagem: ".$e->getMessage());
+        } catch (Exception $e) {
+            throw new Exception("Erro ao pesquisar todos os hemogramas. Mensagem: " . $e->getMessage());
         }
     }
 
@@ -104,8 +104,8 @@ class HemogramaDAO implements IDAO
             $entity = HemogramaEntity::ativo();
             $hemogramas = $entity->where('id', $id)->first()->toArray();
             return ["hemogramas" => $hemogramas];
-        }catch (Exception $e){
-            throw new Exception("Erro ao pesquisar hemograma pelo ID ".$id.". Mensagem: ".$e->getMessage());
+        } catch (Exception $e) {
+            throw new Exception("Erro ao pesquisar hemograma pelo ID " . $id . ". Mensagem: " . $e->getMessage());
         }
     }
 
@@ -113,15 +113,17 @@ class HemogramaDAO implements IDAO
      * @param array $params
      * @return array
      */
-    public function graphMonitorDeSaude($params = []): array {
-        if(isset($params['animal'])){
+    public function graphMonitorDeSaude($params = []): array
+    {
+        var_dump($params);
+        if (!isset($params['animal'])) {
             throw new InvalidArgumentException('Argumento animal é requerido, adicione o id do animal pela requisição (?animal={id})');
         }
         return [
             HemogramaEntity::ativo()
                 ->where('animal_id', $params['animal'])
                 ->whereDate('data', '<=', Carbon::now()->subDays(30)->toDateString())
-                ->get(['ppt','hematocrito','data'])
+                ->get(['ppt', 'hematocrito', 'data'])
         ];
     }
 
@@ -133,12 +135,14 @@ class HemogramaDAO implements IDAO
     public function delete(int $id): bool
     {
 
-        try{
+        try {
             $entity = HemogramaEntity::find($id);
             $entity->status = 0;
-            if($entity->save()){return true;}
-        }catch (Exception $e){
-            throw new Exception("Erro ao excluir hemograma. Mensagem: ".$e->getMessage());
+            if ($entity->save()) {
+                return true;
+            }
+        } catch (Exception $e) {
+            throw new Exception("Erro ao excluir hemograma. Mensagem: " . $e->getMessage());
         }
     }
 
