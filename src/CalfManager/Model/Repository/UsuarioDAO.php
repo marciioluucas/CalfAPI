@@ -102,7 +102,7 @@ class UsuarioDAO implements IDAO
          try{
              $usuario = UsuarioEntity::ativo()
                  ->with('grupo')
-                 ->with('funcionario')
+                 ->with('funcionario.pessoa')
                  ->where('id', $id)
                  ->first()
                  ->toArray();
@@ -157,7 +157,6 @@ class UsuarioDAO implements IDAO
                 $usuario = UsuarioEntity::ativo()->with('grupo')
                     ->where('login', $login)
                     ->where('senha', $senha)
-                    ->with('funcionario')
                     ->get();
                 if(count($usuario)){
                     return $usuario[0];

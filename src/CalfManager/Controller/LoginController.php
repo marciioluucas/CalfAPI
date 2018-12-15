@@ -10,6 +10,7 @@ namespace CalfManager\Controller;
 
 
 use CalfManager\Model\Usuario;
+use CalfManager\Utils\TokenApp;
 use CalfManager\Utils\Validate\LoginValidate;
 use CalfManager\View\View;
 use Exception;
@@ -21,48 +22,8 @@ use Psr\Http\Message\ResponseInterface as Response;
 
 class LoginController implements IController
 {
-    public function gerarToken(Usuario $usuario){
-        $id = $usuario->getId();
-        $time = time();
-        $key = 'bob-esponja';
-        $header = [
-            'typ' => 'JWT',
-            'alg' => 'HS256'
-        ];
-        $header = json_encode($header);
-        $header = base64_encode($header);
-        $payload = [
-            "iss" => "api.calfmanager.com",
-            "id" => $id,
-            "iat" => $time,
-            "exp" => $time + (86400)
-        ];
-        $payload = json_encode($payload);
-        $payload = base64_encode($payload);
-        $signature = hash_hmac('sha256', "$header.$payload", $key, true);
-        $signature = base64_encode($signature);
-
-        return ["token" => $token = "$header.$payload.$signature"];
-    }
-    public function validaToken()
-    {
-        $key = 'bob-esponja';
-        $token = $this->recebeToken();
-        if($token){
-//            $data = base64_decode($token);
-            $data = JWT::decode($token, $key, array('HS256'));
-            return $token;
-        }
-
-    }
-    public function recebeToken()
-    {
-        return apache_request_headers()["Authorization"]; // Pega o token do cabeçalho
-    }
-
     public function post(Request $request, Response $response): Response
     {
-
         Try{
             $usuario = new Usuario();
             $data = json_decode($request->getBody()->getContents());
@@ -72,7 +33,7 @@ class LoginController implements IController
                 $usuario->setLogin($data->login);
                 $usuario->setSenha($data->senha);
                 if($usuario->login()){
-                    $token = $this->gerarToken($usuario);
+                    $token = TokenApp::gerarToken($usuario);
                     return View::render($response, $token);
                 }
                 else {
@@ -106,21 +67,19 @@ class LoginController implements IController
         array $args
     ): Response
     {
-        if($this->validaToken()){
-            return View::render($response, $this->validaToken());
-        }else {
-            return View::render($response, "Token invalido");
-        }
+        View::renderMessage($response, "warning", "Módulo não implementado!", 300);
     }
 
     public function put(Request $request, Response $response): Response
     {
-        // TODO: Implement put() method.
+        View::renderMessage($response, "warning", "Módulo não implementado!", 300);
+
     }
 
     public function delete(Request $request, Response $response): Response
     {
-        // TODO: Implement delete() method.
+        View::renderMessage($response, "warning", "Módulo não implementado!", 300);
+
     }
 
 }

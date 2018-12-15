@@ -2,6 +2,7 @@
 
 namespace CalfManager\Controller;
 
+use CalfManager\Utils\TokenApp;
 use Exception;
 use CalfManager\Model\Animal as Animal;
 use CalfManager\Utils\Validate\AnimalValidate;
@@ -22,6 +23,7 @@ class AnimalController implements IController
      */
     public function post(Request $request, Response $response): Response
     {
+
         try {
             $animal = new Animal();
             $data = json_decode($request->getBody()->getContents());
@@ -95,37 +97,40 @@ class AnimalController implements IController
         array $args
     ): Response
     {
-        try {
-            $animal = new Animal();
-            $page = (int)$request->getQueryParam('pagina');
+        if(TokenApp::validaToken()) {
+            try {
+                $animal = new Animal();
+                $page = (int)$request->getQueryParam('pagina');
 
-            if ($request->getQueryParam('vivo') == 'false') {
-                $animal->setVivo(false);
+                if ($request->getQueryParam('vivo') == 'false') {
+                    $animal->setVivo(false);
+                }
+                if ($request->getQueryParam('vivo') == 'true') {
+                    $animal->setVivo(true);
+                }
+                if ($request->getQueryParam('sexo') == 'm' || $request->getQueryParam('sexo') == 'M') {
+                    $animal->setSexo('M');
+                }
+                if ($request->getQueryParam('sexo') == 'f' || $request->getQueryParam('sexo') == 'F') {
+                    $animal->setSexo('F');
+                }
+                if ($request->getAttribute('id')) {
+                    $animal->setId($request->getAttribute('id'));
+                } elseif ($request->getQueryParam('nome')) {
+                    $animal->setNome($request->getQueryParam('nome'));
+                } elseif ($request->getQueryParam('lote')) {
+                    $animal->getLote()->setId($request->getQueryParam('lote'));
+                }
+                $search = $animal->pesquisar($page);
+                return View::render($response, $search);
+            } catch (Exception $exception) {
+                return View::renderException($response, $exception);
             }
-            if ($request->getQueryParam('vivo') == 'true') {
-                $animal->setVivo(true);
-            }
-            if ($request->getQueryParam('sexo') == 'm' || $request->getQueryParam('sexo') == 'M') {
-                $animal->setSexo('M');
-            }
-            if ($request->getQueryParam('sexo') == 'f' || $request->getQueryParam('sexo') == 'F') {
-                $animal->setSexo('F');
-            }
-            if ($request->getAttribute('id')) {
-                $animal->setId($request->getAttribute('id'));
-            }
-            elseif ($request->getQueryParam('nome')) {
-                $animal->setNome($request->getQueryParam('nome'));
-            }
-            elseif ($request->getQueryParam('lote')) {
-                $animal->getLote()->setId($request->getQueryParam('lote'));
-            }
-            $search = $animal->pesquisar($page);
-            return View::render($response, $search);
-        } catch (Exception $exception) {
-            return View::renderException($response, $exception);
+        }else {
+            return View::renderMessage($response, 'error','Sem Autorização!','404', 'sem autorizacao');
         }
     }
+
 
     /**
      * @param Request $request

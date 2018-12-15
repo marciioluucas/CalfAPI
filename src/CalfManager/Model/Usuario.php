@@ -44,7 +44,7 @@ class Usuario extends Modelo
                 $this->getGrupo()->setId($usuario->grupo->id);
                 $this->getGrupo()->setNome($usuario->grupo->nome);
                 $this->getGrupo()->getPermissao()->setId($usuario->grupo->permissao_id);
-                return $usuario;
+                return $this;
             }else {
                 return false;
             }
