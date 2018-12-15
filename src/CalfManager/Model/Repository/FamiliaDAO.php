@@ -144,8 +144,7 @@ class FamiliaDAO implements IDAO
                 ->with('mae')
                 ->with('filho')
                 ->where('filho_id', $animalId)
-                ->first()
-                ->toArray();
+                ->first();
             return ["familias" => $familias];
         }catch (Exception $e){
             throw new Exception("Erro ao pesquisar animal em família pelo ID ".$animalId.". Mensagem: ".$e->getMessage());

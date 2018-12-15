@@ -45,7 +45,8 @@ class AnimalEntity extends CalfEntity
         'usuario_alteracao',
         'fase_vida',
         'lotes_id',
-        'is_vivo'
+        'is_vivo',
+        'fazendas_id'
     ];
     protected $casts = [
         'data_nascimento' => 'date:d/m/Y'
@@ -54,6 +55,11 @@ class AnimalEntity extends CalfEntity
     public function pesagens()
     {
         return $this->hasMany('CalfManager\Model\Repository\Entity\PesagemEntity', 'animais_id', 'id');
+    }
+
+    public function fazenda()
+    {
+        return $this->belongsTo(FazendaEntity::class, 'fazendas_id', 'id');
     }
 
     public function doencas()
@@ -67,7 +73,8 @@ class AnimalEntity extends CalfEntity
         return $this->belongsTo('CalfManager\Model\Repository\Entity\LoteEntity', 'lotes_id');
     }
 
-    public function Hemogramas(){
+    public function Hemogramas()
+    {
         return $this->hasMany("CalfManager\Model\Repository\Entity\HemogramaEntity", 'animal_id');
     }
 

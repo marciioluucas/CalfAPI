@@ -166,6 +166,7 @@ class AnimalDAO implements IDAO
             $animal = $entity->with('hemogramas')
                 ->with('pesagens')
                 ->with('doencas')
+                ->with('fazenda')
                 ->with('lote')
                 ->where('id', $id)
                 ->first()
