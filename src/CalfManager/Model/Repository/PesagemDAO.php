@@ -160,7 +160,7 @@ class PesagemDAO implements IDAO
         return [
             PesagemEntity::ativo()
                 ->where('animais_id', $params['animal'])
-                ->whereDate('data_pesagem', '<=', Carbon::now()->subDays(30)->toDateString())
+                ->whereDate('data_pesagem', '<=', Carbon::now())
                 ->get(['peso', 'data_pesagem'])
         ];
     }

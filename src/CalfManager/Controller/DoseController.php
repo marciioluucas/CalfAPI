@@ -26,8 +26,8 @@ class DoseController implements IController
             $dose = new Dose();
             if ($valida === true) {
                 $dose->setQuantidadeMg($data->quantidade_mg);
-                $dose->getMedicamento()->setId($data->medicamento->id);
-                $dose->getAnimal()->setId($data->animal->id);
+                $dose->getMedicamento()->setId($data->medicamento_id);
+                $dose->getAnimal()->setId($data->animal_id);
                 $dose->setData($data->data);
                 if ($dose->cadastrar()) {
                     return View::renderMessage(

@@ -14,8 +14,9 @@ class DoseValidate extends Validate
 {
     public function validatePost($params)
     {
+        $rules = [];
         $valida = new Validator($params);
-        $valida->rule('required', ['medicamento_id', 'quantidade_mg', 'data']);
+        $valida->rules($rules);
         if ($valida->validate()) {
             return true;
         } else {
@@ -30,8 +31,9 @@ class DoseValidate extends Validate
 
     public function validatePut($params)
     {
+        $rules = [];
         $valida = new Validator($params);
-        $valida->rule('required', ['medicamento_id', 'doquantidade_mg', 'data']);
+        $valida->rules($rules);
         if ($valida->validate()) {
             return true;
         } else {

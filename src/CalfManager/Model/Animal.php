@@ -76,6 +76,8 @@ class Animal extends Modelo
 
     private $hemograma;
 
+    private $fazenda;
+
     /**
      * Animal constructor.
      * @throws Exception
@@ -86,6 +88,7 @@ class Animal extends Modelo
         $this->pesagem = new Pesagem($this);
         $this->doencas = new ArrayObject();
         $this->hemograma = new Hemograma($this);
+        $this->fazenda = new Fazenda();
     }
 
     /**
@@ -158,7 +161,6 @@ class Animal extends Modelo
                 $page
             );
         }
-
         return $dao->retreaveAll($page);
     }
 
@@ -215,8 +217,9 @@ class Animal extends Modelo
         }
     }
 
-    public function curarAnimal($idAnimal, $idDoenca)
+    public function curarAnimal($idAnimal, $situacao)
     {
+        (new DoencaDAO())->curar($idAnimal, $situacao);
 
     }
 
@@ -486,6 +489,22 @@ class Animal extends Modelo
     public function setPrimogenito(bool $primogenito)
     {
         $this->primogenito = $primogenito;
+    }
+
+    /**
+     * @return Fazenda
+     */
+    public function getFazenda(): Fazenda
+    {
+        return $this->fazenda;
+    }
+
+    /**
+     * @param Fazenda $fazenda
+     */
+    public function setFazenda(Fazenda $fazenda)
+    {
+        $this->fazenda = $fazenda;
     }
 
 

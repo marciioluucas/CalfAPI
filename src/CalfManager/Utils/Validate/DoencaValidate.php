@@ -16,8 +16,9 @@ class DoencaValidate extends Validate
 
     public function validatePost($params)
     {
+        $rules = [];
         $v = new Validator($params);
-        $v->rule('required', ['nome']);
+        $v->rules($rules);
         if ($v->validate()) {
             return true;
         } else {
@@ -33,8 +34,9 @@ class DoencaValidate extends Validate
 
     public function validatePut($params)
     {
+        $rules = [];
         $v = new Validator($params);
-        $v->rule('required', ['nome','id']);
+        $v->rules($rules);
         if ($v->validate()) {
             return true;
         } else {

@@ -101,8 +101,9 @@ class UsuarioController implements IController
             } catch (Exception $exception) {
                 return View::renderException($response, $exception);
             }
+
         } else{
-//            return View::render($response,TokenApp::validaToken() );
+//            return View::render($response, TokenApp::validaToken());
             return View::renderMessage($response, 'error','Sem Autorização!','404', 'sem autorizacao');
         }
     }

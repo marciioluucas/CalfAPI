@@ -136,6 +136,7 @@ class AnimalDAO implements IDAO
         }
 
         $animais = $entity->with('hemogramas')
+            ->with('doses')
             ->with('pesagens')
             ->with('doencas')
             ->with('lote')
@@ -164,6 +165,7 @@ class AnimalDAO implements IDAO
                 $entity->where('sexo', $this->sexo);
             }
             $animal = $entity->with('hemogramas')
+                ->with('doses')
                 ->with('pesagens')
                 ->with('doencas')
                 ->with('fazenda')
@@ -200,6 +202,7 @@ class AnimalDAO implements IDAO
                 $entity->where('sexo', $this->sexo);
             }
             $animais = $entity->with('hemogramas')
+                ->with('doses')
                 ->with('pesagens')
                 ->with('doencas')
                 ->with('lote')
@@ -228,6 +231,7 @@ class AnimalDAO implements IDAO
         try {
             $entity = AnimalEntity::ativo();
             $animaisLote = $entity->with('hemogramas')
+                ->with('doses')
                 ->with('pesagens')
                 ->with('doencas')
                 ->with('lote')
@@ -258,6 +262,7 @@ class AnimalDAO implements IDAO
         try {
             $entity = AnimalEntity::ativo();
             $animais = $entity->with('hemogramas')
+                ->with('doses')
                 ->with('pesagens')
                 ->with('doencas')
                 ->with('lote')

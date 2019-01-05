@@ -129,24 +129,27 @@ class Familia extends Modelo
             return $arrayToReturn;
         }
 
-        $arrayToReturn['name'] = $familia->filho->codigo_brinco;
+        $arrayToReturn['name'] = $familia->filho->nome;
         $arrayToReturn['id'] = $familia->filho->id;
         $objFamiliaMae = $this->pesquisaFamiliaByIdAnimal($familia->mae->id);
         $objFamiliaPai = $this->pesquisaFamiliaByIdAnimal($familia->pai->id);
 
-        $arrayToReturn['children']['0'] = $this->fazerArvoreGenealogica(
-            $objFamiliaMae
-        );
-        $arrayToReturn['children']['0']['id'] = $familia->mae->id;
-        $arrayToReturn['children']['0']['name'] = $familia->mae->codigo_brinco;
-        $arrayToReturn['children']['0']['value'] = 1;
-
-        $arrayToReturn['children']['1'] = $this->fazerArvoreGenealogica(
-            $objFamiliaPai
-        );
-        $arrayToReturn['children']['1']['id'] = $familia->pai->id;
-        $arrayToReturn['children']['1']['name'] = $familia->pai->codigo_brinco;
-        $arrayToReturn['children']['1']['value'] = 1;
+        if(isset($familia->mae->id)) {
+            $arrayToReturn['children']['0'] = $this->fazerArvoreGenealogica(
+                $objFamiliaMae
+            );
+            $arrayToReturn['children']['0']['id'] = $familia->mae->id;
+            $arrayToReturn['children']['0']['name'] = $familia->mae->nome;
+            $arrayToReturn['children']['0']['value'] = 1;
+        }
+        if(isset($familia->pai->id)) {
+            $arrayToReturn['children']['1'] = $this->fazerArvoreGenealogica(
+                $objFamiliaPai
+            );
+            $arrayToReturn['children']['1']['id'] = $familia->pai->id;
+            $arrayToReturn['children']['1']['name'] = $familia->pai->nome;
+            $arrayToReturn['children']['1']['value'] = 1;
+        }
         return $arrayToReturn;
     }
 
@@ -157,7 +160,8 @@ class Familia extends Modelo
     public function graphArvoreGenealogica($idAnimal)
     {
         $obj = $this->pesquisaFamiliaByIdAnimal($idAnimal);
-        return $this->fazerArvoreGenealogica($obj);
+
+        return $this->fazerArvoreGenealogica($obj['familias']);
     }
 
     public function graph(string $whatChart, array $params)

@@ -121,7 +121,7 @@ class HemogramaDAO implements IDAO
         return [
             HemogramaEntity::ativo()
                 ->where('animal_id', $params['animal'])
-                ->whereDate('data', '<=', Carbon::now()->subDays(30)->toDateString())
+                ->whereDate('data', '<=', Carbon::now())
                 ->get(['ppt', 'hematocrito', 'data'])
         ];
     }

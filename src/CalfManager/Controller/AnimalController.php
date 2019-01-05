@@ -23,7 +23,6 @@ class AnimalController implements IController
      */
     public function post(Request $request, Response $response): Response
     {
-
         try {
             $animal = new Animal();
             $data = json_decode($request->getBody()->getContents());
@@ -32,13 +31,13 @@ class AnimalController implements IController
                 $animal->setNome($data->nome);
                 $animal->setSexo($data->sexo);
                 $animal->setCodigoBrinco($data->codigo_brinco);
-                if($data->codigo_raca != null){
+                if ($data->codigo_raca != null) {
                     $animal->setCodigoRaca($data->codigo_raca);
                 }
                 $animal->setDataNascimento($data->data_nascimento);
                 $animal->setFaseDaVida($data->fase_vida);
-                $animal->getLote()->setId($data->lote->id);
-                if($data->doencas) {
+                $animal->getLote()->setId($data->lotes_id);
+                if ($data->doencas) {
                     foreach ($data->doencas as $doenca) {
                         $animal->adicionarDoenca($doenca->id, $doenca->situacao);
                     }
@@ -51,6 +50,7 @@ class AnimalController implements IController
                     $animal->setMae(new Animal());
                     $animal->getMae()->setId($data->mae);
                 }
+                $animal->getFazenda()->setId($data->fazendas_id);
                 $animal->setVivo($data->is_vivo);
                 $animal->setPrimogenito($data->is_primogenito);
                 $animal->getPesagem()->setPeso($data->pesagem->peso);
@@ -58,7 +58,7 @@ class AnimalController implements IController
                 $animal->getHemograma()->setPpt($data->hemograma->ppt);
                 $animal->getHemograma()->setHematocrito($data->hemograma->hematocrito);
                 $animal->getHemograma()->setData($data->hemograma->data);
-                if($animal->cadastrar()) {
+                if ($animal->cadastrar()) {
                     return View::renderMessage(
                         $response,
                         "success",
@@ -76,7 +76,8 @@ class AnimalController implements IController
                         "Erro ao cadastrar"
                     );
                 }
-            } else {
+            }
+            else {
                 return View::renderMessage($response, 'warning', $valida, 400);
             }
         } catch (Exception $exception) {
@@ -97,7 +98,7 @@ class AnimalController implements IController
         array $args
     ): Response
     {
-        if(TokenApp::validaToken()) {
+//        if(TokenApp::validaToken()) {
             try {
                 $animal = new Animal();
                 $page = (int)$request->getQueryParam('pagina');
@@ -126,9 +127,9 @@ class AnimalController implements IController
             } catch (Exception $exception) {
                 return View::renderException($response, $exception);
             }
-        }else {
-            return View::renderMessage($response, 'error','Sem Autorização!','404', 'sem autorizacao');
-        }
+//        }else {
+//            return View::renderMessage($response, 'error','Sem Autorização!','404', 'sem autorizacao');
+//        }
     }
 
 
@@ -150,7 +151,7 @@ class AnimalController implements IController
             $animal->setCodigoBrinco($data->codigo_brinco);
             $animal->setCodigoRaca($data->codigo_raca);
             $animal->setDataNascimento($data->data_nascimento);
-            $animal->getLote()->setId($data->lote->id);
+            $animal->getLote()->setId($data->lotes_id);
             if($data->doencas) {
                 foreach ($data->doencas as $doenca) {
                     $animal->adicionarDoenca($doenca->id, $doenca->situacao);
@@ -164,6 +165,7 @@ class AnimalController implements IController
                 $animal->setMae(new Animal());
                 $animal->getMae()->setId($data->mae->id);
             }
+            $animal->getFazenda()->setId($data->fazendas_id);
             $animal->setFaseDaVida($data->fase_vida);
             $animal->setPrimogenito($data->is_primogenito);
             $animal->setVivo($data->is_vivo);

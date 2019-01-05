@@ -9,6 +9,7 @@
 namespace CalfManager\Controller;
 
 
+use CalfManager\Model\Doenca;
 use CalfManager\Model\Hemograma;
 use CalfManager\Utils\Validate\HemogramaValidate;
 use CalfManager\View\View;
@@ -28,13 +29,15 @@ class HemogramaController implements IController
     {
         try{
             $hemograma = new Hemograma();
+            $doenca = new Doenca();
             $data = json_decode($request->getBody()->getContents());
             $valida = (new HemogramaValidate())->validatePost((array)$data);
             if($valida === true) {
+
                 $hemograma->setData($data->data);
                 $hemograma->setPpt($data->ppt);
                 $hemograma->setHematocrito($data->hematocrito);
-                $hemograma->getAnimal()->setId($data->animal->id);
+                $hemograma->getAnimal()->setId($data->animal_id);
 
                 if($hemograma->cadastrar()) {
                     return View::renderMessage(
@@ -53,7 +56,7 @@ class HemogramaController implements IController
                         "Erro ao alterar"
                     );
                 }
-            }else {
+            } else {
                 return View::renderMessage($response, 'warning', $valida, 400, "Erro ao validar");
             }
         } catch (Exception $e){

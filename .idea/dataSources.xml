@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="DataSourceManagerImpl" format="xml" multifile-model="true">
-    <data-source source="LOCAL" name="Calf API" uuid="b1f1ce24-55da-4b0c-a4a2-983487838831">
+    <data-source source="LOCAL" name="MySQL - controleanimal@localhost" uuid="7fb19671-3e09-4ce5-a662-ba556cc2ba22">
       <driver-ref>mysql</driver-ref>
       <synchronize>true</synchronize>
       <jdbc-driver>com.mysql.jdbc.Driver</jdbc-driver>

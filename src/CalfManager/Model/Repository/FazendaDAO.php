@@ -16,6 +16,8 @@ use CalfManager\Utils\Config;
 class FazendaDAO implements IDAO
 {
 
+//    TODO: Criar retreaveAllAnimais para retornar todos os animais daquela fazenda.
+//    TODO: Criar retreaveAllLotes para retornar todos os lotes daquela fazenda.
     /**
      * @param Fazenda $obj
      * @return int|null
@@ -113,6 +115,9 @@ class FazendaDAO implements IDAO
         } catch (Exception $e) {
             throw new Exception("Algo de errado aconteceu ao tentar pesquisar por nome" . $e->getMessage());
         }
+    }
+    public function retreaveAllAnimais(int $page){
+
     }
 
     /**

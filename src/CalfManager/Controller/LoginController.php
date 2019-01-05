@@ -22,6 +22,7 @@ use Psr\Http\Message\ResponseInterface as Response;
 
 class LoginController implements IController
 {
+
     public function post(Request $request, Response $response): Response
     {
         Try{

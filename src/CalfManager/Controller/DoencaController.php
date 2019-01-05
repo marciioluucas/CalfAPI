@@ -29,26 +29,54 @@ class DoencaController implements IController
             $data = json_decode($request->getBody()->getContents());
             $valida = (new DoencaValidate())->validatePost((array) $data);
             if ($valida === true) {
-                $doenca->setNome($data->nome);
-                if (isset($data->descricao)) {
+                if(isset($data->nome) || isset($data->descricao)) {
+                    if(!isset($data->descricao)) {
+                        $data->descricao = 'Sem descrição';
+                    }
+                    $doenca->setNome($data->nome);
                     $doenca->setDescricao($data->descricao);
+                    if ($id = $doenca->cadastrar()) {
+                        return View::renderMessage(
+                            $response,
+                            "success",
+                            "Doença cadastrada com sucesso! ID cadastrado: " . $id,
+                            201,
+                            "Sucesso ao cadastrar"
+                        );
+                    }else {
+                        return View::renderMessage(
+                            $response,
+                            "error",
+                            "Erro ao cadastrar doença!",
+                            500,
+                            "Erro ao cadastrar"
+                        );
+                    }
                 }
-                if ($id = $doenca->cadastrar()) {
-                    return View::renderMessage(
-                        $response,
-                        "success",
-                        "Doença cadastrada com sucesso! ID cadastrado: " . $id,
-                        201,
-                        "Sucesso ao cadastrar"
-                    );
+
+                if ($data->doente === true) {
+                    if (isset($data->animal_id) and isset($data->doenca_id)) {
+                        $doenca->getAnimal()->setId($data->animal_id);
+                        $doenca->setId($data->doenca_id);
+                        if($doenca->adoecerAnimal()){
+                            return View::renderMessage($response,"success", "Animal doente registrado com sucesso!", 202);
+                        }else {
+                            return View::renderMessage($response,"error", "Erro ao registrar animal doente!", 202);
+                        }
+                    }
                 }
-                return View::renderMessage(
-                    $response,
-                    "error",
-                    "Erro ao cadastrar doença!",
-                    500,
-                    "Erro ao cadastrar"
-                );
+                if($data->curado === true){
+                    if(isset($data->animal_id)){
+                        $doenca->getAnimal()->setId($data->animal_id);
+                        if($doenca->curarAnimal()){
+                            return View::renderMessage($response,"success", "Animal curado registrado com sucesso!", 202);
+                        }else {
+                            return View::renderMessage($response,"error", "Erro ao registrar cura para esta animal!", 202);
+
+                        }
+                    }
+                }
+
             } else {
                 return View::renderMessage(
                     $response,

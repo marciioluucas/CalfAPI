@@ -41,6 +41,15 @@ class Doenca extends Modelo
         $this->animal = new Animal();
     }
 
+    public function adoecerAnimal(){
+        $this->dataAdoecimento = date(Config::PADRAO_DATA_HORA);
+        return (new DoencaDAO())->adoecer($this->getAnimal()->getId(), $this->dataAdoecimento, $this->getId());
+
+    }
+    public function curarAnimal(){
+        $this->dataCura = date(Config::PADRAO_DATA_HORA);
+        return (new DoencaDAO())->curar($this->getAnimal()->getId(), $this->dataCura);
+    }
 
     /**
      * @return int|null
