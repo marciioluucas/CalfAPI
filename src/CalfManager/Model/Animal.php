@@ -78,6 +78,8 @@ class Animal extends Modelo
 
     private $fazenda;
 
+    private $doente;
+
     /**
      * Animal constructor.
      * @throws Exception
@@ -160,7 +162,10 @@ class Animal extends Modelo
                 $this->getNome(),
                 $page
             );
+        } else if (!$this->nome and !$this->getLote()->getId() and !$this->id and $this->doente){
+            return $dao->retreaveAnimalDoente($page);
         }
+//        return null;
         return $dao->retreaveAll($page);
     }
 
@@ -505,6 +510,22 @@ class Animal extends Modelo
     public function setFazenda(Fazenda $fazenda)
     {
         $this->fazenda = $fazenda;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getDoente()
+    {
+        return $this->doente;
+    }
+
+    /**
+     * @param mixed $doente
+     */
+    public function setDoente($doente)
+    {
+        $this->doente = $doente;
     }
 
 

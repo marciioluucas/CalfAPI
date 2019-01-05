@@ -139,6 +139,7 @@ class AnimalDAO implements IDAO
             ->with('doses')
             ->with('pesagens')
             ->with('doencas')
+            ->with('fazenda')
             ->with('lote')
             ->paginate(
                 Config::QUANTIDADE_ITENS_POR_PAGINA,
@@ -205,6 +206,7 @@ class AnimalDAO implements IDAO
                 ->with('doses')
                 ->with('pesagens')
                 ->with('doencas')
+                ->with('fazenda')
                 ->with('lote')
                 ->where('nome', 'like', $nome . "%")
                 ->paginate(
@@ -234,6 +236,7 @@ class AnimalDAO implements IDAO
                 ->with('doses')
                 ->with('pesagens')
                 ->with('doencas')
+                ->with('fazenda')
                 ->with('lote')
                 ->where('lotes_id', $idLote)
                 ->where('is_vivo', $this->vivo)
@@ -248,7 +251,6 @@ class AnimalDAO implements IDAO
             throw new Exception("Algo de errado aconteceu ao tentar pesquisar por ID" . $e->getMessage());
         }
     }
-
 
     /**
      * @param int $idLote
@@ -265,6 +267,7 @@ class AnimalDAO implements IDAO
                 ->with('doses')
                 ->with('pesagens')
                 ->with('doencas')
+                ->with('fazenda')
                 ->with('lote')
                 ->where('nome', 'like', $nome . "%")
                 ->where('lotes_id', $idLote)
@@ -278,6 +281,29 @@ class AnimalDAO implements IDAO
             return ["animais" => $animais];
         } catch (Exception $e) {
             throw new Exception("Algo de errado aconteceu ao tentar pesquisar por por nome e lote" . $e->getMessage());
+        }
+    }
+    public function retreaveAnimalDoente($page){
+        try{
+            $animais = AnimalEntity::ativo()
+                ->with('hemogramas')
+                ->with('doses')
+                ->with('pesagens')
+                ->with('lote')
+                ->with('fazenda')
+                ->with('doencas')
+                ->whereHas('doencas', function ($situacao) {
+                    $situacao->where('situacao', 'DOENTE');
+                })
+                ->paginate(
+                    Config::QUANTIDADE_ITENS_POR_PAGINA,
+                    ['*'],
+                    'pagina',
+                    $page
+                );
+            return ['animais' => $animais];
+        }catch (Exception $e){
+            throw new Exception('Erro ao pesquisar por animais doentes! ' . $e);
         }
     }
 

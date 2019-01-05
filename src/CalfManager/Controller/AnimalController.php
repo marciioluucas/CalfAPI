@@ -122,6 +122,9 @@ class AnimalController implements IController
                 } elseif ($request->getQueryParam('lote')) {
                     $animal->getLote()->setId($request->getQueryParam('lote'));
                 }
+                if ($request->getQueryParam('doente') == 'true') {
+                    $animal->setDoente(true);
+                }
                 $search = $animal->pesquisar($page);
                 return View::render($response, $search);
             } catch (Exception $exception) {
