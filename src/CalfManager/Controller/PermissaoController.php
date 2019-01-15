@@ -35,6 +35,8 @@ class PermissaoController implements IController
                 $permissao->setUpdate($data->update);
                 $permissao->setDelete($data->delete);
 
+                $permissao->getGrupo()->setId($data->grupo_id);
+
                 if ($permissao->cadastrar()) {
                     return View::renderMessage(
                         $response,
@@ -84,7 +86,9 @@ class PermissaoController implements IController
             if($request->getQueryParam('nome_modulo')){
                 $permissao->setNomeModulo($request->getQueryParam('nome_modulo'));
             }
-
+            if($request->getQueryParam('grupo_id')){
+                $permissao->getGrupo()->setId($request->getQueryParam('grupo_id'));
+            }
             return View::render($response, $permissao->pesquisar($page));
         }catch (Exception $e){
             return View::renderException($response, $e);
@@ -119,7 +123,9 @@ class PermissaoController implements IController
                 if($data->delete){
                     $permissao->setDelete($data->delete);
                 }
-
+                if($data->grupo_id){
+                    $permissao->getGrupo()->setId($data->grupo_id);
+                }
                 if ($permissao->alterar()) {
                     return View::renderMessage(
                         $response,

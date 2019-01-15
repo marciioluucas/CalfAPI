@@ -56,8 +56,7 @@ class LoginController implements IController
 
             }
 //
-        }
-        catch (Exception $e){
+        } catch (Exception $e){
             return View::render($response, $e);
         }
     }

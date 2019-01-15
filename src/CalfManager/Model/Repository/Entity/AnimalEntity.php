@@ -58,7 +58,12 @@ class AnimalEntity extends CalfEntity
     }
 
     public function doses(){
-        return $this->belongsToMany('CalfManager\Model\Repository\Entity\MedicamentoEntity', 'doses','animal_id', 'medicamento_id')->withPivot('quantidade_mg');
+        return $this->belongsToMany(
+            'CalfManager\Model\Repository\Entity\MedicamentoEntity',
+            'doses',
+            'animal_id',
+            'medicamento_id')
+            ->withPivot('quantidade_mg', 'data_cadastro');
     }
 
     public function fazenda()
@@ -69,7 +74,10 @@ class AnimalEntity extends CalfEntity
     public function doencas()
     {
         return $this->belongsToMany('CalfManager\Model\Repository\Entity\DoencaEntity',
-            'animais_has_doencas', 'animais_id', 'doencas_id')->withPivot('situacao');
+            'animais_has_doencas',
+            'animais_id',
+            'doencas_id')
+            ->withPivot('situacao', 'data_adoecimento', 'data_cura');
     }
 
     public function lote()

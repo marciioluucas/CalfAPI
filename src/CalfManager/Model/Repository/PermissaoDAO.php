@@ -30,6 +30,8 @@ class PermissaoDAO implements IDAO
         $entity->update = $obj->getUpdate();
         $entity->delete = $obj->getDelete();
 
+        $entity->grupo_id = $obj->getGrupo()->getId();
+
         $entity->data_cadastro = $obj->getDataCriacao();
         $entity->usuario_cadastro = $obj->getUsuarioCadastro()->getId();
         $entity->status = 1;
@@ -69,6 +71,9 @@ class PermissaoDAO implements IDAO
         }
         if(!is_null($obj->getDelete())){
             $entity->delete = $obj->getDelete();
+        }
+        if(!is_null($obj->getGrupo()->getId())){
+            $entity->grupo_id = $obj->getGrupo()->getId();
         }
         try {
             if ($entity->save()) {

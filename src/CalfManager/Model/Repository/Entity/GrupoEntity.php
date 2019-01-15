@@ -25,7 +25,6 @@ class GrupoEntity extends CalfEntity
         'id',
         'nome',
         'descricao',
-        'permissao_id',
         'data_cadastro',
         'data_alteracao',
         'usuario_cadastro',
@@ -33,9 +32,9 @@ class GrupoEntity extends CalfEntity
         'status'
     ];
     public function permissao(){
-        return $this->belongsTo("CalfManager\Model\Repository\Entity\PermissaoEntity", "permissao_id");
+        return $this->hasMany("CalfManager\Model\Repository\Entity\PermissaoEntity", "grupo_id", "id");
     }
-    public function usuario(){
-        return $this->hasMany("CaldManager\Model\Repository\Entity\UsuarioEntity");
-    }
+//    public function usuario(){
+//        return $this->hasMany("CaldManager\Model\Repository\Entity\UsuarioEntity");
+//    }
 }

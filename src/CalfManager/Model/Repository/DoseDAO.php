@@ -105,7 +105,7 @@ class DoseDAO implements IDAO
     {
         try {
             $entity = DoseEntity::ativo();
-            $dose = $entity->with('medicamento')
+            $dose = $entity->with('animal')
                 ->with('medicamento')
                 ->with('funcionario')
                 ->where('id', $id)
@@ -127,7 +127,7 @@ class DoseDAO implements IDAO
     {
         try {
             $entity = DoseEntity::ativo();
-            $doses = $entity->with('medicamento')
+            $doses = $entity->with('animal')
                 ->with('medicamento')
                 ->with('funcionario')
                 ->where('medicamento_id', $idMedicamento)
@@ -146,7 +146,7 @@ class DoseDAO implements IDAO
     {
         try {
             $entity = DoseEntity::ativo();
-            $doses = $entity->with('medicamento')
+            $doses = $entity->with('animal')
                 ->with('medicamento')
                 ->with('funcionario')
                 ->where('animal_id', $idAnimal)
@@ -166,7 +166,7 @@ class DoseDAO implements IDAO
         try {
             $entity = DoseEntity::ativo();
             $doses = $entity->with('medicamento')
-                ->with('medicamento')
+                ->with('animal')
                 ->with('funcionario')
                 ->where('funcionario_id', $idFuncionario)
                 ->paginate(

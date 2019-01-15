@@ -27,7 +27,6 @@ class FuncionarioController implements IController
             if($valida === true){
                 $funcionario->setSalario($data->salario);
                 $funcionario->getCargo()->setId($data->cargo_id);
-                $funcionario->getUsuario()->setId($data->usuario_id);
                 $funcionario->getFazenda()->setId($data->fazenda_id);
                 $funcionario->getPessoa()->setId($data->pessoa_id);
                 if($funcionario->cadastrar()){
@@ -74,14 +73,14 @@ class FuncionarioController implements IController
             if($request->getQueryParam('cargo_id')){
                 $funcionario->getCargo()->setId($request->getQueryParam('cargo_id'));
             }
-            if($request->getQueryParam('usuario_id')){
-                $funcionario->getUsuario()->setId($request->getQueryParam('usuario_id'));
-            }
             if($request->getQueryParam('fazenda_id')){
                 $funcionario->getFazenda()->setId($request->getQueryParam('fazenda_id'));
             }
             if($request->getQueryParam('pessoa_id')){
                 $funcionario->getPessoa()->setId($request->getQueryParam('pessoa_id'));
+            }
+            if($request->getQueryParam('nome')){
+                $funcionario->getPessoa()->setNome($request->getQueryParam('nome'));
             }
             $search = $funcionario->pesquisar($page);
             return View::render($response, $search);
@@ -103,9 +102,6 @@ class FuncionarioController implements IController
                 }
                 if(!is_null($data->cargo_id)){
                     $funcionario->getCargo()->setId($data->cargo_id);
-                }
-                if(!is_null($data->usuario_id)){
-                    $funcionario->getUsuario()->setId($data->usuario_id);
                 }
                 if(!is_null($data->fazenda_id)){
                     $funcionario->getFazenda()->setId($data->fazenda_id);

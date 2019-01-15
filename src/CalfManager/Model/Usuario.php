@@ -29,9 +29,12 @@ class Usuario extends Modelo
 
     private $grupo;
 
+    private $funcionario;
+
     public function __construct()
     {
         $this->grupo = new Grupo();
+        $this->funcionario = new Funcionario();
     }
 
     public function login(){
@@ -41,9 +44,6 @@ class Usuario extends Modelo
                 $this->setId($usuario->id);
                 $this->setLogin($usuario->login);
                 $this->setSenha($usuario->senha);
-                $this->getGrupo()->setId($usuario->grupo->id);
-                $this->getGrupo()->setNome($usuario->grupo->nome);
-                $this->getGrupo()->getPermissao()->setId($usuario->grupo->permissao_id);
                 return $this;
             }else {
                 return false;
@@ -187,6 +187,22 @@ class Usuario extends Modelo
     public function setGrupo(Grupo $grupo)
     {
         $this->grupo = $grupo;
+    }
+
+    /**
+     * @return Funcionario
+     */
+    public function getFuncionario(): Funcionario
+    {
+        return $this->funcionario;
+    }
+
+    /**
+     * @param Funcionario $funcionario
+     */
+    public function setFuncionario(Funcionario $funcionario)
+    {
+        $this->funcionario = $funcionario;
     }
 
 }

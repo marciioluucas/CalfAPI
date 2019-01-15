@@ -25,12 +25,10 @@ class PessoaValidate extends Validate
             'lengthMin' => [
                 ['nome', 4],
                 ['rg', 5],
-                ['endereco_id', 1]
             ],
             'lengthMax' => [
                 ['nome', 50],
                 ['rg', 11],
-                ['endereco_id', 11]
             ],
             'in' => [
                 ['sexo',['m', 'f']]

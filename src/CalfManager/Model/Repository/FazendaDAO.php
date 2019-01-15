@@ -103,7 +103,7 @@ class FazendaDAO implements IDAO
         try {
             return [
                 "fazendas" => FazendaEntity::ativo()->with('lote')
-                    ->where('nome', 'like', $nome . "%")
+                    ->where('nome', 'like', "%". $nome . "%")
                     ->paginate
                     (
                         Config::QUANTIDADE_ITENS_POR_PAGINA,

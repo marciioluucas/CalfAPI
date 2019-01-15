@@ -37,10 +37,9 @@ class Dose extends Modelo
     {
 
         $this->dataCriacao = date(Config::PADRAO_DATA_HORA);
-
+        $this->data = date(Config::PADRAO_DATA);
         $this->usuarioCadastro = new Usuario();
         $this->usuarioCadastro->setId(1);
-        $this->funcionario->setId(1);
         try{
             return (new DoseDAO())->create($this);
         }catch (Exception $e){
@@ -54,7 +53,6 @@ class Dose extends Modelo
 
         $this->usuarioAlteracao = new Usuario();
          $this->usuarioAlteracao->setId(1);
-        $this->funcionario->setId(1);
          try{
              return (new DoseDAO())->update($this);
          }catch (Exception $e){
@@ -69,13 +67,13 @@ class Dose extends Modelo
             if($this->id and !$this->getMedicamento()->getId() and !$this->getAnimal()->getId() and !$this->getFuncionario()->getId()){
                 return $dao->retreaveById($this->id);
             }
-            if($this->id and !$this->getMedicamento()->getId() and !$this->getAnimal()->getId() and !$this->getFuncionario()->getId()){
+            else if(!$this->id and $this->getMedicamento()->getId() and !$this->getAnimal()->getId() and !$this->getFuncionario()->getId()){
                 return $dao->retreaveByIdMedicamento($this->getMedicamento()->getId(), $page);
             }
-            if ($this->id and !$this->getMedicamento()->getId() and !$this->getAnimal()->getId() and !$this->getFuncionario()->getId()){
+            else if (!$this->id and !$this->getMedicamento()->getId() and $this->getAnimal()->getId() and !$this->getFuncionario()->getId()){
                 return $dao->retreaveByIdAnimal($this->getAnimal()->getId(), $page);
             }
-            if ($this->id and !$this->getMedicamento()->getId() and !$this->getAnimal()->getId() and !$this->getFuncionario()->getId()){
+            else if (!$this->id and !$this->getMedicamento()->getId() and !$this->getAnimal()->getId() and $this->getFuncionario()->getId()){
                 return $dao->retreaveByIdFuncionario($this->getFuncionario()->getId(), $page);
             }
             return $dao->retreaveAll($page);
@@ -116,7 +114,7 @@ class Dose extends Modelo
      */
     public function setQuantidadeMg($quantidadeMg)
     {
-        $this->quantidadeMg = $quantidadeMg;
+        $this->quantidadeMg = str_replace(',','.',$quantidadeMg);
     }
 
     /**

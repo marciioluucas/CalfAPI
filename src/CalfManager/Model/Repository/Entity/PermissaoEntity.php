@@ -25,6 +25,7 @@ class PermissaoEntity extends CalfEntity
     protected $table = "permissoes";
     protected $fillable = [
         'id',
+        'grupo_id',
         'nome_modulo',
         'create',
         'read',
@@ -36,5 +37,8 @@ class PermissaoEntity extends CalfEntity
         'usuario_cadastro',
         'status'
     ];
+    public function grupo(){
+        return $this->belongsTo("CalfManager\Model\Repository\Entity\GrupoEntity", "grupo_id");
+    }
 
 }

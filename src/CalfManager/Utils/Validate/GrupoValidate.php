@@ -15,8 +15,7 @@ class GrupoValidate extends Validate
     public function validatePost($params)
     {
         $rules = [
-            'required' => ['nome', 'descricao', 'permissao_id'],
-            'integer' => 'permissao_id',
+            'required' => ['nome', 'descricao'],
             'lengthMin' => [['nome', 4],['descricao', 4]],
             'lengthMax' => [['nome', 25],['descricao', 50]]
 
@@ -38,8 +37,7 @@ class GrupoValidate extends Validate
     public function validatePut($params)
     {
         $rules = [
-            'required' => ['nome', 'descricao', 'permissao_id'],
-            'integer' => 'permissao_id',
+            'required' => ['nome', 'descricao'],
             'lengthMin' => [['nome', 4],['descricao', 4]],
             'lengthMax' => [['nome', 25],['descricao', 50]]
         ];

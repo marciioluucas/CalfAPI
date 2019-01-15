@@ -18,7 +18,6 @@ class Funcionario extends Modelo
     private $salario;
 
     private $cargo;
-    private $usuario;
     private $fazenda;
     private $pessoa;
 
@@ -29,7 +28,6 @@ class Funcionario extends Modelo
     public function __construct()
     {
          $this->cargo = new Cargo();
-         $this->usuario = new Usuario();
          $this->fazenda = new Fazenda();
          $this->pessoa = new Pessoa();
     }
@@ -67,24 +65,22 @@ class Funcionario extends Modelo
     {
         $dao = new FuncionarioDAO();
         try{
-            if($this->id and !$this->getCargo()->getId() and !$this->getUsuario()->getId() and !$this->getFazenda()->getId() and !$this->getPessoa()->getId()){
+            if($this->id and !$this->getCargo()->getId()  and !$this->getFazenda()->getId() and !$this->getPessoa()->getId()){
                 return $dao->retreaveById($this->id);
             }
-            if(!$this->id and $this->getCargo()->getId() and !$this->getUsuario()->getId() and !$this->getFazenda()->getId() and !$this->getPessoa()->getId()){
+            if(!$this->id and $this->getCargo()->getId()  and !$this->getFazenda()->getId() and !$this->getPessoa()->getId()){
                 return $dao->retreaveByIdCargo($this->getCargo()->getId(), $page);
             }
-            if(!$this->id and !$this->getCargo()->getId() and $this->getUsuario()->getId() and !$this->getFazenda()->getId() and !$this->getPessoa()->getId()){
-                return $dao->retreaveByIdUsuario($this->getUsuario()->getId());
-            }
-            if(!$this->id and !$this->getCargo()->getId() and !$this->getUsuario()->getId() and $this->getFazenda()->getId() and !$this->getPessoa()->getId()){
+            if(!$this->id and !$this->getCargo()->getId()  and $this->getFazenda()->getId() and !$this->getPessoa()->getId()){
                 return $dao->retreaveByIdFazenda($this->getFazenda()->getId(), $page);
             }
-            if(!$this->id and !$this->getCargo()->getId() and !$this->getUsuario()->getId() and !$this->getFazenda()->getId() and $this->getPessoa()->getId()){
+            if(!$this->id and !$this->getCargo()->getId()  and !$this->getFazenda()->getId() and $this->getPessoa()->getId()){
                 return $dao->retreaveByIdPessoa($this->getFazenda()->getId());
             }
-            else{
-                return $dao->retreaveAll($page);
+            if($this->getPessoa()->getNome()){
+                return $dao->retreaveByNomePessoa($this->getPessoa()->getNome(), $page);
             }
+                return $dao->retreaveAll($page);
         }catch (Exception $e){
             throw new Exception($e->getMessage());
         }
@@ -122,22 +118,6 @@ class Funcionario extends Modelo
     public function setCargo($cargo)
     {
         $this->cargo = $cargo;
-    }
-
-    /**
-     * @return mixed
-     */
-    public function getUsuario()
-    {
-        return $this->usuario;
-    }
-
-    /**
-     * @param mixed $usuario
-     */
-    public function setUsuario($usuario)
-    {
-        $this->usuario = $usuario;
     }
 
     /**

@@ -30,7 +30,8 @@ class Endereco extends Modelo
         $this->usuarioCadastro = new Usuario();
         $this->usuarioCadastro->setId(1);
         try{
-            return (new EnderecoDAO())->create($this);
+            $id = (new EnderecoDAO())->create($this);
+            return $id;
         }catch (Exception $e){
             throw new Exception($e->getMessage());
         }

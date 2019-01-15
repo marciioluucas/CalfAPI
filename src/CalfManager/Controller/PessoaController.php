@@ -39,7 +39,8 @@ class PessoaController implements IController
                         "success",
                         "Pessoa cadastrado com sucesso!",
                         201,
-                        "Sucesso ao cadastrar"
+                        "Sucesso ao cadastrar",
+                        $id
                     );
                 } else {
                     return View::renderMessage(

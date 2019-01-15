@@ -38,13 +38,14 @@ class EnderecoController implements IController
                $endereco->setPais($data->pais);
                $endereco->setCep($data->cep);
 
-               if($endereco->cadastrar()) {
+               if($id = $endereco->cadastrar()) {
                    return View::renderMessage(
                        $response,
                        "success",
                        "Endereço cadastrado com sucesso!",
                        201,
-                       "Sucesso ao cadastrar"
+                       "Sucesso ao cadastrar",
+                       $id
                    );
                } else {
                    return View::renderMessage(

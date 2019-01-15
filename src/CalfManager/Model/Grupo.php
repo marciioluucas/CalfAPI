@@ -17,13 +17,6 @@ class Grupo extends Modelo
     private $nome;
     private $descricao;
 
-    private $permissao;
-
-    public function __construct()
-    {
-            $this->permissao = new Permissao();
-    }
-
     public function cadastrar(): ?int
     {
         $this->dataCriacao = date(Config::PADRAO_DATA_HORA);
@@ -31,7 +24,6 @@ class Grupo extends Modelo
         $this->usuarioCadastro = new Usuario();
         $this->usuarioCadastro->setId(1);
         try{
-//            $this->antesDeSalvar();
             $idGrupo = (new GrupoDAO())->create($this);
             return $idGrupo;
         }catch (Exception $e){
@@ -63,9 +55,7 @@ class Grupo extends Modelo
             if (!$this->id and $this->nome) {
                 return $dao->retreaveByNome($this->nome, $page);
             }
-            if(!$this->id and !$this->nome and $this->getPermissao()->getId()){
-                return $dao->retreaveIdPermissao($this->getPermissao()->getId(), $page);
-            }
+
             return $dao->retreaveAll($page);
         }catch (Exception $e){
             throw new Exception($e->getMessage());
@@ -123,20 +113,4 @@ class Grupo extends Modelo
         $this->descricao = $descricao;
     }
 
-
-    /**
-     * @return Permissao
-     */
-    public function getPermissao(): Permissao
-    {
-        return $this->permissao;
-    }
-
-    /**
-     * @param Permissao $permissao
-     */
-    public function setPermissao(Permissao $permissao)
-    {
-        $this->permissao = $permissao;
-    }
 }

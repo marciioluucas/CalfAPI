@@ -22,6 +22,17 @@ class Permissao extends Modelo
     private $update;
     private $delete;
 
+    private $grupo;
+
+    /**
+     * Permissao constructor.
+     * @param Grupo|mixed $grupo
+     */
+    public function __construct()
+    {
+        $this->grupo = new Grupo();
+    }
+
     public function cadastrar(): ?int
     {
 

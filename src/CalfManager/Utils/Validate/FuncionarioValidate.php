@@ -14,8 +14,8 @@ class FuncionarioValidate extends Validate
     public function validatePost($params)
     {
         $rules = [
-            'required' => ['pessoa_id', 'usuario_id','cargo_id','fazenda_id', 'salario'],
-            'integer' => ['pessoa_id', 'usuario_id','cargo_id','fazenda_id'],
+            'required' => ['pessoa_id','cargo_id','fazenda_id', 'salario'],
+            'integer' => ['pessoa_id','cargo_id','fazenda_id'],
             'numeric' => 'salario'
         ];
         $valida = new Validator($params);
@@ -36,8 +36,8 @@ class FuncionarioValidate extends Validate
     public function validatePut($params)
     {
         $rules = [
-            'required' => ['pessoa_id', 'usuario_id','cargo_id','fazenda_id', 'salario'],
-            'integer' => ['pessoa_id', 'usuario_id','cargo_id','fazenda_id'],
+            'required' => ['pessoa_id','cargo_id','fazenda_id', 'salario'],
+            'integer' => ['pessoa_id','cargo_id','fazenda_id'],
             'numeric' => 'salario'
         ];
         $valida = new Validator($params);

@@ -27,6 +27,7 @@ class UsuarioDAO implements IDAO
         $entity->login = $obj->getLogin();
         $entity->senha = $obj->getSenha();
         $entity->grupo_id = $obj->getGrupo()->getId();
+        $entity->funcionario_id = $obj->getFuncionario()->getId();
 
         $entity->usuario_cadastro = $obj->getUsuarioCadastro()->getId();
         $entity->data_cadastro = $obj->getDataCriacao();
@@ -54,11 +55,16 @@ class UsuarioDAO implements IDAO
 
          if(!is_null($obj->getLogin())){
              $entity->login = $obj->getLogin();
-         }if(!is_null($obj->getSenha())){
+         }
+         if(!is_null($obj->getSenha())){
              $entity->senha = $obj->getSenha();
-         }if(!is_null($obj->getGrupo()->getId())){
+         }
+         if(!is_null($obj->getGrupo()->getId())){
              $entity->grupo_id = $obj->getGrupo()->getId();
          }
+        if(!is_null($obj->getFuncionario()->getId())){
+            $entity->funcionario_id = $obj->getFuncionario()->getId();
+        }
          try{
              if($entity->save()){
                  return $entity->id;
@@ -139,6 +145,7 @@ class UsuarioDAO implements IDAO
         try{
             $usuarios = UsuarioEntity::ativo()
                 ->with('grupo')
+                ->with('funcionario')
                 ->where('grupo_id', $idGrupo)
                 ->paginate(Config::QUANTIDADE_ITENS_POR_PAGINA,
                     ['*'],
@@ -171,6 +178,18 @@ class UsuarioDAO implements IDAO
         catch (Exception $e){
             throw new Exception("Erro ao pesquisar usuario pelo Login: ".$login. " e Senha: ".$senha. ". Mensagem: ". $e->getMessage());
         }
+    }
+    public function retreaveByFuncionarioId(int $idFuncionario, $page){
+        $usuarios = UsuarioEntity::ativo()
+            ->with('grupo')
+            ->with('funcionario')
+            ->where('funcionario_id', $idFuncionario)
+            ->paginate(Config::QUANTIDADE_ITENS_POR_PAGINA,
+                ['*'],
+                'pagina',
+                $page
+            );
+        return ["usuarios" => $usuarios];
     }
 
     /**

@@ -32,7 +32,6 @@ class GrupoController implements IController
             if ($valida === true) {
                 $grupo->setNome($data->nome);
                 $grupo->setDescricao($data->descricao);
-                $grupo->getPermissao()->setId($data->permissao_id);
                 if($grupo->cadastrar()) {
                     return View::renderMessage(
                         $response,
@@ -79,9 +78,6 @@ class GrupoController implements IController
             if ($request->getQueryParam('nome')) {
                 $grupo->setNome($request->getQueryParam('nome'));
             }
-            if($request->getQueryParam('permissao_id')){
-                $grupo->getPermissao()->setId($request->getQueryParam('permissa_id'));
-            }
             $search = $grupo->pesquisar($page);
             return View::render($response, $search);
         }catch(Exception $e){
@@ -108,9 +104,7 @@ class GrupoController implements IController
                 if(!is_null($data->descricao)) {
                     $grupo->setDescricao($data->descricao);
                 }
-                if(!is_null($data->permissao_id)){
-                    $grupo->getPermissao()->setId($data->permissao_id);
-                }
+
                 if($grupo->alterar()) {
                     return View::renderMessage(
                         $response,

@@ -26,9 +26,9 @@ class DoseController implements IController
             $dose = new Dose();
             if ($valida === true) {
                 $dose->setQuantidadeMg($data->quantidade_mg);
+                $dose->getFuncionario()->setId($data->funcionario_id);
                 $dose->getMedicamento()->setId($data->medicamento_id);
                 $dose->getAnimal()->setId($data->animal_id);
-                $dose->setData($data->data);
                 if ($dose->cadastrar()) {
                     return View::renderMessage(
                         $response,
@@ -62,12 +62,15 @@ class DoseController implements IController
             if ($request->getAttribute('id')) {
                 $dose->setId($request->getAttribute('id'));
             }
-            if ($request->getQueryParam('medicamento')) {
-                $dose->getMedicamento()->setId($request->getQueryParam('medicamento'));
+            if ($request->getQueryParam('medicamento_id')) {
+                $dose->getMedicamento()->setId($request->getQueryParam('medicamento_id'));
             }
-            if ($request->getQueryParam('animal')) {
-                $dose->getAnimal()->setId($request->getQueryParam('animal'));
+            if ($request->getQueryParam('animal_id')) {
+                $dose->getAnimal()->setId($request->getQueryParam('animal_id'));
             }
+//            if ($request>getQueryParam('funcionario_id')){
+//                $dose->getFuncionario()->setId($request>getQueryParam('funcionario_id'));
+//            }
             $search = $dose->pesquisar($page);
             return View::render($response, $search);
 
@@ -88,14 +91,14 @@ class DoseController implements IController
                 if (!is_null($data->quantidade_mg)) {
                     $dose->setQuantidadeMg($data->quantidade_mg);
                 }
-                if (!is_null($data->medicamento->id)) {
-                    $dose->getMedicamento()->setId($data->medicamento->id);
+                if (!is_null($data->medicamento_id)) {
+                    $dose->getMedicamento()->setId($data->medicamento_id);
                 }
-                if (!is_null($data->animal->id)) {
-                    $dose->getAnimal()->setId($data->animal->id);
+                if (!is_null($data->animal_id)) {
+                    $dose->getAnimal()->setId($data->animal_id);
                 }
-                if (!is_null($data->data)) {
-                    $dose->setData($data->data);
+                if (!is_null($data->funcionario_id)){
+                    $dose->getFuncionario()->setId($data->funcionario_id);
                 }
                 if ($dose->alterar()) {
                     return View::renderMessage(

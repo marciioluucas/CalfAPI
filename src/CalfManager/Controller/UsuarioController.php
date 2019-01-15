@@ -33,7 +33,7 @@ class UsuarioController implements IController
      */
     public function post(Request $request, Response $response): Response
     {
-        if(TokenApp::validaToken()) {
+//        if(TokenApp::validaToken()) {
             try {
                 $usuario = new Usuario();
                 $data = json_decode($request->getBody()->getContents());
@@ -42,6 +42,7 @@ class UsuarioController implements IController
                     $usuario->setLogin($data->login);
                     $usuario->setSenha($data->senha);
                     $usuario->getGrupo()->setId($data->grupo_id);
+                    $usuario->getFuncionario()->setId($data->funcionario_id);
 
                     if ($usuario->cadastrar()) {
                         return View::renderMessage(
@@ -61,15 +62,17 @@ class UsuarioController implements IController
                         );
 
                     }
-                } else {
+                }
+                else {
                     return View::renderMessage($response, "warning", $valida, 400, "Erro ao validar");
                 }
-            } catch (Exception $e) {
+            }
+            catch (Exception $e) {
                 return View::renderException($response, $e);
             }
-        }else{
-            return View::renderMessage($response, 'error','Sem Autorização!','404', 'sem autorizacao');
-        }
+//        }else{
+//            return View::renderMessage($response, 'error','Sem Autorização!','404', 'sem autorizacao');
+//        }
     }
 
     /**
@@ -80,7 +83,7 @@ class UsuarioController implements IController
      */
     public function get(Request $request, Response $response, array $args): Response
     {
-        if(TokenApp::validaToken()) {
+//        if(TokenApp::validaToken()) {
             try {
                 $usuario = new Usuario();
                 $page = (int)$request->getQueryParam('pagina');
@@ -93,8 +96,11 @@ class UsuarioController implements IController
                 if ($request->getQueryParam('senha')) {
                     $usuario->setSenha($request->getQueryParam('senha'));
                 }
-                if ($request->getQueryParam('grupo->id')) {
-                    $usuario->getGrupo()->setId($request->getQueryParam('grupo->id'));
+                if ($request->getQueryParam('grupo_id')) {
+                    $usuario->getFuncionario()->setId($request->getQueryParam('grupo_id'));
+                }
+                if ($request->getQueryParam('funcionario_id')) {
+                    $usuario->getFuncionario()->setId($request->getQueryParam('funcionario_id'));
                 }
                 $search = $usuario->pesquisar($page);
                 return View::render($response, $search);
@@ -102,10 +108,10 @@ class UsuarioController implements IController
                 return View::renderException($response, $exception);
             }
 
-        } else{
-//            return View::render($response, TokenApp::validaToken());
-            return View::renderMessage($response, 'error','Sem Autorização!','404', 'sem autorizacao');
-        }
+//        } else{
+////            return View::render($response, TokenApp::validaToken());
+//            return View::renderMessage($response, 'error','Sem Autorização!','404', 'sem autorizacao');
+//        }
     }
 
 
@@ -129,8 +135,11 @@ class UsuarioController implements IController
                     if (!is_null($data->senha)) {
                         $usuario->setSenha($data->senha);
                     }
-                    if (!is_null($data->grupo->id)) {
-                        $usuario->getGrupo()->setId($data->grupo->id);
+                    if (!is_null($data->grupo_id)) {
+                        $usuario->getGrupo()->setId($data->grupo_id);
+                    }
+                    if (!is_null($data->funcionario_id)) {
+                        $usuario->getFuncionario()->setId($data->funcionario_id);
                     }
                     if ($usuario->alterar()) {
                         return View::renderMessage(
@@ -168,7 +177,7 @@ class UsuarioController implements IController
      */
     public function delete(Request $request, Response $response): Response
     {
-        if(TokenApp::validaToken()) {
+//        if(TokenApp::validaToken()) {
             try {
                 $usuario = new Usuario();
                 $usuario->setId($request->getAttribute('id'));
@@ -194,9 +203,9 @@ class UsuarioController implements IController
             } catch (Exception $e) {
                 return View::renderException($response, $e);
             }
-        }else{
-            return View::renderMessage($response, 'error','Sem Autorização!','404', 'sem autorizacao');
-        }
+//        }else{
+//            return View::renderMessage($response, 'error','Sem Autorização!','404', 'sem autorizacao');
+//        }
     }
 
 }

@@ -76,7 +76,8 @@ class View
         string $type,
         $description,
         int $codigo = 0,
-        string $razao = ""
+        string $razao = "",
+        int $returnId = 0
     ): Response {
         if ($type != 'error' && $type != 'success' && $type != 'warning') {
             throw new InvalidArgumentException(
@@ -84,7 +85,13 @@ class View
             );
         }
 
-        $json = ["message" => ["type" => $type, "description" => $description]];
+        $json = [
+            "message" => [
+                "type" => $type,
+                "description" => $description,
+                "id" => $returnId,
+            ]
+        ];
 
         if ($codigo != 0 and $razao == "") {
             return $response->withStatus($codigo)->withJson($json);
