@@ -74,8 +74,8 @@ class PesagemController implements IController
 
             if ($request->getAttribute('id')) {
                 $pesagem->setId($request->getAttribute('id'));
-            } elseif ($request->getQueryParam('animal')) {
-                $pesagem->getAnimal()->setId($request->getQueryParam('animal'));
+            } elseif ($request->getQueryParam('animais_id')) {
+                $pesagem->getAnimal()->setId($request->getQueryParam('animais_id'));
             }
             return View::render($response, $pesagem->pesquisar($page));
         } catch (Exception $exception) {

@@ -47,34 +47,36 @@ class Familia extends Modelo
      */
     public function cadastrar(): ?int
     {
-        $dao = new FamiliaDAO();
-        $candidatoASerPai = (new AnimalDAO())->retreaveById(
-            $this->pai->getId()
-        );
-        $candidatoASerMae = (new AnimalDAO())->retreaveById(
-            $this->mae->getId()
-        );
-        if ($candidatoASerPai == null) {
-            throw new Exception(
-                `O animal com o nome/código do brinco '{$this->pai->getNome()}' não pode ser pai pois ele não existe`
-            );
+        try {
+            $dao = new FamiliaDAO();
+            $candidatoASerPai = (new AnimalDAO())->retreaveById($this->pai->getId());
+            $candidatoASerMae = (new AnimalDAO())->retreaveById($this->mae->getId());
+            if ($candidatoASerPai == null) {
+                throw new Exception(
+                    `O animal com o nome/código do brinco '{$this->pai->getNome()}' não pode ser pai pois ele não existe`
+                );
+            }
+//            if ($candidatoASerPai['animais']['sexo'] != 'M') {
+//                throw new Exception(
+//                    `O animal assinalado como pai deve ter o sexo masculino`
+//                );
+//            }
+            if ($candidatoASerMae == null) {
+                throw new Exception(
+                    `O animal com o nome/código do brinco '{$this->pai->getNome()}' não pode ser mãe pois ele não existe`
+                );
+            }
+//            if ($candidatoASerMae['animais']['sexo'] != 'F') {
+//                throw new Exception(
+//                    `O animal assinalado como mãe deve ter o sexo feminino`
+//                );
+//            }
+
+            return $dao->create($this);
         }
-        if ($candidatoASerPai['animais']['sexo'] != 'M') {
-            throw new Exception(
-                `O animal assinalado como pai deve ter o sexo masculino`
-            );
+        catch (Exception $e){
+            throw new Exception($e);
         }
-        if ($candidatoASerMae == null) {
-            throw new Exception(
-                `O animal com o nome/código do brinco '{$this->pai->getNome()}' não pode ser mãe pois ele não existe`
-            );
-        }
-        if ($candidatoASerMae['animais']['sexo'] != 'F') {
-            throw new Exception(
-                `O animal assinalado como mãe deve ter o sexo feminino`
-            );
-        }
-        return $dao->create($this);
     }
 
     /**
@@ -128,29 +130,28 @@ class Familia extends Modelo
         if (!$familia) {
             return $arrayToReturn;
         }
-
+//
         $arrayToReturn['name'] = $familia->filho->nome;
         $arrayToReturn['id'] = $familia->filho->id;
         $objFamiliaMae = $this->pesquisaFamiliaByIdAnimal($familia->mae->id);
         $objFamiliaPai = $this->pesquisaFamiliaByIdAnimal($familia->pai->id);
 
         if(isset($familia->mae->id)) {
-            $arrayToReturn['children']['0'] = $this->fazerArvoreGenealogica(
-                $objFamiliaMae
-            );
+            $arrayToReturn['children']['0'] = $this->fazerArvoreGenealogica($objFamiliaMae['familias']);
             $arrayToReturn['children']['0']['id'] = $familia->mae->id;
             $arrayToReturn['children']['0']['name'] = $familia->mae->nome;
             $arrayToReturn['children']['0']['value'] = 1;
+
         }
         if(isset($familia->pai->id)) {
-            $arrayToReturn['children']['1'] = $this->fazerArvoreGenealogica(
-                $objFamiliaPai
-            );
+            $arrayToReturn['children']['1'] = $this->fazerArvoreGenealogica($objFamiliaPai['familias']);
             $arrayToReturn['children']['1']['id'] = $familia->pai->id;
             $arrayToReturn['children']['1']['name'] = $familia->pai->nome;
             $arrayToReturn['children']['1']['value'] = 1;
+
         }
         return $arrayToReturn;
+
     }
 
     /**
@@ -162,6 +163,7 @@ class Familia extends Modelo
         $obj = $this->pesquisaFamiliaByIdAnimal($idAnimal);
 
         return $this->fazerArvoreGenealogica($obj['familias']);
+//        return $obj;
     }
 
     public function graph(string $whatChart, array $params)

@@ -36,7 +36,7 @@ class HemogramaDAO implements IDAO
         $entity->status = 1;
         try {
             if ($entity->save()) {
-                return $entity->id;
+                return $entity->getKey();
             }
         } catch (Exception $e) {
             throw new Exception("Erro ao cadastrar hemograma. Mensagem: " . $e->getMessage());

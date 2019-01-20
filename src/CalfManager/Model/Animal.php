@@ -211,21 +211,28 @@ class Animal extends Modelo
      * @throws Exception
      */
     public function adoecerAnimal($idAnimal = null)
-    {
-        foreach ($this->doencas as $doenca) {
-            (new DoencaDAO())->adoecer(
-                $this->id == null ? $idAnimal : $this->id,
-                $doenca->getSituacao(),
-                $doenca->getDataAdoecimento(),
-                $doenca->getId()
-            );
+    {   try {
+            foreach ($this->doencas as $doenca) {
+                (new DoencaDAO())->adoecer(
+                    $this->id == null ? $idAnimal : $this->id,
+                    $doenca->getDataAdoecimento(),
+                    $doenca->getId()
+                );
+            }
+        }
+        catch (Exception $e){
+            throw new Exception("Erro ao adoecer animal: ".$e->getMessage());
         }
     }
 
     public function curarAnimal($idAnimal, $situacao)
     {
-        (new DoencaDAO())->curar($idAnimal, $situacao);
-
+        try {
+            (new DoencaDAO())->curar($idAnimal, $situacao);
+        }
+        catch (Exception $e){
+            throw new Exception("Erro ao curar animal: ".$e->getMessage());
+        }
     }
 
     /**
@@ -234,11 +241,18 @@ class Animal extends Modelo
      */
     public function depoisDeSalvar($idAnimal)
     {
-        $this->setId($idAnimal);
-        $this->cadastrarFamilia();
-        $this->cadastrarPesagens();
-        $this->cadastrarHemograma();
-        $this->adoecerAnimal($idAnimal);
+        try {
+            $this->setId($idAnimal);
+            $this->cadastrarPesagens();
+            $this->cadastrarHemograma();
+            $this->cadastrarFamilia();
+            if($this->getDoencas() !== null){
+                $this->adoecerAnimal($idAnimal);
+            }
+        }
+        catch (Exception $e){
+            throw new Exception("Erro no depois de salvar! ".$e->getMessage());
+        }
     }
 
     /**
@@ -246,7 +260,12 @@ class Animal extends Modelo
      */
     public function cadastrarPesagens()
     {
-        $this->getPesagem()->cadastrar();
+        try {
+           return $this->getPesagem()->cadastrar();
+        }
+        catch (Exception $e){
+            throw new Exception("Erro ao cadastrar pesagem: ".$e->getMessage());
+        }
     }
 
     /**
@@ -257,7 +276,7 @@ class Animal extends Modelo
         try {
             $this->getHemograma()->cadastrar();
         } catch (Exception $e) {
-            throw new Exception('Erro ao cadastrar hemograma');
+            throw new Exception('Erro ao cadastrar hemograma:'.$e->getMessage());
         }
     }
 
@@ -266,9 +285,14 @@ class Animal extends Modelo
      */
     public function cadastrarFamilia()
     {
-        if ($this->getPai()->getId() != null && $this->getMae()->getId() != null) {
-            $familia = new Familia($this->getPai(), $this->getMae(), $this);
-            $familia->cadastrar();
+        try {
+            if ($this->getPai()->getId() != null && $this->getMae()->getId() != null) {
+                $familia = new Familia($this->getPai(), $this->getMae(), $this);
+                $familia->cadastrar();
+            }
+        }
+        catch (Exception $e){
+            throw new Exception("Erro ao cadastrar familia: ".$e->getMessage());
         }
     }
 

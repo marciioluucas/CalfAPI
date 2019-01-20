@@ -57,9 +57,10 @@ class AnimalDAO implements IDAO
         $entity->fase_vida = $obj->getFaseDaVida();
         $entity->lotes_id = $obj->getLote()->getId();
         $entity->is_vivo = $obj->isVivo();
+        $entity->fazendas_id = $obj->getFazenda()->getId();
         try {
             if ($entity->save()) {
-                return $entity->id;
+                return $entity->getKey();
             }
 
         } catch (Exception $e) {
@@ -114,6 +115,9 @@ class AnimalDAO implements IDAO
         }
         if (!is_null($obj->getLote()->getId())) {
             $entity->lotes_id = $obj->getLote()->getId();
+        }
+        if (!is_null($obj->getFazenda()->getId())) {
+            $entity->fazendas_id = $obj->getLote()->getId();
         }
         if ($entity->save()) {
             return $entity->id;

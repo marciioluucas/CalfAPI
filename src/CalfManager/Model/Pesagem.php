@@ -48,7 +48,8 @@ class Pesagem extends Modelo
         $this->usuarioCadastro = new Usuario();
         $this->usuarioCadastro->setId(1);
         try {
-            return (new PesagemDAO())->create($this);
+            $id = (new PesagemDAO())->create($this);
+            return $id;
         } catch (Exception $e) {
             throw new Exception($e->getMessage());
         }

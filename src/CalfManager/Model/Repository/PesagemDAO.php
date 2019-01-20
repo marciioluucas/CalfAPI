@@ -37,7 +37,7 @@ class PesagemDAO implements IDAO
         $entity->data_cadastro = $obj->getDataCriacao();
         try {
             if ($entity->save()) {
-                return $entity->id;
+                return $entity->getKey();
             }
         } catch (Exception $e){
             throw new Exception('Erro ao cadastrar pesagem. Mensagem: '.$e->getMessage());

@@ -29,6 +29,7 @@ class FamiliaDAO implements IDAO
         $entity->pai_id = $obj->getPai()->getId();
         $entity->mae_id = $obj->getMae()->getId();
         $entity->filho_id = $obj->getFilho()->getId();
+        $entity->status = 1;
         try {
             if($entity->save()) {
                 return $entity->id;

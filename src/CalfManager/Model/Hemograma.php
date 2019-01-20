@@ -39,7 +39,8 @@ class Hemograma extends Exame
         $this->usuarioCadastro = new Usuario();
         $this->usuarioCadastro->setId(1);
         try {
-            return (new HemogramaDAO())->create($this);
+            $id = (new HemogramaDAO())->create($this);
+            return $id;
         } catch (Exception $e) {
             throw new Exception($e->getMessage());
         }

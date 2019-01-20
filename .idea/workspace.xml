@@ -4,35 +4,17 @@
     <list default="true" id="00f5a375-e7b8-4505-98fa-01660a814dc1" name="Default" comment="Colocando na PSR7 e dando prettiering nos códigos. / Fazendo cadastro de família.">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/dbv2.sql" afterPath="$PROJECT_DIR$/dbv2.sql" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/CalfManager/Controller/DoseController.php" afterPath="$PROJECT_DIR$/src/CalfManager/Controller/DoseController.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/CalfManager/Controller/EnderecoController.php" afterPath="$PROJECT_DIR$/src/CalfManager/Controller/EnderecoController.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/CalfManager/Controller/FuncionarioController.php" afterPath="$PROJECT_DIR$/src/CalfManager/Controller/FuncionarioController.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/CalfManager/Controller/GrupoController.php" afterPath="$PROJECT_DIR$/src/CalfManager/Controller/GrupoController.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/CalfManager/Controller/LoginController.php" afterPath="$PROJECT_DIR$/src/CalfManager/Controller/LoginController.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/CalfManager/Controller/PermissaoController.php" afterPath="$PROJECT_DIR$/src/CalfManager/Controller/PermissaoController.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/CalfManager/Controller/PessoaController.php" afterPath="$PROJECT_DIR$/src/CalfManager/Controller/PessoaController.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/CalfManager/Controller/UsuarioController.php" afterPath="$PROJECT_DIR$/src/CalfManager/Controller/UsuarioController.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/CalfManager/Model/Dose.php" afterPath="$PROJECT_DIR$/src/CalfManager/Model/Dose.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/CalfManager/Model/Endereco.php" afterPath="$PROJECT_DIR$/src/CalfManager/Model/Endereco.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/CalfManager/Model/Funcionario.php" afterPath="$PROJECT_DIR$/src/CalfManager/Model/Funcionario.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/CalfManager/Model/Grupo.php" afterPath="$PROJECT_DIR$/src/CalfManager/Model/Grupo.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/CalfManager/Model/Permissao.php" afterPath="$PROJECT_DIR$/src/CalfManager/Model/Permissao.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/CalfManager/Model/Repository/DoseDAO.php" afterPath="$PROJECT_DIR$/src/CalfManager/Model/Repository/DoseDAO.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/CalfManager/Model/Repository/Entity/AnimalEntity.php" afterPath="$PROJECT_DIR$/src/CalfManager/Model/Repository/Entity/AnimalEntity.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/CalfManager/Model/Repository/Entity/DoseEntity.php" afterPath="$PROJECT_DIR$/src/CalfManager/Model/Repository/Entity/DoseEntity.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/CalfManager/Model/Repository/Entity/GrupoEntity.php" afterPath="$PROJECT_DIR$/src/CalfManager/Model/Repository/Entity/GrupoEntity.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/CalfManager/Model/Repository/Entity/PermissaoEntity.php" afterPath="$PROJECT_DIR$/src/CalfManager/Model/Repository/Entity/PermissaoEntity.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/CalfManager/Model/Repository/FazendaDAO.php" afterPath="$PROJECT_DIR$/src/CalfManager/Model/Repository/FazendaDAO.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/CalfManager/Model/Repository/FuncionarioDAO.php" afterPath="$PROJECT_DIR$/src/CalfManager/Model/Repository/FuncionarioDAO.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/CalfManager/Model/Repository/GrupoDAO.php" afterPath="$PROJECT_DIR$/src/CalfManager/Model/Repository/GrupoDAO.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/CalfManager/Model/Repository/PermissaoDAO.php" afterPath="$PROJECT_DIR$/src/CalfManager/Model/Repository/PermissaoDAO.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/CalfManager/Model/Repository/UsuarioDAO.php" afterPath="$PROJECT_DIR$/src/CalfManager/Model/Repository/UsuarioDAO.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/CalfManager/Model/Usuario.php" afterPath="$PROJECT_DIR$/src/CalfManager/Model/Usuario.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/CalfManager/Utils/Validate/FuncionarioValidate.php" afterPath="$PROJECT_DIR$/src/CalfManager/Utils/Validate/FuncionarioValidate.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/CalfManager/Utils/Validate/GrupoValidate.php" afterPath="$PROJECT_DIR$/src/CalfManager/Utils/Validate/GrupoValidate.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/CalfManager/Utils/Validate/PessoaValidate.php" afterPath="$PROJECT_DIR$/src/CalfManager/Utils/Validate/PessoaValidate.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/CalfManager/Utils/Validate/UsuarioValidate.php" afterPath="$PROJECT_DIR$/src/CalfManager/Utils/Validate/UsuarioValidate.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/CalfManager/View/View.php" afterPath="$PROJECT_DIR$/src/CalfManager/View/View.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/CalfManager/Controller/AnimalController.php" afterPath="$PROJECT_DIR$/src/CalfManager/Controller/AnimalController.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/CalfManager/Controller/PesagemController.php" afterPath="$PROJECT_DIR$/src/CalfManager/Controller/PesagemController.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/CalfManager/Model/Animal.php" afterPath="$PROJECT_DIR$/src/CalfManager/Model/Animal.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/CalfManager/Model/Familia.php" afterPath="$PROJECT_DIR$/src/CalfManager/Model/Familia.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/CalfManager/Model/Hemograma.php" afterPath="$PROJECT_DIR$/src/CalfManager/Model/Hemograma.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/CalfManager/Model/Pesagem.php" afterPath="$PROJECT_DIR$/src/CalfManager/Model/Pesagem.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/CalfManager/Model/Repository/AnimalDAO.php" afterPath="$PROJECT_DIR$/src/CalfManager/Model/Repository/AnimalDAO.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/CalfManager/Model/Repository/FamiliaDAO.php" afterPath="$PROJECT_DIR$/src/CalfManager/Model/Repository/FamiliaDAO.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/CalfManager/Model/Repository/HemogramaDAO.php" afterPath="$PROJECT_DIR$/src/CalfManager/Model/Repository/HemogramaDAO.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/CalfManager/Model/Repository/PesagemDAO.php" afterPath="$PROJECT_DIR$/src/CalfManager/Model/Repository/PesagemDAO.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/CalfManager/Utils/Validate/AnimalValidate.php" afterPath="$PROJECT_DIR$/src/CalfManager/Utils/Validate/AnimalValidate.php" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -144,102 +126,32 @@
     <favorites_list name="API" />
   </component>
   <component name="FileEditorManager">
-    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="Usuario.php" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/src/CalfManager/Model/Usuario.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="218">
-              <caret line="46" column="29" lean-forward="true" selection-start-line="46" selection-start-column="29" selection-end-line="46" selection-end-column="29" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="GrupoDAO.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/CalfManager/Model/Repository/GrupoDAO.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1815">
-              <caret line="129" column="0" lean-forward="false" selection-start-line="129" selection-start-column="0" selection-end-line="129" selection-end-column="0" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="GrupoEntity.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/CalfManager/Model/Repository/Entity/GrupoEntity.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="213">
-              <caret line="33" column="31" lean-forward="false" selection-start-line="33" selection-start-column="31" selection-end-line="33" selection-end-column="31" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="PermissaoEntity.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/CalfManager/Model/Repository/Entity/PermissaoEntity.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="46">
-              <caret line="27" column="19" lean-forward="true" selection-start-line="27" selection-start-column="19" selection-end-line="27" selection-end-column="19" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="GrupoController.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/CalfManager/Controller/GrupoController.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1241">
-              <caret line="106" column="0" lean-forward="false" selection-start-line="106" selection-start-column="0" selection-end-line="106" selection-end-column="0" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
+    <leaf>
       <file leaf-file-name="PermissaoController.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/CalfManager/Controller/PermissaoController.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="274">
-              <caret line="37" column="63" lean-forward="true" selection-start-line="37" selection-start-column="63" selection-end-line="37" selection-end-column="63" />
+            <state relative-caret-position="301">
+              <caret line="40" column="47" lean-forward="true" selection-start-line="40" selection-start-column="47" selection-end-line="40" selection-end-column="47" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="PermissaoValidade.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/CalfManager/Utils/Validate/PermissaoValidade.php">
+      <file leaf-file-name="AnimalController.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/CalfManager/Controller/AnimalController.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="0">
-              <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+            <state relative-caret-position="-101">
+              <caret line="175" column="66" lean-forward="true" selection-start-line="175" selection-start-column="66" selection-end-line="175" selection-end-column="66" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="GrupoValidate.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/CalfManager/Utils/Validate/GrupoValidate.php">
+      <file leaf-file-name="AnimalValidate.php" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/CalfManager/Utils/Validate/AnimalValidate.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="78">
-              <caret line="18" column="40" lean-forward="false" selection-start-line="18" selection-start-column="40" selection-end-line="18" selection-end-column="40" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="Permissao.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/CalfManager/Model/Permissao.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-8">
-              <caret line="70" column="50" lean-forward="true" selection-start-line="70" selection-start-column="50" selection-end-line="70" selection-end-column="50" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="PermissaoDAO.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/CalfManager/Model/Repository/PermissaoDAO.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1995">
-              <caret line="141" column="5" lean-forward="true" selection-start-line="141" selection-start-column="5" selection-end-line="141" selection-end-column="5" />
+            <state relative-caret-position="163">
+              <caret line="20" column="61" lean-forward="false" selection-start-line="20" selection-start-column="61" selection-end-line="20" selection-end-column="61" />
               <folding />
             </state>
           </provider>
@@ -256,10 +168,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>src\model\repository\entities</find>
-      <find>src\model\repository</find>
-      <find>src\model</find>
-      <find>src</find>
       <find>namespace src</find>
       <find>use</find>
       <find>__con</find>
@@ -286,6 +194,10 @@
       <find>retreaveByNo</find>
       <find>FazendaD</find>
       <find>FazendaCon</find>
+      <find>$idAnimal</find>
+      <find>Pessoa</find>
+      <find>SAVE</find>
+      <find>adoe</find>
     </findStrings>
     <replaceStrings>
       <replace>use src\</replace>
@@ -330,27 +242,15 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/src/CalfManager/Utils/Validate/EnderecoValidate.php" />
-        <option value="$PROJECT_DIR$/src/CalfManager/Utils/Validate/PesagemValidate.php" />
-        <option value="$PROJECT_DIR$/src/CalfManager/Controller/PesagemController.php" />
-        <option value="$PROJECT_DIR$/src/CalfManager/Utils/Validate/PermissaoValidade.php" />
-        <option value="$PROJECT_DIR$/src/CalfManager/Utils/Validate/LoginValidate.php" />
         <option value="$PROJECT_DIR$/src/CalfManager/Model/Repository/Entity/UsuarioEntity.php" />
         <option value="$PROJECT_DIR$/src/CalfManager/Model/Repository/Entity/FuncionarioEntity.php" />
         <option value="$PROJECT_DIR$/src/CalfManager/Utils/Config.php" />
         <option value="$PROJECT_DIR$/src/CalfManager/Model/Doenca.php" />
         <option value="$PROJECT_DIR$/src/CalfManager/Model/Repository/DoencaDAO.php" />
-        <option value="$PROJECT_DIR$/src/CalfManager/Model/Repository/HemogramaDAO.php" />
-        <option value="$PROJECT_DIR$/src/CalfManager/Model/Repository/PesagemDAO.php" />
-        <option value="$PROJECT_DIR$/src/CalfManager/Model/Familia.php" />
         <option value="$APPLICATION_CONFIG_DIR$/consoles/db/7fb19671-3e09-4ce5-a662-ba556cc2ba22/console.sql" />
-        <option value="$PROJECT_DIR$/src/CalfManager/Controller/DoencaController.php" />
         <option value="$PROJECT_DIR$/src/CalfManager/Utils/Validate/DoencaValidate.php" />
         <option value="$PROJECT_DIR$/src/CalfManager/Utils/Validate/DoseValidate.php" />
         <option value="$PROJECT_DIR$/src/CalfManager/Controller/HemogramaController.php" />
-        <option value="$PROJECT_DIR$/src/CalfManager/Controller/AnimalController.php" />
-        <option value="$PROJECT_DIR$/src/CalfManager/Model/Animal.php" />
-        <option value="$PROJECT_DIR$/src/CalfManager/Model/Repository/AnimalDAO.php" />
         <option value="$PROJECT_DIR$/src/CalfManager/Model/Repository/DoseDAO.php" />
         <option value="$PROJECT_DIR$/src/CalfManager/Controller/DoseController.php" />
         <option value="$PROJECT_DIR$/src/CalfManager/Model/Dose.php" />
@@ -381,6 +281,18 @@
         <option value="$PROJECT_DIR$/src/CalfManager/Model/Repository/Entity/PermissaoEntity.php" />
         <option value="$PROJECT_DIR$/src/CalfManager/Model/Repository/Entity/GrupoEntity.php" />
         <option value="$PROJECT_DIR$/src/CalfManager/Model/Usuario.php" />
+        <option value="$PROJECT_DIR$/src/CalfManager/Controller/DoencaController.php" />
+        <option value="$PROJECT_DIR$/src/CalfManager/Controller/PesagemController.php" />
+        <option value="$PROJECT_DIR$/src/CalfManager/Model/Repository/AnimalDAO.php" />
+        <option value="$PROJECT_DIR$/src/CalfManager/Model/Hemograma.php" />
+        <option value="$PROJECT_DIR$/src/CalfManager/Model/Pesagem.php" />
+        <option value="$PROJECT_DIR$/src/CalfManager/Model/Repository/PesagemDAO.php" />
+        <option value="$PROJECT_DIR$/src/CalfManager/Model/Repository/HemogramaDAO.php" />
+        <option value="$PROJECT_DIR$/src/CalfManager/Model/Animal.php" />
+        <option value="$PROJECT_DIR$/src/CalfManager/Model/Repository/FamiliaDAO.php" />
+        <option value="$PROJECT_DIR$/src/CalfManager/Model/Familia.php" />
+        <option value="$PROJECT_DIR$/src/CalfManager/Controller/AnimalController.php" />
+        <option value="$PROJECT_DIR$/src/CalfManager/Utils/Validate/AnimalValidate.php" />
       </list>
     </option>
   </component>
@@ -441,10 +353,10 @@
       <path value="$PROJECT_DIR$/vendor/firebase/php-jwt" />
     </include_path>
   </component>
-  <component name="ProjectFrameBounds">
+  <component name="ProjectFrameBounds" fullScreen="true">
     <option name="y" value="23" />
-    <option name="width" value="1280" />
-    <option name="height" value="729" />
+    <option name="width" value="834" />
+    <option name="height" value="727" />
   </component>
   <component name="ProjectInspectionProfilesVisibleTreeState">
     <entry key="Project Default">
@@ -514,7 +426,6 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="Scratches" />
       <pane id="Scope">
         <subPane subId="Project Files">
           <expand>
@@ -612,6 +523,7 @@
           <select />
         </subPane>
       </pane>
+      <pane id="Scratches" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -778,7 +690,10 @@
       <workItem from="1544742853123" duration="4073000" />
       <workItem from="1545859854423" duration="18037000" />
       <workItem from="1546705722544" duration="22869000" />
-      <workItem from="1547501894619" duration="4743000" />
+      <workItem from="1547501894619" duration="4754000" />
+      <workItem from="1547558014692" duration="427000" />
+      <workItem from="1547585932217" duration="16077000" />
+      <workItem from="1547900722961" duration="2007000" />
     </task>
     <task id="LOCAL-00016" summary="Mudando Nome do enum">
       <created>1518699963073</created>
@@ -1127,7 +1042,7 @@
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="749677000" />
+    <option name="totallyTimeSpent" value="768199000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -1139,26 +1054,26 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="0" y="23" width="1280" height="729" extended-state="0" />
+    <frame x="0" y="0" width="1280" height="800" extended-state="0" />
     <editor active="true" />
     <layout>
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.21567044" sideWeight="0.5" order="1" side_tool="false" content_ui="combo" />
-      <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.329653" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.20759289" sideWeight="0.5" order="1" side_tool="false" content_ui="combo" />
+      <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.329653" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3280757" sideWeight="0.5129241" order="0" side_tool="true" content_ui="tabs" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32956383" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.329653" sideWeight="0.49676898" order="4" side_tool="false" content_ui="tabs" />
-      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.329653" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
+      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.329653" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.24959612" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.3280757" sideWeight="0.48707592" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32956383" sideWeight="0.5" order="0" side_tool="true" content_ui="tabs" />
+      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.32737276" sideWeight="0.48707592" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
+      <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32956383" sideWeight="0.5" order="0" side_tool="true" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
-      <window_info id="Database Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32911393" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
+      <window_info id="Database Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32911393" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="3" side_tool="false" content_ui="combo" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.329653" sideWeight="0.49676898" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
     </layout>
   </component>
@@ -1199,179 +1114,11 @@
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
-      <option name="time" value="14" />
+      <option name="time" value="15" />
     </breakpoint-manager>
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/src/CalfManager/Model/Repository/Entity/LoteEntity.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/CalfManager/Model/Repository/Entity/LaboratorioEntity.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-65">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/CalfManager/Model/Repository/Entity/HemogramaEntity.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-161">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/CalfManager/Model/Repository/Entity/PesagemEntity.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-92">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/CalfManager/Model/Repository/Entity/PessoaEntity.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-201">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/CalfManager/Controller/HemogramaController.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="345">
-          <caret line="47" column="20" lean-forward="false" selection-start-line="47" selection-start-column="20" selection-end-line="47" selection-end-column="20" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/CalfManager/Controller/DoencaController.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="15">
-          <caret line="33" column="59" lean-forward="false" selection-start-line="33" selection-start-column="59" selection-end-line="33" selection-end-column="59" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/CalfManager/Model/Repository/FamiliaDAO.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="121">
-          <caret line="142" column="28" lean-forward="false" selection-start-line="142" selection-start-column="28" selection-end-line="142" selection-end-column="28" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/CalfManager/Model/Familia.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="15">
-          <caret line="124" column="52" lean-forward="false" selection-start-line="124" selection-start-column="52" selection-end-line="124" selection-end-column="52" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/CalfManager/Model/Repository/HemogramaDAO.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="15">
-          <caret line="123" column="55" lean-forward="false" selection-start-line="123" selection-start-column="55" selection-end-line="123" selection-end-column="55" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/CalfManager/Utils/Validate/DoencaValidate.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="239">
-          <caret line="21" column="27" lean-forward="false" selection-start-line="21" selection-start-column="27" selection-end-line="21" selection-end-column="27" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/CalfManager/Utils/Validate/DoseValidate.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="346">
-          <caret line="33" column="18" lean-forward="false" selection-start-line="33" selection-start-column="18" selection-end-line="33" selection-end-column="18" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/CalfManager/Model/Repository/Entity/DoencaEntity.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/CalfManager/Model/Repository/AnimalDAO.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="273">
-          <caret line="303" column="33" lean-forward="false" selection-start-line="303" selection-start-column="33" selection-end-line="303" selection-end-column="33" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/CalfManager/Model/Repository/Entity/DoseEntity.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="106">
-          <caret line="42" column="34" lean-forward="false" selection-start-line="42" selection-start-column="34" selection-end-line="42" selection-end-column="34" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/CalfManager/Model/Dose.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="213">
-          <caret line="116" column="47" lean-forward="false" selection-start-line="116" selection-start-column="47" selection-end-line="116" selection-end-column="47" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/CalfManager/Controller/DoseController.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="270">
-          <caret line="28" column="29" lean-forward="true" selection-start-line="28" selection-start-column="29" selection-end-line="28" selection-end-column="29" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/CalfManager/Model/Pessoa.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="80">
-          <caret line="31" column="20" lean-forward="false" selection-start-line="31" selection-start-column="20" selection-end-line="31" selection-end-column="20" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/CalfManager/Utils/Validate/PessoaValidate.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="280">
-          <caret line="27" column="14" lean-forward="true" selection-start-line="27" selection-start-column="14" selection-end-line="27" selection-end-column="14" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/CalfManager/View/View.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="101">
-          <caret line="76" column="21" lean-forward="true" selection-start-line="76" selection-start-column="21" selection-end-line="76" selection-end-column="21" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/CalfManager/Model/Repository/Entity/FuncionarioEntity.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="260">
-          <caret line="40" column="5" lean-forward="true" selection-start-line="40" selection-start-column="5" selection-end-line="40" selection-end-column="5" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/CalfManager/Model/Endereco.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="185">
@@ -1392,7 +1139,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="212">
           <caret line="26" column="10" lean-forward="true" selection-start-line="26" selection-start-column="10" selection-end-line="26" selection-end-column="10" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1400,7 +1146,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="510">
           <caret line="39" column="37" lean-forward="false" selection-start-line="39" selection-start-column="37" selection-end-line="39" selection-end-column="37" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1408,7 +1153,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="322">
           <caret line="41" column="47" lean-forward="true" selection-start-line="41" selection-start-column="47" selection-end-line="41" selection-end-column="47" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1433,24 +1177,6 @@
         <state relative-caret-position="421">
           <caret line="206" column="13" lean-forward="true" selection-start-line="206" selection-start-column="13" selection-end-line="206" selection-end-column="13" />
           <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/CalfManager/Model/Animal.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="2413">
-          <caret line="501" column="20" lean-forward="false" selection-start-line="501" selection-start-column="20" selection-end-line="501" selection-end-column="20" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/CalfManager/Controller/AnimalController.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="131">
-          <caret line="52" column="30" lean-forward="false" selection-start-line="52" selection-start-column="30" selection-end-line="52" selection-end-column="30" />
-          <folding>
-            <element signature="e#42#73#0#PHP" expanded="false" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -1486,14 +1212,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/CalfManager/Controller/FazendaController.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-689">
-          <caret line="17" column="6" lean-forward="false" selection-start-line="17" selection-start-column="6" selection-end-line="17" selection-end-column="6" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/CalfManager/Utils/TokenApp.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="579">
@@ -1501,19 +1219,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/CalfManager/Model/Repository/Entity/AnimalEntity.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1110">
-          <caret line="79" column="69" lean-forward="false" selection-start-line="79" selection-start-column="69" selection-end-line="79" selection-end-column="69" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/CalfManager/Model/Repository/Entity/UsuarioEntity.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1521,7 +1230,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-1360">
           <caret line="37" column="33" lean-forward="false" selection-start-line="37" selection-start-column="33" selection-end-line="37" selection-end-column="33" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1536,15 +1244,15 @@
     <entry file="file://$PROJECT_DIR$/src/CalfManager/Model/Repository/PermissaoDAO.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="1995">
-          <caret line="141" column="5" lean-forward="true" selection-start-line="141" selection-start-column="5" selection-end-line="141" selection-end-column="5" />
+          <caret line="141" column="5" lean-forward="false" selection-start-line="141" selection-start-column="5" selection-end-line="141" selection-end-column="5" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/CalfManager/Model/Permissao.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-8">
-          <caret line="70" column="50" lean-forward="true" selection-start-line="70" selection-start-column="50" selection-end-line="70" selection-end-column="50" />
+        <state relative-caret-position="945">
+          <caret line="70" column="50" lean-forward="false" selection-start-line="70" selection-start-column="50" selection-end-line="70" selection-end-column="50" />
           <folding />
         </state>
       </provider>
@@ -1559,7 +1267,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/CalfManager/Utils/Validate/GrupoValidate.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="78">
+        <state relative-caret-position="195">
           <caret line="18" column="40" lean-forward="false" selection-start-line="18" selection-start-column="40" selection-end-line="18" selection-end-column="40" />
           <folding />
         </state>
@@ -1573,42 +1281,242 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/CalfManager/Controller/PermissaoController.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="274">
-          <caret line="37" column="63" lean-forward="true" selection-start-line="37" selection-start-column="63" selection-end-line="37" selection-end-column="63" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/CalfManager/Model/Repository/Entity/GrupoEntity.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="213">
+        <state relative-caret-position="420">
           <caret line="33" column="31" lean-forward="false" selection-start-line="33" selection-start-column="31" selection-end-line="33" selection-end-column="31" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/CalfManager/Controller/GrupoController.php">
+    <entry file="file://$PROJECT_DIR$/src/CalfManager/Controller/PesagemController.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1241">
-          <caret line="106" column="0" lean-forward="false" selection-start-line="106" selection-start-column="0" selection-end-line="106" selection-end-column="0" />
+        <state relative-caret-position="230">
+          <caret line="35" column="64" lean-forward="true" selection-start-line="35" selection-start-column="64" selection-end-line="35" selection-end-column="64" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/CalfManager/Model/Repository/Entity/PermissaoEntity.php">
+    <entry file="file://$PROJECT_DIR$/src/CalfManager/Controller/DoencaController.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="46">
-          <caret line="27" column="19" lean-forward="true" selection-start-line="27" selection-start-column="19" selection-end-line="27" selection-end-column="19" />
+        <state relative-caret-position="569">
+          <caret line="58" column="65" lean-forward="true" selection-start-line="58" selection-start-column="65" selection-end-line="58" selection-end-column="65" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/CalfManager/Controller/FazendaController.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-33">
+          <caret line="17" column="6" lean-forward="false" selection-start-line="17" selection-start-column="6" selection-end-line="17" selection-end-column="6" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/CalfManager/Model/Usuario.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="218">
-          <caret line="46" column="29" lean-forward="true" selection-start-line="46" selection-start-column="29" selection-end-line="46" selection-end-column="29" />
+        <state relative-caret-position="15">
+          <caret line="52" column="59" lean-forward="false" selection-start-line="52" selection-start-column="59" selection-end-line="52" selection-end-column="59" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/CalfManager/Model/Repository/Entity/AnimalHasDoencaEntity.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="163">
+          <caret line="22" column="16" lean-forward="false" selection-start-line="22" selection-start-column="16" selection-end-line="22" selection-end-column="16" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/CalfManager/Utils/Validate/DoencaValidate.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="240">
+          <caret line="21" column="27" lean-forward="false" selection-start-line="21" selection-start-column="27" selection-end-line="21" selection-end-column="27" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/CalfManager/Model/Repository/Entity/PermissaoEntity.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="45">
+          <caret line="27" column="19" lean-forward="false" selection-start-line="27" selection-start-column="19" selection-end-line="27" selection-end-column="19" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/CalfManager/Controller/GrupoController.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="15">
+          <caret line="106" column="0" lean-forward="false" selection-start-line="106" selection-start-column="0" selection-end-line="106" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/CalfManager/Model/Repository/Entity/PesagemEntity.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-80">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/CalfManager/Utils/Validate/PessoaValidate.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="97">
+          <caret line="14" column="41" lean-forward="true" selection-start-line="14" selection-start-column="41" selection-end-line="14" selection-end-column="41" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/CalfManager/Model/Pessoa.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="150">
+          <caret line="35" column="47" lean-forward="true" selection-start-line="35" selection-start-column="47" selection-end-line="35" selection-end-column="47" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/CalfManager/Model/Repository/PessoaDAO.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="349">
+          <caret line="39" column="35" lean-forward="false" selection-start-line="39" selection-start-column="34" selection-end-line="39" selection-end-column="35" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/vendor/illuminate/database/Eloquent/Model.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-1586">
+          <caret line="595" column="73" lean-forward="false" selection-start-line="595" selection-start-column="69" selection-end-line="595" selection-end-column="73" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/CalfManager/Model/Modelo.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="156">
+          <caret line="76" column="20" lean-forward="false" selection-start-line="76" selection-start-column="20" selection-end-line="76" selection-end-column="20" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/CalfManager/Model/Pesagem.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="158">
+          <caret line="44" column="20" lean-forward="false" selection-start-line="44" selection-start-column="20" selection-end-line="44" selection-end-column="20" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/CalfManager/Model/Repository/HemogramaDAO.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="344">
+          <caret line="37" column="34" lean-forward="true" selection-start-line="37" selection-start-column="34" selection-end-line="37" selection-end-column="34" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/CalfManager/Model/Repository/PesagemDAO.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="209">
+          <caret line="31" column="51" lean-forward="false" selection-start-line="31" selection-start-column="51" selection-end-line="31" selection-end-column="51" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/CalfManager/Model/Hemograma.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="246">
+          <caret line="41" column="41" lean-forward="true" selection-start-line="41" selection-start-column="41" selection-end-line="41" selection-end-column="41" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/CalfManager/Model/Repository/Entity/AnimalEntity.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-166">
+          <caret line="30" column="6" lean-forward="false" selection-start-line="30" selection-start-column="6" selection-end-line="30" selection-end-column="6" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/CalfManager/Model/Animal.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1161">
+          <caret line="290" column="30" lean-forward="false" selection-start-line="290" selection-start-column="30" selection-end-line="290" selection-end-column="30" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/CalfManager/Model/Repository/DoencaDAO.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="212">
+          <caret line="155" column="20" lean-forward="false" selection-start-line="155" selection-start-column="20" selection-end-line="155" selection-end-column="20" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/CalfManager/Model/Familia.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="519">
+          <caret line="155" column="0" lean-forward="false" selection-start-line="155" selection-start-column="0" selection-end-line="155" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/CalfManager/Model/Repository/FamiliaDAO.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="363">
+          <caret line="139" column="20" lean-forward="false" selection-start-line="139" selection-start-column="20" selection-end-line="139" selection-end-column="20" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/CalfManager/Model/Repository/Entity/FamiliaEntity.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/CalfManager/Controller/FamiliaController.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-313">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/CalfManager/Model/Repository/AnimalDAO.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="156">
+          <caret line="22" column="6" lean-forward="false" selection-start-line="22" selection-start-column="6" selection-end-line="22" selection-end-column="6" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/CalfManager/Controller/PermissaoController.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="301">
+          <caret line="40" column="47" lean-forward="true" selection-start-line="40" selection-start-column="47" selection-end-line="40" selection-end-column="47" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/CalfManager/Controller/AnimalController.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-101">
+          <caret line="175" column="66" lean-forward="true" selection-start-line="175" selection-start-column="66" selection-end-line="175" selection-end-column="66" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/CalfManager/Utils/Validate/AnimalValidate.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="163">
+          <caret line="20" column="61" lean-forward="false" selection-start-line="20" selection-start-column="61" selection-end-line="20" selection-end-column="61" />
           <folding />
         </state>
       </provider>

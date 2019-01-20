@@ -53,33 +53,34 @@ class AnimalController implements IController
                 $animal->getFazenda()->setId($data->fazendas_id);
                 $animal->setVivo($data->is_vivo);
                 $animal->setPrimogenito($data->is_primogenito);
-                $animal->getPesagem()->setPeso($data->pesagem->peso);
-                $animal->getPesagem()->setDataPesagem($data->pesagem->data);
-                $animal->getHemograma()->setPpt($data->hemograma->ppt);
-                $animal->getHemograma()->setHematocrito($data->hemograma->hematocrito);
-                $animal->getHemograma()->setData($data->hemograma->data);
+                $animal->getPesagem()->setPeso($data->pesagens->peso);
+                $animal->getPesagem()->setDataPesagem($data->pesagens->data_pesagem);
+                $animal->getHemograma()->setPpt($data->hemogramas->ppt);
+                $animal->getHemograma()->setHematocrito($data->hemogramas->hematocrito);
+                $animal->getHemograma()->setData($data->hemogramas->data);
                 if ($animal->cadastrar()) {
                     return View::renderMessage(
                         $response,
                         "success",
                         "Animal cadastrado com sucesso! ID cadastrado: ",
                         201,
-                        "Sucesso ao cadastrar"
+                        "Sucesso ao cadastrar",
+                        $animal->getId()
                     );
                 }
-                else {
-                    return View::renderMessage(
-                        $response,
-                        "error",
-                        "Erro ao cadastrar animal!",
-                        500,
-                        "Erro ao cadastrar"
-                    );
-                }
+
+                return View::renderMessage(
+                    $response,
+                    "error",
+                    "Erro ao cadastrar animal!",
+                    500,
+                    "Erro ao cadastrar"
+                );
+
             }
-            else {
-                return View::renderMessage($response, 'warning', $valida, 400);
-            }
+//
+            return View::renderMessage($response, 'warning', $valida, 400);
+//
         } catch (Exception $exception) {
             return View::renderException($response, $exception);
         }
@@ -172,11 +173,11 @@ class AnimalController implements IController
             $animal->setFaseDaVida($data->fase_vida);
             $animal->setPrimogenito($data->is_primogenito);
             $animal->setVivo($data->is_vivo);
-            $animal->getPesagem()->setPeso($data->pesagem->peso);
-            $animal->getPesagem()->setDataPesagem($data->pesagem->data);
-            $animal->getHemograma()->setPpt($data->hemograma->ppt);
-            $animal->getHemograma()->setHematocrito($data->hemograma->hematocrito);
-            $animal->getHemograma()->setData($data->hemograma->data);
+            $animal->getPesagem()->setPeso($data->pesagens->peso);
+            $animal->getPesagem()->setDataPesagem($data->pesagens->data);
+            $animal->getHemograma()->setPpt($data->hemogramas->ppt);
+            $animal->getHemograma()->setHematocrito($data->hemogramas->hematocrito);
+            $animal->getHemograma()->setData($data->hemogramas->data);
             if($animal->alterar()) {
                 return View::renderMessage(
                     $response,

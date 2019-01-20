@@ -18,7 +18,7 @@ class AnimalValidate extends Validate
     {
         $rules = [
             'optional' => ['codigo_raca','pai', 'mae','fase_vida'],
-            'required' => ['nome','sexo','lote','pesagem','hemograma','data_nascimento', 'codigo_brinco', 'is_vivo', 'is_primogenito'],
+            'required' => ['nome','sexo','lotes_id','pesagens','hemogramas','data_nascimento', 'codigo_brinco', 'is_vivo', 'is_primogenito'],
             'alpha' => ['nome', 'sexo'],
             'lengthMax' => [['sexo',1]],
             'in' => [
