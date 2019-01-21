@@ -149,6 +149,15 @@ class LoteDAO implements IDAO
         }
     }
 
+    public function retreaveQuantidadeLotes(){
+        try {
+            $entity = LoteEntity::ativo()->get()->count();
+            return ['lotes' => $entity];
+        }
+        catch (Exception $e){
+            throw new Exception("Erro ao contar lotes " .$e->getMessage());
+        }
+    }
     /**
      * @param int $id
      * @return bool

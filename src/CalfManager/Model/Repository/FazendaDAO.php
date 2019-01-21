@@ -33,7 +33,7 @@ class FazendaDAO implements IDAO
         $entity->usuario_cadastro = $obj->getUsuarioCadastro()->getId();
         try {
             if ($entity->save()) {
-                return true;
+                return $entity->getKey();
             }
         } catch (Exception $e) {
             throw new Exception("Erro ao tentar salvar uma nova fazenda.");
@@ -54,8 +54,14 @@ class FazendaDAO implements IDAO
         if (!is_null($obj->getNome())) {
             $entity->nome = $obj->getNome();
         }
+        try{
+            if($entity->save()){
+                return $entity->getKey();
+            }
+        }catch (Exception $e){
+            throw new Exception("Erro ao alterar fazenda".$e->getMessage());
+        }
 
-        return (new FazendaDAO())->update($obj);
     }
 
     /**

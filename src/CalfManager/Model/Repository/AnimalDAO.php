@@ -184,6 +184,31 @@ class AnimalDAO implements IDAO
         }
     }
 
+    public function retreaveQuantidadeAnimais(){
+        try {
+            $entity = AnimalEntity::ativo()->get()->count();
+            return ["animais" => $entity];
+        }
+        catch (Exception $e){
+            throw new Exception("Erro ao contar animais".$e->getMessage());
+        }
+    }
+
+    public function retreaveQtdAnimaisDoentes(){
+        try{
+            $animais = AnimalEntity::ativo()
+                ->with('doencas')
+                ->whereHas('doencas', function ($situacao) {
+                    $situacao->where('situacao', 'DOENTE');
+                })
+                ->get()
+                ->count();
+            return ['animais' => $animais];
+        }catch (Exception $e){
+            throw new Exception('Erro ao pesquisar por animais doentes! ' . $e);
+        }
+    }
+
     /**
      * @param int $animalId
      * @return array

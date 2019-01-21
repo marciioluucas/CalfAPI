@@ -30,6 +30,8 @@ class Lote extends Modelo
 
     private $fazenda;
 
+    private $contagem;
+
     /**
      * Lote constructor.
      */
@@ -82,11 +84,14 @@ class Lote extends Modelo
             if ($this->id and !$this->codigo and !$this->getFazenda()->getId()) {
                 return (new LoteDAO())->retreaveById($this->id);
             }
-            elseif (!$this->id and $this->codigo and !$this->getFazenda()->getId()) {
+            if (!$this->id and $this->codigo and !$this->getFazenda()->getId()) {
                 return (new LoteDAO())->retreaveByCodigo($this->codigo, $page);
             }
-            elseif (!$this->id and !$this->codigo and $this->getFazenda()->getId()) {
+            if (!$this->id and !$this->codigo and $this->getFazenda()->getId()) {
                 return (new LoteDAO())->retreaveByIdFazenda($this->getFazenda()->getId(), $page);
+            }
+            if ($this->contagem){
+                return (new LoteDAO())->retreaveQuantidadeLotes();
             }
             return (new LoteDAO())->retreaveAll($page);
         } catch (Exception $exception) {
@@ -154,5 +159,23 @@ class Lote extends Modelo
     {
         $this->fazenda = $fazenda;
     }
+
+    /**
+     * @return mixed
+     */
+    public function getContagem()
+    {
+        return $this->contagem;
+    }
+
+    /**
+     * @param mixed $contagem
+     */
+    public function setContagem($contagem)
+    {
+        $this->contagem = $contagem;
+    }
+
+
 
 }

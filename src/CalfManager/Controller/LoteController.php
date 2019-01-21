@@ -78,13 +78,16 @@ class LoteController implements IController
             if ($request->getAttribute('id')) {
                 $lote->setId($request->getAttribute('id'));
             }
-            elseif ($request->getQueryParam('codigo')) {
+            if ($request->getQueryParam('codigo')) {
                 $lote->setCodigo($request->getQueryParam('codigo'));
             }
-            elseif ($request->getQueryParam('fazenda')) {
+            if ($request->getQueryParam('fazenda')) {
                 $lote->getFazenda()->setId($request->getQueryParam('fazenda'));
             }
-            return View::render($response, $lote->pesquisar($page));
+            if ($request->getQueryParam('contagem') == 'true') {
+                $lote->setContagem(true);
+            }
+                return View::render($response, $lote->pesquisar($page));
         } catch (Exception $exception) {
             return View::renderException($response, $exception);
         }

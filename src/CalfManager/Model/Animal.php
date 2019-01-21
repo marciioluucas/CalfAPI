@@ -80,6 +80,10 @@ class Animal extends Modelo
 
     private $doente;
 
+    private $contagem;
+
+    private $contagemDoentes;
+
     /**
      * Animal constructor.
      * @throws Exception
@@ -165,7 +169,12 @@ class Animal extends Modelo
         } else if (!$this->nome and !$this->getLote()->getId() and !$this->id and $this->doente){
             return $dao->retreaveAnimalDoente($page);
         }
-//        return null;
+        if($this->contagem){
+            return $dao->retreaveQuantidadeAnimais();
+        }
+        if($this->contagemDoentes){
+            return $dao->retreaveQtdAnimaisDoentes();
+        }
         return $dao->retreaveAll($page);
     }
 
@@ -245,7 +254,9 @@ class Animal extends Modelo
             $this->setId($idAnimal);
             $this->cadastrarPesagens();
             $this->cadastrarHemograma();
-            $this->cadastrarFamilia();
+            if ($this->getPai() != null && $this->getMae() != null) {
+                $this->cadastrarFamilia();
+            }
             if($this->getDoencas() !== null){
                 $this->adoecerAnimal($idAnimal);
             }
@@ -286,7 +297,7 @@ class Animal extends Modelo
     public function cadastrarFamilia()
     {
         try {
-            if ($this->getPai()->getId() != null && $this->getMae()->getId() != null) {
+            if ($this->getPai() != null && $this->getMae() != null) {
                 $familia = new Familia($this->getPai(), $this->getMae(), $this);
                 $familia->cadastrar();
             }
@@ -551,6 +562,39 @@ class Animal extends Modelo
     {
         $this->doente = $doente;
     }
+
+    /**
+     * @return mixed
+     */
+    public function getContagem()
+    {
+        return $this->contagem;
+    }
+
+    /**
+     * @param mixed $contagem
+     */
+    public function setContagem($contagem)
+    {
+        $this->contagem = $contagem;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getContagemDoentes()
+    {
+        return $this->contagemDoentes;
+    }
+
+    /**
+     * @param mixed $contagemDoentes
+     */
+    public function setContagemDoentes($contagemDoentes)
+    {
+        $this->contagemDoentes = $contagemDoentes;
+    }
+
 
 
 }

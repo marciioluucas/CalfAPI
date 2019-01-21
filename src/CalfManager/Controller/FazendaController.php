@@ -103,7 +103,7 @@ class FazendaController implements IController
                 if (isset($data->limite)) {
                     $fazenda->setLimite($data->limite);
                 }
-                if ($fazenda->cadastrar()) {
+                if ($fazenda->alterar()) {
                     return View::renderMessage(
                         $response,
                         "success",

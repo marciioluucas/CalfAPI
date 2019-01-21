@@ -23,12 +23,10 @@ class PessoaValidate extends Validate
                 ['numero_telefone', 11]
             ],
             'lengthMin' => [
-                ['nome', 4],
-                ['rg', 5],
+                ['rg', 5]
             ],
             'lengthMax' => [
-                ['nome', 50],
-                ['rg', 11],
+                ['rg', 11]
             ],
             'in' => [
                 ['sexo',['m', 'f']]
