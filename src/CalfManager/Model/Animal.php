@@ -160,12 +160,8 @@ class Animal extends Modelo
             return $dao->retreaveByNome($this->nome, $page);
         } elseif ($this->getLote()->getId() and !$this->nome and !$this->id) {
             return $dao->retreaveByIdLote($this->getLote()->getId(), $page);
-        } elseif ($this->nome and $this->getLote()->getId() and !$this->id) {
-            return $dao->retreaveByIdLoteAndName(
-                $this->getLote()->getId(),
-                $this->getNome(),
-                $page
-            );
+        } elseif ($this->getLote()->getId()) {
+            return $dao->retreaveByIdLote( $this->getLote()->getId(), $page);
         } else if (!$this->nome and !$this->getLote()->getId() and !$this->id and $this->doente){
             return $dao->retreaveAnimalDoente($page);
         }

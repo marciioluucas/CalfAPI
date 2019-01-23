@@ -38,6 +38,7 @@ class HemogramaController implements IController
                 $hemograma->setPpt($data->ppt);
                 $hemograma->setHematocrito($data->hematocrito);
                 $hemograma->getAnimal()->setId($data->animal_id);
+                $hemograma->getFuncionario()->setId($data->funcionario_id);
 
                 if($hemograma->cadastrar()) {
                     return View::renderMessage(
@@ -79,7 +80,13 @@ class HemogramaController implements IController
             if($request->getAttribute('id')){
                 $hemograma->setId($request->getAttribute('id'));
             }
-           $search = $hemograma->pesquisar($page);
+            if($request->getQueryParam('animal_id')){
+                $hemograma->getAnimal()->setId($request->getQueryParam('animal_id'));
+            }
+            if($request->getQueryParam('funcionario_id')){
+                $hemograma->getFuncionario()->setId($request->getQueryParam('funcionario_id'));
+            }
+            $search = $hemograma->pesquisar($page);
             return View::render($response, $search);
         } catch (Exception $e){
             throw new Exception(View::renderException( $response, $e));
@@ -109,8 +116,11 @@ class HemogramaController implements IController
                 if(!is_null($data->hematocrito)) {
                     $hemograma->setHematocrito($data->hematocrito);
                 }
-                if(!is_null($data->animal->id)){
-                    $hemograma->getAnimal()->setId($data->animal->id);
+                if(!is_null($data->animal_id)){
+                    $hemograma->getAnimal()->setId($data->animal_id);
+                }
+                if(!is_null($data->funcionario_id)){
+                    $hemograma->getFuncionario()->setId($data->funcionario_id);
                 }
                 if($hemograma->alterar()) {
                     return View::renderMessage(

@@ -899,7 +899,6 @@ INSERT INTO `hemogramas` (`id`, `animal_id`, `ppt`, `hematocrito`, `data`, `data
 (2, 1, '41.00', '41.00', '2018-10-28 15:54:14', '2018-10-28 15:54:14', '2018-10-28 15:54:14', 1, 1, 1),
 (3, 1, '40.00', '40.00', '2018-10-28 15:54:38', '2018-10-28 15:54:38', '2018-10-28 15:54:38', 1, 1, 1),
 (4, 1, '45.00', '45.00', '2018-10-28 15:54:47', '2018-10-28 15:54:47', '2018-10-28 15:54:47', 1, 1, 1),
-(5, 20, '7.30', '30.00', '2018-10-30 00:00:00', '2018-10-31 22:42:25', '2018-10-31 22:42:25', NULL, 1, 1),
 (6, 1, '6.00', '47.00', '2018-10-20 00:00:00', '2018-11-05 18:48:53', '2018-11-05 18:48:53', NULL, 1, 1);
 
 INSERT INTO `funcionarios` (`id`, `cargo_id`, `pessoa_id`, `fazenda_id`, `salario`, `data_alteracao`, `data_cadastro`, `usuario_cadastro`, `usuario_alteracao`, `status`) VALUES
@@ -918,3 +917,4 @@ INSERT INTO `doencas` (`id`, `nome`, `descricao`, `data_cadastro`, `data_alterac
 (10, 'Diareia Nivel 1', 'Diareia nivel 1', '2018-10-13 14:27:20', '2018-10-13 14:27:20', 1, NULL, 1);
 
 -- --------------------------------------------------------
+insert into familias (status, mae_id, pai_id, filho_id) values (1, 16, 15, 1);

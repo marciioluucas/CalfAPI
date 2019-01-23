@@ -30,6 +30,7 @@ class HemogramaDAO implements IDAO
         $entity->ppt = $obj->getPpt();
         $entity->hematocrito = $obj->getHematocrito();
         $entity->animal_id = $obj->getAnimal()->getId();
+        $entity->funcionario_id = $obj->getFuncionario()->getId();
 
         $entity->data_cadastro = $obj->getDataCriacao();
         $entity->usuario_cadastro = $obj->getUsuarioCadastro()->getId();
@@ -61,6 +62,9 @@ class HemogramaDAO implements IDAO
         if (!is_null($obj->getHematocrito())) {
             $entity->hematocrito = $obj->getHematocrito();
         }
+        if (!is_null($obj->getFuncionario()->getId())) {
+            $entity->funcionario_id = $obj->getFuncionario()->getId();
+        }
         try {
             if ($entity->update()) {
                 return $entity->id;
@@ -79,14 +83,13 @@ class HemogramaDAO implements IDAO
     {
 
         try {
-            $entity = HemogramaEntity::ativo();
-            $hemogramas = $entity->paginate(
+            $entity = HemogramaEntity::ativo()->paginate(
                 Config::QUANTIDADE_ITENS_POR_PAGINA,
                 ['*'],
                 'pagina',
                 $page
             );
-            return ["hemogramas" => $hemogramas];
+            return ["hemogramas" => $entity];
         } catch (Exception $e) {
             throw new Exception("Erro ao pesquisar todos os hemogramas. Mensagem: " . $e->getMessage());
         }
@@ -101,14 +104,40 @@ class HemogramaDAO implements IDAO
     {
 
         try {
-            $entity = HemogramaEntity::ativo();
-            $hemogramas = $entity->where('id', $id)->first()->toArray();
-            return ["hemogramas" => $hemogramas];
+            $entity = HemogramaEntity::ativo()->where('id', $id)->first()->toArray();
+            return ["hemogramas" => $entity];
         } catch (Exception $e) {
             throw new Exception("Erro ao pesquisar hemograma pelo ID " . $id . ". Mensagem: " . $e->getMessage());
         }
     }
 
+    public function retreaveByAnimalId(int $animalId, $page){
+        try{
+            $entity = HemogramaEntity::ativo()->where('animal_id', $animalId)->paginate(
+                Config::QUANTIDADE_ITENS_POR_PAGINA,
+                ['*'],
+                'pagina',
+                $page
+            );
+            return ['hemogramas' => $entity];
+        }catch (Exception $e){
+            throw new Exception("Erro ao pesquisar hemograma por animal id " . $animalId . ". Mensagem: " . $e->getMessage());
+        }
+    }
+    public function retreaveByFuncionarioId(int $funcionarioId, $page){
+        try{
+            $entity = HemogramaEntity::ativo()->where('funcionario_id', $funcionarioId)->paginate(
+                Config::QUANTIDADE_ITENS_POR_PAGINA,
+                ['*'],
+                'pagina',
+                $page
+            );
+            return ['hemogramas' => $entity];
+        }
+        catch (Exception $e){
+            throw new Exception("Erro ao pesquisar hemograma por funcionario id " . $funcionarioId . ". Mensagem: " . $e->getMessage());
+        }
+    }
     /**
      * @param array $params
      * @return array
@@ -133,7 +162,6 @@ class HemogramaDAO implements IDAO
      */
     public function delete(int $id): bool
     {
-
         try {
             $entity = HemogramaEntity::find($id);
             $entity->status = 0;

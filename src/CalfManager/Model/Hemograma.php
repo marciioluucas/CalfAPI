@@ -27,6 +27,7 @@ class Hemograma extends Exame
     function __construct(Animal $animal = null)
     {
         $this->animal = $animal != null ? $animal : new Animal();
+        $this->funcionario = new Funcionario();
     }
 
     /**
@@ -58,13 +59,25 @@ class Hemograma extends Exame
         }
     }
 
+    /**
+     * @param int $page
+     * @return array
+     * @throws Exception
+     */
     public function pesquisar(int $page): array
     {
         try {
-            if ($this->id) {
+            if ($this->id != null) {
                 return (new HemogramaDAO())->retreaveById($this->id);
             }
-            return (new HemogramaDAO())->retreaveAll($page);
+            if ($this->getAnimal()->getId() != null ) {
+                return (new HemogramaDAO())->retreaveByAnimalId($this->getAnimal()->getId(), $page);
+            }
+            if ($this->getFuncionario()->getId() != null) {
+                return (new HemogramaDAO())->retreaveByFuncionarioId($this->getFuncionario()->getId(), $page);
+            } else {
+                return (new HemogramaDAO())->retreaveAll($page);
+            }
         } catch (Exception $e) {
             throw new Exception($e->getMessage());
         }

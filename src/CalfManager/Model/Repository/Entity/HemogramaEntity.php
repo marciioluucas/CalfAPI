@@ -27,6 +27,7 @@ class HemogramaEntity extends CalfEntity
     protected $fillable = [
         'id',
         'animal_id',
+        'funcionario_id',
         'data',
         'ppt',
         'hematocrito',
