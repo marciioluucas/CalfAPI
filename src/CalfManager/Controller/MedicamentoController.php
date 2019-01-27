@@ -58,8 +58,10 @@ class MedicamentoController implements IController
         try {
             if ($request->getAttribute('id')) {
                 $medicamento->setId($request->getAttribute('id'));
-            } else if ($request->getAttribute('nome')) {
-                $medicamento->setNome($request->getAttribute('nome'));
+
+            }
+            if ($request->getQueryParam('nome')) {
+                $medicamento->setNome($request->getQueryParam('nome'));
             }
             $search = $medicamento->pesquisar($page);
             return View::render($response, $search);

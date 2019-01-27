@@ -99,20 +99,22 @@ class Usuario extends Modelo
     {
         $dao = new UsuarioDAO();
         try{
-            if($this->id and !$this->login and !$this->senha and !$this->getGrupo()->getId()){
+            if($this->id){
                 return $dao->retreaveById($this->id);
-            }else if (!$this->id and $this->login and !$this->senha and !$this->getGrupo()->getId()){
-                return $dao->retreaveByLogin($this->login, $page);
             }
-            else if (!$this->id and $this->login and $this->senha and !$this->getGrupo()->getId()){
+            if ($this->login and $this->senha){
                 return $dao->retreaveByLoginSenha($this->login, $this->senha);
             }
-            else if(!$this->id and !$this->login and !$this->senha and $this->getGrupo()->getId()){
+            if ($this->login){
+                return $dao->retreaveByLogin($this->login, $page);
+            }
+            if($this->getGrupo()->getId()){
                 return $dao->retreaveByGrupo($this->getGrupo()->getId(), $page);
             }
-            else {
-                return $dao->retreaveAll($page);
+            if($this->getFuncionario()->getId()){
+                return $dao->retreaveByFuncionarioId($this->getFuncionario()->getId(), $page);
             }
+            return $dao->retreaveAll($page);
         }catch (Exception $e){
             throw new Exception($e->getMessage());
         }

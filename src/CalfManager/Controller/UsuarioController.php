@@ -97,7 +97,7 @@ class UsuarioController implements IController
                     $usuario->setSenha($request->getQueryParam('senha'));
                 }
                 if ($request->getQueryParam('grupo_id')) {
-                    $usuario->getFuncionario()->setId($request->getQueryParam('grupo_id'));
+                    $usuario->getGrupo()->setId($request->getQueryParam('grupo_id'));
                 }
                 if ($request->getQueryParam('funcionario_id')) {
                     $usuario->getFuncionario()->setId($request->getQueryParam('funcionario_id'));

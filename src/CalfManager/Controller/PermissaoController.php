@@ -86,9 +86,10 @@ class PermissaoController implements IController
             if($request->getQueryParam('nome_modulo')){
                 $permissao->setNomeModulo($request->getQueryParam('nome_modulo'));
             }
-            if($request->getQueryParam('grupo_id')){
-                $permissao->getGrupo()->setId($request->getQueryParam('grupo_id'));
-            }
+//            TODO: Alterar modelagem N para N em grupos e permissões
+//            if($request->getQueryParam('grupo_id')){
+//                $permissao->getGrupo()->setId($request->getQueryParam('grupo_id'));
+//            }
             return View::render($response, $permissao->pesquisar($page));
         }catch (Exception $e){
             return View::renderException($response, $e);
