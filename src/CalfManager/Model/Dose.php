@@ -49,10 +49,12 @@ class Dose extends Modelo
 
     public function alterar(): bool
     {
-         $this->dataAlteracao = date(Config::PADRAO_DATA_HORA);
-
+        $this->dataAlteracao = date(Config::PADRAO_DATA_HORA);
+        $this->data = date(Config::PADRAO_DATA);
+        $this->usuarioCadastro = new Usuario();
+        $this->usuarioCadastro->setId(1);
         $this->usuarioAlteracao = new Usuario();
-         $this->usuarioAlteracao->setId(1);
+        $this->usuarioAlteracao->setId(1);
          try{
              return (new DoseDAO())->update($this);
          }catch (Exception $e){

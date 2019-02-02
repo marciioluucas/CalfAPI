@@ -18,8 +18,8 @@ class AnimalValidate extends Validate
     {
         $rules = [
             'optional' => ['codigo_raca','pai', 'mae','fase_vida'],
-            'required' => ['nome','sexo','lotes_id','pesagens','hemogramas','data_nascimento', 'codigo_brinco', 'is_vivo', 'is_primogenito'],
-            'alpha' => ['nome', 'sexo'],
+            'required' => ['nome','sexo','lotes_id','pesagens','hemogramas','data_nascimento', 'is_vivo', 'is_primogenito'],
+            'alpha' => ['sexo'],
             'lengthMax' => [['sexo',1]],
             'in' => [
                 ['sexo', ['m','f']],
@@ -29,8 +29,6 @@ class AnimalValidate extends Validate
             'dateFormat' => [
                 ['data_nascimento', 'd/m/Y']
             ],
-            'numeric' => 'codigo_brinco',
-            'alphaNum' => 'codigo_raca',
             'boolean' => ['is_vivo', 'is_primogenito']
         ];
         $v = new Validator($params);
@@ -53,8 +51,7 @@ class AnimalValidate extends Validate
     {
         $rules = [
             'optional' => ['codigo_raca','pai', 'mae','fase_vida'],
-            'required' => ['nome','sexo','lote','pesagem','hemograma','data_nascimento', 'codigo_brinco', 'is_vivo', 'is_primogenito'],
-            'alpha' => ['nome', 'sexo'],
+            'alpha' => ['sexo'],
             'lengthMax' => [['sexo', 1]],
             'in' => [
                 ['sexo', ['m','f']],
@@ -64,9 +61,6 @@ class AnimalValidate extends Validate
             'dateFormat' => [
                 ['data_nascimento', 'd/m/Y']
             ],
-            'numeric' => 'codigo_brinco',
-            'alphaNum' => 'codigo_raca',
-            'boolean' => ['is_vivo', 'is_primogenito']
         ];
         $v = new Validator($params);
         $v->rules($rules);

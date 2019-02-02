@@ -60,7 +60,7 @@ class AnimalDAO implements IDAO
         $entity->fazendas_id = $obj->getFazenda()->getId();
         try {
             if ($entity->save()) {
-                return $entity->getKey();
+                return $entity->id;
             }
 
         } catch (Exception $e) {
@@ -119,8 +119,13 @@ class AnimalDAO implements IDAO
         if (!is_null($obj->getFazenda()->getId())) {
             $entity->fazendas_id = $obj->getLote()->getId();
         }
-        if ($entity->save()) {
-            return $entity->id;
+        if($obj->isVivo() == false){
+            $entity->is_vivo = 0;
+        }else{
+            $entity->is_vivo = 1;
+        }
+        if ($entity->update()) {
+            return $entity->getKey();
         };
         return false;
     }
@@ -186,7 +191,7 @@ class AnimalDAO implements IDAO
 
     public function retreaveQuantidadeAnimais(){
         try {
-            $entity = AnimalEntity::ativo()->get()->count();
+            $entity = AnimalEntity::ativo()->where('is_vivo', 1)->get()->count();
             return ["animais" => $entity];
         }
         catch (Exception $e){
@@ -334,6 +339,26 @@ class AnimalDAO implements IDAO
         }catch (Exception $e){
             throw new Exception('Erro ao pesquisar por animais doentes! ' . $e);
         }
+    }
+
+    public function retreaveAnimaisMortosAoNascer($page){
+        $animais = AnimalEntity::ativo()
+            ->where("is_vivo", false)
+            ->paginate(
+                Config::QUANTIDADE_ITENS_POR_PAGINA,
+                ['*'],
+                'pagina',
+                $page
+            );
+
+    }
+
+    public function retreaveQtdAnimaisMortos(){
+        $animais = AnimalEntity::ativo()
+            ->where("is_vivo", false)
+            ->get()
+            ->count();
+        return ["animais" => $animais];
     }
 
     /**

@@ -87,6 +87,9 @@ class LoteController implements IController
             if ($request->getQueryParam('contagem') == 'true') {
                 $lote->setContagem(true);
             }
+            if ($request->getQueryParam('contagemAnimais') == 'true') {
+                $lote->setContagemAnimais(true);
+            }
                 return View::render($response, $lote->pesquisar($page));
         } catch (Exception $exception) {
             return View::renderException($response, $exception);

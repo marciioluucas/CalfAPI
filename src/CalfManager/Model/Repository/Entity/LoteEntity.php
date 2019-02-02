@@ -25,7 +25,7 @@ class LoteEntity extends CalfEntity
     ];
 
     public function animais() {
-        return $this->hasMany('\CalfManager\Model\Repository\Entity\AnimalEntity');
+        return $this->hasMany('\CalfManager\Model\Repository\Entity\AnimalEntity', 'id');
     }
     public function fazenda(){
         return $this->belongsTo('\CalfManager\Model\Repository\Entity\FazendaEntity', 'fazenda_id');

@@ -32,6 +32,7 @@ class Lote extends Modelo
 
     private $contagem;
 
+    private $contagemAnimais;
     /**
      * Lote constructor.
      */
@@ -92,6 +93,9 @@ class Lote extends Modelo
             }
             if ($this->contagem){
                 return (new LoteDAO())->retreaveQuantidadeLotes();
+            }
+            if($this->contagemAnimais){
+                return (new LoteDAO())->retreaveQtdAnimaisPorLote($page);
             }
             return (new LoteDAO())->retreaveAll($page);
         } catch (Exception $exception) {
@@ -176,6 +180,20 @@ class Lote extends Modelo
         $this->contagem = $contagem;
     }
 
+    /**
+     * @return mixed
+     */
+    public function getContagemAnimais()
+    {
+        return $this->contagemAnimais;
+    }
 
+    /**
+     * @param mixed $contagemAnimais
+     */
+    public function setContagemAnimais($contagemAnimais)
+    {
+        $this->contagemAnimais = $contagemAnimais;
+    }
 
 }

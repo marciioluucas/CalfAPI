@@ -51,7 +51,15 @@ class DoseDAO implements IDAO
         $entity = new DoseEntity();
         $entity->data_alteracao = $obj->getDataAlteracao();
         $entity->usuario_alteracao = $obj->getUsuarioAlteracao()->getId();
+        $entity->usuario_cadastro = $obj->getUsuarioCadastro()->getId();
+        $entity->status = 1;
 
+        if(!is_null($obj->getAnimal()->getId())){
+            $entity->animal_id = $obj->getAnimal()->getId();
+        }
+        if(!is_null($obj->getFuncionario()->getId())){
+            $entity->funcionario_id = $obj->getFuncionario()->getId();
+        }
         if (!is_null($obj->getQuantidadeMg())){
             $entity->quantidade_mg = $obj->getQuantidadeMg();
         }
@@ -64,7 +72,7 @@ class DoseDAO implements IDAO
 
         try{
             if($entity->save()){
-                return $entity->id;
+                return $entity->getKey();
             }
         }catch (Exception $e) {
             throw new Exception("Erro ao alterar uma dose. Mensagem: " . $e->getMessage());

@@ -30,9 +30,15 @@ class AnimalController implements IController
             if ($valida === true) {
                 $animal->setNome($data->nome);
                 $animal->setSexo($data->sexo);
-                $animal->setCodigoBrinco($data->codigo_brinco);
+                if($data->codigo_brinco) {
+                    $animal->setCodigoBrinco($data->codigo_brinco);
+                }else{
+                    $animal->setCodigoBrinco("não informado");
+                }
                 if ($data->codigo_raca != null) {
                     $animal->setCodigoRaca($data->codigo_raca);
+                }else{
+                    $animal->setCodigoRaca("não informado");
                 }
                 $animal->setDataNascimento($data->data_nascimento);
                 $animal->setFaseDaVida($data->fase_vida);
@@ -57,12 +63,13 @@ class AnimalController implements IController
                 $animal->getPesagem()->setDataPesagem($data->pesagens->data_pesagem);
                 $animal->getHemograma()->setPpt($data->hemogramas->ppt);
                 $animal->getHemograma()->setHematocrito($data->hemogramas->hematocrito);
+                $animal->getHemograma()->getFuncionario()->setId($data->hemogramas->funcionario_id);
                 $animal->getHemograma()->setData($data->hemogramas->data);
                 if ($animal->cadastrar()) {
                     return View::renderMessage(
                         $response,
                         "success",
-                        "Animal cadastrado com sucesso! ID cadastrado: ",
+                        "Animal cadastrado com sucesso!",
                         201,
                         "Sucesso ao cadastrar",
                         $animal->getId()
@@ -132,6 +139,9 @@ class AnimalController implements IController
                 if($request->getQueryParam('contagemDoente') == 'true'){
                     $animal->setContagemDoentes(true);
                 }
+                if($request->getQueryParam('contagemMortos') == 'true') {
+                    $animal->setContagemMortos(true);
+                }
                 if($request->getQueryParam('lotes_id')){
                     $animal->getLote()->setId($request->getQueryParam('lotes_id'));
                 }
@@ -156,16 +166,48 @@ class AnimalController implements IController
     {
         $animal = new Animal();
         $data = json_decode($request->getBody()->getContents());
-        $valida = (new AnimalValidate())->validatePost((array)$data);
+        $valida = (new AnimalValidate())->validatePut((array)$data);
+        $animal->setId($request->getAttribute('id'));
+        if ($data->is_vivo == false) {
+            $animal->setVivo($data->is_vivo);
+            if($animal->alterar()) {
+                return View::renderMessage(
+                    $response,
+                    "success",
+                    "Morte registrada com sucesso! ",
+                    203,
+                    "Sucesso ao cadastrar morte"
+                );
+            }
+            return View::renderMessage(
+                $response,
+                "error",
+                "Erro ao registrar morte!",
+                500,
+                "Erro ao cadastrar morte"
+            );
+        }
         if ($valida === true) {
             $animal->setId($request->getAttribute('id'));
-            $animal->setNome($data->nome);
-            $animal->setSexo($data->sexo);
-            $animal->setCodigoBrinco($data->codigo_brinco);
-            $animal->setCodigoRaca($data->codigo_raca);
-            $animal->setDataNascimento($data->data_nascimento);
-            $animal->getLote()->setId($data->lotes_id);
-            if($data->doencas) {
+            if (!is_null($data->nome)) {
+                $animal->setNome($data->nome);
+            }
+            if (!is_null($data->sexo)) {
+                $animal->setSexo($data->sexo);
+            }
+            if (!is_null($data->codigo_brinco)) {
+                $animal->setCodigoBrinco($data->codigo_brinco);
+            }
+            if (!is_null($data->codigo_raca)) {
+                $animal->setCodigoRaca($data->codigo_raca);
+            }
+            if (!is_null($data->data_nascimento)) {
+                $animal->setDataNascimento($data->data_nascimento);
+            }
+            if (!is_null($data->lotes_id)) {
+                $animal->getLote()->setId($data->lotes_id);
+            }
+            if (!is_null($data->doencas)) {
                 foreach ($data->doencas as $doenca) {
                     $animal->adicionarDoenca($doenca->id, $doenca->situacao);
                 }
@@ -178,20 +220,41 @@ class AnimalController implements IController
                 $animal->setMae(new Animal());
                 $animal->getMae()->setId($data->mae->id);
             }
-            $animal->getFazenda()->setId($data->fazendas_id);
-            $animal->setFaseDaVida($data->fase_vida);
-            $animal->setPrimogenito($data->is_primogenito);
-            $animal->setVivo($data->is_vivo);
-            $animal->getPesagem()->setPeso($data->pesagens->peso);
-            $animal->getPesagem()->setDataPesagem($data->pesagens->data);
-            $animal->getHemograma()->setPpt($data->hemogramas->ppt);
-            $animal->getHemograma()->setHematocrito($data->hemogramas->hematocrito);
-            $animal->getHemograma()->setData($data->hemogramas->data);
+            if (!is_null($data->fazendas_id)) {
+                $animal->getFazenda()->setId($data->fazendas_id);
+            }
+            if (!is_null($data->fase_vida)) {
+                $animal->setFaseDaVida($data->fase_vida);
+            }
+            if (!is_null($data->is_primogenito)) {
+                $animal->setPrimogenito($data->is_primogenito);
+            }
+            if (!is_null($data->is_vivo)) {
+                $animal->setVivo($data->is_vivo);
+            }
+            if (!is_null($data->pesagens->peso)) {
+                $animal->getPesagem()->setPeso($data->pesagens->peso);
+            }
+            if (!is_null($data->pesagens->data)) {
+                $animal->getPesagem()->setDataPesagem($data->pesagens->data);
+            }
+            if (!is_null($data->hemogramas->ppt)) {
+                $animal->getHemograma()->setPpt($data->hemogramas->ppt);
+            }
+            if (!is_null($data->hemogramas->hematocrito)) {
+                $animal->getHemograma()->setHematocrito($data->hemogramas->hematocrito);
+            }
+            if (!is_null($data->hemogramas->data)) {
+                $animal->getHemograma()->setData($data->hemogramas->data);
+            }
+            if(!is_null($data->hemogramas->funcionario_id)){
+                $animal->getHemograma()->getFuncionario()->setId($data->hemogramas->funcionario_id);
+            }
             if($animal->alterar()) {
                 return View::renderMessage(
                     $response,
                     "success",
-                    "Animal alterado com sucesso! ID cadastrado: ",
+                    "Animal alterado com sucesso! ",
                     201,
                     "Sucesso ao cadastrar"
                 );

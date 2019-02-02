@@ -84,6 +84,8 @@ class Animal extends Modelo
 
     private $contagemDoentes;
 
+    private $contagemMortos;
+
     /**
      * Animal constructor.
      * @throws Exception
@@ -170,6 +172,9 @@ class Animal extends Modelo
         }
         if($this->contagemDoentes){
             return $dao->retreaveQtdAnimaisDoentes();
+        }
+        if($this->contagemMortos){
+            return $dao->retreaveQtdAnimaisMortos();
         }
         return $dao->retreaveAll($page);
     }
@@ -322,7 +327,7 @@ class Animal extends Modelo
     /**
      * @return string
      */
-    public function getSexo(): string
+    public function getSexo(): ?string
     {
         return $this->sexo;
     }
@@ -354,7 +359,7 @@ class Animal extends Modelo
     /**
      * @return string
      */
-    public function getFaseDaVida(): string
+    public function getFaseDaVida(): ?string
     {
         return $this->faseDaVida;
     }
@@ -370,7 +375,7 @@ class Animal extends Modelo
     /**
      * @return string
      */
-    public function getDataNascimento(): string
+    public function getDataNascimento(): ?string
     {
         return $this->dataNascimento;
     }
@@ -386,7 +391,7 @@ class Animal extends Modelo
     /**
      * @return string
      */
-    public function getCodigoBrinco(): string
+    public function getCodigoBrinco(): ?string
     {
         return $this->codigoBrinco;
     }
@@ -402,7 +407,7 @@ class Animal extends Modelo
     /**
      * @return string
      */
-    public function getCodigoRaca(): string
+    public function getCodigoRaca(): ?string
     {
         return $this->codigoRaca;
     }
@@ -514,7 +519,7 @@ class Animal extends Modelo
     /**
      * @return bool
      */
-    public function getPrimogenito(): bool
+    public function getPrimogenito(): ?bool
     {
         return $this->primogenito;
     }
@@ -530,7 +535,7 @@ class Animal extends Modelo
     /**
      * @return Fazenda
      */
-    public function getFazenda(): Fazenda
+    public function getFazenda(): ?Fazenda
     {
         return $this->fazenda;
     }
@@ -589,6 +594,22 @@ class Animal extends Modelo
     public function setContagemDoentes($contagemDoentes)
     {
         $this->contagemDoentes = $contagemDoentes;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getContagemMortos()
+    {
+        return $this->contagemMortos;
+    }
+
+    /**
+     * @param mixed $contagemMortos
+     */
+    public function setContagemMortos($contagemMortos)
+    {
+        $this->contagemMortos = $contagemMortos;
     }
 
 

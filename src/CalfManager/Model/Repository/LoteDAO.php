@@ -13,6 +13,7 @@ use Exception;
 use CalfManager\Model\Lote;
 use CalfManager\Model\Repository\Entity\LoteEntity;
 use CalfManager\Utils\Config;
+use Illuminate\Support\Facades\DB;
 
 /**
  * Class LoteDAO
@@ -156,6 +157,24 @@ class LoteDAO implements IDAO
         }
         catch (Exception $e){
             throw new Exception("Erro ao contar lotes " .$e->getMessage());
+        }
+    }
+
+    public function retreaveQtdAnimaisPorLote($page){
+        try{
+            $entity = DB::select('select * from lotes');
+//            $entity = DB::statement('select lotes.codigo, count(*) from lotes join animais where animais.lotes_id = lotes.id and animais.is_vivo = 1 group by lotes.codigo'));
+//            $entity = LoteEntity::ativo()->with('animais')->paginate
+//            (
+//                Config::QUANTIDADE_ITENS_POR_PAGINA,
+//                ['*'],
+//                'pagina',
+//                $page
+//            )->count();
+            return ['lotes' => $entity];
+        }
+        catch (Exception $e){
+            throw new Exception("Erro ao contar os animais por lote ".$e);
         }
     }
     /**
