@@ -97,6 +97,8 @@ class Animal extends Modelo
         $this->doencas = new ArrayObject();
         $this->hemograma = new Hemograma($this);
         $this->fazenda = new Fazenda();
+        $this->usuarioCadastro = new Usuario();
+        $this->usuarioAlteracao = new Usuario();
     }
 
     /**
@@ -107,11 +109,10 @@ class Animal extends Modelo
     {
         $this->dataAlteracao = date(Config::PADRAO_DATA_HORA);
         $this->dataCriacao = date(Config::PADRAO_DATA_HORA);
-        $this->usuarioCadastro = new Usuario();
-        $this->usuarioAlteracao = new Usuario();
-        //        $this->usuarioAlteracao = "Lucas";// vai pegar do token dps de implementar o login;
-        $this->usuarioCadastro->setId(1);
-        //        $array = (new ClassToArray())->classToArray($this);
+        if($this->getUsuarioCadastro()->getId() == null){
+            $this->getUsuarioCadastro()->setId(1);
+        }
+
         if (empty($this->vivo)) {
             $this->vivo = true;
         }
@@ -134,9 +135,11 @@ class Animal extends Modelo
     public function alterar(): bool
     {
         try {
+            if($this->getUsuarioAlteracao()->getId() == null){
+                $this->getUsuarioAlteracao()->setId(1);
+            }
+
             $this->dataAlteracao = date(Config::PADRAO_DATA_HORA);
-            $this->usuarioAlteracao = new Usuario();
-            $this->usuarioAlteracao->setId(1);
             if ($this->primogenito == 1) {
                 $this->faseDaVida = FaseDaVida::ADULTO;
             }
@@ -206,6 +209,7 @@ class Animal extends Modelo
             $doenca = new Doenca();
             $doenca->setId($doencaId);
             $doenca->setSituacao($situacao);
+            $doenca->getUsuarioCadastro()->setId($this->getUsuarioCadastro()->getId());
             if ($animalId != null) {
                 $doenca->getAnimal()->setId($animalId);
             }
@@ -287,6 +291,7 @@ class Animal extends Modelo
     {
         try {
             $this->getHemograma()->cadastrar();
+
         } catch (Exception $e) {
             throw new Exception('Erro ao cadastrar hemograma:'.$e->getMessage());
         }

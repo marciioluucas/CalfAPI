@@ -38,9 +38,12 @@ class Dose extends Modelo
 
         $this->dataCriacao = date(Config::PADRAO_DATA_HORA);
         $this->data = date(Config::PADRAO_DATA);
-        $this->usuarioCadastro = new Usuario();
-        $this->usuarioCadastro->setId(1);
+
         try{
+            if($this->getUsuarioCadastro()->getId() == null){
+                $this->getUsuarioCadastro()->setId(1);
+            }
+
             return (new DoseDAO())->create($this);
         }catch (Exception $e){
             throw new Exception($e->getMessage());
@@ -51,11 +54,12 @@ class Dose extends Modelo
     {
         $this->dataAlteracao = date(Config::PADRAO_DATA_HORA);
         $this->data = date(Config::PADRAO_DATA);
-        $this->usuarioCadastro = new Usuario();
-        $this->usuarioCadastro->setId(1);
-        $this->usuarioAlteracao = new Usuario();
-        $this->usuarioAlteracao->setId(1);
+
          try{
+             if($this->getUsuarioAlteracao()->getId() == null){
+                 $this->getUsuarioAlteracao()->setId(1);
+             }
+
              return (new DoseDAO())->update($this);
          }catch (Exception $e){
              throw new Exception($e->getMessage());

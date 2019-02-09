@@ -37,6 +37,8 @@ class PermissaoController implements IController
 
                 $permissao->getGrupo()->setId($data->grupo_id);
 
+                $permissao->getUsuarioCadastro()->setId($data->usuario_cadastro);
+
                 if ($permissao->cadastrar()) {
                     return View::renderMessage(
                         $response,
@@ -127,6 +129,7 @@ class PermissaoController implements IController
                 if($data->grupo_id){
                     $permissao->getGrupo()->setId($data->grupo_id);
                 }
+                $permissao->getUsuarioAlteracao()->setId($data->usuario_cadastro);
                 if ($permissao->alterar()) {
                     return View::renderMessage(
                         $response,

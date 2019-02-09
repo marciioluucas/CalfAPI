@@ -31,6 +31,8 @@ class FazendaController implements IController
             $valida = (new FazendaValidate())->validatePost((array) $data);
             if ($valida === true) {
                 $fazenda->setNome($data->nome);
+
+                $fazenda->getUsuarioCadastro()->setId($data->usuario_cadastro);
                 if ($fazenda->cadastrar()) {
                     return View::renderMessage(
                         $response,
@@ -103,6 +105,8 @@ class FazendaController implements IController
                 if (isset($data->limite)) {
                     $fazenda->setLimite($data->limite);
                 }
+
+                $fazenda->getUsuarioAlteracao()->setId($data->usuario_cadastro);
                 if ($fazenda->alterar()) {
                     return View::renderMessage(
                         $response,

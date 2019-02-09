@@ -29,6 +29,8 @@ class FuncionarioController implements IController
                 $funcionario->getCargo()->setId($data->cargo_id);
                 $funcionario->getFazenda()->setId($data->fazenda_id);
                 $funcionario->getPessoa()->setId($data->pessoa_id);
+
+                $funcionario->getUsuarioCadastro()->setId($data->usuario_cadastro);
                 if($funcionario->cadastrar()){
                     return View::renderMessage(
                         $response,
@@ -109,6 +111,8 @@ class FuncionarioController implements IController
                 if(!is_null($data->pessoa_id)){
                     $funcionario->getPessoa()->setId($data->pessoa_id);
                 }
+
+                $funcionario->getUsuarioAlteracao()->setId($data->usuario_cadastro);
                 if($funcionario->alterar()){
                     return View::renderMessage(
                         $response,

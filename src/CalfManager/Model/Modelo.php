@@ -116,6 +116,9 @@ abstract class Modelo
      */
     public function getUsuarioCadastro(): Usuario
     {
+        if($this->usuarioCadastro == null) {
+           return $this->usuarioCadastro = new Usuario();
+        }
         return $this->usuarioCadastro;
     }
 
@@ -132,6 +135,9 @@ abstract class Modelo
      */
     public function getUsuarioAlteracao(): Usuario
     {
+        if($this->usuarioAlteracao == null){
+            return $this->usuarioAlteracao = new Usuario();
+        }
         return $this->usuarioAlteracao;
     }
 

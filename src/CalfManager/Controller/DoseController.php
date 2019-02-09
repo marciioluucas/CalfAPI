@@ -29,6 +29,8 @@ class DoseController implements IController
                 $dose->getFuncionario()->setId($data->funcionario_id);
                 $dose->getMedicamento()->setId($data->medicamento_id);
                 $dose->getAnimal()->setId($data->animal_id);
+
+                $dose->getUsuarioCadastro()->setId($data->usuario_cadastro);
                 if ($dose->cadastrar()) {
                     return View::renderMessage(
                         $response,
@@ -100,6 +102,8 @@ class DoseController implements IController
                 if (!is_null($data->funcionario_id)){
                     $dose->getFuncionario()->setId($data->funcionario_id);
                 }
+
+                $dose->getUsuarioAlteracao()->setId($data->usuario_cadastro);
                 if ($dose->alterar()) {
                     return View::renderMessage(
                         $response,

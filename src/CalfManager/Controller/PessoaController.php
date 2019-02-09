@@ -33,6 +33,7 @@ class PessoaController implements IController
                 $pessoa->setDataNascimento($data->data_nascimento);
                 $pessoa->getEndereco()->setId($data->endereco_id);
 
+                $pessoa->getUsuarioCadastro()->setId($data->usuario_cadastro);
                 if($id = $pessoa->cadastrar()){
                     return View::renderMessage(
                         $response,
@@ -111,6 +112,7 @@ class PessoaController implements IController
                     $pessoa->getEndereco()->setId($data->endereco_id);
                 }
 
+                $pessoa->getUsuarioAlteracao()->setId($data->usuario_cadastro);
                 if($id = $pessoa->alterar()){
                     return View::renderMessage(
                         $response,

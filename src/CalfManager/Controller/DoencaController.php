@@ -35,6 +35,8 @@ class DoencaController implements IController
                     }
                     $doenca->setNome($data->nome);
                     $doenca->setDescricao($data->descricao);
+                    $doenca->getUsuarioCadastro()->setId($data->usuario_cadastro);
+
                     if ($id = $doenca->cadastrar()) {
                         return View::renderMessage(
                             $response,
@@ -132,6 +134,8 @@ class DoencaController implements IController
                 if (isset($data->descricao)) {
                     $doenca->setDescricao($data->descricao);
                 }
+                $doenca->getUsuarioAlteracao()->setId($data->usuario_cadastro);
+
                 if ($doenca->alterar()) {
                     return View::renderMessage(
                         $response,

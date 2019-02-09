@@ -65,6 +65,11 @@ class AnimalController implements IController
                 $animal->getHemograma()->setHematocrito($data->hemogramas->hematocrito);
                 $animal->getHemograma()->getFuncionario()->setId($data->hemogramas->funcionario_id);
                 $animal->getHemograma()->setData($data->hemogramas->data);
+
+//                Adicionando id de usuario logado
+                $animal->getHemograma()->getUsuarioCadastro()->setId($data->usuario_cadastro);
+                $animal->getPesagem()->getUsuarioCadastro()->setId($data->usuario_cadastro);
+                $animal->getUsuarioCadastro()->setId($data->usuario_cadastro);
                 if ($animal->cadastrar()) {
                     return View::renderMessage(
                         $response,
@@ -250,6 +255,10 @@ class AnimalController implements IController
             if(!is_null($data->hemogramas->funcionario_id)){
                 $animal->getHemograma()->getFuncionario()->setId($data->hemogramas->funcionario_id);
             }
+//            Adicionando id de usuário logado
+            $animal->getHemograma()->getUsuarioAlteracao()->setId($data->usuario_cadastro);
+            $animal->getPesagem()->getUsuarioAlteracao()->setId($data->usuario_cadastro);
+            $animal->getUsuarioAlteracao()->setId($data->usuario_cadastro);
             if($animal->alterar()) {
                 return View::renderMessage(
                     $response,

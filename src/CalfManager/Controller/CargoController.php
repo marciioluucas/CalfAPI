@@ -34,6 +34,7 @@ class CargoController implements IController
             if($valida === true){
                 $cargo->setNome($data->nome);
                 $cargo->setDescricao($data->descricao);
+                $cargo->getUsuarioCadastro()->setId($data->usuario_cadastro);
 
                 if($cargo->cadastrar()){
                     return View::renderMessage(
@@ -115,6 +116,7 @@ class CargoController implements IController
                 if(!is_null($data->descricao)){
                     $cargo->setDescricao($data->descricao);
                 }
+                $cargo->getUsuarioAlteracao()->setId($data->usuario_cadastro);
                 if($cargo->alterar()){
                     return View::renderMessage(
                         $response,

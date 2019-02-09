@@ -37,9 +37,11 @@ class Funcionario extends Modelo
     {
         $this->dataCriacao = date(Config::PADRAO_DATA_HORA);
 
-        $this->usuarioCadastro = new Usuario();
-        $this->usuarioCadastro->setId(1);
         try{
+            if($this->getUsuarioCadastro()->getId() == null){
+                $this->getUsuarioCadastro()->setId(1);
+            }
+
             $idFuncionario = (new FuncionarioDAO())->create($this);
             return $idFuncionario;
         }catch (Exception $e){
@@ -52,9 +54,11 @@ class Funcionario extends Modelo
     {
         $this->dataAlteracao = date(Config::PADRAO_DATA_HORA);
 
-        $this->usuarioAlteracao = new Usuario();
-        $this->usuarioAlteracao->setId(1);
         try{
+            if($this->getUsuarioAlteracao()->getId() == null){
+                $this->getUsuarioAlteracao()->setId(1);
+            }
+
             return (new FuncionarioDAO())->update($this);
         }catch (Exception $e){
             throw new Exception($e->getMessage());

@@ -35,10 +35,12 @@ class LoteController implements IController
             $valida = (new LoteValidate())->validatePost((array)$data);
             if ($valida === true) {
                 $lote->setCodigo($data->codigo);
-                $lote->getFazenda()->setId($data->fazenda->id);
+                $lote->getFazenda()->setId($data->fazenda_id);
                 if (isset($data->descricao)) {
                     $lote->setDescricao($data->descricao);
                 }
+
+                $lote->getUsuarioCadastro()->setId($data->usuario_cadastro);
                 if ($lote->cadastrar()) {
                     return View::renderMessage(
                         $response,
@@ -112,12 +114,15 @@ class LoteController implements IController
                 if (isset($data->codigo)) {
                     $lote->setCodigo($data->codigo);
                 }
-                if (isset($data->fazenda->id)){
-                    $lote->getFazenda()->setId($data->fazenda->id);
+                if (isset($data->fazenda_id)){
+                    $lote->getFazenda()->setId($data->fazenda_id);
                 }
                 if (isset($data->descricao)) {
                     $lote->setDescricao($data->descricao);
                 }
+
+
+                $lote->getUsuarioAlteracao()->setId($data->usuario_cadastro);
                 if ($lote->alterar()) {
                     return View::renderMessage(
                         $response,

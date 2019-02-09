@@ -40,6 +40,7 @@ class HemogramaController implements IController
                 $hemograma->getAnimal()->setId($data->animal_id);
                 $hemograma->getFuncionario()->setId($data->funcionario_id);
 
+                $hemograma->getUsuarioCadastro()->setId($data->usuario_cadastro);
                 if($hemograma->cadastrar()) {
                     return View::renderMessage(
                         $response,
@@ -122,6 +123,8 @@ class HemogramaController implements IController
                 if(!is_null($data->funcionario_id)){
                     $hemograma->getFuncionario()->setId($data->funcionario_id);
                 }
+
+                $hemograma->getUsuarioAlteracao()->setId($data->usuario_cadastro);
                 if($hemograma->alterar()) {
                     return View::renderMessage(
                         $response,

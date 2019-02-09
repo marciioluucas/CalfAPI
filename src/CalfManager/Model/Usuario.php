@@ -33,8 +33,12 @@ class Usuario extends Modelo
 
     public function __construct()
     {
-        $this->grupo = new Grupo();
-        $this->funcionario = new Funcionario();
+        if($this->grupo == null) {
+            $this->grupo = new Grupo();
+        }
+        if($this->funcionario == null) {
+            $this->funcionario = new Funcionario();
+        }
     }
 
     public function login(){
@@ -61,11 +65,12 @@ class Usuario extends Modelo
      */
     public function cadastrar(): ?int
     {
-        $this->dataCriacao = date(Config::PADRAO_DATA_HORA);
-
-        $this->usuarioCadastro = new Usuario();
-        $this->usuarioCadastro->setId(1);
         try{
+            $this->dataCriacao = date(Config::PADRAO_DATA_HORA);
+            if($this->getUsuarioCadastro()->getId() == null){
+                $this->getUsuarioCadastro()->setId(1);
+            }
+
             $idUsuario = (new UsuarioDAO())->create($this);
             return $idUsuario;
         }catch (Exception $e){
@@ -79,11 +84,11 @@ class Usuario extends Modelo
      */
     public function alterar(): bool
     {
-        $this->dataAlteracao = date(Config::PADRAO_DATA_HORA);
-
-        $this->usuarioAlteracao = new Usuario();
-        $this->usuarioAlteracao->setId(1);
         try{
+            $this->dataAlteracao = date(Config::PADRAO_DATA_HORA);
+            if($this->getUsuarioAlteracao()->getId() == null){
+                $this->getUsuarioAlteracao()->setId(1);
+            }
             return (new UsuarioDAO())->update($this);
         }catch (Exception $e){
             throw new Exception($e->getMessage());

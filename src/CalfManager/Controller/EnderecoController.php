@@ -38,6 +38,8 @@ class EnderecoController implements IController
                $endereco->setPais($data->pais);
                $endereco->setCep($data->cep);
 
+//               Adicionando id de usuário logado
+               $endereco->getUsuarioCadastro()->setId($data->usuario_cadastro);
                if($id = $endereco->cadastrar()) {
                    return View::renderMessage(
                        $response,
@@ -129,6 +131,8 @@ class EnderecoController implements IController
                 if(!is_null($data->cep)) {
                     $endereco->setCep($data->cep);
                 }
+
+                $endereco->getUsuarioAlteracao()->setId($data->usuario_cadastro);
                 if($endereco->alterar()) {
                     return View::renderMessage(
                         $response,

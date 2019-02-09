@@ -48,11 +48,9 @@ class DoseDAO implements IDAO
      */
     public function update($obj): bool
     {
-        $entity = new DoseEntity();
+        $entity = DoseEntity::find($obj->getId());
         $entity->data_alteracao = $obj->getDataAlteracao();
         $entity->usuario_alteracao = $obj->getUsuarioAlteracao()->getId();
-        $entity->usuario_cadastro = $obj->getUsuarioCadastro()->getId();
-        $entity->status = 1;
 
         if(!is_null($obj->getAnimal()->getId())){
             $entity->animal_id = $obj->getAnimal()->getId();

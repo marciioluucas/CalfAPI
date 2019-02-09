@@ -37,9 +37,12 @@ class Hemograma extends Exame
     public function cadastrar(): ?int
     {
         $this->dataCriacao = date(Config::PADRAO_DATA_HORA);
-        $this->usuarioCadastro = new Usuario();
-        $this->usuarioCadastro->setId(1);
+
         try {
+            if($this->getUsuarioCadastro()->getId() == null){
+                $this->getUsuarioCadastro()->setId(1);
+            }
+
             $id = (new HemogramaDAO())->create($this);
             return $id;
         } catch (Exception $e) {
@@ -50,9 +53,12 @@ class Hemograma extends Exame
     public function alterar(): bool
     {
         $this->dataAlteracao = date(Config::PADRAO_DATA_HORA);
-        $this->usuarioAlteracao = new Usuario();
-        $this->usuarioAlteracao->setId(1);
+
         try {
+            if($this->getUsuarioAlteracao()->getId() == null){
+                $this->getUsuarioAlteracao()->setId(1);
+            }
+
             return (new HemogramaDAO())->update($this);
         } catch (Exception $e) {
             throw new Exception($e->getMessage());

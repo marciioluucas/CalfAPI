@@ -27,6 +27,8 @@ class MedicamentoController implements IController
             if ($valida === true) {
                 $medicamento->setNome($data->nome);
                 $medicamento->setPrescricao($data->prescricao);
+
+                $medicamento->getUsuarioCadastro()->setId($data->usuario_cadastro);
                 if($medicamento->cadastrar()) {
                     return View::renderMessage(
                         $response,
@@ -80,6 +82,8 @@ class MedicamentoController implements IController
                 $medicamento->setId($request->getAttribute('id'));
                 $medicamento->setNome($data->nome);
                 $medicamento->setPrescricao($data->prescricao);
+
+                $medicamento->getUsuarioAlteracao()->setId($data->usuario_cadastro);
                 if($medicamento->alterar()) {
                     return View::renderMessage(
                         $response,

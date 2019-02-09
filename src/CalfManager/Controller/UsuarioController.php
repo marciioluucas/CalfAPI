@@ -44,6 +44,7 @@ class UsuarioController implements IController
                     $usuario->getGrupo()->setId($data->grupo_id);
                     $usuario->getFuncionario()->setId($data->funcionario_id);
 
+                    $usuario->getUsuarioCadastro()->setId($data->usuario_cadastro);
                     if ($usuario->cadastrar()) {
                         return View::renderMessage(
                             $response,
@@ -60,7 +61,6 @@ class UsuarioController implements IController
                             500,
                             "Erro ao cadastrar"
                         );
-
                     }
                 }
                 else {
@@ -141,6 +141,8 @@ class UsuarioController implements IController
                     if (!is_null($data->funcionario_id)) {
                         $usuario->getFuncionario()->setId($data->funcionario_id);
                     }
+
+                    $usuario->getUsuarioAlteracao()->setId($data->usuario_cadastro);
                     if ($usuario->alterar()) {
                         return View::renderMessage(
                             $response,

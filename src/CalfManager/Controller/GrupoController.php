@@ -32,6 +32,8 @@ class GrupoController implements IController
             if ($valida === true) {
                 $grupo->setNome($data->nome);
                 $grupo->setDescricao($data->descricao);
+
+                $grupo->getUsuarioCadastro()->setId($data->usuario_cadastro);
                 if($grupo->cadastrar()) {
                     return View::renderMessage(
                         $response,
@@ -105,6 +107,7 @@ class GrupoController implements IController
                     $grupo->setDescricao($data->descricao);
                 }
 
+                $grupo->getUsuarioAlteracao()->setId($data->usuario_cadastro);
                 if($grupo->alterar()) {
                     return View::renderMessage(
                         $response,

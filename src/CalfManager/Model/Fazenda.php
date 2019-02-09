@@ -43,9 +43,12 @@ class Fazenda extends Modelo
     {
         $this->dataCriacao = date(Config::PADRAO_DATA_HORA);
         $this->dataAlteracao = date(Config::PADRAO_DATA_HORA);
-        $this->usuarioCadastro = new Usuario();
-        $this->usuarioCadastro->setId(1);
+
         try {
+            if($this->getUsuarioCadastro()->getId() == null){
+                $this->getUsuarioCadastro()->setId(1);
+            }
+
             return (new FazendaDAO())->create($this);
         } catch (Exception $e) {
             throw new Exception($e->getMessage());
@@ -58,10 +61,12 @@ class Fazenda extends Modelo
      */
     public function alterar(): bool
     {
-        $this->usuarioAlteracao = new Usuario();
-        $this->usuarioAlteracao->setId(1);
         $this->dataAlteracao = date(Config::PADRAO_DATA_HORA);
         try {
+            if($this->getUsuarioAlteracao()->getId() == null){
+                $this->getUsuarioAlteracao()->setId(1);
+            }
+
             return (new FazendaDAO())->update($this);
         } catch (Exception $e) {
             throw new Exception($e->getMessage());
