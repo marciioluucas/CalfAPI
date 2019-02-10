@@ -166,15 +166,15 @@ class LoteDAO implements IDAO
      * Passando o loteId como parametro, consultara na tabela de Animais todos os animais que tenha este id no lote_id
      * e apos isso, ira contar.
      * @param int $loteId
-     * @param bool $considerarVivos
+     * @param bool $considerarMortos
      * @return array
      * @throws Exception
      */
-    public function retreaveQtdAnimaisPorLote($loteId, $considerarVivos = true)
+    public function retreaveQtdAnimaisPorLote($loteId, $considerarMortos = false)
     {
         try {
             $entity = AnimalEntity::ativo();
-            if ($considerarVivos) $entity = $entity->vivo();
+            if (!$considerarMortos) $entity = $entity->vivo();
 
             return ['lotes_amount' => $entity->where('lotes_id', $loteId)->get()->count()];
         } catch (Exception $e) {
