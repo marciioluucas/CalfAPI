@@ -91,8 +91,21 @@ class LoteController implements IController
             }
             if ($request->getQueryParam('contagemAnimais') == 'true') {
                 $lote->setContagemAnimais(true);
+
+                /*
+                    Aqui eu atribuo uma variavel o valor do attribute ID, se caso nao passar o
+                    attribute ex: /lote/13233 ele tenta procurar no query param
+                    ex: /lote?id=13233 mas se caso nao conseguir assim tambem, lança a excessao
+                */
+                $id = null;
+                if ($request->getAttribute('id')) $id = $request->getAttribute('id');
+                if ($id == null && $request->getQueryParam('id')) $id = $request->getQueryParam('id');
+
+                if ($id == null) throw new Exception('O parametro ID nao esta definido nem na URL nem nos parametros da mesma');
+
+                $lote->setId($id);
             }
-                return View::render($response, $lote->pesquisar($page));
+            return View::render($response, $lote->pesquisar($page));
         } catch (Exception $exception) {
             return View::renderException($response, $exception);
         }
@@ -114,7 +127,7 @@ class LoteController implements IController
                 if (isset($data->codigo)) {
                     $lote->setCodigo($data->codigo);
                 }
-                if (isset($data->fazenda_id)){
+                if (isset($data->fazenda_id)) {
                     $lote->getFazenda()->setId($data->fazenda_id);
                 }
                 if (isset($data->descricao)) {

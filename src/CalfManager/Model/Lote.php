@@ -33,6 +33,7 @@ class Lote extends Modelo
     private $contagem;
 
     private $contagemAnimais;
+
     /**
      * Lote constructor.
      */
@@ -50,7 +51,7 @@ class Lote extends Modelo
         $this->dataCriacao = date(Config::PADRAO_DATA_HORA);
 
         try {
-            if($this->getUsuarioCadastro()->getId() == null){
+            if ($this->getUsuarioCadastro()->getId() == null) {
                 $this->getUsuarioCadastro()->setId(1);
             }
 
@@ -69,7 +70,7 @@ class Lote extends Modelo
         $this->dataAlteracao = date(Config::PADRAO_DATA_HORA);
 
         try {
-            if($this->getUsuarioAlteracao()->getId() == null){
+            if ($this->getUsuarioAlteracao()->getId() == null) {
                 $this->getUsuarioAlteracao()->setId(1);
             }
 
@@ -96,11 +97,11 @@ class Lote extends Modelo
             if (!$this->id and !$this->codigo and $this->getFazenda()->getId()) {
                 return (new LoteDAO())->retreaveByIdFazenda($this->getFazenda()->getId(), $page);
             }
-            if ($this->contagem){
+            if ($this->contagem) {
                 return (new LoteDAO())->retreaveQuantidadeLotes();
             }
-            if($this->contagemAnimais){
-                return (new LoteDAO())->retreaveQtdAnimaisPorLote($page);
+            if ($this->contagemAnimais) {
+                return (new LoteDAO())->retreaveQtdAnimaisPorLote($this->id);
             }
             return (new LoteDAO())->retreaveAll($page);
         } catch (Exception $exception) {

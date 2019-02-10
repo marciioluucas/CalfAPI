@@ -57,7 +57,8 @@ class AnimalEntity extends CalfEntity
         return $this->hasMany('CalfManager\Model\Repository\Entity\PesagemEntity', 'animais_id', 'id');
     }
 
-    public function doses(){
+    public function doses()
+    {
         return $this->belongsToMany(
             'CalfManager\Model\Repository\Entity\MedicamentoEntity',
             'doses',
@@ -93,6 +94,11 @@ class AnimalEntity extends CalfEntity
     public function scopeEstaMorto(Builder $query)
     {
         return $query->where('is_vivo', 0);
+    }
+
+    public function scopeVivo(Builder $query)
+    {
+        return $query->where('is_vivo', 1);
     }
 
 

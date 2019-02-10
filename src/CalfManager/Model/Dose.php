@@ -39,13 +39,13 @@ class Dose extends Modelo
         $this->dataCriacao = date(Config::PADRAO_DATA_HORA);
         $this->data = date(Config::PADRAO_DATA);
 
-        try{
-            if($this->getUsuarioCadastro()->getId() == null){
+        try {
+            if ($this->getUsuarioCadastro()->getId() == null) {
                 $this->getUsuarioCadastro()->setId(1);
             }
 
             return (new DoseDAO())->create($this);
-        }catch (Exception $e){
+        } catch (Exception $e) {
             throw new Exception($e->getMessage());
         }
     }
@@ -55,52 +55,53 @@ class Dose extends Modelo
         $this->dataAlteracao = date(Config::PADRAO_DATA_HORA);
         $this->data = date(Config::PADRAO_DATA);
 
-         try{
-             if($this->getUsuarioAlteracao()->getId() == null){
-                 $this->getUsuarioAlteracao()->setId(1);
-             }
+        try {
+            if ($this->getUsuarioAlteracao()->getId() == null) {
+                $this->getUsuarioAlteracao()->setId(1);
+            }
 
-             return (new DoseDAO())->update($this);
-         }catch (Exception $e){
-             throw new Exception($e->getMessage());
-         }
+            return (new DoseDAO())->update($this);
+        } catch (Exception $e) {
+            throw new Exception($e->getMessage());
+        }
     }
 
     public function pesquisar(int $page): array
     {
         $dao = new DoseDAO();
-        try{
-            if($this->id and !$this->getMedicamento()->getId() and !$this->getAnimal()->getId() and !$this->getFuncionario()->getId()){
+        try {
+            if ($this->id and !$this->getMedicamento()->getId() and !$this->getAnimal()->getId() and !$this->getFuncionario()->getId()) {
                 return $dao->retreaveById($this->id);
-            }
-            else if(!$this->id and $this->getMedicamento()->getId() and !$this->getAnimal()->getId() and !$this->getFuncionario()->getId()){
+            } else if (!$this->id and $this->getMedicamento()->getId() and !$this->getAnimal()->getId() and !$this->getFuncionario()->getId()) {
                 return $dao->retreaveByIdMedicamento($this->getMedicamento()->getId(), $page);
-            }
-            else if (!$this->id and !$this->getMedicamento()->getId() and $this->getAnimal()->getId() and !$this->getFuncionario()->getId()){
+            } else if (!$this->id and !$this->getMedicamento()->getId() and $this->getAnimal()->getId() and !$this->getFuncionario()->getId()) {
                 return $dao->retreaveByIdAnimal($this->getAnimal()->getId(), $page);
-            }
-            else if (!$this->id and !$this->getMedicamento()->getId() and !$this->getAnimal()->getId() and $this->getFuncionario()->getId()){
+            } else if (!$this->id and !$this->getMedicamento()->getId() and !$this->getAnimal()->getId() and $this->getFuncionario()->getId()) {
                 return $dao->retreaveByIdFuncionario($this->getFuncionario()->getId(), $page);
             }
             return $dao->retreaveAll($page);
 
-        }catch (Exception $e){
+        } catch (Exception $e) {
             throw new Exception($e->getMessage());
         }
     }
 
     public function deletar(): bool
     {
-         try{
-             return (new DoseDAO())->delete($this->id);
-         }catch (Exception $e){
-             throw new Exception($e->getMessage());
-         }
+        try {
+            return (new DoseDAO())->delete($this->id);
+        } catch (Exception $e) {
+            throw new Exception($e->getMessage());
+        }
     }
-    public function antesDeSalvar(){
+
+    public function antesDeSalvar()
+    {
         $this->cadastrarMedicamento();
     }
-    public function cadastrarMedicamento(){
+
+    public function cadastrarMedicamento()
+    {
         try {
             $this->getMedicamento()->cadastrar();
         } catch (Exception $e) {
@@ -120,7 +121,7 @@ class Dose extends Modelo
      */
     public function setQuantidadeMg($quantidadeMg)
     {
-        $this->quantidadeMg = str_replace(',','.',$quantidadeMg);
+        $this->quantidadeMg = str_replace(',', '.', $quantidadeMg);
     }
 
     /**
