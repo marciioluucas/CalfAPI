@@ -176,7 +176,7 @@ class UsuarioDAO implements IDAO
             }
         }
         catch (Exception $e){
-            throw new Exception("Erro ao pesquisar usuario pelo Login: ".$login. " e Senha: ".$senha. ". Mensagem: ". $e->getMessage());
+            throw new Exception($e->getMessage());
         }
     }
     public function retreaveByFuncionarioId(int $idFuncionario, $page){

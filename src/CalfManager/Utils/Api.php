@@ -192,7 +192,7 @@ class Api
     )
     {
         $class =
-            "\\CalfManager\\controller\\" . ucfirst($classname) . "Controller";
+            "\\CalfManager\\Controller\\" . ucfirst($classname) . "Controller";
         if (!class_exists($class)) {
             throw new Exception("Módulo não cadastrado na API");
         }

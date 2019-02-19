@@ -54,7 +54,7 @@ class Usuario extends Modelo
             }
 
         } catch (Exception $e){
-            throw new Exception("Erro ao efetuar o login");
+            throw new Exception($e->getMessage());
         }
     }
 

@@ -30,7 +30,6 @@ class Database
                 'collation' => 'utf8_unicode_ci',
                 'prefix' => '',
                 'strict' => 'false',
-                'unix_socket'   => '/Applications/MAMP/tmp/mysql/mysql.sock'
             ));
         } catch (PDOException $e) {
             throw new PDOException(
