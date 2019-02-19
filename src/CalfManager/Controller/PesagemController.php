@@ -9,6 +9,7 @@
 namespace CalfManager\Controller;
 
 use CalfManager\Model\Animal;
+use CalfManager\Utils\TokenApp;
 use Exception;
 use Psr\Http\Message\RequestInterface as Request;
 use Psr\Http\Message\ResponseInterface as Response;
@@ -26,40 +27,42 @@ class PesagemController implements IController
      */
     public function post(Request $request, Response $response): Response
     {
-        try {
-            $data = json_decode($request->getBody()->getContents());
-            $pesagem = new Pesagem();
-            $valida = (new PesagemValidate())->validatePost((array) $data);
-            if ($valida === true) {
-                $pesagem->setPeso($data->peso);
-                $pesagem->setAnimal(new Animal());
-                $pesagem->getAnimal()->setId($data->animais_id);
-                $pesagem->setDataPesagem($data->data_pesagem);
+        if(TokenApp::validaToken()) {
+            try {
+                $data = json_decode($request->getBody()->getContents());
+                $pesagem = new Pesagem();
+                $valida = (new PesagemValidate())->validatePost((array)$data);
+                if ($valida === true) {
+                    $pesagem->setPeso($data->peso);
+                    $pesagem->setAnimal(new Animal());
+                    $pesagem->getAnimal()->setId($data->animais_id);
+                    $pesagem->setDataPesagem($data->data_pesagem);
 
-                $pesagem->getUsuarioCadastro()->setId($data->usuario_cadastro);
+                    $pesagem->getUsuarioCadastro()->setId($data->usuario_cadastro);
 
-                if ($pesagem->cadastrar()) {
-                    return View::renderMessage(
-                        $response,
-                        "success",
-                        "Pesagem cadastrada com sucesso! ",
-                        201,
-                        "Sucesso ao cadastrar"
-                    );
+                    if ($pesagem->cadastrar()) {
+                        return View::renderMessage(
+                            $response,
+                            "success",
+                            "Pesagem cadastrada com sucesso! ",
+                            201,
+                            "Sucesso ao cadastrar"
+                        );
+                    } else {
+                        return View::renderMessage(
+                            $response,
+                            "error",
+                            "Erro ao cadastrar pesagem!",
+                            500,
+                            "Erro ao cadastrar"
+                        );
+                    }
                 } else {
-                    return View::renderMessage(
-                        $response,
-                        "error",
-                        "Erro ao cadastrar pesagem!",
-                        500,
-                        "Erro ao cadastrar"
-                    );
+                    return View::renderMessage($response, 'warning', $valida, 400);
                 }
-            } else {
-                return View::renderMessage($response, 'warning', $valida, 400);
+            } catch (Exception $e) {
+                return View::renderException($response, $e);
             }
-        } catch (Exception $e) {
-            return View::renderException($response, $e);
         }
     }
 
@@ -69,19 +72,22 @@ class PesagemController implements IController
      * @param array $args
      * @return Response
      */
-    public function get(Request $request, Response $response, array $args): Response {
-        try {
-            $pesagem = new Pesagem();
-            $page = (int) $request->getQueryParam('pagina');
+    public function get(Request $request, Response $response, array $args): Response
+    {
+        if (TokenApp::validaToken()) {
+            try {
+                $pesagem = new Pesagem();
+                $page = (int)$request->getQueryParam('pagina');
 
-            if ($request->getAttribute('id')) {
-                $pesagem->setId($request->getAttribute('id'));
-            } elseif ($request->getQueryParam('animais_id')) {
-                $pesagem->getAnimal()->setId($request->getQueryParam('animais_id'));
+                if ($request->getAttribute('id')) {
+                    $pesagem->setId($request->getAttribute('id'));
+                } elseif ($request->getQueryParam('animais_id')) {
+                    $pesagem->getAnimal()->setId($request->getQueryParam('animais_id'));
+                }
+                return View::render($response, $pesagem->pesquisar($page));
+            } catch (Exception $exception) {
+                return View::renderException($response, $exception);
             }
-            return View::render($response, $pesagem->pesquisar($page));
-        } catch (Exception $exception) {
-            return View::renderException($response, $exception);
         }
     }
 
@@ -92,45 +98,47 @@ class PesagemController implements IController
      */
     public function put(Request $request, Response $response): Response
     {
-        try {
-            $data = json_decode($request->getBody()->getContents());
-            $pesagem = new Pesagem();
-            $valida = (new PesagemValidate())->validatePost((array) $data);
-            if ($valida) {
-                $pesagem->setId($request->getAttribute('id'));
-                $pesagem->setAnimal(new Animal());
-                if($data->peso) {
-                    $pesagem->setPeso($data->peso);
-                }
-                if($data->animais_id) {
-                    $pesagem->getAnimal()->setId($data->animais_id);
-                }
-                if($data->data_pesagem) {
-                    $pesagem->setDataPesagem($data->data_pesagem);
-                }
-                $pesagem->getUsuarioAlteracao()->setId($data->usuario_cadastro);
-                if ($pesagem->alterar()) {
-                    return View::renderMessage(
-                        $response,
-                        "success",
-                        "Pesagem alterada com sucesso! ",
-                        201,
-                        "Sucesso ao alterar"
-                    );
+        if(TokenApp::validaToken()) {
+            try {
+                $data = json_decode($request->getBody()->getContents());
+                $pesagem = new Pesagem();
+                $valida = (new PesagemValidate())->validatePost((array)$data);
+                if ($valida) {
+                    $pesagem->setId($request->getAttribute('id'));
+                    $pesagem->setAnimal(new Animal());
+                    if ($data->peso) {
+                        $pesagem->setPeso($data->peso);
+                    }
+                    if ($data->animais_id) {
+                        $pesagem->getAnimal()->setId($data->animais_id);
+                    }
+                    if ($data->data_pesagem) {
+                        $pesagem->setDataPesagem($data->data_pesagem);
+                    }
+                    $pesagem->getUsuarioAlteracao()->setId($data->usuario_cadastro);
+                    if ($pesagem->alterar()) {
+                        return View::renderMessage(
+                            $response,
+                            "success",
+                            "Pesagem alterada com sucesso! ",
+                            201,
+                            "Sucesso ao alterar"
+                        );
+                    } else {
+                        return View::renderMessage(
+                            $response,
+                            "error",
+                            "Erro ao alterar pesagem!",
+                            500,
+                            "Erro ao alterar"
+                        );
+                    }
                 } else {
-                    return View::renderMessage(
-                        $response,
-                        "error",
-                        "Erro ao alterar pesagem!",
-                        500,
-                        "Erro ao alterar"
-                    );
+                    return View::renderMessage($response, 'warning', $valida, 400);
                 }
-            } else {
-                return View::renderMessage($response, 'warning', $valida, 400);
+            } catch (Exception $e) {
+                return View::renderException($response, $e);
             }
-        } catch (Exception $e) {
-            return View::renderException($response, $e);
         }
     }
 
@@ -141,30 +149,32 @@ class PesagemController implements IController
      */
     public function delete(Request $request, Response $response): Response
     {
-        try {
-            $pesagem = new Pesagem();
-            if ($request->getAttribute('id')) {
-                $pesagem->setId($request->getAttribute('id'));
-                if ($pesagem->deletar()) {
-                    return View::renderMessage(
-                        $response,
-                        "success",
-                        "Pesagem excluída com sucesso!",
-                        202,
-                        "Sucesso ao excluir"
-                    );
-                }else {
-                    return View::renderMessage(
-                        $response,
-                        "error",
-                        "Erro ao excluir pesagem!",
-                        500,
-                        "Erro ao excluir"
-                    );
+        if(TokenApp::validaToken()) {
+            try {
+                $pesagem = new Pesagem();
+                if ($request->getAttribute('id')) {
+                    $pesagem->setId($request->getAttribute('id'));
+                    if ($pesagem->deletar()) {
+                        return View::renderMessage(
+                            $response,
+                            "success",
+                            "Pesagem excluída com sucesso!",
+                            202,
+                            "Sucesso ao excluir"
+                        );
+                    } else {
+                        return View::renderMessage(
+                            $response,
+                            "error",
+                            "Erro ao excluir pesagem!",
+                            500,
+                            "Erro ao excluir"
+                        );
+                    }
                 }
+            } catch (Exception $exception) {
+                return View::renderException($response, $exception);
             }
-        } catch (Exception $exception) {
-            return View::renderException($response, $exception);
         }
     }
 }

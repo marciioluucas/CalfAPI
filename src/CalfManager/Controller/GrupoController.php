@@ -10,6 +10,7 @@ namespace CalfManager\Controller;
 
 
 use CalfManager\Model\Grupo;
+use CalfManager\Utils\TokenApp;
 use CalfManager\Utils\Validate\GrupoValidate;
 use CalfManager\View\View;
 use Psr\Http\Message\RequestInterface as Request;
@@ -25,41 +26,46 @@ class GrupoController implements IController
      */
     public function post(Request $request, Response $response): Response
     {
-        try {
-            $grupo = new Grupo();
-            $data = json_decode($request->getBody()->getContents());
-            $valida = (new GrupoValidate())->validatePost((array)$data);
-            if ($valida === true) {
-                $grupo->setNome($data->nome);
-                $grupo->setDescricao($data->descricao);
+        if(TokenApp::validaToken()) {
+            try {
+                $grupo = new Grupo();
+                $data = json_decode($request->getBody()->getContents());
+                $valida = (new GrupoValidate())->validatePost((array)$data);
+                if ($valida === true) {
+                    $grupo->setNome($data->nome);
+                    $grupo->setDescricao($data->descricao);
 
-                $grupo->getUsuarioCadastro()->setId($data->usuario_cadastro);
-                if($grupo->cadastrar()) {
+                    $grupo->getUsuarioCadastro()->setId($data->usuario_cadastro);
+                    if ($grupo->cadastrar()) {
+                        return View::renderMessage(
+                            $response,
+                            "success",
+                            "Grupo cadastrado com sucesso!",
+                            201,
+                            "Sucesso ao cadastrar");
+                    } else {
+                        return View::renderMessage(
+                            $response,
+                            "error",
+                            "Erro ao cadastrar de grupo!",
+                            500,
+                            "Erro ao cadastrar"
+                        );
+                    }
+                } else {
                     return View::renderMessage(
                         $response,
-                        "success",
-                        "Grupo cadastrado com sucesso!",
-                        201,
-                        "Sucesso ao cadastrar");
-                }else{
-                    return View::renderMessage(
-                        $response,
-                        "error",
-                        "Erro ao cadastrar de grupo!",
-                        500,
-                        "Erro ao cadastrar"
+                        "warning",
+                        $valida,
+                        400
                     );
                 }
-            } else {
-                return View::renderMessage(
-                    $response,
-                    "warning",
-                    $valida,
-                    400
-                );
+            } catch (Exception $e) {
+                return View::renderException($response, $e);
             }
-        }catch(Exception $e){
-            return View::renderException($response, $e);
+        }
+        else{
+            return View::renderMessage($response, 'error','Sem Autorização!','407', 'sem autorizacao');
         }
     }
 
@@ -71,20 +77,23 @@ class GrupoController implements IController
      */
     public function get(Request $request, Response $response, array $args): Response
     {
-        try {
-            $grupo = new Grupo();
-            $page = (int)$request->getQueryParam('pagina');
-            if ($request->getAttribute('id')) {
-                $grupo->setId($request->getAttribute('id'));
+        if(TokenApp::validaToken()) {
+            try {
+                $grupo = new Grupo();
+                $page = (int)$request->getQueryParam('pagina');
+                if ($request->getAttribute('id')) {
+                    $grupo->setId($request->getAttribute('id'));
+                }
+                if ($request->getQueryParam('nome')) {
+                    $grupo->setNome($request->getQueryParam('nome'));
+                }
+                $search = $grupo->pesquisar($page);
+                return View::render($response, $search);
+            } catch (Exception $e) {
+                return View::renderException($response, $e);
             }
-            if ($request->getQueryParam('nome')) {
-                $grupo->setNome($request->getQueryParam('nome'));
-            }
-            $search = $grupo->pesquisar($page);
-            return View::render($response, $search);
-        }catch(Exception $e){
-            return View::renderException($response, $e);
         }
+//
     }
 
     /**
@@ -94,48 +103,53 @@ class GrupoController implements IController
      */
     public function put(Request $request, Response $response): Response
     {
-        try {
-            $grupo = new Grupo();
-            $data = json_decode($request->getBody()->getContents());
-            $valida = (new GrupoValidate())->validatePost((array)$data);
-            if ($valida) {
-                $grupo->setId($request->getAttribute('id'));
-                if(!is_null($data->nome)){
-                    $grupo->setNome($data->nome);
-                }
-                if(!is_null($data->descricao)) {
-                    $grupo->setDescricao($data->descricao);
-                }
+        if(TokenApp::validaToken()) {
+            try {
+                $grupo = new Grupo();
+                $data = json_decode($request->getBody()->getContents());
+                $valida = (new GrupoValidate())->validatePost((array)$data);
+                if ($valida) {
+                    $grupo->setId($request->getAttribute('id'));
+                    if (!is_null($data->nome)) {
+                        $grupo->setNome($data->nome);
+                    }
+                    if (!is_null($data->descricao)) {
+                        $grupo->setDescricao($data->descricao);
+                    }
 
-                $grupo->getUsuarioAlteracao()->setId($data->usuario_cadastro);
-                if($grupo->alterar()) {
+                    $grupo->getUsuarioAlteracao()->setId($data->usuario_cadastro);
+                    if ($grupo->alterar()) {
+                        return View::renderMessage(
+                            $response,
+                            "success",
+                            "Grupo alterado com sucesso!",
+                            201,
+                            "Sucesso ao alterar"
+                        );
+                    } else {
+                        return View::renderMessage(
+                            $response,
+                            "error",
+                            "Erro ao alterar Grupo",
+                            500,
+                            "Erro ao alterar"
+                        );
+                    }
+                } else {
                     return View::renderMessage(
                         $response,
-                        "success",
-                        "Grupo alterado com sucesso!",
-                        201,
-                        "Sucesso ao alterar"
-                    );
-                } else{
-                    return View::renderMessage(
-                        $response,
-                        "error",
-                        "Erro ao alterar Grupo",
-                        500,
-                        "Erro ao alterar"
+                        "warning",
+                        $valida,
+                        400,
+                        "Erro ao validar"
                     );
                 }
-            } else {
-                return View::renderMessage(
-                    $response,
-                    "warning",
-                    $valida,
-                    400,
-                    "Erro ao validar"
-                );
+            } catch (Exception $e) {
+                return View::renderException($response, $e);
             }
-        }catch(Exception $e){
-            return View::renderException($response, $e);
+        }
+        else{
+            return View::renderMessage($response, 'error','Sem Autorização!','407', 'sem autorizacao');
         }
     }
 
@@ -146,31 +160,36 @@ class GrupoController implements IController
      */
     public function delete(Request $request, Response $response): Response
     {
-        try {
-            $grupo = new Grupo();
-            if ($request->getAttribute('id')) {
-                $grupo->setId($request->getAttribute('id'));
+        if(TokenApp::validaToken()) {
+            try {
+                $grupo = new Grupo();
+                if ($request->getAttribute('id')) {
+                    $grupo->setId($request->getAttribute('id'));
 
-                if ($grupo->deletar()) {
-                    return View::renderMessage(
-                        $response,
-                        "success",
-                        "Grupo excluído com sucesso!",
-                        202,
-                        "Sucesso ao excluir"
-                    );
-                }else{
-                    return View::renderMessage(
-                        $response,
-                        "error",
-                        "Erro ao excluir grupo!",
-                        500,
-                        "Erro ao excluir"
-                    );
+                    if ($grupo->deletar()) {
+                        return View::renderMessage(
+                            $response,
+                            "success",
+                            "Grupo excluído com sucesso!",
+                            202,
+                            "Sucesso ao excluir"
+                        );
+                    } else {
+                        return View::renderMessage(
+                            $response,
+                            "error",
+                            "Erro ao excluir grupo!",
+                            500,
+                            "Erro ao excluir"
+                        );
+                    }
                 }
+            } catch (Exception $e) {
+                return View::renderException($response, $e);
             }
-        }catch (Exception $e){
-            return View::renderException($response, $e);
+        }
+        else{
+            return View::renderMessage($response, 'error','Sem Autorização!','407', 'sem autorizacao');
         }
     }
 

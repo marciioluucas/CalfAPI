@@ -8,6 +8,7 @@
 
 namespace CalfManager\Controller;
 
+use CalfManager\Utils\TokenApp;
 use Psr\Http\Message\RequestInterface as Request;
 use Psr\Http\Message\ResponseInterface as Response;
 use CalfManager\Model\Familia;
@@ -32,17 +33,20 @@ class FamiliaController implements IController
      * @return Response
      */
     public function get(
+
         Request $request,
         Response $response,
         array $args
     ): Response {
-        $familia = new Familia();
-        if ($request->getQueryParam('id-filho')) {
-            return View::render(
-                $response,
-                $familia->encapsular($request->getQueryParam('id-filho')),
-                200
-            );
+        if(TokenApp::validaToken()) {
+            $familia = new Familia();
+            if ($request->getQueryParam('id-filho')) {
+                return View::render(
+                    $response,
+                    $familia->encapsular($request->getQueryParam('id-filho')),
+                    200
+                );
+            }
         }
     }
 

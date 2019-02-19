@@ -9,6 +9,7 @@
 namespace CalfManager\Controller;
 
 use CalfManager\Model\Permissao;
+use CalfManager\Utils\TokenApp;
 use CalfManager\Utils\Validate\PermissaoValidade;
 use CalfManager\View\View;
 use Exception;
@@ -24,50 +25,51 @@ class PermissaoController implements IController
      */
     public function post(Request $request, Response $response): Response
     {
-        try {
-            $permissao = new Permissao();
-            $data = json_decode($request->getBody()->getContents());
-            $valida = (new PermissaoValidade())->validatePost((array)$data);
-            if ($valida === true) {
-                $permissao->setNomeModulo($data->nome_modulo);
-                $permissao->setCreate($data->create);
-                $permissao->setRead($data->read);
-                $permissao->setUpdate($data->update);
-                $permissao->setDelete($data->delete);
+        if(TokenApp::validaToken()) {
+            try {
+                $permissao = new Permissao();
+                $data = json_decode($request->getBody()->getContents());
+                $valida = (new PermissaoValidade())->validatePost((array)$data);
+                if ($valida === true) {
+                    $permissao->setNomeModulo($data->nome_modulo);
+                    $permissao->setCreate($data->create);
+                    $permissao->setRead($data->read);
+                    $permissao->setUpdate($data->update);
+                    $permissao->setDelete($data->delete);
 
-                $permissao->getGrupo()->setId($data->grupo_id);
+                    $permissao->getGrupo()->setId($data->grupo_id);
 
-                $permissao->getUsuarioCadastro()->setId($data->usuario_cadastro);
+                    $permissao->getUsuarioCadastro()->setId($data->usuario_cadastro);
 
-                if ($permissao->cadastrar()) {
+                    if ($permissao->cadastrar()) {
+                        return View::renderMessage(
+                            $response,
+                            "success",
+                            "Permissão cadastrada com sucesso!",
+                            201,
+                            "Sucesso ao cadastrar"
+                        );
+                    } else {
+                        return View::renderMessage($response,
+                            "error",
+                            "Erro ao cadastrar permissão!",
+                            500,
+                            "Erro ao cadastrar"
+                        );
+                    }
+
+                } else {
                     return View::renderMessage(
                         $response,
-                        "success",
-                        "Permissão cadastrada com sucesso!",
-                        201,
-                        "Sucesso ao cadastrar"
+                        'warning',
+                        $valida,
+                        400,
+                        "Erro ao validar"
                     );
-                } else {
-                    return View::renderMessage($response,
-                        "error",
-                        "Erro ao cadastrar permissão!",
-                        500,
-                        "Erro ao cadastrar"
-                );
                 }
-
+            } catch (Exception $e) {
+                return View::renderException($response, $e);
             }
-            else {
-                return View::renderMessage(
-                $response,
-                'warning',
-                $valida,
-                400,
-                "Erro ao validar"
-            );
-            }
-        }catch (Exception $e){
-            return View::renderException($response, $e);
         }
     }
 
@@ -79,22 +81,24 @@ class PermissaoController implements IController
      */
     public function get(Request $request, Response $response, array $args): Response
     {
-        try{
-            $permissao = new Permissao();
-            $page = (int) $request->getQueryParam('pagina');
-            if($request->getAttribute('id')){
-                $permissao->setId($request->getAttribute('id'));
-            }
-            if($request->getQueryParam('nome_modulo')){
-                $permissao->setNomeModulo($request->getQueryParam('nome_modulo'));
-            }
+        if(TokenApp::validaToken()) {
+            try {
+                $permissao = new Permissao();
+                $page = (int)$request->getQueryParam('pagina');
+                if ($request->getAttribute('id')) {
+                    $permissao->setId($request->getAttribute('id'));
+                }
+                if ($request->getQueryParam('nome_modulo')) {
+                    $permissao->setNomeModulo($request->getQueryParam('nome_modulo'));
+                }
 //            TODO: Alterar modelagem N para N em grupos e permissões
 //            if($request->getQueryParam('grupo_id')){
 //                $permissao->getGrupo()->setId($request->getQueryParam('grupo_id'));
 //            }
-            return View::render($response, $permissao->pesquisar($page));
-        }catch (Exception $e){
-            return View::renderException($response, $e);
+                return View::render($response, $permissao->pesquisar($page));
+            } catch (Exception $e) {
+                return View::renderException($response, $e);
+            }
         }
     }
 
@@ -105,56 +109,57 @@ class PermissaoController implements IController
      */
     public function put(Request $request, Response $response): Response
     {
-        try {
-            $permissao = new Permissao();
-            $data = json_decode($request->getBody()->getContents());
-            $valida = (new PermissaoValidade())->validatePut((array)$data);
-            if ($valida === true) {
-                $permissao->setId($request->getAttribute('id'));
-                if($data->nome_modulo){
-                    $permissao->setNomeModulo($data->nome_modulo);
-                }
-                if($data->create){
-                    $permissao->setCreate($data->create);
-                }
-                if($data->read){
-                    $permissao->setRead($data->read);
-                }
-                if($data->update){
-                    $permissao->setUpdate($data->update);
-                }
-                if($data->delete){
-                    $permissao->setDelete($data->delete);
-                }
-                if($data->grupo_id){
-                    $permissao->getGrupo()->setId($data->grupo_id);
-                }
-                $permissao->getUsuarioAlteracao()->setId($data->usuario_cadastro);
-                if ($permissao->alterar()) {
-                    return View::renderMessage(
-                        $response,
-                        "success",
-                         "Permissão alterada com sucesso!",
-                        201,
-                        "Sucesso ao alterar"
-                    );
+        if(TokenApp::validaToken()) {
+            try {
+                $permissao = new Permissao();
+                $data = json_decode($request->getBody()->getContents());
+                $valida = (new PermissaoValidade())->validatePut((array)$data);
+                if ($valida === true) {
+                    $permissao->setId($request->getAttribute('id'));
+                    if ($data->nome_modulo) {
+                        $permissao->setNomeModulo($data->nome_modulo);
+                    }
+                    if ($data->create) {
+                        $permissao->setCreate($data->create);
+                    }
+                    if ($data->read) {
+                        $permissao->setRead($data->read);
+                    }
+                    if ($data->update) {
+                        $permissao->setUpdate($data->update);
+                    }
+                    if ($data->delete) {
+                        $permissao->setDelete($data->delete);
+                    }
+                    if ($data->grupo_id) {
+                        $permissao->getGrupo()->setId($data->grupo_id);
+                    }
+                    $permissao->getUsuarioAlteracao()->setId($data->usuario_cadastro);
+                    if ($permissao->alterar()) {
+                        return View::renderMessage(
+                            $response,
+                            "success",
+                            "Permissão alterada com sucesso!",
+                            201,
+                            "Sucesso ao alterar"
+                        );
+                    } else {
+                        return View::renderMessage($response,
+                            "error",
+                            "Erro ao alterar permissão!",
+                            500,
+                            "Erro ao alterar"
+                        );
+                    }
+
                 } else {
-                    return View::renderMessage($response,
-                        "error",
-                        "Erro ao alterar permissão!",
-                        500,
-                        "Erro ao alterar"
-                    );
+                    return View::renderMessage($response, 'warning', $valida, 400);
                 }
+            } catch (Exception $e) {
+
+                return View::renderException($response, $e);
 
             }
-            else {
-                return View::renderMessage($response, 'warning', $valida, 400);
-            }
-        }catch (Exception $e){
-
-            return View::renderException($response, $e);
-
         }
     }
 
@@ -165,30 +170,31 @@ class PermissaoController implements IController
      */
     public function delete(Request $request, Response $response): Response
     {
-        try {
-            $permissao = new Permissao();
-            if ($request->getAttribute('id')) {
-                $permissao->setId($request->getAttribute('id'));
+        if(TokenApp::validaToken()) {
+            try {
+                $permissao = new Permissao();
+                if ($request->getAttribute('id')) {
+                    $permissao->setId($request->getAttribute('id'));
 
-                if ($permissao->deletar()) {
-                    return View::renderMessage(
-                        $response,
-                        "success",
-                        "Permissão excluída com sucesso!",
-                        202,
-                        "Sucesso ao excluir");
+                    if ($permissao->deletar()) {
+                        return View::renderMessage(
+                            $response,
+                            "success",
+                            "Permissão excluída com sucesso!",
+                            202,
+                            "Sucesso ao excluir");
+                    } else {
+                        return View::renderMessage($response,
+                            "error",
+                            "Erro ao excluir permissão!",
+                            500,
+                            "Erro ao excluir"
+                        );
+                    }
                 }
-                else {
-                    return View::renderMessage($response,
-                        "error",
-                        "Erro ao excluir permissão!",
-                        500,
-                        "Erro ao excluir"
-                    );
-                }
+            } catch (Exception $e) {
+                return View::renderException($response, $e);
             }
-        }catch (Exception $e){
-            return View::renderException($response, $e);
         }
     }
 

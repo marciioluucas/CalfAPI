@@ -10,6 +10,7 @@ namespace CalfManager\Controller;
 
 
 use CalfManager\Model\Dose;
+use CalfManager\Utils\TokenApp;
 use CalfManager\Utils\Validate\DoseValidate;
 use CalfManager\View\View;
 use Psr\Http\Message\RequestInterface as Request;
@@ -20,148 +21,155 @@ class DoseController implements IController
 {
     public function post(Request $request, Response $response): Response
     {
-        $data = json_decode($request->getBody()->getContents());
-        $valida = (new DoseValidate())->validatePost((array)$data);
-        try {
-            $dose = new Dose();
-            if ($valida === true) {
-                $dose->setQuantidadeMg($data->quantidade_mg);
-                $dose->getFuncionario()->setId($data->funcionario_id);
-                $dose->getMedicamento()->setId($data->medicamento_id);
-                $dose->getAnimal()->setId($data->animal_id);
+        if(TokenApp::validaToken()) {
+            $data = json_decode($request->getBody()->getContents());
+            $valida = (new DoseValidate())->validatePost((array)$data);
+            try {
+                $dose = new Dose();
+                if ($valida === true) {
+                    $dose->setQuantidadeMg($data->quantidade_mg);
+                    $dose->getFuncionario()->setId($data->funcionario_id);
+                    $dose->getMedicamento()->setId($data->medicamento_id);
+                    $dose->getAnimal()->setId($data->animal_id);
 
-                $dose->getUsuarioCadastro()->setId($data->usuario_cadastro);
-                if ($dose->cadastrar()) {
-                    return View::renderMessage(
-                        $response,
-                        "success",
-                        "Dose aplicada cadastrada com sucesso!",
-                        201,
-                        "Sucesso ao cadastrar"
-                    );
+                    $dose->getUsuarioCadastro()->setId($data->usuario_cadastro);
+                    if ($dose->cadastrar()) {
+                        return View::renderMessage(
+                            $response,
+                            "success",
+                            "Dose aplicada cadastrada com sucesso!",
+                            201,
+                            "Sucesso ao cadastrar"
+                        );
+                    } else {
+                        return View::renderMessage(
+                            $response,
+                            "error",
+                            "Erro ao cadastrar dose aplicada",
+                            500,
+                            "Erro ao cadastrar");
+                    }
                 } else {
-                    return View::renderMessage(
-                        $response,
-                        "error",
-                        "Erro ao cadastrar dose aplicada",
-                        500,
-                        "Erro ao cadastrar");
+                    return View::renderMessage($response, "warning", $valida, 400, "Erro ao validar");
                 }
-            } else {
-                return View::renderMessage($response, "warning", $valida, 400, "Erro ao validar");
+            } catch (Exception $e) {
+                return View::renderException($response, $e);
             }
-        } catch (Exception $e) {
-            return View::renderException($response, $e);
         }
     }
 
     public function get(Request $request, Response $response, array $args): Response
     {
-        $page = (int)$request->getQueryParam('pagina');
-        try {
-            $dose = new Dose();
+        if(TokenApp::validaToken()) {
+            $page = (int)$request->getQueryParam('pagina');
+            try {
+                $dose = new Dose();
 
-            if ($request->getAttribute('id')) {
-                $dose->setId($request->getAttribute('id'));
-            }
-            if ($request->getQueryParam('medicamento_id')) {
-                $dose->getMedicamento()->setId($request->getQueryParam('medicamento_id'));
-            }
-            if ($request->getQueryParam('animal_id')) {
-                $dose->getAnimal()->setId($request->getQueryParam('animal_id'));
-            }
+                if ($request->getAttribute('id')) {
+                    $dose->setId($request->getAttribute('id'));
+                }
+                if ($request->getQueryParam('medicamento_id')) {
+                    $dose->getMedicamento()->setId($request->getQueryParam('medicamento_id'));
+                }
+                if ($request->getQueryParam('animal_id')) {
+                    $dose->getAnimal()->setId($request->getQueryParam('animal_id'));
+                }
 //            if ($request>getQueryParam('funcionario_id')){
 //                $dose->getFuncionario()->setId($request>getQueryParam('funcionario_id'));
 //            }
-            $search = $dose->pesquisar($page);
-            return View::render($response, $search);
+                $search = $dose->pesquisar($page);
+                return View::render($response, $search);
 
-        } catch (Exception $e) {
-            return View::renderException($response, $e);
+            } catch (Exception $e) {
+                return View::renderException($response, $e);
+            }
         }
     }
 
     public function put(Request $request, Response $response): Response
     {
+        if(TokenApp::validaToken()) {
+            $data = json_decode($request->getBody()->getContents());
+            $valida = (new DoseValidate())->validatePut((array)$data);
+            try {
+                $dose = new Dose();
+                if ($valida === true) {
+                    $dose->setId($request->getAttribute('id'));
+                    if (!is_null($data->quantidade_mg)) {
+                        $dose->setQuantidadeMg($data->quantidade_mg);
+                    }
+                    if (!is_null($data->medicamento_id)) {
+                        $dose->getMedicamento()->setId($data->medicamento_id);
+                    }
+                    if (!is_null($data->animal_id)) {
+                        $dose->getAnimal()->setId($data->animal_id);
+                    }
+                    if (!is_null($data->funcionario_id)) {
+                        $dose->getFuncionario()->setId($data->funcionario_id);
+                    }
 
-        $data = json_decode($request->getBody()->getContents());
-        $valida = (new DoseValidate())->validatePut((array)$data);
-        try {
-            $dose = new Dose();
-            if ($valida === true) {
-                $dose->setId($request->getAttribute('id'));
-                if (!is_null($data->quantidade_mg)) {
-                    $dose->setQuantidadeMg($data->quantidade_mg);
-                }
-                if (!is_null($data->medicamento_id)) {
-                    $dose->getMedicamento()->setId($data->medicamento_id);
-                }
-                if (!is_null($data->animal_id)) {
-                    $dose->getAnimal()->setId($data->animal_id);
-                }
-                if (!is_null($data->funcionario_id)){
-                    $dose->getFuncionario()->setId($data->funcionario_id);
-                }
-
-                $dose->getUsuarioAlteracao()->setId($data->usuario_cadastro);
-                if ($dose->alterar()) {
-                    return View::renderMessage(
-                        $response,
-                        "success",
-                        "Dose aplicada alterada com sucesso!",
-                        201,
-                        "sucesso ao alterar"
-                    );
+                    $dose->getUsuarioAlteracao()->setId($data->usuario_cadastro);
+                    if ($dose->alterar()) {
+                        return View::renderMessage(
+                            $response,
+                            "success",
+                            "Dose aplicada alterada com sucesso!",
+                            201,
+                            "sucesso ao alterar"
+                        );
+                    } else {
+                        return View::renderMessage(
+                            $response,
+                            "error",
+                            "Erro ao alterar dose aplicada",
+                            500,
+                            "erro ao alterar"
+                        );
+                    }
                 } else {
                     return View::renderMessage(
                         $response,
-                        "error",
-                        "Erro ao alterar dose aplicada",
-                        500,
-                        "erro ao alterar"
+                        "warning",
+                        $valida,
+                        400,
+                        "Erro ao validar"
                     );
                 }
-            } else {
-                return View::renderMessage(
-                    $response,
-                    "warning",
-                    $valida,
-                    400,
-                    "Erro ao validar"
-                );
+            } catch (Exception $e) {
+                return View::renderException($response, $e);
             }
-        } catch (Exception $e) {
-            return View::renderException($response, $e);
         }
     }
 
     public function delete(Request $request, Response $response): Response
     {
-        try {
-            $dose = new Dose();
-            if ($request->getAttribute('id')) {
-                $dose->setId($request->getAttribute('id'));
+        if (TokenApp::validaToken()) {
+            try {
+                $dose = new Dose();
+                if ($request->getAttribute('id')) {
+                    $dose->setId($request->getAttribute('id'));
 
-                if ($dose->deletar()) {
-                    return View::renderMessage(
-                        $response,
-                        "success",
-                        "Dose aplicada excluída com sucesso!",
-                        201,
-                        "Sucesso ao excluir"
-                    );
-                } else {
-                    return View::renderMessage(
-                        $response,
-                        "error",
-                        "Erro ao excluir dose aplicada",
-                        400,
-                        "Erro ao excluir"
-                    );
+                    if ($dose->deletar()) {
+                        return View::renderMessage(
+                            $response,
+                            "success",
+                            "Dose aplicada excluída com sucesso!",
+                            201,
+                            "Sucesso ao excluir"
+                        );
+                    } else {
+                        return View::renderMessage(
+                            $response,
+                            "error",
+                            "Erro ao excluir dose aplicada",
+                            400,
+                            "Erro ao excluir"
+                        );
+                    }
                 }
+            } catch (Exception $e) {
+                return View::renderException($response, $e);
             }
-        } catch (Exception $e) {
-            return View::renderException($response, $e);
         }
     }
 

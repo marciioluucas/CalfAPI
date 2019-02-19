@@ -25,40 +25,40 @@ class LoginController implements IController
 
     public function post(Request $request, Response $response): Response
     {
-        Try{
+
+        Try {
             $usuario = new Usuario();
             $data = json_decode($request->getBody()->getContents());
             $valida = (new LoginValidate())->validatePost((array)$data);
 
-            if($valida){
+            if ($valida) {
                 $usuario->setLogin($data->login);
                 $usuario->setSenha($data->senha);
-                if($usuario->login()){
+                if ($usuario->login()) {
                     $token = TokenApp::gerarToken($usuario);
                     return View::render($response, $token);
-                }
-                else {
+                } else {
                     return View::renderMessage($response,
                         'error',
-                    'Usuário ou senha incorretos!',
-                    401,
-                    'erro ao autenticar'
+                        'Usuário ou senha incorretos!',
+                        401,
+                        'erro ao autenticar'
                     );
                 }
-            }
-            else {
+            } else {
                 return View::renderMessage($response,
-                    'error' ,
+                    'error',
                     "Usuario ou senha inválidos",
-                    "400" ,
+                    "400",
                     "Erro ao validar"
                 );
 
             }
 //
-        } catch (Exception $e){
-            return View::render($response, $e);
+        } catch (Exception $e) {
+            return View::renderException($response, $e);
         }
+
     }
 
     public function get(
