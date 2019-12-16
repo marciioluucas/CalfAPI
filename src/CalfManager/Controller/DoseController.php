@@ -30,7 +30,16 @@ class DoseController implements IController
                     $dose->setQuantidadeMg($data->quantidade_mg);
                     $dose->getFuncionario()->setId($data->funcionario_id);
                     $dose->getMedicamento()->setId($data->medicamento_id);
-                    $dose->getAnimal()->setId($data->animal_id);
+                    if($data->tipo_movimentacao == 'saida')
+                    {
+                        $dose->setTipoMovimentacao(TipoMovimentacao::SAIDA);
+                        $dose->getAnimal()->setId($data->animal_id);
+                    }
+                    else
+                    {
+                        $dose->setTipoMovimentacao(TipoMovimentacao::ENTRADA);
+                        $dose->setQuantidadeUnidade($data->unidade_quantidade);
+                    }
 
                     $dose->getUsuarioCadastro()->setId($data->usuario_cadastro);
                     if ($dose->cadastrar()) {
@@ -101,9 +110,18 @@ class DoseController implements IController
                     if (!is_null($data->medicamento_id)) {
                         $dose->getMedicamento()->setId($data->medicamento_id);
                     }
-                    if (!is_null($data->animal_id)) {
+                    
+                    if($data->tipo_movimentacao == 'saida')
+                    {
+                        $dose->setTipoMovimentacao(TipoMovimentacao::SAIDA);
                         $dose->getAnimal()->setId($data->animal_id);
                     }
+                    else
+                    {
+                        $dose->setTipoMovimentacao(TipoMovimentacao::ENTRADA);
+                        $dose->setQuantidadeUnidade($data->unidade_quantidade);
+                    }
+                    
                     if (!is_null($data->funcionario_id)) {
                         $dose->getFuncionario()->setId($data->funcionario_id);
                     }

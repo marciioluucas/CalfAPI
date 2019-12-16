@@ -16,10 +16,12 @@ use Exception;
 class Dose extends Modelo
 {
     private $quantidadeMg;
+    private $quantidadeUnidade;
     private $data;
     private $medicamento;
     private $animal;
     private $funcionario;
+    private $tipoMovimentacao;
 
     /**
      * Dose constructor.
@@ -40,10 +42,6 @@ class Dose extends Modelo
         $this->data = date(Config::PADRAO_DATA);
 
         try {
-            if ($this->getUsuarioCadastro()->getId() == null) {
-                $this->getUsuarioCadastro()->setId(1);
-            }
-
             return (new DoseDAO())->create($this);
         } catch (Exception $e) {
             throw new Exception($e->getMessage());
@@ -186,6 +184,26 @@ class Dose extends Modelo
     public function setFuncionario(Funcionario $funcionario)
     {
         $this->funcionario = $funcionario;
+    }
+
+    public function getQuantidadeUnidade() 
+    {
+        return $this->quantidadeUnidade;
+    }
+
+    public function getTipoMovimentacao(): string
+    {
+        return $this->tipoMovimentacao;
+    }
+
+    public function setQuantidadeUnidade($quantidadeUnidade): void 
+    {
+        $this->quantidadeUnidade = $quantidadeUnidade;
+    }
+
+    public function setTipoMovimentacao(string $tipoMovimentacao): void 
+    {
+        $this->tipoMovimentacao = $tipoMovimentacao;
     }
 
 

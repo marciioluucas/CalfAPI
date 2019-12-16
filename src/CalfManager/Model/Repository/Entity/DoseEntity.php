@@ -31,6 +31,8 @@ class DoseEntity extends CalfEntity
         'medicamento_id',
         'funcionario_id',
         'quantidade_mg',
+        'quantidade_unidade',
+        'tipo_movimentacao',
         'data',
         'data_criacao',
         'data_alteracao',
