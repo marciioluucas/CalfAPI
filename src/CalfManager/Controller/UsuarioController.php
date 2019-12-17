@@ -40,7 +40,7 @@ class UsuarioController implements IController
                 $valida = (new UsuarioValidate())->validatePost((array)$data);
                 if ($valida === true) {
                     $usuario->setLogin($data->login);
-                    $usuario->setSenha($data->senha);
+                    $usuario->setSenha(base64_encode($data->senha));
                     $usuario->getGrupo()->setId($data->grupo_id);
                     $usuario->getFuncionario()->setId($data->funcionario_id);
 
@@ -103,6 +103,7 @@ class UsuarioController implements IController
                     $usuario->getFuncionario()->setId($request->getQueryParam('funcionario_id'));
                 }
                 $search = $usuario->pesquisar($page);
+                
                 return View::render($response, $search);
             } catch (Exception $exception) {
                 return View::renderException($response, $exception);
@@ -129,7 +130,7 @@ class UsuarioController implements IController
                         $usuario->setLogin($data->login);
                     }
                     if (!is_null($data->senha)) {
-                        $usuario->setSenha($data->senha);
+                        $usuario->setSenha(base64_encode($data->senha));
                     }
                     if (!is_null($data->grupo_id)) {
                         $usuario->getGrupo()->setId($data->grupo_id);

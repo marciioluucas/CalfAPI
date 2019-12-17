@@ -41,17 +41,13 @@ class LoginController implements IController
                     return View::renderMessage($response,
                         'error',
                         'Usuário ou senha incorretos!',
-                        401,
-                        'erro ao autenticar'
-                    );
+                        401);
                 }
             } else {
                 return View::renderMessage($response,
                     'error',
                     "Usuario ou senha inválidos",
-                    "400",
-                    "Erro ao validar"
-                );
+                    404);
 
             }
 //

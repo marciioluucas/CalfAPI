@@ -43,11 +43,11 @@ class Usuario extends Modelo
 
     public function login(){
         try {
-            $usuario = (new UsuarioDAO())->retreaveByLoginSenha($this->login, $this->senha);
+            $usuario = (new UsuarioDAO())->retreaveByLoginSenha($this->login, base64_encode($this->senha));
             if($usuario !== false){
                 $this->setId($usuario->id);
                 $this->setLogin($usuario->login);
-                $this->setSenha($usuario->senha);
+//                $this->setSenha($usuario->senha);
                 return $this;
             }else {
                 return false;
