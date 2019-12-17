@@ -10,6 +10,7 @@ namespace CalfManager\Model\Repository;
 
 
 use CalfManager\Model\Dose;
+use CalfManager\Model\Repository\Entity\MedicamentoEntity;
 use CalfManager\Model\Repository\Entity\DoseEntity;
 use CalfManager\Utils\Config;
 use Exception;
@@ -28,7 +29,9 @@ class DoseDAO implements IDAO
         $entity->funcionario_id = $obj->getFuncionario()->getId();
         $entity->quantidade_mg = $obj->getQuantidadeMg();
         $entity->data = $obj->getData();
-
+        $entity->quantidade_unidade = $obj->getQuantidadeUnidade();
+        $entity->tipo_movimentacao = $obj->getTipoMovimentacao();
+        
         $entity->data_cadastro = $obj->getDataCriacao();
         $entity->usuario_cadastro = $obj->getUsuarioCadastro()->getId();
         $entity->status = 1;
@@ -187,6 +190,51 @@ class DoseDAO implements IDAO
         }
     }
 
+    public function retreaveByTipoMovimentacao(string $tipoMovimentacao, int $page)
+    {
+        try {
+            $entity = DoseEntity::ativo();
+            $doses = $entity->with('medicamento')
+                ->with('animal')
+                ->with('funcionario')
+                ->where('tipo_movimentacao', $tipoMovimentacao)
+                ->paginate(
+                    Config::QUANTIDADE_ITENS_POR_PAGINA,
+                    ['*'],
+                    'pagina',
+                    $page
+                );
+            return ["doses" => $doses];
+        }catch (Exception $e){
+            throw new Exception("Erro ao pesquisar em dose. Mensagem: ".$e->getMessage());
+        }
+    }
+    
+    public function retreaveMovimentacaoByMedicamento(int $medicamentoId)
+    {
+        try{
+            $medicamento = MedicamentoEntity::ativo()->find($medicamentoId);
+            $doses = DoseEntity::ativo()->where('medicamento_id', $medicamentoId)->get();
+            foreach ($doses as $dose) 
+            {
+                $soma= $soma + ($dose->quantidade_mg*$dose->quantidade_unidade);
+                if($dose->tipo_movimentacao == 'saida'){
+                    $soma= $soma - $dose->quantidade_mg;
+                }
+            }
+            return [ "dose" => [
+                    "nomeMedicamento" => $medicamento->nome,
+                    "saldo" => $soma
+                ]           
+            ];
+            
+            
+//            return ["doses" => $doses];
+            
+        } catch (Exception $ex) {
+            throw new Exception("Erro ao pesquisar em dose o funcionario pelo ID ".$idFuncionario.". Mensagem: ".$e->getMessage());
+        }
+    }
     /**
      * @param int $id
      * @return bool

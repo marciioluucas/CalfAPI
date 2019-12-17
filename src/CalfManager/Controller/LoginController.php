@@ -41,18 +41,11 @@ class LoginController implements IController
                     return View::renderMessage($response,
                         'error',
                         'Usuário ou senha incorretos!',
-                        401);
+                        400);
                 }
-            } else {
-                return View::renderMessage($response,
-                    'error',
-                    "Usuario ou senha inválidos",
-                    404);
-
-            }
-//
+            } 
         } catch (Exception $e) {
-            return View::renderException($response, $e);
+            return View::renderMessage($response, 'error', $e->getMessage(), $e->getCode() == null? 500 : $e->getCode());
         }
 
     }
@@ -63,18 +56,18 @@ class LoginController implements IController
         array $args
     ): Response
     {
-        View::renderMessage($response, "warning", "Módulo não implementado!", 300);
+        View::renderMessage($response, "error", "Módulo não implementado!", 400);
     }
 
     public function put(Request $request, Response $response): Response
     {
-        View::renderMessage($response, "warning", "Módulo não implementado!", 300);
+        View::renderMessage($response, "error", "Módulo não implementado!", 400);
 
     }
 
     public function delete(Request $request, Response $response): Response
     {
-        View::renderMessage($response, "warning", "Módulo não implementado!", 300);
+        View::renderMessage($response, "error", "Módulo não implementado!", 400);
 
     }
 

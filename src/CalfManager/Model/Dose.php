@@ -68,20 +68,55 @@ class Dose extends Modelo
     {
         $dao = new DoseDAO();
         try {
-            if ($this->id and !$this->getMedicamento()->getId() and !$this->getAnimal()->getId() and !$this->getFuncionario()->getId()) {
+            if ($this->id and !$this->getMedicamento()->getId() 
+                    and !$this->getAnimal()->getId() 
+                    and !$this->getFuncionario()->getId()) 
+            {
                 return $dao->retreaveById($this->id);
-            } else if (!$this->id and $this->getMedicamento()->getId() and !$this->getAnimal()->getId() and !$this->getFuncionario()->getId()) {
+            }
+            else 
+                if (!$this->id 
+                        and $this->getMedicamento()->getId() 
+                        and !$this->getAnimal()->getId() 
+                        and !$this->getFuncionario()->getId()) 
+            {
                 return $dao->retreaveByIdMedicamento($this->getMedicamento()->getId(), $page);
-            } else if (!$this->id and !$this->getMedicamento()->getId() and $this->getAnimal()->getId() and !$this->getFuncionario()->getId()) {
+            } 
+            else 
+                if (!$this->id 
+                            and !$this->getMedicamento()->getId() 
+                            and $this->getAnimal()->getId() 
+                            and !$this->getFuncionario()->getId()) 
+            {
                 return $dao->retreaveByIdAnimal($this->getAnimal()->getId(), $page);
-            } else if (!$this->id and !$this->getMedicamento()->getId() and !$this->getAnimal()->getId() and $this->getFuncionario()->getId()) {
+            } 
+            else 
+                if (!$this->id 
+                        and !$this->getMedicamento()->getId() 
+                        and !$this->getAnimal()->getId() 
+                        and $this->getFuncionario()->getId())
+            {
                 return $dao->retreaveByIdFuncionario($this->getFuncionario()->getId(), $page);
+            }
+            else 
+                if (!$this->id 
+                        and !$this->getMedicamento()->getId() 
+                        and !$this->getAnimal()->getId() 
+                        and !$this->getFuncionario()->getId()
+                        and $this->getTipoMovimentacao())
+            {
+                return $dao->retreaveByTipoMovimentacao($this->getTipoMovimentacao(), $page);
             }
             return $dao->retreaveAll($page);
 
         } catch (Exception $e) {
             throw new Exception($e->getMessage());
         }
+    }
+    
+    public function pesquisarSaldoEstoque(int $medicamentoId){
+        $dao = new DoseDAO;
+        return $dao->retreaveMovimentacaoByMedicamento($medicamentoId);
     }
 
     public function deletar(): bool
@@ -191,7 +226,7 @@ class Dose extends Modelo
         return $this->quantidadeUnidade;
     }
 
-    public function getTipoMovimentacao(): string
+    public function getTipoMovimentacao():? string
     {
         return $this->tipoMovimentacao;
     }

@@ -20,21 +20,15 @@ use Exception;
 class UsuarioController implements IController
 {
     /**
-     * @param $login
-     * @param $senha
-     */
-    public function authenticar($login, $senha){
-
-    }
-    /**
      * @param Request $request
      * @param Response $response
      * @return Response
      */
     public function post(Request $request, Response $response): Response
     {
-        if(TokenApp::validaToken()) {
-            try {
+        
+        try {
+            if(TokenApp::validaToken()) {
                 $usuario = new Usuario();
                 $data = json_decode($request->getBody()->getContents());
                 $valida = (new UsuarioValidate())->validatePost((array)$data);
@@ -53,25 +47,15 @@ class UsuarioController implements IController
                             201,
                             "Sucesso ao cadastrar"
                         );
-                    } else {
-                        return View::renderMessage(
-                            $response,
-                            "error",
-                            "Erro ao cadastrar usuário!",
-                            500,
-                            "Erro ao cadastrar"
-                        );
                     }
                 }
                 else {
                     return View::renderMessage($response, "warning", $valida, 400, "Erro ao validar");
                 }
             }
-            catch (Exception $e) {
-                return View::renderException($response, $e);
-            }
-        }else{
-            return View::renderMessage($response, 'error','Sem Autorização!','407', 'sem autorizacao');
+        }
+        catch (Exception $e) {
+            return View::renderMessage($response, 'error', $e->getMessage(), $e->getCode() == null? 500 : $e->getCode());
         }
     }
 
@@ -83,9 +67,10 @@ class UsuarioController implements IController
      */
     public function get(Request $request, Response $response, array $args): Response
     {
-        $usuario = new Usuario();
-
-            try {
+        try {
+            $usuario = new Usuario();
+            if(TokenApp::validaToken()) 
+            {
                 $page = (int)$request->getQueryParam('pagina');
                 if ($request->getAttribute('id')) {
                     $usuario->setId($request->getAttribute('id'));
@@ -103,11 +88,12 @@ class UsuarioController implements IController
                     $usuario->getFuncionario()->setId($request->getQueryParam('funcionario_id'));
                 }
                 $search = $usuario->pesquisar($page);
-                
+
                 return View::render($response, $search);
-            } catch (Exception $exception) {
-                return View::renderException($response, $exception);
-            }
+        }
+        } catch (Exception $e) {
+            return View::renderMessage($response, 'error',$e->getMessage(), $e->getCode() == null? 500: $e->getCode());
+        }
     }
 
 
@@ -162,7 +148,7 @@ class UsuarioController implements IController
                     return View::renderMessage($response, "warning", $valida, 400, "Erro ao validar");
                 }
             } catch (Exception $e) {
-                return View::renderException($response, $e);
+                return View::renderMessage($response, 'error', $e->getMessage(), $e->getCode() == null? 500 : $e->getCode());
             }
         }
     }
@@ -198,7 +184,7 @@ class UsuarioController implements IController
 
                 }
             } catch (Exception $e) {
-                return View::renderException($response, $e);
+                return View::renderMessage($response, 'error', $e->getMessage(), $e->getCode() == null? 500 : $e->getCode());
             }
         }
     }

@@ -21,8 +21,8 @@ class MedicamentoController implements IController
 {
     public function post(Request $request, Response $response): Response
     {
-        if(TokenApp::validaToken()) {
-            try {
+        try {
+            if(TokenApp::validaToken()) {
                 $medicamento = new Medicamento();
                 $data = json_decode($request->getBody()->getContents());
                 $valida = (new MedicamentoValidate())->validatePost((array)$data);
@@ -38,41 +38,43 @@ class MedicamentoController implements IController
                             "Medicamento cadastrado com sucesso!",
                             201,
                             "Sucesso ao cadastrar ");
-                    } else {
+                    }
+                    else {
                         return View::renderMessage(
                             $response,
                             "error",
-                            "Erro ao cadastrar medicamento!",
+                            "Erro ao alterar medicamento!",
                             500,
-                            "Erro ao cadastrar ");
+                            "Erro ao alterar ");
                     }
-                } else {
-                    return View::renderMessage($response, "warning", $valida, 400, "Erro ao validar");
                 }
-            } catch (Exception $e) {
-                return View::renderException($response, $e);
+                else{
+                    return View::renderMessage($response, 'warning', $valida, 400);
+                }
             }
+        } catch (Exception $e) {
+            return View::renderMessage($response, 'error', $e->getMessage(), $e->getCode() == null? 500: $e->getCode());
         }
     }
 
     public function get(Request $request, Response $response, array $args): Response
     {
-        if(TokenApp::validaToken()) {
-            $medicamento = new Medicamento();
-            $page = (int)$request->getQueryParam('pagina');
-            try {
+        try {
+            if(TokenApp::validaToken()) {
+                $medicamento = new Medicamento();
+                $page = (int)$request->getQueryParam('pagina');
+
                 if ($request->getAttribute('id')) {
                     $medicamento->setId($request->getAttribute('id'));
-
                 }
                 if ($request->getQueryParam('nome')) {
                     $medicamento->setNome($request->getQueryParam('nome'));
                 }
                 $search = $medicamento->pesquisar($page);
                 return View::render($response, $search);
-            } catch (Exception $e) {
-                return View::renderException($response, $e);
             }
+        } catch (Exception $e) {
+           return View::renderMessage($response, 'error', $e->getMessage(), $e->getCode() == null? 500 : $e->getCode());
         }
     }
 
@@ -83,7 +85,7 @@ class MedicamentoController implements IController
                 $medicamento = new Medicamento();
                 $data = json_decode($request->getBody()->getContents());
                 $valida = (new MedicamentoValidate())->validatePut((array)$data);
-                if ($valida) {
+                if ($valida == true) {
                     $medicamento->setId($request->getAttribute('id'));
                     $medicamento->setNome($data->nome);
                     $medicamento->setPrescricao($data->prescricao);
@@ -108,7 +110,7 @@ class MedicamentoController implements IController
                     return View::renderMessage($response, "warning", $valida, 400);
                 }
             } catch (Exception $e) {
-                return View::renderException($response, $e);
+                return View::renderMessage($response, 'error', $e->getMessage(), $e->getCode() == null? 500 : $e->getCode());
             }
         }
     }
@@ -137,7 +139,7 @@ class MedicamentoController implements IController
                     }
                 }
             } catch (Exception $e) {
-                return View::renderException($response, $e);
+                return View::renderMessage($response, 'error', $e->getMessage(), $e->getCode() == null? 500 : $e->getCode());
             }
         }
     }

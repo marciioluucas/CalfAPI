@@ -24,7 +24,7 @@ class DoseController implements IController
     public function post(Request $request, Response $response): Response
     {  
         try{
-            if(TokenApp::validaToken()){
+//            if(TokenApp::validaToken()){
                 $data = json_decode($request->getBody()->getContents());
                 $valida = (new DoseValidate())->validatePost((array)$data);
 
@@ -43,7 +43,7 @@ class DoseController implements IController
                     else
                     {
                         $dose->setTipoMovimentacao(TipoMovimentacao::ENTRADA);
-                        $dose->setQuantidadeUnidade($data->unidade_quantidade);
+                        $dose->setQuantidadeUnidade($data->quantidade_unidade);
                     }
 
                     $dose->getUsuarioCadastro()->setId($data->usuario_cadastro);
@@ -52,17 +52,17 @@ class DoseController implements IController
                         {
                             return View::renderMessage($response,
                                                         "success",
-                                                        "Entrada registrada com sucesso!",
+                                                        "Dose aplicada com sucesso!",
                                                         201,
                                                         "Sucesso ao cadastrar");
                         }
                         else
                         {
-                            return View::renderMessage($response,
+                             return View::renderMessage($response,
                                                         "success",
-                                                        "Dose aplicada com sucesso!",
+                                                        "Entrada registrada com sucesso!",
                                                         201,
-                                                        "Sucesso ao cadastrar");
+                                                        "Sucesso ao cadastrar");                             
                         }
                     } 
                     else
@@ -75,25 +75,29 @@ class DoseController implements IController
                     }
                 }
             }
-            else
-            {
-                return View::renderMessage($response, 
-                                            "Error", 
-                                            "Sem autorização", 
-                                            401);
-            }
-        }
+//            else
+//            {
+//                return View::renderMessage($response, 
+//                                            "Error", 
+//                                            "Sem autorização", 
+//                                            401);
+//            }
+        
         catch (Exception $e)
         {
-            return View::renderException($response, $e);
+           return View::renderMessage($response, 
+                                        'error',
+                                        $e->getMessage(),
+                                        $e->getCode() == null? 500 
+                                        : $e->getCode());
         }
     }
     
     public function get(Request $request, Response $response, array $args): Response
     {
-//        if(TokenApp::validaToken()) {
-            $page = (int)$request->getQueryParam('pagina');
-            try {
+        try {
+//                if(TokenApp::validaToken()) {
+                $page = (int)$request->getQueryParam('pagina');
                 $dose = new Dose();
 
                 if ($request->getAttribute('id')) {
@@ -105,25 +109,27 @@ class DoseController implements IController
                 if ($request->getQueryParam('animal_id')) {
                     $dose->getAnimal()->setId($request->getQueryParam('animal_id'));
                 }
+                if($request->getQueryParam("tipo_movimentacao")){
+                    $dose->setTipoMovimentacao(TipoMovimentacao::SAIDA);
+                }
+                if($request->getQueryParam("saldo_medicamento_id")){
+                    $result = $dose->pesquisarSaldoEstoque($request->getQueryParam("saldo_medicamento_id"));
+                    return View::render($response, $result);
+                }
 //            if ($request>getQueryParam('funcionario_id')){
 //                $dose->getFuncionario()->setId($request>getQueryParam('funcionario_id'));
 //            }
                 $search = $dose->pesquisar($page);
-//                $list = [];
-//                foreach ($search->doses as $item) {
-//                    $list = [ 
-//                        'id' => $item->id
-////                            ,    
-////                        'nomeAnimal' => $item->getAnimal()->getNome(),
-////                        'nomeMedicamento' => $item->getMedicamento()->getNome(),
-////                        'quantidadeMg' => $item->getQuantidadeMg(),
-//                        ];
-//                }
-                return View::render($response, $search['doses']);
-            } catch (Exception $e) {
-                return View::renderException($response, $e);
-            }
-//        }
+                return View::render($response, $search);
+//            }
+        } catch (Exception $e) {
+            return View::renderMessage($response, 
+                                        'error',
+                                        $e->getMessage(),
+                                        $e->getCode() == null? 500 
+                                        : $e->getCode());
+        }
+
     }
 
     public function put(Request $request, Response $response): Response
@@ -163,7 +169,7 @@ class DoseController implements IController
                             $response,
                             "success",
                             "Dose aplicada alterada com sucesso!",
-                            201,
+                            200,
                             "sucesso ao alterar"
                         );
                     } else {
@@ -185,7 +191,11 @@ class DoseController implements IController
                     );
                 }
             } catch (Exception $e) {
-                return View::renderException($response, $e);
+                return View::renderMessage($response, 
+                                            'error', 
+                                            $e->getMessage(), 
+                                            $e->getCode() == null? 500 
+                                            : $e->getCode());
             }
         }
     }
@@ -217,7 +227,11 @@ class DoseController implements IController
                     }
                 }
             } catch (Exception $e) {
-                return View::renderException($response, $e);
+                return View::renderMessage($response, 
+                                            'error', 
+                                            $e->getMessage(), 
+                                            $e->getCode() == null? 500 
+                                            : $e->getCode());
             }
         }
     }

@@ -42,25 +42,23 @@ class TokenApp
     }
     public static function validaToken()
     {
-        try{
+       try
+       {
             $key = 'p';
             $tokenHeader = apache_request_headers()["Authorization"];
 
             $token = substr($tokenHeader, 1, -1);
             //        Retirando o cabeçalho 'Bearer'
 //                    $token = substr($tokenHeader, 7);
-            if (!is_null($token)) {
-                JWT::decode($token, $key, array('HS256'));
+            if (!is_null($token) && JWT::decode($token, $key, array('HS256'))) {
                 return true;
             }
             else {
                 return false;
             }
-
         }
         catch (Exception $e){
-            throw new Exception($e);
+            throw new Exception("Token inválido", 401);
         }
-
     }
 }
