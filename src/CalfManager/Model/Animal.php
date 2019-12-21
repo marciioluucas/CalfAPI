@@ -68,23 +68,16 @@ class Animal extends Modelo
      * @var Lote
      */
     private $lote;
-
-    /**
-     * @var ArrayObject
-     */
     private $doencas;
-
     private $hemograma;
-
     private $fazenda;
-
     private $doente;
-
     private $contagem;
-
     private $contagemDoentes;
-
     private $contagemMortos;
+    private $mortosAoNascer;
+    private $nascidoMorto;
+    private $dataMorte;
 
     /**
      * Animal constructor.
@@ -116,12 +109,17 @@ class Animal extends Modelo
         if (empty($this->vivo)) {
             $this->vivo = true;
         }
+        if($this->vivo == false){
+            $this->dataMorte = date(Config::PADRAO_DATA);
+        }
         if ($this->primogenito == 1) {
             $this->faseDaVida = FaseDaVida::ADULTO;
         }
         try {
             $idAnimal = (new AnimalDAO())->create($this);
-            $this->depoisDeSalvar($idAnimal);
+            if($this->isVivo){
+                $this->depoisDeSalvar($idAnimal);
+            }
             return $idAnimal;
         } catch (Exception $e) {
             throw new Exception($e->getMessage());
@@ -139,6 +137,9 @@ class Animal extends Modelo
                 $this->getUsuarioAlteracao()->setId(1);
             }
 
+            if($this->vivo == false){
+                $this->dataMorte = date(Config::PADRAO_DATA);
+            }
             $this->dataAlteracao = date(Config::PADRAO_DATA_HORA);
             if ($this->primogenito == 1) {
                 $this->faseDaVida = FaseDaVida::ADULTO;
@@ -178,6 +179,9 @@ class Animal extends Modelo
         }
         if($this->contagemMortos){
             return $dao->retreaveQtdAnimaisMortos();
+        }
+        if($this->mortosAoNascer){
+            return $dao->retreaveNatimortos($page);
         }
         return $dao->retreaveAll($page);
     }
@@ -617,6 +621,28 @@ class Animal extends Modelo
         $this->contagemMortos = $contagemMortos;
     }
 
+    function getDataMorte() {
+        return $this->dataMorte;
+    }
+
+    function setDataMorte(string $dataMorte): void {
+        $this->dataMorte = $dataMorte;
+    }
+
+    function getMortosAoNascer() {
+        return $this->mortosAoNascer;
+    }
+
+    function setMortosAoNascer($mortosAoNascer): void {
+        $this->mortosAoNascer = $mortosAoNascer;
+    }
+    function getNascidoMorto() {
+        return $this->nascidoMorto;
+    }
+
+    function setNascidoMorto($nascidoMorto): void {
+        $this->nascidoMorto = $nascidoMorto;
+    }
 
 
 }

@@ -23,7 +23,7 @@ class AnimalController implements IController
      */
     public function post(Request $request, Response $response): Response
     {
-        if(TokenApp::validaToken()) {
+//        if(TokenApp::validaToken()) {
             try {
                 $animal = new Animal();
                 $data = json_decode($request->getBody()->getContents());
@@ -59,6 +59,7 @@ class AnimalController implements IController
                     }
                     $animal->getFazenda()->setId($data->fazendas_id);
                     $animal->setVivo($data->is_vivo);
+                    $animal->setNascidoMorto($data->nascido_morto);
                     $animal->setPrimogenito($data->is_primogenito);
                     $animal->getPesagem()->setPeso($data->pesagens->peso);
                     $animal->getPesagem()->setDataPesagem($data->pesagens->data_pesagem);
@@ -97,10 +98,10 @@ class AnimalController implements IController
             } catch (Exception $exception) {
                 return View::renderException($response, $exception);
             }
-        }
-        else{
-            return View::renderMessage($response, 'error','Sem Autorização!','407', 'sem autorizacao');
-        }
+//        }
+//        else{
+//            return View::renderMessage($response, 'error','Sem Autorização!','407', 'sem autorizacao');
+//        }
     }
 
     /**
@@ -116,7 +117,7 @@ class AnimalController implements IController
         array $args
     ): Response
     {
-        if(TokenApp::validaToken()) {
+//        if(TokenApp::validaToken()) {
             try {
                 $animal = new Animal();
                 $page = (int)$request->getQueryParam('pagina');
@@ -152,6 +153,9 @@ class AnimalController implements IController
                 if($request->getQueryParam('contagemMortos') == 'true') {
                     $animal->setContagemMortos(true);
                 }
+                if($request->getQueryParam('mortosAoNascer') == 'true') {
+                    $animal->setMortosAoNascer(true);
+                }
                 if($request->getQueryParam('lotes_id')){
                     $animal->getLote()->setId($request->getQueryParam('lotes_id'));
                 }
@@ -160,9 +164,9 @@ class AnimalController implements IController
             } catch (Exception $exception) {
                 return View::renderException($response, $exception);
             }
-        }else {
-            return View::renderMessage($response, 'error','Sem Autorização!','407', 'sem autorizacao');
-        }
+//        }else {
+//            return View::renderMessage($response, 'error','Sem Autorização!','407', 'sem autorizacao');
+//        }
     }
 
 

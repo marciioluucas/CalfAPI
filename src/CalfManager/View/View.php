@@ -77,7 +77,7 @@ class View
         $description,
         int $codigo = 0,
         string $razao = "",
-        int $returnId = 0
+        ?int $returnId = 0
     ): Response {
         if ($type != 'error' && $type != 'success' && $type != 'warning') {
             throw new InvalidArgumentException(

@@ -46,7 +46,9 @@ class AnimalEntity extends CalfEntity
         'fase_vida',
         'lotes_id',
         'is_vivo',
-        'fazendas_id'
+        'fazendas_id',
+        'data_morte',
+        'nascido_morto'
     ];
     protected $casts = [
         'data_nascimento' => 'date:d/m/Y'

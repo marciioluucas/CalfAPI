@@ -22,26 +22,10 @@ use CalfManager\Utils\Config;
  */
 class AnimalDAO implements IDAO
 {
-
-
-    /**
-     * @var bool
-     */
     private $vivo;
-    /**
-     * @var string
-     */
     private $sexo;
-    /**
-     * @var bool
-     */
     private $ativo;
 
-    /**
-     * @param Animal $obj
-     * @return int|null
-     * @throws Exception
-     */
     public function create($obj): ?int
     {
         $entity = new AnimalEntity();
@@ -58,6 +42,8 @@ class AnimalDAO implements IDAO
         $entity->lotes_id = $obj->getLote()->getId();
         $entity->is_vivo = $obj->isVivo();
         $entity->fazendas_id = $obj->getFazenda()->getId();
+        $entity->data_morte = $obj->getDataMorte();
+        $entity->nascido_morto = $obj->getNascidoMorto();
         try {
             if ($entity->save()) {
                 return $entity->id;
@@ -121,6 +107,7 @@ class AnimalDAO implements IDAO
         }
         if($obj->isVivo() == false){
             $entity->is_vivo = 0;
+            $entity->data_morte = $obj->getDataMorte();
         }else{
             $entity->is_vivo = 1;
         }
@@ -189,7 +176,8 @@ class AnimalDAO implements IDAO
         }
     }
 
-    public function retreaveQuantidadeAnimais(){
+    public function retreaveQuantidadeAnimais()
+    {
         try {
             $entity = AnimalEntity::ativo()->where('is_vivo', 1)->get()->count();
             return ["animais" => $entity];
@@ -198,8 +186,11 @@ class AnimalDAO implements IDAO
             throw new Exception("Erro ao contar animais".$e->getMessage());
         }
     }
+    
+    // adicionar método para consultar obter a quantidade de animais por lote.
 
-    public function retreaveQtdAnimaisDoentes(){
+    public function retreaveQtdAnimaisDoentes()
+    {
         try{
             $animais = AnimalEntity::ativo()
                 ->with('doencas')
@@ -213,11 +204,6 @@ class AnimalDAO implements IDAO
             throw new Exception('Erro ao pesquisar por animais doentes! ' . $e);
         }
     }
-
-    /**
-     * @param int $animalId
-     * @return array
-     */
 
 
     /**
@@ -293,7 +279,9 @@ class AnimalDAO implements IDAO
      * @return array
      * @throws Exception
      */
-    public function retreaveByIdLoteAndName(int $idLote, string $nome, int $page)
+    public function retreaveByIdLoteAndName(int $idLote, 
+                                            string $nome, 
+                                            int $page)
     {
         try {
             $entity = AnimalEntity::ativo();
@@ -317,7 +305,9 @@ class AnimalDAO implements IDAO
             throw new Exception("Algo de errado aconteceu ao tentar pesquisar por por nome e lote" . $e->getMessage());
         }
     }
-    public function retreaveAnimalDoente($page){
+    
+    public function retreaveAnimalDoente($page)
+    {
         try{
             $animais = AnimalEntity::ativo()
                 ->with('hemogramas')
@@ -341,7 +331,8 @@ class AnimalDAO implements IDAO
         }
     }
 
-    public function retreaveAnimaisMortosAoNascer($page){
+    public function retreaveAnimaisMortosAoNascer($page)
+    {
         $animais = AnimalEntity::ativo()
             ->where("is_vivo", false)
             ->paginate(
@@ -353,6 +344,20 @@ class AnimalDAO implements IDAO
 
     }
 
+    public function retreaveNatimortos($page)
+    {
+        $animais = AnimalEntity::ativo()
+            ->where("nascido_morto", true)
+            ->paginate(
+                Config::QUANTIDADE_ITENS_POR_PAGINA,
+                ['*'],
+                'pagina',
+                $page
+            );
+        
+        return ["animais" => $animais];
+    }
+    
     public function retreaveQtdAnimaisMortos(){
         $animais = AnimalEntity::ativo()
             ->where("is_vivo", false)
