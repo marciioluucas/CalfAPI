@@ -41,11 +41,13 @@ class FamiliaController implements IController
         if(TokenApp::validaToken()) {
             $familia = new Familia();
             if ($request->getQueryParam('id-filho')) {
-                return View::render(
-                    $response,
-                    $familia->encapsular($request->getQueryParam('id-filho')),
-                    200
-                );
+               $search = $familia->pesquisaFamiliaByIdAnimal($request->getQueryParam('id-filho'));
+               return View::render($response, $search);
+//                return View::render(
+//                    $response,
+//                    $familia->encapsular($request->getQueryParam('id-filho')),
+//                    200
+//                );
             }
         }
     }

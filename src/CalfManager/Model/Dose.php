@@ -44,7 +44,7 @@ class Dose extends Modelo
         try {
             return (new DoseDAO())->create($this);
         } catch (Exception $e) {
-            throw new Exception($e->getMessage());
+            throw new Exception($e->getMessage(), $e->getCode() != null ? $e->getCode() : 500);
         }
     }
 

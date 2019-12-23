@@ -117,7 +117,7 @@ class Animal extends Modelo
         }
         try {
             $idAnimal = (new AnimalDAO())->create($this);
-            if($this->isVivo){
+            if($this->vivo){
                 $this->depoisDeSalvar($idAnimal);
             }
             return $idAnimal;

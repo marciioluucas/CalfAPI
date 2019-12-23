@@ -24,7 +24,7 @@ class DoseController implements IController
     public function post(Request $request, Response $response): Response
     {  
         try{
-//            if(TokenApp::validaToken()){
+            if(TokenApp::validaToken()){
                 $data = json_decode($request->getBody()->getContents());
                 $valida = (new DoseValidate())->validatePost((array)$data);
 
@@ -50,11 +50,11 @@ class DoseController implements IController
                     if ($dose->cadastrar()) {
                         if($data->tipo_movimentacao == 'saida')
                         {
-                            return View::renderMessage($response,
+                             return View::renderMessage($response,
                                                         "success",
-                                                        "Dose aplicada com sucesso!",
+                                                        "Dose registrada com sucesso!",
                                                         201,
-                                                        "Sucesso ao cadastrar");
+                                                        "Sucesso ao cadastrar");   
                         }
                         else
                         {
@@ -75,14 +75,14 @@ class DoseController implements IController
                     }
                 }
             }
-//            else
-//            {
-//                return View::renderMessage($response, 
-//                                            "Error", 
-//                                            "Sem autorização", 
-//                                            401);
-//            }
-        
+            else
+            {
+                return View::renderMessage($response, 
+                                            "Error", 
+                                            "Sem autorização", 
+                                            401);
+            }
+        }
         catch (Exception $e)
         {
            return View::renderMessage($response, 

@@ -36,11 +36,18 @@ class DoseDAO implements IDAO
         $entity->usuario_cadastro = $obj->getUsuarioCadastro()->getId();
         $entity->status = 1;
         try{
+            
+            if($entity->tipo_movimentacao == 'saida'){
+                $saldo = $this->retreaveSaldoByMedicamento($entity->medicamento_id);
+                if($saldo <= 0 || $saldo < $obj->getQuantidadeMg()){
+                    throw new Exception("Este medicamento não possui saldo disponível", 400);
+                }
+            }
             if($entity->save()){
                 return $entity->id;
             }
         }catch (Exception $e) {
-            throw new Exception("Erro ao cadastrar uma dose. Mensagem: " . $e->getMessage());
+            throw new Exception("Erro ao cadastrar uma dose. Mensagem: " . $e->getMessage(), $e->getCode() != null ? $e->getCode() : 500);
         }
 
     }
@@ -228,8 +235,24 @@ class DoseDAO implements IDAO
                 ]           
             ];
             
-            
-//            return ["doses" => $doses];
+        } catch (Exception $ex) {
+            throw new Exception("Erro ao pesquisar em dose o funcionario pelo ID ".$idFuncionario.". Mensagem: ".$e->getMessage());
+        }
+    }
+    
+     public function retreaveSaldoByMedicamento(int $medicamentoId):int
+    {
+        try{
+            $medicamento = MedicamentoEntity::ativo()->find($medicamentoId);
+            $doses = DoseEntity::ativo()->where('medicamento_id', $medicamentoId)->get();
+            foreach ($doses as $dose) 
+            {
+                $soma= $soma + ($dose->quantidade_mg*$dose->quantidade_unidade);
+                if($dose->tipo_movimentacao == 'saida'){
+                    $soma= $soma - $dose->quantidade_mg;
+                }
+            }
+            return  $soma;
             
         } catch (Exception $ex) {
             throw new Exception("Erro ao pesquisar em dose o funcionario pelo ID ".$idFuncionario.". Mensagem: ".$e->getMessage());
