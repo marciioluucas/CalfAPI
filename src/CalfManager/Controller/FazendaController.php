@@ -69,7 +69,8 @@ class FazendaController implements IController
         Request $request,
         Response $response,
         array $args
-    ): Response {
+    ): Response 
+    {
         if(TokenApp::validaToken()) {
             try {
                 $fazenda = new Fazenda();
@@ -160,7 +161,11 @@ class FazendaController implements IController
                     }
                 }
             } catch (Exception $exception) {
-                return View::renderException($response, $exception);
+                return View::renderMessage($response, 
+                                            'error', 
+                                            $e->getMessage(), 
+                                            $e->getCode() == null? 500 
+                                            : $e->getCode());
             }
         }
     }

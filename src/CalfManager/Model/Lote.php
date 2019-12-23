@@ -33,6 +33,8 @@ class Lote extends Modelo
     private $contagem;
 
     private $contagemAnimais;
+    
+    private $lotesQtdAnimais;
 
     /**
      * Lote constructor.
@@ -89,6 +91,9 @@ class Lote extends Modelo
     {
         try {
             if ($this->id and !$this->codigo and !$this->getFazenda()->getId()) {
+                if($this->id and $this->contagemAnimais){
+                    return (new LoteDAO())->retreaveQtdAnimaisPorLote($this->id);
+                }
                 return (new LoteDAO())->retreaveById($this->id);
             }
             if (!$this->id and $this->codigo and !$this->getFazenda()->getId()) {
@@ -100,8 +105,8 @@ class Lote extends Modelo
             if ($this->contagem) {
                 return (new LoteDAO())->retreaveQuantidadeLotes();
             }
-            if ($this->contagemAnimais) {
-                return (new LoteDAO())->retreaveQtdAnimaisPorLote($this->id);
+            if($this->lotesQtdAnimais){
+                return (new LoteDAO())->retreaveQtdAnimaisByLote();
             }
             return (new LoteDAO())->retreaveAll($page);
         } catch (Exception $exception) {
@@ -116,9 +121,14 @@ class Lote extends Modelo
     public function deletar(): bool
     {
         try {
-            return (new LoteDAO())->delete($this->id);
+            $dao = new LoteDAO();
+            if($dao->PossuiAnimais($this->id)){
+                throw new Exception("Não é possível excluir o lote, pois existe referencia em animais", 400);
+            } 
+            
+            return $dao->delete($this->id);
         } catch (Exception $e) {
-            throw new Exception($e->getMessage());
+            throw new Exception($e->getMessage(), $e->getCode() != null ? $e->getCode() : 500);
         }
     }
 
@@ -201,5 +211,14 @@ class Lote extends Modelo
     {
         $this->contagemAnimais = $contagemAnimais;
     }
+    
+    function getLotesQtdAnimais() {
+        return $this->lotesQtdAnimais;
+    }
+
+    function setLotesQtdAnimais($lotesQtdAnimais): void {
+        $this->lotesQtdAnimais = $lotesQtdAnimais;
+    }
+
 
 }

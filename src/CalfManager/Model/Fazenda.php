@@ -101,9 +101,14 @@ class Fazenda extends Modelo
     public function deletar(): bool
     {
         try {
-            return (new FazendaDAO())->delete($this->id);
+            $dao = new FazendaDAO();
+            if($dao->possuiReferencias($this->id))
+            {
+                throw new Exception("Não é possível excluir a fazenda, pois existe referência em animais, funcionários ou lotes", 400);
+            }
+            return $dao->delete($this->id);
         } catch (Exception $e) {
-            throw new Exception($e->getMessage());
+            throw new Exception($e->getMessage(), $e->getCode() != null ? $e->getCode() : 500);
         }
     }
 

@@ -358,7 +358,8 @@ class AnimalDAO implements IDAO
         return ["animais" => $animais];
     }
     
-    public function retreaveQtdAnimaisMortos(){
+    public function retreaveQtdAnimaisMortos()
+    {
         $animais = AnimalEntity::ativo()
             ->where("is_vivo", false)
             ->get()

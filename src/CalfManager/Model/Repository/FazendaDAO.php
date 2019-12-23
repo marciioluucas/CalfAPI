@@ -125,6 +125,18 @@ class FazendaDAO implements IDAO
     public function retreaveAllAnimais(int $page){
 
     }
+    
+    public function possuiReferencias($fazendaId): bool
+    {
+        $qtdAnimais = AnimalDAO::ativo()->where('fazendas_id', $fazendaId)->get()->count();
+        $qtdLotes = LoteDAO::ativo()->where('fazenda_id', $fazendaId)->get()->count();
+        $qtdFuncionarios = FuncionarioDAO::ativo()->where('fazenda_id', $fazendaId)->get()->count();
+        if($qtdAnimais > 0 || $qtdLotes > 0 ||  $qtdFuncionarios > 0)
+        {
+            return true;
+        }
+        return false;
+    }
 
     /**
      * @param int $id

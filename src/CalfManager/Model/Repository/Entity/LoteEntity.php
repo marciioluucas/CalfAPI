@@ -23,11 +23,10 @@ class LoteEntity extends CalfEntity
         'usuario_alteracao',
         'status',
     ];
-
-    public function animais() {
-        return $this->hasMany('\CalfManager\Model\Repository\Entity\AnimalEntity', 'id');
-    }
     public function fazenda(){
         return $this->belongsTo('\CalfManager\Model\Repository\Entity\FazendaEntity', 'fazenda_id');
+    }
+    public function animais(){
+        return $this->hasMany('\CalfManager\Model\Repository\Entity\AnimalEntity', 'lotes_id', "id");
     }
 }

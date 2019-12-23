@@ -161,6 +161,29 @@ class LoteDAO implements IDAO
             throw new Exception("Erro ao contar lotes " . $e->getMessage());
         }
     }
+    
+    public function retreaveQtdAnimaisByLote(){
+        try{
+            $lotes = LoteEntity::ativo()->get();
+            
+            $lista = [];
+            
+            foreach ($lotes as $value) {
+                array_push($lista, 
+                    [
+                        'codigo' => $value->codigo,
+                        
+                        'quantidade_animais' => AnimalEntity::ativo()
+                                                    ->where('lotes_id', $value->id)
+                                                    ->where('is_vivo', true)
+                                                    ->count()
+                    ]);
+            }
+            return ['lotes' => $lista];
+        } catch (Exception $ex) {
+
+        }
+    }
 
     /**
      * Passando o loteId como parametro, consultara na tabela de Animais todos os animais que tenha este id no lote_id
@@ -176,10 +199,21 @@ class LoteDAO implements IDAO
             $entity = AnimalEntity::ativo();
             if (!$considerarMortos) $entity = $entity->vivo();
 
-            return ['lotes_amount' => $entity->where('lotes_id', $loteId)->get()->count()];
+            return ['lotes_amount' => $entity->where('lotes_id', $loteId)->count()];
         } catch (Exception $e) {
             throw new Exception("Erro ao contar os animais por lote " . $e);
         }
+    }
+    
+    public function PossuiAnimais($id): bool
+    {
+        $entity = AnimalEntity::ativo();
+       
+        $qtdAnimais = $entity->where('lotes_id', $id)->get()->count();
+        if($qtdAnimais > 0){
+            return true;
+        }
+        return false;
     }
 
     /**
