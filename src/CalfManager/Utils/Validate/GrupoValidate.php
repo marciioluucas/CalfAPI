@@ -15,9 +15,9 @@ class GrupoValidate extends Validate
     public function validatePost($params)
     {
         $rules = [
-            'required' => ['nome', 'descricao'],
-            'lengthMin' => [['nome', 4],['descricao', 4]],
-            'lengthMax' => [['nome', 25],['descricao', 50]]
+            'required' => ['nome'],
+            'lengthMin' => [['nome', 2]],
+            'lengthMax' => [['nome', 25]]
 
         ];
         $valida = new Validator($params);

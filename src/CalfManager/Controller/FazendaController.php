@@ -163,9 +163,9 @@ class FazendaController implements IController
             } catch (Exception $exception) {
                 return View::renderMessage($response, 
                                             'error', 
-                                            $e->getMessage(), 
-                                            $e->getCode() == null? 500 
-                                            : $e->getCode());
+                                            $exception->getMessage(), 
+                                            $exception->getCode() == null? 500 
+                                            : $exception->getCode());
             }
         }
     }

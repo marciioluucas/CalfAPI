@@ -161,6 +161,7 @@ class PesagemDAO implements IDAO
             PesagemEntity::ativo()
                 ->where('animais_id', $params['animal'])
                 ->whereDate('data_pesagem', '<=', Carbon::now())
+                ->orderBy('data_pesagem', 'asc')
                 ->get(['peso', 'data_pesagem'])
         ];
     }

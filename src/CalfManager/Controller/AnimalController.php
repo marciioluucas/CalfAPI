@@ -57,6 +57,7 @@ class AnimalController implements IController
                         $animal->setMae(new Animal());
                         $animal->getMae()->setId($data->mae);
                     }
+                    
                     $animal->getFazenda()->setId($data->fazendas_id);
                     $animal->setVivo($data->is_vivo);
                     $animal->setNascidoMorto($data->nascido_morto);

@@ -16,7 +16,7 @@ class CargoValidate extends Validate
     public function validatePost($params)
     {
         $valida = new Validator($params);
-        $valida->rule('required', ['nome', 'descricao']);
+        $valida->rule('required', ['nome']);
         if($valida->validate()){
             return true;
         } else {

@@ -108,10 +108,10 @@ class Usuario extends Modelo
                 return $dao->retreaveById($this->id);
             }
             if ($this->login and $this->senha){
-                return $dao->retreaveByLoginSenha($this->login, $this->senha);
+                return $this->decodePasswordUser($dao->retreaveByLoginSenha($this->login, $this->senha));
             }
             if ($this->login){
-                return $dao->retreaveByLogin($this->login, $page);
+                return $this->$dao->retreaveByLogin($this->login, $page);
             }
             if($this->getGrupo()->getId()){
                 return $dao->retreaveByGrupo($this->getGrupo()->getId(), $page);
@@ -125,6 +125,11 @@ class Usuario extends Modelo
         }
     }
 
+    public function decodePasswordUser(Usuario $user){
+        $passwordDecoded = base64_decode($user->getSenha());
+        $user->setSenha($passwordDecoded);
+        return $user;
+    }
     /**
      * @return bool
      * @throws Exception

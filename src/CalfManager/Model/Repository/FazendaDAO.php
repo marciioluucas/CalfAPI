@@ -11,6 +11,9 @@ namespace CalfManager\Model\Repository;
 use Exception;
 use CalfManager\Model\Fazenda;
 use CalfManager\Model\Repository\Entity\FazendaEntity;
+use CalfManager\Model\Repository\Entity\FuncionarioEntity;
+use CalfManager\Model\Repository\Entity\AnimalEntity;
+use CalfManager\Model\Repository\Entity\LoteEntity;
 use CalfManager\Utils\Config;
 
 class FazendaDAO implements IDAO
@@ -128,9 +131,9 @@ class FazendaDAO implements IDAO
     
     public function possuiReferencias($fazendaId): bool
     {
-        $qtdAnimais = AnimalDAO::ativo()->where('fazendas_id', $fazendaId)->get()->count();
-        $qtdLotes = LoteDAO::ativo()->where('fazenda_id', $fazendaId)->get()->count();
-        $qtdFuncionarios = FuncionarioDAO::ativo()->where('fazenda_id', $fazendaId)->get()->count();
+        $qtdAnimais = AnimalEntity::ativo()->where('fazendas_id', $fazendaId)->get()->count();
+        $qtdLotes = LoteEntity::ativo()->where('fazenda_id', $fazendaId)->get()->count();
+        $qtdFuncionarios = FuncionarioEntity::ativo()->where('fazenda_id', $fazendaId)->get()->count();
         if($qtdAnimais > 0 || $qtdLotes > 0 ||  $qtdFuncionarios > 0)
         {
             return true;
@@ -146,13 +149,16 @@ class FazendaDAO implements IDAO
     public function delete(int $id): bool
     {
         try {
+            if($this->possuiReferencias($id)){
+                throw new Exception("Esta fazenda possui referencias");
+            }
             $entity = FazendaEntity::find($id);
             $entity->status = 0;
             if ($entity->save()) {
                 return true;
             };
         } catch (Exception $e) {
-            throw new Exception("Algo de errado aconteceu ao tentar desativar uma fazenda" . $e->getMessage());
+            throw new Exception("Algo de errado aconteceu ao tentar desativar uma fazenda. " . $e->getMessage(), 400);
         }
         return false;
     }

@@ -90,7 +90,7 @@ class UsuarioController implements IController
                 $search = $usuario->pesquisar($page);
 
                 return View::render($response, $search);
-        }
+            }
         } catch (Exception $e) {
             return View::renderMessage($response, 'error',$e->getMessage(), $e->getCode() == null? 500: $e->getCode());
         }
