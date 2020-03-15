@@ -45,6 +45,7 @@ class AnimalDAO implements IDAO
         $entity->primogenito = $obj->getPrimogenito();
         $entity->data_morte = $obj->getDataMorte();
         $entity->nascido_morto = $obj->getNascidoMorto();
+        $entity->ehDesmamado = $obj->getEhDesmamado();
         try {
             if ($entity->save()) {
                 return $entity->id;
@@ -105,6 +106,9 @@ class AnimalDAO implements IDAO
         }
         if (!is_null($obj->getFazenda()->getId())) {
             $entity->fazendas_id = $obj->getFazenda()->getId();
+        }
+        if (!is_null($obj->getEhDesmamado())) {
+            $entity->ehDesmamado = $obj->getEhDesmamado();
         }
         if($obj->isVivo() == false){
             $entity->is_vivo = 0;
@@ -180,8 +184,16 @@ class AnimalDAO implements IDAO
     public function retreaveQuantidadeAnimais()
     {
         try {
-            $entity = AnimalEntity::ativo()->where('is_vivo', 1)->get()->count();
-            return ["animais" => $entity];
+            $qtdAnimaisVivos = AnimalEntity::ativo()->where('is_vivo', 1)->get()->count();
+            $qtdDoentes = AnimalEntity::ativo()
+                ->with('doencas')
+                ->whereHas('doencas', function ($situacao) {
+                    $situacao->where('situacao', 'DOENTE');
+                })
+                ->get()
+                ->count();
+            
+            return ["animais" => $qtdAnimaisVivos - $qtdDoentes];
         }
         catch (Exception $e){
             throw new Exception("Erro ao contar animais".$e->getMessage());

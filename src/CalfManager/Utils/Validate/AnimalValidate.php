@@ -23,7 +23,6 @@ class AnimalValidate extends Validate
             'lengthMax' => [['sexo',1]],
             'in' => [
                 ['sexo', ['m','f']],
-                ['fase_vida', ['RECEM_NASCIDO','BEZERRO','NOVILHO','ADULTO']]
             ],
             'integer' => ['pai', 'mae'],
             'dateFormat' => [
@@ -55,7 +54,6 @@ class AnimalValidate extends Validate
             'lengthMax' => [['sexo', 1]],
             'in' => [
                 ['sexo', ['m','f']],
-                ['fase_vida', ['RECEM_NASCIDO','BEZERRO','NOVILHO','ADULTO']]
             ],
             'integer' => ['pai', 'mae'],
             'dateFormat' => [

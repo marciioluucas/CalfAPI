@@ -78,6 +78,7 @@ class Animal extends Modelo
     private $mortosAoNascer;
     private $nascidoMorto;
     private $dataMorte;
+    private $ehDesmamado;
 
     /**
      * Animal constructor.
@@ -644,5 +645,11 @@ class Animal extends Modelo
         $this->nascidoMorto = $nascidoMorto;
     }
 
-
+    function getEhDesmamado(){
+        return $this->ehDesmamado;
+    }
+    
+    function setEhDesmamado($ehDesmamado):void{
+        $this->ehDesmamado = $ehDesmamado;
+    }
 }
